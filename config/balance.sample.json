@@ -1,0 +1,57 @@
+{
+  "description": "Exemplo de parâmetros iniciais para testes, revisáveis por mundo; não é código executável.",
+  "locale": "pt-BR",
+  "voice": {
+    "consentRequired": true,
+    "maxTargetDistanceBlocks": 6,
+    "ambientNpcDialogueEnabled": true,
+    "saveRawAudio": false
+  },
+  "llm": {
+    "provider": "ollama",
+    "endpoint": "http://127.0.0.1:11434",
+    "candidateModel": "qwen3:4b-instruct",
+    "fallbackModel": "llama3.2",
+    "maxSimultaneousRequests": 1,
+    "maxQueuedRequests": 6
+  },
+  "gameplay": {
+    "economyMode": "survival_balanced",
+    "maxActiveFollowersPerPlayer": 2,
+    "bossContractsEnabled": false,
+    "bossDestructionOnAlliance": false,
+    "allowRewardSpawningOutsideApprovedRecipes": false,
+    "creativeSandboxOptInByWorldAdmin": true
+  },
+  "npcChatter": {
+    "maxConcurrentGroupsPerRegion": 1,
+    "minSecondsBetweenGroupDialogues": 60,
+    "maxTurnsPerDialogue": 3,
+    "ignoreUnloadedChunks": true
+  },
+  "transactions": {
+    "requireActiveContract": true,
+    "returnExcessItems": true,
+    "deduplicateByTransactionId": true,
+    "protectReservedOffer": true
+  },
+  "access": {
+    "localServiceOnly": true,
+    "allowOtherPlayersVoiceProcessingByDefault": false
+  },
+  "rareRecipes": {
+    "wither_skeleton_gold_skull_v1": {
+      "enabledByDefault": false,
+      "requiresAdminOptIn": true,
+      "cooldownTicks": 72000
+    }
+  },
+  "social": {
+    "allowPlayerLiesAndRoleplay": true,
+    "allowAnyMobAsAllianceCandidate": true,
+    "npcBeliefStateEnabledWhenImplemented": true,
+    "followStayPortalCommandsPlanned": true,
+    "npcMayRefuse": true,
+    "npcCanPretendToBelieve": true
+  }
+}

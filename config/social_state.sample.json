@@ -1,0 +1,46 @@
+{
+  "_note": "EXEMPLO de design, nao existe codigo que carregue este JSON ainda",
+  "entityType": "minecraft:chicken",
+  "identityId": "example-chicken-001",
+  "personality": {
+    "credulity": 0.83,
+    "caution": 0.25
+  },
+  "facts": [
+    {
+      "event": "spawned_near_player",
+      "verifiedBy": "server",
+      "timestamp": "example-only"
+    }
+  ],
+  "claims": [
+    {
+      "claimId": "claim-001",
+      "speaker": "player-example",
+      "text": "Eu sou seu pai",
+      "verified": false
+    }
+  ],
+  "beliefs": [
+    {
+      "claimId": "claim-001",
+      "status": "believes",
+      "confidence": 0.73,
+      "nicknameForPlayer": "pai"
+    }
+  ],
+  "relationships": [
+    {
+      "playerId": "player-example",
+      "bond": "roleplay_family",
+      "trust": 75,
+      "allyStatus": "FOLLOWER"
+    }
+  ],
+  "orders": {
+    "movement": "STAY_AT",
+    "portalPolicy": "DO_NOT_FOLLOW",
+    "position": "overworld:100,64,200"
+  },
+  "language": "pt-BR"
+}

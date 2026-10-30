@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MobVoz IA v2.1 — proposta social da IA, jamais execução direta",
+  "description": "Esquema de PROJETO para implementar nas fases posteriores. Fatos verificados são exclusivamente dados do servidor.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "speech_text",
+    "language",
+    "intent",
+    "proposals"
+  ],
+  "properties": {
+    "speech_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 360
+    },
+    "language": {
+      "const": "pt-BR"
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "conversar",
+        "alegar",
+        "acreditar",
+        "duvidar",
+        "enganar",
+        "formar_alianca",
+        "pedir_seguir",
+        "mandar_ficar",
+        "negociar",
+        "recusar",
+        "ajudar",
+        "avisar",
+        "planejar",
+        "prometer",
+        "desfazer_alianca"
+      ]
+    },
+    "proposals": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "parameters"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "NONE",
+              "REGISTER_CLAIM",
+              "UPDATE_BELIEF",
+              "UPDATE_RELATIONSHIP",
+              "FORM_ALLIANCE",
+              "BREAK_ALLIANCE",
+              "FOLLOW_PLAYER",
+              "STAY_AT",
+              "PORTAL_HOLD",
+              "DISMISS_ALLY",
+              "DEFEND_PLAYER",
+              "CEASE_HOSTILITY",
+              "OFFER_CONTRACT",
+              "EMOTE"
+            ]
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Somente tipos/IDs/valores aprovados por executor do servidor; este schema ainda não valida parâmetros individuais."
+          }
+        }
+      }
+    }
+  }
+}

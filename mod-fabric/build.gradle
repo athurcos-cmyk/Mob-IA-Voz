@@ -1,0 +1,63 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    // Minecraft, mappings and Fabric artifacts are supplied by Loom.
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+tasks.register('verifyModMetadata') {
+    group = 'verification'
+    description = 'Checks the phase 0 Fabric metadata and target versions.'
+    def metadata = layout.buildDirectory.file('resources/main/fabric.mod.json')
+    dependsOn processResources
+    inputs.file(metadata)
+    doLast {
+        def mod = new JsonSlurper().parse(metadata.get().asFile)
+        assert mod.schemaVersion == 1
+        assert mod.id == 'mobvoz'
+        assert mod.name == 'MobVoz IA'
+        assert mod.version == project.version
+        assert mod.entrypoints.main == ['br.com.mobvoz.MobVozMod']
+        assert mod.depends.minecraft == '~1.21.8'
+        assert mod.depends.java == '>=21'
+        assert project.minecraft_version == '1.21.8'
+        assert project.fabric_api_version.endsWith('+1.21.8')
+    }
+}
+
+check.dependsOn tasks.named('verifyModMetadata')
+

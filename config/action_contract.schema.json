@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mobvoz/action_contract.schema.json",
+  "title": "MobVoz IA — resposta proposta da IA, NÃO execução",
+  "description": "Contrato de protótipo. O mod deve validar capabilities e contexto no servidor. O JSON nunca possui autoridade para alterar o mundo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["speech_text", "language", "emotion", "intent", "action_proposal"],
+  "properties": {
+    "speech_text": {"type": "string", "minLength": 1, "maxLength": 360},
+    "language": {"const": "pt-BR"},
+    "emotion": {
+      "type": "string",
+      "enum": ["neutro", "curioso", "alegre", "cauteloso", "irritado", "triste", "desconfiado", "hostil", "calculista", "medroso"]
+    },
+    "intent": {
+      "type": "string",
+      "enum": ["conversar", "negociar", "recusar", "aceitar", "ameaçar", "ajudar", "pedir", "avisar", "fofocar", "planejar"]
+    },
+    "action_proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "parameters"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["NONE", "OFFER_TRADE", "ACCEPT_OFFER", "FOLLOW_PLAYER", "DEFEND_PLAYER", "CEASE_HOSTILITY", "SHARE_RUMOR", "PLAN_GROUP_MOVE", "START_QUEST", "BREAK_ALLIANCE", "EMOTE"]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "recipe_id": {"type": "string", "maxLength": 80, "pattern": "^[a-z0-9_:-]+$"},
+            "target_ref": {"type": "string", "maxLength": 64},
+            "duration_seconds": {"type": "integer", "minimum": 1, "maximum": 600},
+            "emotion_hint": {"type": "string", "maxLength": 48},
+            "quest_template_id": {"type": "string", "maxLength": 80}
+          }
+        }
+      }
+    }
+  }
+}

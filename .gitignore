@@ -1,0 +1,8 @@
+.tools/
+mod-fabric/.gradle/
+mod-fabric/.gradle-user-home/
+mod-fabric/build/
+mod-fabric/run/
+mod-fabric/.idea/
+mod-fabric/.vscode/
+

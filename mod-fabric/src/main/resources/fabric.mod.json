@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "mobvoz",
+  "version": "${version}",
+  "name": "MobVoz IA",
+  "description": "Fundacao do mod MobVoz IA para Minecraft Java 1.21.8.",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["br.com.mobvoz.MobVozMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.17.3",
+    "minecraft": "~1.21.8",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
+

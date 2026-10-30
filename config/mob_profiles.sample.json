@@ -1,0 +1,185 @@
+{
+  "description": "Exemplos de perfis de design; NÃO são dados carregados por um mod implementado.",
+  "defaultLanguage": "pt-BR",
+  "profiles": [
+    {
+      "id": "minecraft:cow",
+      "category": "passive",
+      "motivations": [
+        "pastar",
+        "estar_em_segurança",
+        "viver_em_rebanho"
+      ],
+      "likes": [
+        "minecraft:wheat",
+        "minecraft:grass_block"
+      ],
+      "dislikes": [
+        "ser_agredida",
+        "fogo"
+      ],
+      "allowedIntents": [
+        "conversar",
+        "pedir",
+        "aceitar",
+        "recusar"
+      ],
+      "possibleActions": [
+        "FOLLOW_PLAYER",
+        "EMOTE"
+      ],
+      "baseVoice": "pt_BR-faber-medium",
+      "style": "fala simples e curiosa, sem gíria de internet"
+    },
+    {
+      "id": "minecraft:pig",
+      "category": "passive",
+      "motivations": [
+        "comida",
+        "descanso",
+        "segurança"
+      ],
+      "likes": [
+        "minecraft:carrot",
+        "minecraft:potato",
+        "minecraft:apple"
+      ],
+      "dislikes": [
+        "perseguir_sem_acordo"
+      ],
+      "possibleActions": [
+        "FOLLOW_PLAYER",
+        "OFFER_TRADE",
+        "EMOTE"
+      ],
+      "baseVoice": "pt_BR-cadu-medium",
+      "style": "teimoso, divertido sem virar meme repetitivo"
+    },
+    {
+      "id": "minecraft:creeper",
+      "category": "hostile",
+      "motivations": [
+        "ser_respeitado",
+        "controle",
+        "pólvora"
+      ],
+      "likes": [
+        "minecraft:gunpowder"
+      ],
+      "dislikes": [
+        "aproximação_agressiva"
+      ],
+      "possibleActions": [
+        "CEASE_HOSTILITY",
+        "EMOTE"
+      ],
+      "baseVoice": "pt_BR-edresson-low",
+      "style": "tenso e de poucas palavras; pode aceitar trégua temporária"
+    },
+    {
+      "id": "minecraft:villager#farmer",
+      "category": "villager_profession",
+      "motivations": [
+        "colheita",
+        "rebanho",
+        "aldeia_segura"
+      ],
+      "likes": [
+        "minecraft:hay_block",
+        "minecraft:wheat",
+        "minecraft:wheat_seeds"
+      ],
+      "possibleActions": [
+        "OFFER_TRADE",
+        "EMOTE"
+      ],
+      "baseVoice": "pt_BR-jeff-medium",
+      "style": "prático e preocupado com agricultura"
+    },
+    {
+      "id": "minecraft:villager#toolsmith",
+      "category": "villager_profession",
+      "motivations": [
+        "ferramentas",
+        "trabalho",
+        "metal"
+      ],
+      "likes": [
+        "minecraft:iron_ingot",
+        "minecraft:coal"
+      ],
+      "possibleActions": [
+        "OFFER_TRADE",
+        "EMOTE"
+      ],
+      "baseVoice": "pt_BR-jeff-medium",
+      "style": "valoriza metal e ferramentas, não heno"
+    },
+    {
+      "id": "minecraft:enderman",
+      "category": "collective",
+      "motivations": [
+        "proteger_membros",
+        "blocos",
+        "equilíbrio_do_End"
+      ],
+      "likes": [
+        "blocos_interessantes"
+      ],
+      "possibleActions": [
+        "SHARE_RUMOR",
+        "EMOTE"
+      ],
+      "collectiveMemoryFaction": "endermen",
+      "baseVoice": "pt_BR-faber-medium",
+      "style": "enigmático, comunicação breve, referências à mente coletiva"
+    },
+    {
+      "id": "minecraft:chicken",
+      "category": "passive",
+      "motivations": [
+        "proteção",
+        "comida",
+        "companhia"
+      ],
+      "likes": [
+        "minecraft:wheat_seeds",
+        "minecraft:melon_seeds"
+      ],
+      "personalityRange": {
+        "credulity": [
+          0.15,
+          0.9
+        ],
+        "loyalty": [
+          0.25,
+          0.85
+        ]
+      },
+      "relationshipExamples": [
+        "roleplay_family",
+        "friend",
+        "ally"
+      ],
+      "style": "curiosa, em alguns indivíduos ingênua, mas não obedece cegamente",
+      "possibleActionsPlanned": [
+        "FOLLOW_PLAYER",
+        "STAY_AT",
+        "PORTAL_HOLD",
+        "DISMISS_ALLY",
+        "EMOTE"
+      ]
+    }
+  ],
+  "_v21_notice": "Perfis são tendências, não uma lista fechada de falas nem proibição de alianças. Any mob may be an alliance candidate; action adapters depend on implementation.",
+  "universalSocialCapabilitiesPlanned": [
+    "REGISTER_CLAIM",
+    "UPDATE_BELIEF",
+    "FORM_ALLIANCE",
+    "BREAK_ALLIANCE",
+    "FOLLOW_PLAYER",
+    "STAY_AT",
+    "PORTAL_HOLD",
+    "DISMISS_ALLY"
+  ]
+}
