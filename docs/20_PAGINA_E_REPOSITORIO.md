@@ -16,7 +16,7 @@ Para ver local: `python -m http.server 4173 --directory site` e abra `http://loc
 2. **Root Directory: `site`**; Framework Preset: Other; sem comando de build; sem diretório de saída (é estático). `site/vercel.json` já traz os cabeçalhos.
 3. Deploy. Para atualizar: `git push` (o Vercel publica sozinho).
 
-Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), confira os links de download da etapa 4 (o repositório é privado: quem baixa precisa de acesso; ou publique o zip em um repositório/Release público) e revise o texto de "Estado do projeto" (a página diz que ninguém testou com microfone real).
+Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), o link de download da etapa 4 aponta para `dist/MobVozIA-0.1.0.zip` no repositório privado (quem baixa precisa de acesso e estar logado no GitHub); para divulgar além dos amigos, publique o zip num lugar público e revise o texto de "Estado do projeto" (a página diz que ninguém testou com microfone real).
 
 ### O que a página afirma e onde está a prova
 
