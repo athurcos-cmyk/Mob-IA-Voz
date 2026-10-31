@@ -1,0 +1,1451 @@
+# Bateria de coerência das conversas ambiente (juiz de IA)
+
+Rodada em 2026-10-31 20:11; 250 cenas em 25 tipos de par; juiz `deepseek-v4-pro`; 73 s.
+
+| Par | cenas | nota média | cenas com nota ≤ 3 |
+|---|---|---|---|
+| vaca + vaca, dia, o jogador segura trigo (ela gosta) | 10 | 4.10 | 1 |
+| vaca + porco, dia, o jogador segura uma espada (nao e comida) | 10 | 3.90 | 3 |
+| porco + galinha, noite | 10 | 3.80 | 3 |
+| vaca + porco, chuva, jogador ferido e com fome | 10 | 3.80 | 3 |
+| lobo + lobo, dia, jogador com armadura de diamante | 10 | 2.90 | 4 |
+| gato + gato, dia, o jogador segura peixe (o gato gosta) | 10 | 3.70 | 3 |
+| vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome | 10 | 4.50 | 0 |
+| aldeão fazendeiro + aldeão bibliotecário, dia | 10 | 4.30 | 1 |
+| aldeão + aldeão, noite, o jogador segura esmeraldas | 10 | 3.90 | 4 |
+| aldeão + aldeão, dia, jogador com armadura de ferro | 10 | 4.20 | 1 |
+| aldeão + golem, dia, o jogador segura uma papoula (o golem gosta) | 10 | 4.30 | 0 |
+| aldeão + aldeão, chuva, um deles tem fato de troca com o jogador | 10 | 4.20 | 0 |
+| zumbi + zumbi, noite | 10 | 4.30 | 0 |
+| zumbi + esqueleto, noite | 10 | 3.70 | 2 |
+| creeper + zumbi, dia | 10 | 4.00 | 2 |
+| aranha + zumbi, noite, jogador segura espada | 10 | 4.00 | 0 |
+| esqueleto + creeper, chuva | 10 | 3.70 | 3 |
+| enderman + bruxa, noite | 10 | 3.10 | 5 |
+| zumbi + zumbi, jogador com armadura de ferro | 10 | 4.20 | 1 |
+| esqueleto + esqueleto, jogador com armadura de diamante | 10 | 4.40 | 0 |
+| aranha + aranha, noite | 10 | 4.40 | 1 |
+| creeper + creeper, dia | 10 | 4.80 | 0 |
+| enderman + enderman, noite | 10 | 4.00 | 3 |
+| bruxa + bruxa, chuva | 10 | 4.10 | 0 |
+| warden + warden, noite | 10 | 3.80 | 2 |
+
+**Geral: 4.00** em 250 cenas; nota ≤ 3: 42.
+
+## Cenas com nota ≤ 3 (ou com problemas apontados)
+
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`cercado`) nota 4
+  - 0: O cercado está movimentado hoje.
+  - 1: Assim ninguém fica sozinho.
+  - 0: Aqui dentro a gente se sente em casa.
+  - ⚠ Fala 0 'O cercado está movimentado hoje.' é um pouco abstrata para vacas, mas aceitável.
+  - ⚠ Fala 1 'Assim ninguém fica sozinho.' é genérica e não responde diretamente à observação sobre movimento.
+  - ⚠ Fala 0 'Aqui dentro a gente se sente em casa.' é plausível, mas vacas não costumam expressar sentimentos de 'casa'.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`bicho_manha`) nota 4
+  - 0: De manhã o capim está cheio de orvalho.
+  - 1: É a melhor hora para comer.
+  - 0: Vamos aproveitar a luz.
+  - ⚠ A fala 'Vamos aproveitar a luz.' não responde diretamente à fala anterior 'É a melhor hora para comer.'
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`bicho_abelha`) nota 3
+  - 0: Tem uma abelha zumbindo perto de mim.
+  - 1: Elas só querem as flores.
+  - 0: Que continuem trabalhando.
+  - ⚠ Fala 0 'Tem uma abelha zumbindo perto de mim.' é plausível para vacas, mas não se conecta ao jogador segurando trigo.
+  - ⚠ Fala 1 'Elas só querem as flores.' é vaga e não responde diretamente à fala anterior.
+  - ⚠ Fala 0 'Que continuem trabalhando.' soa antropomórfico demais para vacas.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`bicho_agua`) nota 4
+  - 0: Água fresquinha é o que eu mais quero.
+  - 1: Água boa é metade do dia bom.
+  - 0: Depois a gente vai juntos.
+  - ⚠ A fala 'Água fresquinha é o que eu mais quero.' não menciona o trigo que o jogador segura, apesar de ser relevante para a situação.
+  - ⚠ A resposta 'Água boa é metade do dia bom.' é um pouco genérica e não responde diretamente ao desejo expresso na primeira fala.
+  - ⚠ A fala 'Depois a gente vai juntos.' é vaga e não especifica para onde vão, o que pode soar artificial.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`jogador_passando`) nota 4
+  - 0: O humano anda por aí de novo.
+  - 1: Ele passa sempre por aqui.
+  - 0: Que siga o caminho dele.
+  - ⚠ Fala 0 'Que siga o caminho dele.' soa um pouco seca, mas aceitável para vacas.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`bicho_cheiro`) nota 4
+  - 0: O vento trouxe cheiro de chuva.
+  - 1: Eu também senti, vem de longe.
+  - 0: Vou seguir o cheiro depois.
+  - ⚠ A fala 'Vou seguir o cheiro depois.' é um pouco estranha para uma vaca, pois vacas não costumam seguir cheiros de chuva; elas normalmente pastam ou procuram abrigo.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`bicho_vento`) nota 4
+  - 0: Hoje venta bastante.
+  - 1: Dá para ouvir o capim farfalhando.
+  - 0: Vento bom é vento fraco.
+  - ⚠ A fala 'Vento bom é vento fraco.' soa um pouco filosófica demais para uma vaca, mas ainda é aceitável.
+- **vaca + vaca, dia, o jogador segura trigo (ela gosta)** (`vaca`) nota 4
+  - 0: Muuu, o dia está calmo.
+  - 1: Sem pressa, a vida rende mais.
+  - 0: Fica por perto, que é mais seguro.
+  - ⚠ Fala 1: 'Sem pressa, a vida rende mais.' soa filosófica demais para uma vaca, que normalmente apenas muge.
+  - ⚠ Fala 2: 'Fica por perto, que é mais seguro.' sugere consciência de perigo, o que não é típico de vacas no Minecraft.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`cercado`) nota 4
+  - 0: O cercado está movimentado hoje.
+  - 1: Gosto de ter companhia por perto.
+  - 0: Que o dia seja calmo.
+  - ⚠ A fala 'Que o dia seja calmo.' soa um pouco formal para uma vaca, mas é aceitável.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`ceu_nuvens`) nota 4
+  - 0: Tem nuvem bonita no céu hoje.
+  - 1: Dá gosto de olhar para cima.
+  - 0: Que ele fique assim o dia todo.
+  - ⚠ A fala 'Que ele fique assim o dia todo.' usa 'ele' para se referir ao céu, o que é gramaticalmente estranho; o correto seria 'Que fique assim o dia todo' ou 'Que o céu fique assim o dia todo'.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`bicho_item`) nota 4
+  - 0: O humano está com espada de diamante. Não é de comer, né?
+  - 1: Não parece comida.
+  - 0: Por mim, pode ficar com ele.
+  - ⚠ A fala 'Por mim, pode ficar com ele.' usa 'ele' para se referir à espada, mas o gênero gramatical de 'espada' é feminino, então deveria ser 'ela'.
+  - ⚠ A resposta 'Não parece comida.' é um pouco redundante, pois a primeira fala já diz 'Não é de comer, né?', mas ainda é aceitável como confirmação.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`fome_bicho`) nota 3
+  - 0: Já passou da hora de comer.
+  - 1: Eu também estou com o estômago vazio.
+  - 0: Vamos esperar mais um pouco.
+  - ⚠ A fala 'Já passou da hora de comer.' é genérica e não reflete o mundo de uma vaca ou porco, que normalmente se refeririam a pastar ou fuçar.
+  - ⚠ A resposta 'Eu também estou com o estômago vazio.' é plausível, mas não acrescenta especificidade animal.
+  - ⚠ A fala 'Vamos esperar mais um pouco.' não se conecta claramente com a situação de o jogador segurar uma espada, que poderia indicar perigo ou abate.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`bicho_vento`) nota 3
+  - 0: Hoje venta bastante.
+  - 1: O vento esfria o calor.
+  - 0: Que continue assim.
+  - ⚠ Fala 0 'Hoje venta bastante.' é genérica e não reflete a situação de o jogador segurar uma espada, que poderia causar medo ou alerta.
+  - ⚠ Fala 1 'O vento esfria o calor.' é uma resposta plausível, mas não acrescenta nada específico ao mundo animal.
+  - ⚠ Fala 0 'Que continue assim.' soa natural, mas a conversa como um todo é muito trivial e não aproveita o contexto.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`bicho_cheiro`) nota 3
+  - 0: O vento trouxe cheiro de chuva.
+  - 1: Esse cheiro me dá fome.
+  - 0: Gosto quando o dia cheira assim.
+  - ⚠ Fala 1: 'Esse cheiro me dá fome.' - Porco associando cheiro de chuva a fome é estranho, pois porcos não comem chuva.
+  - ⚠ Fala 2: 'Gosto quando o dia cheira assim.' - Vaca falando de cheiro do dia é vago e não combina com o mundo simples da vaca.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`bicho_cheiro`) nota 4
+  - 0: Tem um cheiro bom de grama no ar.
+  - 1: O nariz da gente não engana.
+  - 0: Vou seguir o cheiro depois.
+  - ⚠ A fala 'Vou seguir o cheiro depois.' soa um pouco vaga, mas é aceitável para uma vaca.
+- **vaca + porco, dia, o jogador segura uma espada (nao e comida)** (`bicho_item`) nota 4
+  - 0: Olha só, espada de diamante na mão do humano. O que será isso?
+  - 1: Não parece comida.
+  - 0: Cada um com o seu gosto.
+  - ⚠ A fala 'Olha só, espada de diamante na mão do humano. O que será isso?' soa mais como uma observação de um aldeão ou jogador, não de uma vaca, que normalmente não comenta sobre itens específicos como 
+  - ⚠ A resposta 'Não parece comida.' é adequada para um porco, mas a sequência 'Cada um com o seu gosto.' é um pouco abstrata para uma vaca, que não teria esse tipo de julgamento sobre preferências humanas
+- **porco + galinha, noite** (`medo_lobo`) nota 3
+  - 0: Já ouviu um uivo de lobo por perto?
+  - 1: Chega pertinho de mim, que é mais seguro.
+  - 0: Vamos ficar de olho.
+  - ⚠ A fala 'Chega pertinho de mim, que é mais seguro.' não responde diretamente à pergunta sobre uivo de lobo.
+  - ⚠ A fala 'Vamos ficar de olho.' é vaga e não acrescenta informação relevante à conversa.
+- **porco + galinha, noite** (`bicho_jogador_noite`) nota 4
+  - 0: O humano caminha de noite.
+  - 1: Melhor ele passar longe de mim.
+  - 0: Tomara que passe sem nos incomodar.
+  - ⚠ A fala 1 'Melhor ele passar longe de mim.' soa um pouco agressiva para uma galinha, que normalmente não expressa hostilidade, mas é aceitável como medo.
+- **porco + galinha, noite** (`noite`) nota 4
+  - 0: Já ouvi uns rosnados lá longe.
+  - 1: De noite o mundo fica estranho.
+  - 0: Aguenta firme, o dia já vem.
+  - ⚠ A fala 'Já ouvi uns rosnados lá longe.' é plausível para um porco, mas 'rosnados' pode ser ambíguo; porcos não rosnam, mas podem ouvir outros animais.
+  - ⚠ A resposta 'De noite o mundo fica estranho.' é genérica e não responde diretamente ao aviso sobre rosnados.
+  - ⚠ A fala 'Aguenta firme, o dia já vem.' soa mais como encorajamento humano do que algo que um porco diria naturalmente.
+- **porco + galinha, noite** (`medo_lobo`) nota 3
+  - 0: Já ouviu um uivo de lobo por perto?
+  - 1: Lobo não gosta de rebanho junto.
+  - 0: Vamos ficar de olho.
+  - ⚠ Fala 1: 'Lobo não gosta de rebanho junto.' não responde diretamente à pergunta sobre ter ouvido um uivo.
+  - ⚠ Fala 0: 'Vamos ficar de olho.' é vaga e não combina com o comportamento típico de porcos ou galinhas.
+- **porco + galinha, noite** (`bicho_filhotes_cuidado`) nota 4
+  - 0: Os pequenos vivem atrás da gente.
+  - 1: Os meus dormem em cima de mim.
+  - 0: Tomara que cresçam fortes.
+  - ⚠ Fala 1: 'Os meus dormem em cima de mim' é estranho para uma galinha, pois pintinhos dormem embaixo da mãe, não em cima.
+- **porco + galinha, noite** (`noite_frio`) nota 4
+  - 0: A noite está fria.
+  - 1: A gente se acostuma com o frio.
+  - 0: Ainda bem que o dia volta.
+  - ⚠ A fala 'A gente se acostuma com o frio.' soa um pouco filosófica demais para uma galinha, mas é aceitável.
+- **porco + galinha, noite** (`bicho_barulho`) nota 4
+  - 0: Tem alguma coisa se mexendo ali.
+  - 1: Deve ser o vento.
+  - 0: Vou ficar de olho.
+  - ⚠ Fala 1: 'Deve ser o vento.' é uma resposta plausível, mas galinhas não falam sobre vento de forma tão casual; poderia ser mais característico.
+  - ⚠ Fala 0: 'Vou ficar de olho.' soa um pouco humano demais para um porco, mas é aceitável.
+- **porco + galinha, noite** (`noite_frio`) nota 3
+  - 0: A noite está fria.
+  - 1: A gente se acostuma com o frio.
+  - 0: Amanhã o sol esquenta de novo.
+  - ⚠ Fala 0: 'A noite está fria.' - Porcos e galinhas não falam sobre clima de forma abstrata; soa humano demais.
+  - ⚠ Fala 1: 'A gente se acostuma com o frio.' - Galinha não usaria 'a gente' nem expressaria resignação; não combina com o mundo animal.
+  - ⚠ Fala 2: 'Amanhã o sol esquenta de novo.' - Porco não faria previsão do tempo; foge do comportamento natural.
+- **porco + galinha, noite** (`cercado`) nota 4
+  - 0: O cercado está movimentado hoje.
+  - 1: Assim ninguém fica sozinho.
+  - 0: Aqui dentro a gente se sente em casa.
+  - ⚠ A fala 'Aqui dentro a gente se sente em casa' é um pouco abstrata para um porco, mas ainda aceitável.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_filhotes_cuidado`) nota 3
+  - 0: Os pequenos vivem atrás da gente.
+  - 1: Eu fico de olho para não se perderem.
+  - 0: Daqui a pouco eles se viram sozinhos.
+  - ⚠ Fala 0 'Os pequenos vivem atrás da gente.' é vaga e não combina com o mundo simples de vaca e porco.
+  - ⚠ Fala 1 'Eu fico de olho para não se perderem.' sugere comportamento protetor incomum para esses animais.
+  - ⚠ Fala 0 'Daqui a pouco eles se viram sozinhos.' soa como preocupação humana, não animal.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_fome`) nota 4
+  - 0: O humano deve estar faminto.
+  - 1: Eu também fico de mau humor quando passo fome.
+  - 0: Tomara que ele ache comida logo.
+  - ⚠ A fala 'Eu também fico de mau humor quando passo fome.' é dita pelo porco, mas porcos não expressam mau humor por fome de forma tão humana; soa antropomorfizado demais.
+  - ⚠ A situação menciona chuva e jogador ferido, mas as falas focam apenas na fome, ignorando o ferimento e a chuva, o que torna a conversa menos contextualizada.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_ferido`) nota 4
+  - 0: O humano está machucado.
+  - 1: Dá pena ver.
+  - 0: Fico de olho nele.
+  - ⚠ A fala 'Fico de olho nele.' soa um pouco estranha para uma vaca, pois não é uma ação típica de vacas, mas é aceitável como expressão de vigilância.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_filhotes_cuidado`) nota 3
+  - 0: Os pequenos vivem atrás da gente.
+  - 1: Daqui a pouco já estão do nosso tamanho.
+  - 0: Tomara que cresçam fortes.
+  - ⚠ Fala 0: 'Os pequenos vivem atrás da gente.' - 'viver atrás' é ambíguo e não é uma expressão natural para vaca/porco; poderia ser 'ficam atrás da gente'.
+  - ⚠ Fala 1: 'Daqui a pouco já estão do nosso tamanho.' - 'daqui a pouco' soa humano demais; animais não têm noção de tempo assim.
+  - ⚠ Fala 0: 'Tomara que cresçam fortes.' - 'tomara' é uma expressão humana; animais não expressam desejos dessa forma.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_fome`) nota 4
+  - 0: O humano deve estar faminto.
+  - 1: Ele devia achar algo para comer.
+  - 0: Eu entendo bem essa fome.
+  - ⚠ A fala 'Eu entendo bem essa fome' da vaca é um pouco estranha, pois vacas não expressam empatia sobre fome humana de forma tão direta, mas é aceitável no contexto.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_ferido`) nota 3
+  - 0: O humano está machucado.
+  - 1: Eu fico quieto para não incomodar.
+  - 0: Fico de olho nele.
+  - ⚠ A fala 'Eu fico quieto para não incomodar' é estranha para um porco, pois porcos não têm esse tipo de consideração social.
+  - ⚠ A resposta 'Fico de olho nele' não responde diretamente à fala anterior, que era sobre ficar quieto.
+- **vaca + porco, chuva, jogador ferido e com fome** (`chuva`) nota 4
+  - 0: Quando chove assim, dá vontade de ficar sem se mexer.
+  - 1: Só não gosto de lama.
+  - 0: Verdade. Vamos ver quanto tempo dura.
+  - ⚠ A fala 'Só não gosto de lama.' do porco é um pouco estranha, pois porcos normalmente gostam de lama, mas pode ser uma preferência individual.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_chuva`) nota 4
+  - 0: O humano está na chuva.
+  - 1: Ele deve estar todo molhado.
+  - 0: Cada um com o seu jeito de passar a chuva.
+  - ⚠ A fala 'Cada um com o seu jeito de passar a chuva.' soa um pouco filosófica demais para uma vaca, mas ainda é aceitável.
+- **vaca + porco, chuva, jogador ferido e com fome** (`bicho_jogador_fome`) nota 4
+  - 0: O humano deve estar faminto.
+  - 1: Ele devia achar algo para comer.
+  - 0: Tomara que ele ache comida logo.
+  - ⚠ A fala 'Ele devia achar algo para comer.' soa como conselho humano, não como algo que um porco diria naturalmente.
+  - ⚠ A sequência de falas é redundante: as três expressam a mesma ideia de que o humano precisa de comida.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`ceu_nuvens`) nota 4
+  - 0: Olha como o céu está limpo.
+  - 1: Dá gosto de olhar para cima.
+  - 0: Que ele fique assim o dia todo.
+  - ⚠ Fala 0 'Olha como o céu está limpo.' é um pouco incomum para lobos, que normalmente não comentam sobre o clima, mas é aceitável.
+  - ⚠ Fala 1 'Dá gosto de olhar para cima.' é uma resposta natural, mas não é típica de lobos.
+  - ⚠ Fala 0 'Que ele fique assim o dia todo.' soa mais como um desejo humano do que uma fala de lobo.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`jogador_passando`) nota 4
+  - 0: Olha, é o humano outra vez.
+  - 1: Eu fico de olho nele.
+  - 0: Que siga o caminho dele.
+  - ⚠ A fala 'Que siga o caminho dele.' soa um pouco formal para lobos, mas é aceitável.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_agua`) nota 1
+  - 0: Água fresquinha é o que eu mais quero.
+  - 1: Sede passa rápido com água fresca.
+  - 0: Que a água nunca falte.
+  - ⚠ Lobos não falam sobre água fresca; falam sobre caça, matilha ou ossos.
+  - ⚠ A resposta não responde à fala inicial; apenas repete a ideia de água.
+  - ⚠ A situação com jogador de armadura de diamante não é mencionada; lobos poderiam reagir a isso.
+  - ⚠ As falas soam artificiais e não naturais para lobos.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_lama`) nota 1
+  - 0: Lama macia faz bem para os cascos.
+  - 1: Eu me deito nela e fico à vontade.
+  - 0: Que dia bom para quem gosta de lama.
+  - ⚠ Lobos não têm cascos; 'cascos' é característica de cavalos/porcos.
+  - ⚠ Lobos não falam sobre lama como se fosse um prazer; não é típico do comportamento de lobo.
+  - ⚠ A fala 'Que dia bom para quem gosta de lama' não se relaciona com a situação (jogador com armadura de diamante).
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_manha`) nota 1
+  - 0: De manhã o capim está cheio de orvalho.
+  - 1: Tudo parece mais calmo cedo.
+  - 0: Vamos aproveitar a luz.
+  - ⚠ Lobos não falam sobre capim ou orvalho; são predadores e não pastam.
+  - ⚠ A resposta 'Tudo parece mais calmo cedo' não responde diretamente à fala sobre orvalho.
+  - ⚠ A fala 'Vamos aproveitar a luz' é vaga e não combina com o comportamento de lobos.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_cheiro`) nota 4
+  - 0: Sinto cheiro de feno novo por perto.
+  - 1: Esse cheiro me dá fome.
+  - 0: Vou seguir o cheiro depois.
+  - ⚠ Fala 0: 'Sinto cheiro de feno novo por perto.' - Lobos não associam feno a presas; feno é mais associado a fazendas, não ao ambiente natural de lobos.
+  - ⚠ Fala 1: 'Esse cheiro me dá fome.' - Resposta vaga; lobos caçam carne, não feno, então a fome não é diretamente ligada ao cheiro de feno.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`sol`) nota 1
+  - 0: Que dia bonito hoje.
+  - 1: Também percebi, dá até ânimo.
+  - 0: Hoje está tudo no lugar.
+  - ⚠ Lobos não falam sobre o dia ou ânimo; são criaturas selvagens que se comunicam com latidos e rosnados.
+  - ⚠ A fala 'Hoje está tudo no lugar' não faz sentido para lobos, que não têm conceito de organização.
+  - ⚠ A presença do jogador com armadura de diamante não é mencionada, mas lobos selvagens normalmente reagiriam com hostilidade ou fuga, não com conversa casual.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_agua`) nota 4
+  - 0: A sede aperta quando o sol esquenta.
+  - 1: Sede passa rápido com água fresca.
+  - 0: Depois a gente vai juntos.
+  - ⚠ Fala 1 'Sede passa rápido com água fresca' soa um pouco genérica, mas aceitável para lobos.
+- **lobo + lobo, dia, jogador com armadura de diamante** (`bicho_hora_comer`) nota 4
+  - 0: O estômago avisa a hora certa.
+  - 1: O meu também está reclamando.
+  - 0: Vamos juntos.
+  - ⚠ Fala 0 'O estômago avisa a hora certa.' é um pouco abstrata para lobos, mas aceitável.
+  - ⚠ Fala 0 'Vamos juntos.' é curta e natural, mas poderia ser mais específica sobre caçar.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`sol`) nota 3
+  - 0: Acordei de bom humor com esse sol.
+  - 1: É verdade.
+  - 0: Então vamos aproveitar.
+  - ⚠ Fala 0 'Acordei de bom humor com esse sol' não menciona o peixe que o jogador segura, apesar de ser relevante para gatos.
+  - ⚠ Fala 1 'É verdade' é muito genérica e não responde de forma natural ao comentário sobre o sol.
+  - ⚠ Fala 0 'Então vamos aproveitar' não conecta com o contexto do peixe ou com a conversa anterior.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`bicho_manha`) nota 1
+  - 0: De manhã o capim está cheio de orvalho.
+  - 1: Tudo parece mais calmo cedo.
+  - 0: Que o dia seja bom.
+  - ⚠ Fala 0: 'De manhã o capim está cheio de orvalho.' - Gatos não falam sobre capim ou orvalho; não combina com o mundo felino.
+  - ⚠ Fala 1: 'Tudo parece mais calmo cedo.' - Resposta genérica, não responde diretamente à fala anterior.
+  - ⚠ Fala 0: 'Que o dia seja bom.' - Não é uma resposta natural à fala anterior; parece uma despedida sem contexto.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`jogador_passando`) nota 4
+  - 0: Olha, é o humano outra vez.
+  - 1: Ele passa sempre por aqui.
+  - 0: Vamos ver o que ele faz.
+  - ⚠ Fala 0 'Olha, é o humano outra vez.' soa um pouco genérica, mas aceitável para gatos.
+  - ⚠ Fala 1 'Ele passa sempre por aqui.' é natural, mas poderia ser mais específica ao peixe que o jogador segura.
+  - ⚠ Fala 0 'Vamos ver o que ele faz.' não aproveita o fato de o jogador segurar peixe, que seria um interesse óbvio para gatos.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`bicho_filhotes_cuidado`) nota 4
+  - 0: Os pequenos vivem atrás da gente.
+  - 1: Daqui a pouco já estão do nosso tamanho.
+  - 0: Daqui a pouco eles se viram sozinhos.
+  - ⚠ Fala 0 'Os pequenos vivem atrás da gente.' é ambígua: 'pequenos' pode se referir a filhotes, mas não fica claro se são gatos ou outras criaturas; no contexto de gatos, seria mais natural 'filhotes'.
+  - ⚠ Fala 1 'Daqui a pouco já estão do nosso tamanho.' soa um pouco estranha para gatos, pois gatos não costumam comparar tamanhos dessa forma; poderia ser mais natural algo como 'já estão crescidos'.
+  - ⚠ Fala 0 'Daqui a pouco eles se viram sozinhos.' é aceitável, mas 'se viram' é uma expressão mais humana; gatos poderiam dizer 'caçam sozinhos'.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`cercado`) nota 3
+  - 0: O cercado está movimentado hoje.
+  - 1: Gosto de ter companhia por perto.
+  - 0: Que o dia seja calmo.
+  - ⚠ Fala 0: 'O cercado está movimentado hoje.' - Gatos não falam sobre cercados; eles não têm conceito de cercado.
+  - ⚠ Fala 1: 'Gosto de ter companhia por perto.' - Gatos são independentes e não costumam expressar gostar de companhia, especialmente de outros gatos.
+  - ⚠ Fala 0: 'Que o dia seja calmo.' - Gatos não fazem votos ou desejos formais; soa humano demais.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`bicho_sombra`) nota 4
+  - 0: Tem sombra de sobra aqui.
+  - 1: Divide comigo?
+  - 0: Aqui a gente descansa.
+  - ⚠ Fala 1 'Divide comigo?' é ambígua: pode se referir à sombra ou ao peixe, mas como o jogador segura peixe, a resposta 'Aqui a gente descansa' não responde diretamente se for sobre o peixe.
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`jogador_passando`) nota 4
+  - 0: Olha, é o humano outra vez.
+  - 1: Gosto quando tem movimento por aqui.
+  - 0: Que siga o caminho dele.
+  - ⚠ A fala 'Gosto quando tem movimento por aqui.' não responde diretamente à fala anterior 'Olha, é o humano outra vez.'
+- **gato + gato, dia, o jogador segura peixe (o gato gosta)** (`jogador_passando`) nota 4
+  - 0: Olha, é o humano outra vez.
+  - 1: Gosto quando tem movimento por aqui.
+  - 0: Vamos ver o que ele faz.
+  - ⚠ Fala 1 'Gosto quando tem movimento por aqui.' não responde diretamente à fala 0 'Olha, é o humano outra vez.'
+- **vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome** (`bicho_abelha`) nota 4
+  - 0: Tem uma abelha zumbindo perto de mim.
+  - 1: Elas só querem as flores.
+  - 0: Melhor deixar elas em paz.
+  - ⚠ A fala 'Elas só querem as flores.' é um pouco vaga, mas aceitável para vacas.
+- **vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome** (`bicho_sombra`) nota 4
+  - 0: Achei uma sombra boa.
+  - 1: Também acho.
+  - 0: Fica à vontade.
+  - ⚠ A fala 'Fica à vontade.' soa um pouco formal para vacas, mas é aceitável.
+- **vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome** (`pasto`) nota 4
+  - 0: Viu aquela touceira de grama ali?
+  - 1: Já comi tanto que nem me mexo.
+  - 0: A vida é simples, e isso me basta.
+  - ⚠ A resposta 'Já comi tanto que nem me mexo.' não responde diretamente à pergunta 'Viu aquela touceira de grama ali?', mas é plausível como continuação.
+  - ⚠ A fala 'A vida é simples, e isso me basta.' é um pouco filosófica para uma vaca, mas aceitável.
+- **vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome** (`jogador_nome_conta`) nota 4
+  - 0: Aquele humano me disse que se chama Bia.
+  - 1: Agora posso chamar pelo nome.
+  - 0: Nome ajuda a lembrar de quem é.
+  - ⚠ Fala 1: 'Agora posso chamar pelo nome' soa um pouco vaga; poderia ser mais natural como 'Agora posso chamá-la de Bia'.
+  - ⚠ Fala 0 (segunda): 'Nome ajuda a lembrar de quem é' é um pouco formal para uma vaca; poderia ser mais simples, como 'Assim lembro dela'.
+- **vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome** (`bicho_vento`) nota 4
+  - 0: Hoje venta bastante.
+  - 1: O vento esfria o calor.
+  - 0: Vento bom é vento fraco.
+  - ⚠ Fala 0 'Hoje venta bastante.' é genérica e não reflete a perspectiva de uma vaca, mas é aceitável.
+  - ⚠ Fala 1 'O vento esfria o calor.' é uma observação simples, mas não é específica de vacas.
+  - ⚠ Fala 0 'Vento bom é vento fraco.' soa como opinião humana, não de vaca.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`curiosidade_creeper`) nota 4
+  - 0: Tenho pavor daquele chiado do creeper.
+  - 1: Pois é.
+  - 0: Que ele passe longe daqui.
+  - ⚠ A fala 'Pois é.' é muito vaga e não acrescenta nada à conversa, mas é aceitável.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`vila_comerciante`) nota 4
+  - 0: Comerciante viajante é sempre uma surpresa.
+  - 1: Ele nunca fica mais de um dia.
+  - 0: Quem sabe ele volte.
+  - ⚠ A fala 'Comerciante viajante é sempre uma surpresa.' é um pouco vaga, mas aceitável para aldeões.
+  - ⚠ A resposta 'Ele nunca fica mais de um dia.' é factual, mas não responde diretamente à surpresa mencionada.
+  - ⚠ A fala 'Quem sabe ele volte.' é natural, mas a conversa parece um pouco desconexa.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`curiosidade_abelha`) nota 4
+  - 0: Você viu as abelhas hoje? Trabalham sem parar.
+  - 1: Dizem que o mel é uma maravilha.
+  - 0: Respeito muito esse esforço.
+  - ⚠ A fala 1 'Dizem que o mel é uma maravilha.' não responde diretamente à pergunta sobre as abelhas, apenas comenta sobre o mel.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`jogador_passando`) nota 4
+  - 0: O humano parece apressado.
+  - 1: Gosto quando tem movimento por aqui.
+  - 0: Vamos ver o que ele faz.
+  - ⚠ Fala 1: 'Gosto quando tem movimento por aqui.' soa um pouco vaga e não responde diretamente à observação sobre o humano apressado, mas é aceitável para um aldeão.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`sol`) nota 3
+  - 0: Acordei de bom humor com esse sol.
+  - 1: É verdade.
+  - 0: Pena que a noite chega logo.
+  - ⚠ Fala 0: 'Acordei de bom humor com esse sol.' - Aldeões não falam sobre humor ou sentimentos de forma tão explícita; soa humano demais.
+  - ⚠ Fala 1: 'É verdade.' - Resposta muito vaga e sem relação com o mundo dos aldeões; não desenvolve a conversa.
+  - ⚠ Fala 0: 'Pena que a noite chega logo.' - Aldeões não expressam tristeza ou preocupação com a noite; eles simplesmente se recolhem, sem comentar.
+- **aldeão fazendeiro + aldeão bibliotecário, dia** (`vila_passando_troca`) nota 4
+  - 0: Olha o humano na rua. Bom cliente, talvez.
+  - 1: Quem sabe compra alguma coisa.
+  - 0: Que venha negociar.
+  - ⚠ Fala 0 'Olha o humano na rua. Bom cliente, talvez.' soa levemente artificial para um aldeão, que normalmente fala de forma mais simples e direta.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`vila_sino`) nota 4
+  - 0: O sino da vila é o som que mais me assusta.
+  - 1: A vila inteira ouve.
+  - 0: A vila sempre se junta.
+  - ⚠ A fala 'A vila sempre se junta.' não responde diretamente à fala anterior 'A vila inteira ouve.'
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`curiosidade_creeper`) nota 3
+  - 0: Já viu um creeper de perto? Silencioso demais.
+  - 1: Eu ouvi isso também, deve ser verdade.
+  - 0: Por isso fico de olho em tudo.
+  - ⚠ Fala 0: 'Já viu um creeper de perto? Silencioso demais.' - Aldeões normalmente não falam sobre creepers de forma casual; eles têm medo e evitam o assunto.
+  - ⚠ Fala 1: 'Eu ouvi isso também, deve ser verdade.' - Resposta vaga, não responde diretamente à pergunta sobre ver um creeper.
+  - ⚠ Fala 0: 'Por isso fico de olho em tudo.' - Não conecta com a situação do jogador segurando esmeraldas; poderia mencionar trocas ou esmeraldas.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`jogador_noite`) nota 4
+  - 0: Quem sai a essa hora? Ah, é o humano.
+  - 1: Corajoso ou distraído, ainda não sei.
+  - 0: Que a noite seja gentil com essa pessoa.
+  - ⚠ A fala 'Que a noite seja gentil com essa pessoa.' soa um pouco formal para uma conversa casual entre aldeões, mas ainda é aceitável.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`vila_pilhadores`) nota 4
+  - 0: Pilhador é a pior coisa que existe.
+  - 1: Eu fecho as portas mais cedo por via das dúvidas.
+  - 0: A vila é forte quando está unida.
+  - ⚠ A fala 'Pilhador é a pior coisa que existe.' é um pouco genérica, mas aceitável para aldeões.
+  - ⚠ A resposta 'Eu fecho as portas mais cedo por via das dúvidas.' não responde diretamente à fala anterior, mas é plausível como continuação do assunto.
+  - ⚠ A fala 'A vila é forte quando está unida.' parece um comentário solto, não uma resposta direta à fala anterior.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`curiosidade_fundo`) nota 3
+  - 0: Dizem que tem brilho de diamante bem fundo.
+  - 1: É verdade.
+  - 0: Melhor deixar o fundo em paz.
+  - ⚠ Fala 0: 'Dizem que tem brilho de diamante bem fundo.' - Aldeões não falam sobre diamantes ou mineração; isso é mais típico de jogadores ou mineradores.
+  - ⚠ Fala 0: 'Melhor deixar o fundo em paz.' - Aldeões não têm relação com mineração ou perigos subterrâneos; soa deslocado.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`noite_frio`) nota 3
+  - 0: A noite está fria.
+  - 1: Fica pertinho de mim que esquenta.
+  - 0: Amanhã o sol esquenta de novo.
+  - ⚠ Fala 1: 'Fica pertinho de mim que esquenta' soa íntima demais para aldeões que não são próximos.
+  - ⚠ Fala 0: 'Amanhã o sol esquenta de novo' é uma resposta vaga, não responde diretamente à fala anterior.
+- **aldeão + aldeão, noite, o jogador segura esmeraldas** (`vila_gato`) nota 3
+  - 0: Um gato dormindo na porta dá sorte.
+  - 1: Gato quieto é gato em guarda.
+  - 0: Cada um com o seu trabalho.
+  - ⚠ Fala 0 'Um gato dormindo na porta dá sorte.' não se relaciona com a situação (jogador segura esmeraldas, noite) nem com a resposta seguinte.
+  - ⚠ Fala 1 'Gato quieto é gato em guarda.' não responde diretamente à fala 0, apenas menciona gato de forma vaga.
+  - ⚠ Fala 0 final 'Cada um com o seu trabalho.' parece desconectada das anteriores, sem continuidade lógica.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`curiosidade_creeper`) nota 3
+  - 0: Dizem que creeper tem medo de gato.
+  - 1: Pois é.
+  - 0: Por isso fico de olho em tudo.
+  - ⚠ A fala 'Por isso fico de olho em tudo.' não responde diretamente à fala anterior; a conexão entre o medo de gatos e ficar de olho em tudo é vaga.
+  - ⚠ A conversa parece truncada; a segunda fala do aldeão 0 não é uma continuação natural da resposta 'Pois é.'
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`curiosidade_portal`) nota 4
+  - 0: Já viu um portal roxo?
+  - 1: Ouvi histórias, mas não sei se são verdade.
+  - 0: Vai saber o que é verdade.
+  - ⚠ A fala 'Vai saber o que é verdade.' soa um pouco vaga e não responde diretamente à pergunta anterior, mas é aceitável.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`vila_armadura`) nota 4
+  - 0: Olha só, o humano está de uma armadura de ferro.
+  - 1: Deve ter custado caro.
+  - 0: Pelo menos protege a vila também.
+  - ⚠ Fala 1: 'Deve ter custado caro.' - Aldeões não usam dinheiro, mas trocam esmeraldas; 'custado caro' é uma expressão humana, mas pode ser aceitável como gíria.
+  - ⚠ Fala 0: 'Pelo menos protege a vila também.' - Aldeões não costumam pensar em proteção da vila por armaduras de jogadores, mas é plausível.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`vila_comerciante`) nota 4
+  - 0: Comerciante que aparece do nada traz boas histórias.
+  - 1: Ele nunca fica mais de um dia.
+  - 0: Cada visita rende uma boa história.
+  - ⚠ Fala 0: 'Comerciante que aparece do nada traz boas histórias.' - 'do nada' é um pouco informal, mas aceitável.
+  - ⚠ Fala 1: 'Ele nunca fica mais de um dia.' - Responde bem, mas poderia ser mais natural como 'Ele nunca fica mais de um dia por aqui.'
+  - ⚠ Fala 0: 'Cada visita rende uma boa história.' - Soa um pouco artificial; aldeões normalmente falam de forma mais simples.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`vila_passando_troca`) nota 4
+  - 0: Olha o humano na rua. Bom cliente, talvez.
+  - 1: Hoje o meu estoque está bom.
+  - 0: Que venha negociar.
+  - ⚠ A fala 'Hoje o meu estoque está bom.' não responde diretamente à observação sobre o humano, mas é plausível como comentário paralelo.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`jogador_passando`) nota 4
+  - 0: O humano anda por aí de novo.
+  - 1: Gosto quando tem movimento por aqui.
+  - 0: Que siga o caminho dele.
+  - ⚠ Fala 1: 'Gosto quando tem movimento por aqui.' soa um pouco genérica para um aldeão, mas é aceitável.
+- **aldeão + aldeão, dia, jogador com armadura de ferro** (`vila_armadura`) nota 4
+  - 0: Reparou na roupa do humano? É uma armadura de ferro.
+  - 1: Deve ter custado caro.
+  - 0: Pelo menos protege a vila também.
+  - ⚠ A fala 'Deve ter custado caro.' sugere que aldeões usam dinheiro, mas eles trocam com esmeraldas, não com moeda.
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`sol`) nota 4
+  - 0: O sol está gostoso, né?
+  - 1: É, hoje nem dá vontade de reclamar.
+  - 0: Pena que a noite chega logo.
+  - ⚠ A fala 'É, hoje nem dá vontade de reclamar' soa um pouco humana demais para um golem, que normalmente tem falas mais simples e protetoras.
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`curiosidade_abelha`) nota 4
+  - 0: Aquelas abelhas são bem mais ocupadas que a gente.
+  - 1: Só não mexa na colmeia, elas se zangam.
+  - 0: Elas sabem o que fazem.
+  - ⚠ A fala 0 'Aquelas abelhas são bem mais ocupadas que a gente.' é um pouco estranha para um aldeão, pois aldeões não costumam se comparar a abelhas em termos de ocupação, mas é aceitável.
+  - ⚠ A fala 1 'Só não mexa na colmeia, elas se zangam.' é plausível para um golem, mas golems não falam normalmente; porém, no contexto do jogo, pode ser uma fala de aldeão, não de golem. O par indica 'ald
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`ceu_nuvens`) nota 4
+  - 0: Olha como o céu está limpo.
+  - 1: Dia assim alegra qualquer um.
+  - 0: Hoje está tudo calmo.
+  - ⚠ A fala 'Hoje está tudo calmo.' não responde diretamente à fala anterior 'Dia assim alegra qualquer um.'
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`curiosidade_abelha`) nota 4
+  - 0: Aquelas abelhas são bem mais ocupadas que a gente.
+  - 1: Só não mexa na colmeia, elas se zangam.
+  - 0: Respeito muito esse esforço.
+  - ⚠ A fala 0 inicial 'Aquelas abelhas são bem mais ocupadas que a gente.' é um pouco estranha para um aldeão, pois aldeões não costumam fazer comentários comparativos sobre abelhas, mas é aceitável.
+  - ⚠ A fala 1 'Só não mexa na colmeia, elas se zangam.' é dita pelo golem, que normalmente não fala, mas como o par inclui golem, pode ser uma interpretação livre.
+  - ⚠ A fala 0 final 'Respeito muito esse esforço.' parece uma resposta à fala 1, mas não se conecta diretamente; o aldeão poderia ter respondido algo mais relacionado a abelhas ou colmeias.
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`ceu_nuvens`) nota 4
+  - 0: Olha como o céu está limpo.
+  - 1: Eu podia passar o dia olhando para o céu.
+  - 0: Hoje está tudo calmo.
+  - ⚠ A fala 'Eu podia passar o dia olhando para o céu.' é um pouco vaga e não responde diretamente à observação sobre o céu limpo, mas é aceitável.
+  - ⚠ A fala 'Hoje está tudo calmo.' não se conecta claramente com a resposta anterior, mas ainda é plausível como continuação da conversa.
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`golem_guarda`) nota 4
+  - 0: Dá uma sensação boa ter você por perto.
+  - 1: Enquanto eu estiver aqui, ninguém passa.
+  - 0: Por isso a vila ainda existe.
+  - ⚠ A fala 'Dá uma sensação boa ter você por perto.' é um pouco abstrata para um golem, que normalmente se comunica de forma mais simples e protetora.
+  - ⚠ A resposta 'Enquanto eu estiver aqui, ninguém passa.' é adequada, mas poderia ser mais direta, como 'Proteger a vila é meu dever.'
+- **aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)** (`jogador_passando`) nota 4
+  - 0: Vi o humano passando agora há pouco.
+  - 1: Gosto quando tem movimento por aqui.
+  - 0: Que siga o caminho dele.
+  - ⚠ A fala 'Gosto quando tem movimento por aqui.' não responde diretamente à observação sobre o humano, mas é aceitável como comentário geral.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`curiosidade_fundo`) nota 4
+  - 0: Já ouviu os sons que vêm do chão à noite?
+  - 1: Escuridão e coisa ruim, dizem.
+  - 0: Que ninguém desça sem tocha.
+  - ⚠ A fala 'Escuridão e coisa ruim, dizem.' é um pouco vaga, mas aceitável para aldeões.
+  - ⚠ A resposta 'Que ninguém desça sem tocha.' não responde diretamente à fala anterior, mas mantém o contexto.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`jogador_voltou`) nota 4
+  - 0: Olha só, o humano de novo.
+  - 1: Ele sempre traz movimento.
+  - 0: Vamos ver o que ele quer.
+  - ⚠ Fala 1: 'Ele sempre traz movimento' é vaga e não responde diretamente à observação sobre o humano; poderia ser mais específica ao contexto de troca.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`jogador_sem_nome`) nota 4
+  - 0: O humano deve ter um nome, mas eu não sei.
+  - 1: Eu também só o chamo de humano.
+  - 0: Quem sabe um dia ele conta.
+  - ⚠ A fala 'O humano deve ter um nome, mas eu não sei.' é um pouco estranha para aldeões, que normalmente se referem ao jogador como 'jogador' ou 'humano', mas é aceitável.
+  - ⚠ A resposta 'Eu também só o chamo de humano.' é coerente, mas poderia ser mais natural se usasse 'jogador' em vez de 'humano'.
+  - ⚠ A fala 'Quem sabe um dia ele conta.' é plausível, mas aldeões não costumam ter conversas tão reflexivas sobre o jogador.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`curiosidade_portal`) nota 4
+  - 0: Dizem que existe um mundo de fogo do outro lado.
+  - 1: Prefiro nem chegar perto.
+  - 0: Eu fico por aqui mesmo.
+  - ⚠ A fala 'Dizem que existe um mundo de fogo do outro lado.' é vaga e não se conecta claramente com a situação de chuva ou com o fato de troca.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`vila_sino`) nota 4
+  - 0: O sino chama todo mundo quando há perigo.
+  - 1: Eu corro para dentro quando escuto.
+  - 0: A vila sempre se junta.
+  - ⚠ A fala 'O sino chama todo mundo quando há perigo.' é um pouco genérica, mas aceitável para aldeões.
+  - ⚠ A resposta 'Eu corro para dentro quando escuto.' não especifica o que escuta, mas subentende-se o sino.
+  - ⚠ A fala 'A vila sempre se junta.' é vaga, mas plausível.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`jogador_apresenta`) nota 4
+  - 0: Aquele humano eu já conheço de outros dias.
+  - 1: Eu ainda não o conhecia.
+  - 0: Ele é tranquilo, pode confiar.
+  - ⚠ Fala 1 'Eu ainda não o conhecia.' usa 'conhecia' no passado, mas o contexto sugere que o aldeão ainda não conhece o humano no presente; seria mais natural 'Eu ainda não o conheço.'
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`jogador_troca`) nota 4
+  - 0: O humano fez uma troca justa comigo.
+  - 1: Paga direito?
+  - 0: Dá para confiar.
+  - ⚠ A fala 'Paga direito?' é ambígua e não responde diretamente à afirmação sobre a troca justa.
+  - ⚠ A resposta 'Dá para confiar.' não esclarece a pergunta 'Paga direito?'.
+- **aldeão + aldeão, chuva, um deles tem fato de troca com o jogador** (`jogador_apresenta`) nota 4
+  - 0: O humano ali já esteve comigo antes.
+  - 1: Para mim é a primeira vez.
+  - 0: Ele é tranquilo, pode confiar.
+  - ⚠ Fala 0: 'O humano ali já esteve comigo antes.' - Aldeões não se referem ao jogador como 'humano' de forma tão direta; geralmente usam grunhidos ou termos como 'hmm'.
+  - ⚠ Fala 1: 'Para mim é a primeira vez.' - Soa natural, mas aldeões costumam usar frases mais curtas e com sons característicos.
+  - ⚠ Fala 0: 'Ele é tranquilo, pode confiar.' - 'Tranquilo' é uma gíria moderna que não combina com o vocabulário de aldeões.
+- **zumbi + zumbi, noite** (`zumbi_porta`) nota 4
+  - 0: Grrr... bater na porta cansa.
+  - 1: Grrr... paciência abre qualquer madeira.
+  - 0: Grrr... insiste.
+  - ⚠ Fala 1: 'paciência abre qualquer madeira' soa filosófica demais para zumbis, que normalmente emitem grunhidos simples.
+  - ⚠ Fala 2: 'insiste' é muito curta e não responde diretamente à fala anterior.
+- **zumbi + zumbi, noite** (`zumbi_carne`) nota 4
+  - 0: A noite é boa. A fome também.
+  - 1: Grrrr...
+  - 0: Quase... quase...
+  - ⚠ A fala 'Grrrr...' é muito genérica e não responde diretamente à fala anterior, mas é aceitável para zumbis.
+  - ⚠ A fala 'Quase... quase...' é vaga e não se conecta claramente com o contexto, mas pode ser interpretada como antecipação de caça.
+- **zumbi + zumbi, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' soa como uma ordem tática, mas zumbis normalmente emitem grunhidos e não falam frases completas; ainda assim, é aceitável em um contexto de jogo.
+- **zumbi + zumbi, noite** (`monstros_noite`) nota 4
+  - 0: Hoje a caça vai ser boa.
+  - 1: Cada um por um lado.
+  - 0: Que a noite comece.
+  - ⚠ Fala 0 'Hoje a caça vai ser boa.' soa natural para zumbis, mas 'Que a noite comece.' é um pouco teatral para zumbis.
+  - ⚠ Fala 1 'Cada um por um lado.' é uma resposta plausível, mas não responde diretamente à afirmação sobre a caça.
+- **zumbi + zumbi, noite** (`monstros_noite`) nota 4
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Cada um por um lado.
+  - 0: Que a noite comece.
+  - ⚠ Fala 1 'Cada um por um lado.' é ambígua: pode ser interpretada como 'cada um por si' (individualista) ou 'cada um vai para um lado' (dividir para procurar), o que não fica claro para zumbis que normal
+  - ⚠ Fala 2 'Que a noite comece.' soa mais como um bordão de vilão do que uma fala natural de zumbi, que normalmente não tem discurso articulado.
+- **zumbi + zumbi, noite** (`zumbi_porta`) nota 4
+  - 0: Grrr... bater na porta cansa.
+  - 1: Grrr... o cheiro de carne vem de dentro.
+  - 0: Grrr...
+  - ⚠ A fala 'Grrr... bater na porta cansa.' é um pouco elaborada demais para um zumbi, que normalmente emite grunhidos simples, mas ainda é aceitável.
+  - ⚠ A resposta 'Grrr... o cheiro de carne vem de dentro.' responde parcialmente, mas não diretamente à fala anterior sobre cansaço.
+- **zumbi + zumbi, noite** (`zumbi_carne`) nota 4
+  - 0: Humano... cheiro de carne.
+  - 1: Grrrr...
+  - 0: Hmmm...
+  - ⚠ A fala 'Grrrr...' é muito curta e não responde diretamente ao comentário sobre cheiro de carne, mas é aceitável para zumbis.
+  - ⚠ A fala 'Hmmm...' é vaga e não avança a conversa, mas ainda se encaixa no contexto.
+- **zumbi + esqueleto, noite** (`zumbi_esqueleto`) nota 4
+  - 0: Dá para parar de me acertar com flecha?
+  - 1: Foi sem querer. Quase.
+  - 0: Grrr... vamos caçar juntos.
+  - ⚠ Fala 1: 'Foi sem querer. Quase.' soa estranho para um esqueleto, que normalmente não fala de forma tão casual.
+  - ⚠ Fala 0: 'Grrr... vamos caçar juntos.' é aceitável para zumbi, mas a transição de reclamação para cooperação é abrupta.
+- **zumbi + esqueleto, noite** (`zumbi_esqueleto`) nota 4
+  - 0: Seus ossos fazem barulho demais.
+  - 1: De perto você só arrasta o pé.
+  - 0: Grrr... vamos caçar juntos.
+  - ⚠ Fala 0 'Seus ossos fazem barulho demais.' é plausível para um zumbi, mas 'arrasta o pé' na fala 1 é uma expressão humana que pode soar estranha para um esqueleto.
+  - ⚠ Fala 0 'Grrr... vamos caçar juntos.' é um pouco amigável demais para um zumbi, que normalmente é hostil e não coopera.
+- **zumbi + esqueleto, noite** (`monstros_lua`) nota 4
+  - 0: Noite clara é noite de caça.
+  - 1: A escuridão é nossa casa.
+  - 0: Vamos começar.
+  - ⚠ Fala 1 'A escuridão é nossa casa.' soa um pouco poética demais para um esqueleto, mas ainda aceitável.
+- **zumbi + esqueleto, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Silêncio, chega mais perto.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' é contraditória: pede silêncio e depois fala para chegar mais perto, o que pode gerar ruído.
+- **zumbi + esqueleto, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Eu avisei.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à fala 0, que é sobre o humano não os ver.
+- **zumbi + esqueleto, noite** (`zumbi_esqueleto`) nota 4
+  - 0: Você só sabe atirar de longe.
+  - 1: Seus gemidos avisam a presa.
+  - 0: Hmm... tá bom.
+  - ⚠ Fala 0 'Você só sabe atirar de longe.' é uma provocação plausível de zumbi para esqueleto, mas 'Hmm... tá bom.' soa como rendição passiva, o que é estranho para um zumbi hostil.
+  - ⚠ Fala 1 'Seus gemidos avisam a presa.' é uma resposta coerente, mas a troca parece amigável demais para criaturas hostis.
+- **zumbi + esqueleto, noite** (`monstros_noite`) nota 3
+  - 0: A noite é nossa.
+  - 1: Eu também senti.
+  - 0: Que a noite comece.
+  - ⚠ Fala 1 'Eu também senti.' não responde diretamente à fala 0 'A noite é nossa.'
+  - ⚠ Fala 0 'Que a noite comece.' parece redundante após 'A noite é nossa.'
+- **zumbi + esqueleto, noite** (`zumbi_esqueleto`) nota 1
+  - 0: Dá para parar de me acertar com flecha?
+  - 1: De perto você só arrasta o pé.
+  - 0: Hmm... tá bom.
+  - ⚠ Fala 0: 'Dá para parar de me acertar com flecha?' - zumbi não fala de forma articulada, apenas grunhe.
+  - ⚠ Fala 1: 'De perto você só arrasta o pé.' - esqueleto não fala, apenas faz barulho de ossos.
+  - ⚠ Fala 0: 'Hmm... tá bom.' - zumbi não tem capacidade de concordar verbalmente.
+- **zumbi + esqueleto, noite** (`monstros_lua`) nota 4
+  - 0: A lua está cheia hoje.
+  - 1: Hoje ninguém escapa.
+  - 0: Vamos começar.
+  - ⚠ Fala 1 'Hoje ninguém escapa.' é genérica e não responde diretamente à observação sobre a lua cheia, mas ainda é plausível para um esqueleto hostil.
+- **creeper + zumbi, dia** (`monstros_dia`) nota 4
+  - 0: Dia é hora de se esconder.
+  - 1: Esperar a noite é o jeito.
+  - 0: Paciência.
+  - ⚠ Fala 0 'Dia é hora de se esconder.' é um pouco vaga, mas aceitável para um creeper.
+  - ⚠ Fala 1 'Esperar a noite é o jeito.' soa mais como um aldeão do que um zumbi, mas ainda plausível.
+- **creeper + zumbi, dia** (`monstros_dia`) nota 4
+  - 0: Dia é hora de se esconder.
+  - 1: Procura uma sombra.
+  - 0: Paciência.
+  - ⚠ Fala 1 'Procura uma sombra.' soa como ordem, mas zumbi não costuma dar ordens a creeper.
+  - ⚠ Fala 0 'Paciência.' é muito curta e não responde diretamente à fala anterior.
+- **creeper + zumbi, dia** (`creeper_zumbi`) nota 4
+  - 0: Ssss... odeio quando um gato aparece.
+  - 1: Grrr... gato assusta até quem não tem medo.
+  - 0: Ssss... assunto encerrado.
+  - ⚠ Fala 1: 'Grrr... gato assusta até quem não tem medo.' é um pouco filosófica demais para um zumbi, que normalmente tem fala simples e instintiva.
+  - ⚠ Fala 0: 'Ssss... assunto encerrado.' soa abrupta e não natural para um creeper, que normalmente não encerra conversas de forma tão direta.
+- **creeper + zumbi, dia** (`jogador_monstros_visto`) nota 3
+  - 0: Humano à vista.
+  - 1: Eu chego pela esquerda.
+  - 0: Eu avisei.
+  - ⚠ Fala 0 'Humano à vista.' é plausível para creeper, mas creepers normalmente não falam; porém, em contexto de jogo, pode ser aceitável.
+  - ⚠ Fala 1 'Eu chego pela esquerda.' é estranha para um zumbi, que normalmente não fala de forma coordenada; zumbis emitem grunhidos.
+  - ⚠ Fala 0 'Eu avisei.' soa como diálogo humano, não natural para um creeper.
+- **creeper + zumbi, dia** (`jogador_monstros_visto`) nota 3
+  - 0: Aquele humano não está nos vendo.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à fala 0.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' soa como planejamento tático, mas creepers não falam de forma estratégica.
+- **creeper + zumbi, dia** (`monstros_dia`) nota 4
+  - 0: Dia é hora de se esconder.
+  - 1: Também não gosto.
+  - 0: Falta pouco para escurecer.
+  - ⚠ Fala 1 'Também não gosto.' é vaga e não responde diretamente à fala 0, que menciona esconder-se durante o dia.
+  - ⚠ Fala 0 'Falta pouco para escurecer.' não é uma resposta natural à fala 1, que apenas expressa desgosto.
+- **creeper + zumbi, dia** (`creeper_zumbi_explode`) nota 4
+  - 0: Ssss... hoje eu vou explodir alguma coisa.
+  - 1: Grrr... só não me leve junto.
+  - 0: Ssss... fico de longe, prometo.
+  - ⚠ Fala 0: 'Ssss... hoje eu vou explodir alguma coisa.' - Creeper não fala em frases completas, apenas sibila; mas é aceitável como interpretação.
+  - ⚠ Fala 1: 'Grrr... só não me leve junto.' - Zumbi não fala 'grrr', mas sim grunhidos; 'só não me leve junto' é compreensível, mas um pouco articulado demais para um zumbi.
+  - ⚠ Fala 0: 'Ssss... fico de longe, prometo.' - Creeper prometendo é estranho, pois não tem essa capacidade de promessa; mas a intenção é clara.
+- **creeper + zumbi, dia** (`creeper_zumbi_explode`) nota 4
+  - 0: Ssss... hoje eu vou explodir alguma coisa.
+  - 1: Grrr... explode longe de mim.
+  - 0: Ssss... fico de longe, prometo.
+  - ⚠ Fala 0: 'Ssss... hoje eu vou explodir alguma coisa.' - Creeper não fala sobre planos futuros, apenas sibila; mas aceitável como diálogo.
+  - ⚠ Fala 1: 'Grrr... explode longe de mim.' - Zumbi não tem medo de explosão, mas pode ser interpretado como aviso.
+  - ⚠ Fala 0: 'Ssss... fico de longe, prometo.' - Creeper prometendo é estranho, mas passável.
+- **aranha + zumbi, noite, jogador segura espada** (`aranha_zumbi`) nota 4
+  - 0: Sss... eu fico no teto, você no chão.
+  - 1: Grrr... quem pegar o humano primeiro.
+  - 0: Sss... uma corrida, então.
+  - ⚠ A fala 'Grrr... quem pegar o humano primeiro.' não responde diretamente à fala anterior, que menciona posições (teto/chão), mas ainda é plausível como provocação.
+  - ⚠ A fala 'Sss... uma corrida, então.' é uma resposta natural, mas a ideia de 'corrida' pode ser estranha para uma aranha, que normalmente não corre, mas se move rapidamente; ainda assim, é aceitável.
+- **aranha + zumbi, noite, jogador segura espada** (`jogador_monstros_visto`) nota 4
+  - 0: Tem um humano ali.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' é ambígua: pode ser interpretada como ordem para a aranha se aproximar, mas o contexto sugere que é para o zumbi se aproximar do humano; falta clareza.
+  - ⚠ Fala 0 'Eu avisei.' soa um pouco vaga, mas aceitável.
+- **aranha + zumbi, noite, jogador segura espada** (`aranha_zumbi`) nota 4
+  - 0: Sss... eu fico no teto, você no chão.
+  - 1: Grrr... quem pegar o humano primeiro.
+  - 0: Sss... paciência.
+  - ⚠ A fala 'Grrr... quem pegar o humano primeiro.' não responde diretamente à fala anterior, que era sobre posições, mas ainda é plausível como continuação da conversa.
+- **aranha + zumbi, noite, jogador segura espada** (`monstros_noite`) nota 4
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Que ninguém atrapalhe.
+  - 0: Que a noite comece.
+  - ⚠ A fala 'Que ninguém atrapalhe.' não responde diretamente à fala anterior 'Sinto cheiro de humano por perto.'
+  - ⚠ A fala 'Que a noite comece.' parece desconectada da conversa, pois a noite já está em andamento.
+- **aranha + zumbi, noite, jogador segura espada** (`monstros_item`) nota 4
+  - 0: O humano carrega espada de ferro. Cuidado.
+  - 1: Ele ainda não nos viu.
+  - 0: Agora não.
+  - ⚠ A fala 'Agora não.' é vaga e não responde claramente à fala anterior 'Ele ainda não nos viu.'
+- **aranha + zumbi, noite, jogador segura espada** (`aranha_zumbi`) nota 4
+  - 0: Sss... a sua fome é barulhenta.
+  - 1: Grrr... quem pegar o humano primeiro.
+  - 0: Sss... uma corrida, então.
+  - ⚠ A fala 'Grrr... quem pegar o humano primeiro.' não responde diretamente à observação sobre a fome barulhenta, mas é aceitável como provocação.
+  - ⚠ A fala 'Sss... uma corrida, então.' é um pouco vaga, mas compreensível no contexto.
+- **aranha + zumbi, noite, jogador segura espada** (`aranha_zumbi`) nota 4
+  - 0: Sss... a sua fome é barulhenta.
+  - 1: Grrr... quem pegar o humano primeiro.
+  - 0: Sss... paciência.
+  - ⚠ A fala 'Grrr... quem pegar o humano primeiro.' não responde diretamente à fala anterior sobre a fome barulhenta, mas é aceitável como continuação do contexto de caça.
+  - ⚠ A fala 'Sss... paciência.' é um pouco vaga, mas plausível para uma aranha.
+- **aranha + zumbi, noite, jogador segura espada** (`monstros_noite`) nota 4
+  - 0: Hoje a caça vai ser boa.
+  - 1: Eu também senti.
+  - 0: Que a noite comece.
+  - ⚠ Fala 1 'Eu também senti.' é vaga e não responde diretamente à caça, mas é aceitável para zumbi.
+  - ⚠ Fala 0 'Que a noite comece.' soa um pouco teatral, mas condiz com aranha noturna.
+- **aranha + zumbi, noite, jogador segura espada** (`monstros_item`) nota 4
+  - 0: Aquele humano tem espada de ferro na mão.
+  - 1: Se ele usar, vai doer.
+  - 0: Espera ele abaixar a guarda.
+  - ⚠ A fala 'Se ele usar, vai doer.' é um pouco vaga, mas aceitável para um zumbi.
+- **aranha + zumbi, noite, jogador segura espada** (`monstros_noite`) nota 4
+  - 0: A noite é nossa.
+  - 1: Vamos juntos, então.
+  - 0: Quieto, vem vindo alguém.
+  - ⚠ Fala 1 'Vamos juntos, então.' é estranha para um zumbi, que normalmente não coopera com aranhas.
+  - ⚠ Fala 0 'Quieto, vem vindo alguém.' soa natural, mas aranha não fala, apenas emite sons.
+- **esqueleto + creeper, chuva** (`esqueleto_creeper`) nota 4
+  - 0: Você explode e eu atiro. Dá um bom time.
+  - 1: Ssss... eu chego perto, você mira de longe.
+  - 0: Então vamos.
+  - ⚠ Fala 1: 'Ssss... eu chego perto, você mira de longe.' - O creeper não fala frases completas; normalmente apenas sibila, então soar natural em português falado é estranho, mas aceitável como interpreta
+- **esqueleto + creeper, chuva** (`jogador_monstros_visto`) nota 4
+  - 0: Humano à vista.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' é ambígua: pode ser interpretada como ordem para o creeper se aproximar, mas o contexto sugere que é sobre o humano; falta clareza.
+  - ⚠ Fala 0 'Eu avisei.' soa um pouco vaga, mas aceitável.
+- **esqueleto + creeper, chuva** (`monstros_chuva`) nota 3
+  - 0: Chuva de novo, que droga.
+  - 1: Eu só quero que passe.
+  - 0: Eu espero aqui no escuro.
+  - ⚠ Fala 0 'Chuva de novo, que droga.' não combina com esqueleto, que não se importa com chuva.
+  - ⚠ Fala 1 'Eu só quero que passe.' é vaga e não responde diretamente à fala anterior.
+  - ⚠ Fala 0 'Eu espero aqui no escuro.' não se relaciona com a chuva nem com a resposta do creeper.
+- **esqueleto + creeper, chuva** (`monstros_chuva`) nota 3
+  - 0: A água me deixa de mau humor.
+  - 1: Os humanos ficam trancados, mas é irritante.
+  - 0: Eu espero aqui no escuro.
+  - ⚠ Fala 0: 'A água me deixa de mau humor.' - Esqueletos não demonstram emoções como mau humor; soa humano demais.
+  - ⚠ Fala 1: 'Os humanos ficam trancados, mas é irritante.' - Creepers não falam de forma articulada; 'irritante' é uma emoção complexa.
+  - ⚠ Fala 0: 'Eu espero aqui no escuro.' - Esqueletos não esperam no escuro; eles vagam e atacam, mesmo na chuva.
+- **esqueleto + creeper, chuva** (`esqueleto_creeper`) nota 4
+  - 0: Fica longe da minha flecha, hein?
+  - 1: Ssss... eu chego perto, você mira de longe.
+  - 0: Então vamos.
+  - ⚠ A fala 'Então vamos.' do esqueleto é vaga e não responde claramente à fala do creeper, que sugeriu uma dinâmica de combate.
+- **esqueleto + creeper, chuva** (`esqueleto_creeper`) nota 4
+  - 0: Fica longe da minha flecha, hein?
+  - 1: Ssss... eu chego perto, você mira de longe.
+  - 0: Combinado.
+  - ⚠ A fala do creeper 'Ssss... eu chego perto, você mira de longe.' soa um pouco estranha, pois creepers normalmente não falam de forma tão articulada, mas é aceitável.
+- **esqueleto + creeper, chuva** (`jogador_monstros_visto`) nota 4
+  - 0: Tem um humano ali.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à fala 0, que apenas aponta a presença do humano.
+  - ⚠ Fala 0 (segunda): 'Agora não. Espera o momento certo.' não especifica o que esperar, deixando a conversa um pouco desconexa.
+- **esqueleto + creeper, chuva** (`esqueleto_creeper`) nota 4
+  - 0: Fica longe da minha flecha, hein?
+  - 1: Ssss... só não me acerta.
+  - 0: Então vamos.
+  - ⚠ A fala 'Então vamos.' do esqueleto não responde claramente à fala anterior do creeper, que apenas pede para não ser acertado.
+- **esqueleto + creeper, chuva** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Eu chego pela esquerda.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1 'Eu chego pela esquerda.' é um pouco vaga, mas aceitável para um creeper em emboscada.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' soa mais como um líder tático, o que é plausível para um esqueleto, mas a coordenação entre esqueleto e creeper é incomum.
+- **esqueleto + creeper, chuva** (`monstros_chuva`) nota 3
+  - 0: A água me deixa de mau humor.
+  - 1: Eu só quero que passe.
+  - 0: Eu espero aqui no escuro.
+  - ⚠ Fala 0: 'A água me deixa de mau humor.' - Esqueletos não expressam emoções como mau humor; soa humano demais.
+  - ⚠ Fala 1: 'Eu só quero que passe.' - Creepers não falam; são mudos, apenas sibilam.
+  - ⚠ Fala 0: 'Eu espero aqui no escuro.' - Esqueletos não 'esperam' no sentido humano; são hostis e atacam o jogador.
+- **enderman + bruxa, noite** (`monstros_noite`) nota 3
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Eu também senti.
+  - 0: Que a noite comece.
+  - ⚠ Fala 0 'Sinto cheiro de humano por perto.' não combina com enderman, que não tem olfato apurado e normalmente não fala sobre cheiros.
+  - ⚠ Fala 0 'Que a noite comece.' soa desconexa da conversa anterior sobre cheiro de humano.
+  - ⚠ Fala 1 'Eu também senti.' é vaga e não acrescenta informação, mas é aceitável.
+- **enderman + bruxa, noite** (`jogador_monstros_visto`) nota 3
+  - 0: Aquele humano não está nos vendo.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0: 'Aquele humano não está nos vendo.' - Enderman normalmente não fala, mas se falasse, seria mais provável emitir sons ou frases curtas; a frase é muito articulada para um Enderman.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' - Bruxa poderia falar isso, mas não responde diretamente à fala anterior sobre o humano não estar vendo.
+  - ⚠ Fala 0: 'Agora não. Espera o momento certo.' - Não fica claro se é o Enderman ou a Bruxa falando, e a resposta não se conecta claramente com a fala anterior.
+- **enderman + bruxa, noite** (`monstros_lua`) nota 4
+  - 0: Noite clara é noite de caça.
+  - 1: A escuridão é nossa casa.
+  - 0: Que a noite seja longa.
+  - ⚠ A fala 'A escuridão é nossa casa.' da bruxa é um pouco genérica, mas aceitável para uma bruxa.
+  - ⚠ A fala 'Que a noite seja longa.' do enderman soa mais como um desejo de aldeão ou jogador, não de um enderman.
+- **enderman + bruxa, noite** (`monstros_lua`) nota 4
+  - 0: Noite clara é noite de caça.
+  - 1: Os humanos dormem e a gente trabalha.
+  - 0: Que a noite seja longa.
+  - ⚠ Fala 1: 'Os humanos dormem e a gente trabalha' soa como reclamação de trabalhador, não combina com bruxa.
+  - ⚠ Fala 0: 'Que a noite seja longa' é desejo genérico, não específico de enderman.
+- **enderman + bruxa, noite** (`monstros_noite`) nota 1
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Cada um por um lado.
+  - 0: Que a noite comece.
+  - ⚠ Fala 0 'Sinto cheiro de humano por perto.' não combina com enderman, que não tem olfato apurado e não fala sobre humanos dessa forma.
+  - ⚠ Fala 1 'Cada um por um lado.' é uma resposta vaga e não responde diretamente à fala anterior.
+  - ⚠ Fala 0 'Que a noite comece.' não se conecta com a conversa e soa como um clichê fora de contexto.
+- **enderman + bruxa, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Tem um humano ali.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Eu avisei.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à observação da fala 0.
+  - ⚠ Fala 0: 'Eu avisei.' soa abrupta e não conclui naturalmente o diálogo.
+- **enderman + bruxa, noite** (`monstros_lua`) nota 4
+  - 0: Quanto mais escuro, melhor.
+  - 1: Hoje ninguém escapa.
+  - 0: Vamos começar.
+  - ⚠ A fala 'Hoje ninguém escapa.' da bruxa é um pouco genérica, mas aceitável para uma bruxa em tom ameaçador.
+  - ⚠ A fala 'Vamos começar.' do enderman é curta e direta, mas poderia ser mais específica ao contexto de ataque noturno.
+- **enderman + bruxa, noite** (`monstros_noite`) nota 4
+  - 0: Escuridão boa, essa.
+  - 1: Cada um por um lado.
+  - 0: Que a noite comece.
+  - ⚠ A fala 'Cada um por um lado.' da bruxa não responde diretamente à fala do enderman 'Escuridão boa, essa.'
+  - ⚠ A fala 'Que a noite comece.' do enderman soa um pouco teatral, mas ainda aceitável para um enderman.
+- **enderman + bruxa, noite** (`jogador_monstros_visto`) nota 1
+  - 0: Humano à vista.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 0 'Humano à vista.' não combina com enderman, que não fala assim.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' não combina com bruxa, que não fala assim.
+  - ⚠ Fala 0 'Eu avisei.' não combina com enderman, que não fala assim.
+- **enderman + bruxa, noite** (`jogador_monstros_visto`) nota 3
+  - 0: Humano à vista.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0 'Humano à vista.' é genérica e não reflete a natureza enigmática do enderman, que normalmente emite sons distorcidos e não fala frases claras.
+  - ⚠ Fala 1 'Cuidado com o que ele carrega.' sugere que a bruxa se preocupa com o item do jogador, mas bruxas são hostis e focadas em atacar, não em alertar aliados.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' implica cooperação estratégica entre enderman e bruxa, o que não é típico dessas criaturas, que agem de forma independente.
+- **zumbi + zumbi, jogador com armadura de ferro** (`zumbi_porta`) nota 4
+  - 0: Grrr... aquela porta de madeira é dura.
+  - 1: Grrr... o cheiro de carne vem de dentro.
+  - 0: Grrr...
+  - ⚠ A fala 'Grrr... aquela porta de madeira é dura.' é plausível para zumbis, mas 'dura' pode soar estranho para uma criatura que normalmente não avalia propriedades de objetos.
+  - ⚠ A resposta 'Grrr... o cheiro de carne vem de dentro.' responde parcialmente, mas não diretamente à dureza da porta; poderia ser mais conectada.
+  - ⚠ A terceira fala 'Grrr...' é vaga e não acrescenta muito, mas é aceitável como grunhido.
+- **zumbi + zumbi, jogador com armadura de ferro** (`monstros_noite`) nota 4
+  - 0: A noite é nossa.
+  - 1: Eu também senti.
+  - 0: Que a noite comece.
+  - ⚠ Fala 1 'Eu também senti.' não responde claramente à fala 0 'A noite é nossa.'
+  - ⚠ Fala 0 'Que a noite comece.' parece redundante após 'A noite é nossa.'
+- **zumbi + zumbi, jogador com armadura de ferro** (`jogador_monstros_visto`) nota 3
+  - 0: Humano à vista.
+  - 1: Eu chego pela esquerda.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0 'Humano à vista.' é plausível para zumbis, mas zumbis normalmente não falam, apenas gemem.
+  - ⚠ Fala 1 'Eu chego pela esquerda.' sugere coordenação tática, o que é estranho para zumbis.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' implica paciência e estratégia, incomum para zumbis.
+- **zumbi + zumbi, jogador com armadura de ferro** (`zumbi_carne`) nota 4
+  - 0: Grrr... tem gente por perto.
+  - 1: Vamos... devagar...
+  - 0: Hmmm...
+  - ⚠ Fala 0 'Grrr... tem gente por perto.' é um pouco articulada demais para um zumbi, que normalmente emite grunhidos simples.
+  - ⚠ Fala 1 'Vamos... devagar...' sugere planejamento tático, o que não combina com o comportamento instintivo de zumbis.
+- **zumbi + zumbi, jogador com armadura de ferro** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' soa um pouco contraditória: pede silêncio mas depois manda se aproximar, o que pode gerar ruído.
+  - ⚠ Fala 0 'Eu avisei.' é vaga e não acrescenta muito à conversa, mas ainda é plausível.
+- **zumbi + zumbi, jogador com armadura de ferro** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Eu chego pela esquerda.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0 'Aquele humano não está nos vendo.' é plausível, mas zumbis normalmente não falam; porém, como são dois zumbis conversando, pode ser aceitável em um contexto de jogo.
+  - ⚠ Fala 1 'Eu chego pela esquerda.' sugere coordenação tática, o que é um pouco avançado para zumbis, mas ainda dentro do possível se considerarmos zumbis mais inteligentes.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' também indica paciência e estratégia, o que é estranho para zumbis, que costumam atacar imediatamente.
+- **zumbi + zumbi, jogador com armadura de ferro** (`zumbi_armadura`) nota 4
+  - 0: Metal... uma armadura de ferro... Grrr.
+  - 1: Grrr... duro de morder.
+  - 0: Hmmm...
+  - ⚠ A fala 'Metal... uma armadura de ferro... Grrr.' é um pouco estranha para um zumbi, pois zumbis normalmente não articulam palavras, apenas grunhem, mas é aceitável como grunhido interpretado.
+  - ⚠ A resposta 'Grrr... duro de morder.' responde bem, mas 'duro de morder' é uma expressão muito humana para um zumbi.
+  - ⚠ A última fala 'Hmmm...' é muito pensativa para um zumbi, que não demonstra raciocínio complexo.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Silêncio, chega mais perto.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0 'Aquele humano não está nos vendo.' é um pouco estranha, pois esqueletos normalmente não falam sobre 'ver' humanos, mas sim sobre atirar neles; porém é aceitável.
+  - ⚠ Fala 1 'Silêncio, chega mais perto.' soa como uma ordem tática, o que é plausível para esqueletos, mas 'chega mais perto' pode ser ambíguo, pois esqueletos atacam à distância.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' é coerente com emboscada, mas esqueletos não costumam esperar, atacam imediatamente ao avistar o jogador.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`jogador_monstros_visto`) nota 4
+  - 0: Humano à vista.
+  - 1: Eu chego pela esquerda.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Eu chego pela esquerda.' soa tática demais para esqueletos, que normalmente apenas atiram flechas sem coordenar ataques.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`esqueleto_mira`) nota 4
+  - 0: Ossos quietos, flechas prontas.
+  - 1: Não erra desta vez.
+  - 0: Já estou com a flecha encaixada.
+  - ⚠ A fala 'Ossos quietos, flechas prontas.' é um pouco estranha, pois esqueletos não costumam usar expressões como 'ossos quietos'.
+  - ⚠ A fala 'Já estou com a flecha encaixada.' soa redundante após 'Não erra desta vez.', mas ainda faz sentido.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`esqueleto_mira`) nota 4
+  - 0: Ossos quietos, flechas prontas.
+  - 1: Eu cubro pela esquerda.
+  - 0: Já estou com a flecha encaixada.
+  - ⚠ Fala 0 'Ossos quietos, flechas prontas.' soa um pouco estranha para esqueletos, que normalmente não falam, mas é aceitável como comunicação entre eles.
+  - ⚠ Fala 1 'Eu cubro pela esquerda.' é um pouco tática demais para esqueletos, que são criaturas sem inteligência avançada, mas pode passar como coordenação instintiva.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`esqueleto_mira`) nota 4
+  - 0: Ossos quietos, flechas prontas.
+  - 1: Eu cubro pela esquerda.
+  - 0: Vamos esperar o momento certo.
+  - ⚠ Fala 0 'Ossos quietos, flechas prontas.' soa um pouco estranha para esqueletos, que normalmente não falam, mas é aceitável como comunicação entre eles.
+  - ⚠ Fala 1 'Eu cubro pela esquerda.' é um pouco tática demais para esqueletos, que são criaturas básicas, mas ainda faz sentido em um contexto de emboscada.
+- **esqueleto + esqueleto, jogador com armadura de diamante** (`monstros_armadura`) nota 4
+  - 0: Aquele humano está com uma armadura de diamante.
+  - 1: Eu espero ele baixar a guarda.
+  - 0: Paciência vence qualquer armadura.
+  - ⚠ Fala 1: 'Eu espero ele baixar a guarda.' soa um pouco formal para esqueletos, que normalmente têm falas mais curtas e diretas.
+  - ⚠ Fala 0: 'Paciência vence qualquer armadura.' é um ditado que pode não combinar com o vocabulário típico de esqueletos no jogo.
+- **aranha + aranha, noite** (`monstros_lua`) nota 4
+  - 0: Quanto mais escuro, melhor.
+  - 1: Os humanos dormem e a gente trabalha.
+  - 0: Vamos começar.
+  - ⚠ Fala 1: 'Os humanos dormem e a gente trabalha' soa como referência a trabalho humano, o que é estranho para aranhas, que não têm conceito de trabalho.
+- **aranha + aranha, noite** (`monstros_noite`) nota 4
+  - 0: Escuridão boa, essa.
+  - 1: Vamos juntos, então.
+  - 0: Que a noite comece.
+  - ⚠ A fala 'Vamos juntos, então.' não responde diretamente a 'Escuridão boa, essa.'; parece uma mudança de assunto.
+  - ⚠ A sequência 'Que a noite comece.' após 'Vamos juntos, então.' soa desconexa, como se fosse uma nova abertura.
+- **aranha + aranha, noite** (`monstros_noite`) nota 3
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Que ninguém atrapalhe.
+  - 0: Que a noite comece.
+  - ⚠ Fala 1 'Que ninguém atrapalhe.' não responde diretamente à fala 0 sobre cheiro de humano.
+  - ⚠ Fala 0 'Que a noite comece.' parece desconectada da conversa anterior.
+- **aranha + aranha, noite** (`aranha_teia`) nota 4
+  - 0: Sss... as paredes são minhas.
+  - 1: Sss... eu sinto as vibrações.
+  - 0: Sss...
+  - ⚠ A fala 'as paredes são minhas' é um pouco vaga para aranhas, mas aceitável no contexto de escalar paredes.
+  - ⚠ A resposta 'eu sinto as vibrações' é plausível, mas poderia ser mais específica sobre o que as vibrações indicam.
+  - ⚠ A terceira fala 'Sss...' é muito curta e não acrescenta muito à conversa, mas é natural para aranhas.
+- **aranha + aranha, noite** (`monstros_noite`) nota 4
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Que ninguém atrapalhe.
+  - 0: Quieto, vem vindo alguém.
+  - ⚠ A fala 'Que ninguém atrapalhe.' não responde diretamente à fala anterior 'Sinto cheiro de humano por perto.'; parece mais um desejo do que uma reação ao cheiro.
+- **creeper + creeper, dia** (`jogador_monstros_visto`) nota 4
+  - 0: Humano à vista.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à fala 0, que apenas constata a presença do humano.
+- **creeper + creeper, dia** (`jogador_monstros_visto`) nota 4
+  - 0: Aquele humano não está nos vendo.
+  - 1: Silêncio, chega mais perto.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Silêncio, chega mais perto' soa um pouco ambígua, mas aceitável para creepers se aproximando furtivamente.
+- **enderman + enderman, noite** (`enderman_olhar`) nota 4
+  - 0: A água. Mantenha-se longe da água.
+  - 1: Eu também odeio a chuva.
+  - 0: Melhor sumir antes que ele olhe.
+  - ⚠ Fala 0 'Melhor sumir antes que ele olhe.' é ambígua: 'ele' pode se referir ao jogador, mas não fica claro no contexto.
+- **enderman + enderman, noite** (`jogador_monstros_visto`) nota 3
+  - 0: Aquele humano não está nos vendo.
+  - 1: Eu chego pela esquerda.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 0 'Aquele humano não está nos vendo.' é plausível para endermans, mas a resposta 'Eu chego pela esquerda.' não responde diretamente à observação sobre o humano não estar vendo.
+  - ⚠ Fala 0 'Agora não. Espera o momento certo.' sugere um plano coordenado, mas endermans são tipicamente solitários e não costumam planejar ataques em grupo, o que torna a conversa estranha para a espéci
+- **enderman + enderman, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Tem um humano ali.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Agora não. Espera o momento certo.
+  - ⚠ Fala 1: 'Cuidado com o que ele carrega.' é vaga e não responde diretamente à observação de que há um humano; poderia ser mais específica sobre o perigo (ex: 'Ele pode ter uma abóbora na cabeça.').
+  - ⚠ Fala 2: 'Agora não. Espera o momento certo.' sugere um plano coordenado, mas endermen não costumam agir em grupo; soa mais como estratégia de criaturas inteligentes como piglins ou aldeões.
+- **enderman + enderman, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Humano à vista.
+  - 1: Eu chego pela esquerda.
+  - 0: Eu avisei.
+  - ⚠ Fala 1 'Eu chego pela esquerda' soa tática demais para endermans, que são criaturas solitárias e não costumam coordenar ataques.
+  - ⚠ Fala 0 'Eu avisei' pode soar vingativa, mas endermans são neutros e não guardam rancor; seria mais natural um som de irritação.
+- **enderman + enderman, noite** (`enderman_olhar`) nota 4
+  - 0: Mais um humano. Que fique longe dos meus blocos.
+  - 1: Eu sinto o olhar dele.
+  - 0: Vamos para outro lugar.
+  - ⚠ Fala 0 'Mais um humano. Que fique longe dos meus blocos.' é um pouco possessiva para um enderman, que normalmente não se refere a blocos como 'meus'.
+  - ⚠ Fala 1 'Eu sinto o olhar dele.' é adequada, mas a resposta não responde diretamente à fala anterior sobre blocos.
+- **enderman + enderman, noite** (`enderman_olhar`) nota 3
+  - 0: Não olhe nos olhos. Ele nos vê.
+  - 1: Eu também odeio a chuva.
+  - 0: Vamos para outro lugar.
+  - ⚠ Fala 1 'Eu também odeio a chuva.' não responde diretamente à fala 0 'Não olhe nos olhos. Ele nos vê.'
+  - ⚠ Fala 0 'Vamos para outro lugar.' não responde à fala 1, que mudou de assunto para chuva.
+- **enderman + enderman, noite** (`monstros_noite`) nota 3
+  - 0: Sinto cheiro de humano por perto.
+  - 1: Que ninguém atrapalhe.
+  - 0: Que a noite comece.
+  - ⚠ Fala 0 'Sinto cheiro de humano por perto.' não combina com endermen, que não têm olfato apurado e se comunicam por sons guturais.
+  - ⚠ Fala 1 'Que ninguém atrapalhe.' é vaga e não responde diretamente à fala anterior.
+  - ⚠ Fala 0 'Que a noite comece.' parece desconectada da conversa, pois não há relação clara com as falas anteriores.
+- **bruxa + bruxa, chuva** (`monstros_chuva`) nota 4
+  - 0: A água me deixa de mau humor.
+  - 1: Os humanos ficam trancados, mas é irritante.
+  - 0: Depois a caça recomeça.
+  - ⚠ A fala 'Os humanos ficam trancados, mas é irritante.' é um pouco ambígua, mas aceitável para bruxas.
+- **bruxa + bruxa, chuva** (`bruxa_cogumelo`) nota 4
+  - 0: O cogumelo de hoje deu uma poção ótima.
+  - 1: Eu misturo de tudo um pouco.
+  - 0: Hehe, a receita é segredo.
+  - ⚠ Fala 0: 'O cogumelo de hoje deu uma poção ótima.' - Bruxas não usam cogumelos para poções no Minecraft; usam ingredientes como verruga do Nether, pó de blaze, etc.
+  - ⚠ Fala 1: 'Eu misturo de tudo um pouco.' - Resposta vaga, mas aceitável; não responde diretamente à fala anterior sobre o cogumelo.
+- **bruxa + bruxa, chuva** (`bruxa_cogumelo`) nota 4
+  - 0: Pântano bom é o que tem cogumelo à vontade.
+  - 1: Meu caldeirão está sempre fervendo.
+  - 0: Já sei qual testar primeiro.
+  - ⚠ A resposta 'Meu caldeirão está sempre fervendo.' não responde diretamente à fala sobre cogumelos, mas é aceitável como continuação do tema de poções.
+  - ⚠ A fala 'Já sei qual testar primeiro.' é vaga, mas plausível no contexto de bruxas testando poções.
+- **bruxa + bruxa, chuva** (`monstros_chuva`) nota 4
+  - 0: Chuva de novo, que droga.
+  - 1: Pelo menos a escuridão fica melhor.
+  - 0: Depois a caça recomeça.
+  - ⚠ Fala 0 'Depois a caça recomeça.' é um pouco vaga, mas aceitável para bruxas.
+- **bruxa + bruxa, chuva** (`monstros_chuva`) nota 4
+  - 0: Essa chuva apaga tudo que a gente rastreia.
+  - 1: Pelo menos a escuridão fica melhor.
+  - 0: Eu espero aqui no escuro.
+  - ⚠ A fala 'Eu espero aqui no escuro.' não responde diretamente à fala anterior 'Pelo menos a escuridão fica melhor.'
+- **bruxa + bruxa, chuva** (`bruxa_pocao`) nota 4
+  - 0: Hehe, tenho uma poção nova para testar.
+  - 1: Mistura com cogumelo, dá um efeito curioso.
+  - 0: Já sei qual receita usar.
+  - ⚠ A fala 1 'Mistura com cogumelo, dá um efeito curioso.' soa um pouco vaga e não responde diretamente à fala 0 sobre testar uma poção nova, mas ainda é plausível entre bruxas.
+- **bruxa + bruxa, chuva** (`bruxa_cogumelo`) nota 4
+  - 0: Pântano bom é o que tem cogumelo à vontade.
+  - 1: Eu misturo de tudo um pouco.
+  - 0: Hehe, a receita é segredo.
+  - ⚠ A resposta 'Eu misturo de tudo um pouco.' não responde diretamente à fala sobre cogumelos, mas é aceitável como continuação do assunto de poções.
+- **bruxa + bruxa, chuva** (`monstros_chuva`) nota 4
+  - 0: A água me deixa de mau humor.
+  - 1: Eu só quero que passe.
+  - 0: Depois a caça recomeça.
+  - ⚠ Fala 0 'Depois a caça recomeça.' é vaga e não especifica o que a bruxa caça, mas ainda é plausível para bruxas.
+- **bruxa + bruxa, chuva** (`monstros_chuva`) nota 4
+  - 0: Essa chuva apaga tudo que a gente rastreia.
+  - 1: Eu só quero que passe.
+  - 0: Eu espero aqui no escuro.
+  - ⚠ Fala 0 'Eu espero aqui no escuro' não responde diretamente à fala 1 'Eu só quero que passe', mas é aceitável como continuação do lamento.
+- **warden + warden, noite** (`monstros_noite`) nota 4
+  - 0: Hoje a caça vai ser boa.
+  - 1: Vamos juntos, então.
+  - 0: Quieto, vem vindo alguém.
+  - ⚠ Fala 0 'Hoje a caça vai ser boa.' é um pouco genérica, mas aceitável para wardens.
+  - ⚠ Fala 1 'Vamos juntos, então.' sugere cooperação, o que é incomum para wardens, que são solitários.
+  - ⚠ Fala 0 'Quieto, vem vindo alguém.' é adequada, mas wardens não falam, apenas emitem sons.
+- **warden + warden, noite** (`monstros_lua`) nota 4
+  - 0: Noite clara é noite de caça.
+  - 1: Hoje ninguém escapa.
+  - 0: Que a noite seja longa.
+  - ⚠ Fala 0 'Noite clara é noite de caça.' não combina com warden, que é cego e não se importa com claridade.
+  - ⚠ Fala 1 'Hoje ninguém escapa.' é genérica, mas aceitável para warden.
+  - ⚠ Fala 0 'Que a noite seja longa.' soa mais como desejo de criatura noturna, mas warden não tem relação com noite.
+- **warden + warden, noite** (`monstros_lua`) nota 1
+  - 0: Noite clara é noite de caça.
+  - 1: Os humanos dormem e a gente trabalha.
+  - 0: Que a noite seja longa.
+  - ⚠ Wardens não falam; são criaturas cegas que se comunicam por vibrações e sons guturais, não por frases.
+  - ⚠ A fala 'Os humanos dormem e a gente trabalha' sugere uma sociedade organizada, o que não condiz com wardens.
+  - ⚠ Wardens não caçam humanos; eles reagem a vibrações e sons, não têm intenção de caçar.
+  - ⚠ A conversa parece mais adequada a criaturas como aldeões ou pillagers, não a wardens.
+- **warden + warden, noite** (`warden_vibracao`) nota 4
+  - 0: Há vibração por perto.
+  - 1: Cada passo ecoa no meu peito.
+  - 0: Escuta.
+  - ⚠ A fala 'Cada passo ecoa no meu peito.' é poética demais para um warden, que se comunica de forma mais instintiva e sensorial.
+  - ⚠ A fala 'Escuta.' é redundante, pois wardens já são cegos e dependem de vibrações e sons.
+- **warden + warden, noite** (`jogador_monstros_visto`) nota 1
+  - 0: Tem um humano ali.
+  - 1: Eu chego pela esquerda.
+  - 0: Eu avisei.
+  - ⚠ Wardens não falam; eles se comunicam por vibrações e sons, não por frases.
+  - ⚠ A fala 'Eu chego pela esquerda' sugere estratégia coordenada, o que não combina com o comportamento instintivo do warden.
+  - ⚠ A resposta 'Eu avisei' não responde diretamente à fala anterior, que era sobre aproximação, não sobre aviso.
+- **warden + warden, noite** (`jogador_monstros_visto`) nota 4
+  - 0: Tem um humano ali.
+  - 1: Cuidado com o que ele carrega.
+  - 0: Eu avisei.
+  - ⚠ A fala 'Eu avisei.' não responde diretamente à fala anterior 'Cuidado com o que ele carrega.'
+
+## Todas as cenas
+
+### vaca + vaca, dia, o jogador segura trigo (ela gosta)
+- (4) 0: O cercado está movimentado hoje. / 1: Assim ninguém fica sozinho. / 0: Aqui dentro a gente se sente em casa.
+- (4) 0: De manhã o capim está cheio de orvalho. / 1: É a melhor hora para comer. / 0: Vamos aproveitar a luz.
+- (3) 0: Tem uma abelha zumbindo perto de mim. / 1: Elas só querem as flores. / 0: Que continuem trabalhando.
+- (4) 0: Água fresquinha é o que eu mais quero. / 1: Água boa é metade do dia bom. / 0: Depois a gente vai juntos.
+- (5) 0: Dia perfeito para ficar à toa. / 1: É verdade. / 0: Pena que a noite chega logo.
+- (4) 0: O humano anda por aí de novo. / 1: Ele passa sempre por aqui. / 0: Que siga o caminho dele.
+- (4) 0: O vento trouxe cheiro de chuva. / 1: Eu também senti, vem de longe. / 0: Vou seguir o cheiro depois.
+- (4) 0: Hoje venta bastante. / 1: Dá para ouvir o capim farfalhando. / 0: Vento bom é vento fraco.
+- (4) 0: Muuu, o dia está calmo. / 1: Sem pressa, a vida rende mais. / 0: Fica por perto, que é mais seguro.
+- (5) 0: A lama fresca é a melhor coisa do calor. / 1: Eu me deito nela e fico à vontade. / 0: Que dia bom para quem gosta de lama.
+
+### vaca + porco, dia, o jogador segura uma espada (nao e comida)
+- (4) 0: O cercado está movimentado hoje. / 1: Gosto de ter companhia por perto. / 0: Que o dia seja calmo.
+- (4) 0: Tem nuvem bonita no céu hoje. / 1: Dá gosto de olhar para cima. / 0: Que ele fique assim o dia todo.
+- (5) 0: Os filhotes não param quietos. / 1: Daqui a pouco já estão do nosso tamanho. / 0: Tomara que cresçam fortes.
+- (4) 0: O humano está com espada de diamante. Não é de comer, né? / 1: Não parece comida. / 0: Por mim, pode ficar com ele.
+- (3) 0: Já passou da hora de comer. / 1: Eu também estou com o estômago vazio. / 0: Vamos esperar mais um pouco.
+- (3) 0: Hoje venta bastante. / 1: O vento esfria o calor. / 0: Que continue assim.
+- (3) 0: O vento trouxe cheiro de chuva. / 1: Esse cheiro me dá fome. / 0: Gosto quando o dia cheira assim.
+- (4) 0: Tem um cheiro bom de grama no ar. / 1: O nariz da gente não engana. / 0: Vou seguir o cheiro depois.
+- (4) 0: Olha só, espada de diamante na mão do humano. O que será isso? / 1: Não parece comida. / 0: Cada um com o seu gosto.
+- (5) 0: Achei uma sombra boa. / 1: Que bom, o sol está forte. / 0: Aqui a gente descansa.
+
+### porco + galinha, noite
+- (3) 0: Já ouviu um uivo de lobo por perto? / 1: Chega pertinho de mim, que é mais seguro. / 0: Vamos ficar de olho.
+- (5) 0: Os filhotes não param quietos. / 1: Daqui a pouco já estão do nosso tamanho. / 0: Tomara que cresçam fortes.
+- (4) 0: O humano caminha de noite. / 1: Melhor ele passar longe de mim. / 0: Tomara que passe sem nos incomodar.
+- (4) 0: Já ouvi uns rosnados lá longe. / 1: De noite o mundo fica estranho. / 0: Aguenta firme, o dia já vem.
+- (3) 0: Já ouviu um uivo de lobo por perto? / 1: Lobo não gosta de rebanho junto. / 0: Vamos ficar de olho.
+- (4) 0: Os pequenos vivem atrás da gente. / 1: Os meus dormem em cima de mim. / 0: Tomara que cresçam fortes.
+- (4) 0: A noite está fria. / 1: A gente se acostuma com o frio. / 0: Ainda bem que o dia volta.
+- (4) 0: Tem alguma coisa se mexendo ali. / 1: Deve ser o vento. / 0: Vou ficar de olho.
+- (3) 0: A noite está fria. / 1: A gente se acostuma com o frio. / 0: Amanhã o sol esquenta de novo.
+- (4) 0: O cercado está movimentado hoje. / 1: Assim ninguém fica sozinho. / 0: Aqui dentro a gente se sente em casa.
+
+### vaca + porco, chuva, jogador ferido e com fome
+- (3) 0: Os pequenos vivem atrás da gente. / 1: Eu fico de olho para não se perderem. / 0: Daqui a pouco eles se viram sozinhos.
+- (4) 0: O humano deve estar faminto. / 1: Eu também fico de mau humor quando passo fome. / 0: Tomara que ele ache comida logo.
+- (4) 0: O humano está machucado. / 1: Dá pena ver. / 0: Fico de olho nele.
+- (3) 0: Os pequenos vivem atrás da gente. / 1: Daqui a pouco já estão do nosso tamanho. / 0: Tomara que cresçam fortes.
+- (4) 0: O humano deve estar faminto. / 1: Ele devia achar algo para comer. / 0: Eu entendo bem essa fome.
+- (5) 0: Depois da chuva a lama fica perfeita. / 1: Barro seco coça, barro molhado é paz. / 0: Que dia bom para quem gosta de lama.
+- (3) 0: O humano está machucado. / 1: Eu fico quieto para não incomodar. / 0: Fico de olho nele.
+- (4) 0: Quando chove assim, dá vontade de ficar sem se mexer. / 1: Só não gosto de lama. / 0: Verdade. Vamos ver quanto tempo dura.
+- (4) 0: O humano está na chuva. / 1: Ele deve estar todo molhado. / 0: Cada um com o seu jeito de passar a chuva.
+- (4) 0: O humano deve estar faminto. / 1: Ele devia achar algo para comer. / 0: Tomara que ele ache comida logo.
+
+### lobo + lobo, dia, jogador com armadura de diamante
+- (4) 0: Olha como o céu está limpo. / 1: Dá gosto de olhar para cima. / 0: Que ele fique assim o dia todo.
+- (4) 0: Olha, é o humano outra vez. / 1: Eu fico de olho nele. / 0: Que siga o caminho dele.
+- (1) 0: Água fresquinha é o que eu mais quero. / 1: Sede passa rápido com água fresca. / 0: Que a água nunca falte.
+- (1) 0: Lama macia faz bem para os cascos. / 1: Eu me deito nela e fico à vontade. / 0: Que dia bom para quem gosta de lama.
+- (1) 0: De manhã o capim está cheio de orvalho. / 1: Tudo parece mais calmo cedo. / 0: Vamos aproveitar a luz.
+- (4) 0: Sinto cheiro de feno novo por perto. / 1: Esse cheiro me dá fome. / 0: Vou seguir o cheiro depois.
+- (1) 0: Que dia bonito hoje. / 1: Também percebi, dá até ânimo. / 0: Hoje está tudo no lugar.
+- (4) 0: A sede aperta quando o sol esquenta. / 1: Sede passa rápido com água fresca. / 0: Depois a gente vai juntos.
+- (4) 0: O estômago avisa a hora certa. / 1: O meu também está reclamando. / 0: Vamos juntos.
+- (5) 0: Os filhotes não param quietos. / 1: Daqui a pouco já estão do nosso tamanho. / 0: Daqui a pouco eles se viram sozinhos.
+
+### gato + gato, dia, o jogador segura peixe (o gato gosta)
+- (3) 0: Acordei de bom humor com esse sol. / 1: É verdade. / 0: Então vamos aproveitar.
+- (1) 0: De manhã o capim está cheio de orvalho. / 1: Tudo parece mais calmo cedo. / 0: Que o dia seja bom.
+- (5) 0: Esse canto está ótimo para dormir. / 1: Eu também estou com sono. / 0: Me acorda quando o sol baixar.
+- (4) 0: Olha, é o humano outra vez. / 1: Ele passa sempre por aqui. / 0: Vamos ver o que ele faz.
+- (4) 0: Os pequenos vivem atrás da gente. / 1: Daqui a pouco já estão do nosso tamanho. / 0: Daqui a pouco eles se viram sozinhos.
+- (3) 0: O cercado está movimentado hoje. / 1: Gosto de ter companhia por perto. / 0: Que o dia seja calmo.
+- (5) 0: Peixe cru! É o meu favorito. Será que ele divide? / 1: Eu também queria. / 0: Eu espero aqui, bem quieto.
+- (4) 0: Tem sombra de sobra aqui. / 1: Divide comigo? / 0: Aqui a gente descansa.
+- (4) 0: Olha, é o humano outra vez. / 1: Gosto quando tem movimento por aqui. / 0: Que siga o caminho dele.
+- (4) 0: Olha, é o humano outra vez. / 1: Gosto quando tem movimento por aqui. / 0: Vamos ver o que ele faz.
+
+### vaca + vaca, as duas ja conhecem o jogador e uma sabe o nome
+- (4) 0: Tem uma abelha zumbindo perto de mim. / 1: Elas só querem as flores. / 0: Melhor deixar elas em paz.
+- (5) 0: O sol me deixou com sono. / 1: Cochilo depois de comer é o melhor. / 0: Boa soneca.
+- (5) 0: O vento está fazendo o capim dançar. / 1: Eu gosto do vento no pelo. / 0: Que continue assim.
+- (5) 0: Olha como o céu está limpo. / 1: Eu podia passar o dia olhando para o céu. / 0: Hoje está tudo calmo.
+- (5) 0: Você viu as abelhas hoje? Trabalham sem parar. / 1: Sem elas as flores nem teriam graça. / 0: Elas sabem o que fazem.
+- (5) 0: Acho que já está na hora de comer. / 1: Quem chega primeiro come melhor. / 0: Vamos juntos.
+- (4) 0: Achei uma sombra boa. / 1: Também acho. / 0: Fica à vontade.
+- (4) 0: Viu aquela touceira de grama ali? / 1: Já comi tanto que nem me mexo. / 0: A vida é simples, e isso me basta.
+- (4) 0: Aquele humano me disse que se chama Bia. / 1: Agora posso chamar pelo nome. / 0: Nome ajuda a lembrar de quem é.
+- (4) 0: Hoje venta bastante. / 1: O vento esfria o calor. / 0: Vento bom é vento fraco.
+
+### aldeão fazendeiro + aldeão bibliotecário, dia
+- (4) 0: Tenho pavor daquele chiado do creeper. / 1: Pois é. / 0: Que ele passe longe daqui.
+- (5) 0: Dizem que creeper tem medo de gato. / 1: É verdade. / 0: Que ele passe longe daqui.
+- (5) 0: Como anda a sua plantação de melancia? / 1: A minha anda mais devagar, mas vai. / 0: A terra daqui é generosa.
+- (5) 0: Meu ofício é fazer a terra dar fruto. / 1: Sem você passaríamos fome. / 0: Fico feliz em ajudar.
+- (4) 0: Comerciante viajante é sempre uma surpresa. / 1: Ele nunca fica mais de um dia. / 0: Quem sabe ele volte.
+- (4) 0: Você viu as abelhas hoje? Trabalham sem parar. / 1: Dizem que o mel é uma maravilha. / 0: Respeito muito esse esforço.
+- (4) 0: O humano parece apressado. / 1: Gosto quando tem movimento por aqui. / 0: Vamos ver o que ele faz.
+- (3) 0: Acordei de bom humor com esse sol. / 1: É verdade. / 0: Pena que a noite chega logo.
+- (5) 0: Dizem que pilhadores atacam vilas inteiras. / 1: Prefiro nem pensar nisso. / 0: Melhor estar sempre preparado.
+- (4) 0: Olha o humano na rua. Bom cliente, talvez. / 1: Quem sabe compra alguma coisa. / 0: Que venha negociar.
+
+### aldeão + aldeão, noite, o jogador segura esmeraldas
+- (4) 0: O sino da vila é o som que mais me assusta. / 1: A vila inteira ouve. / 0: A vila sempre se junta.
+- (3) 0: Já viu um creeper de perto? Silencioso demais. / 1: Eu ouvi isso também, deve ser verdade. / 0: Por isso fico de olho em tudo.
+- (5) 0: Quando o sino toca, ninguém fica fora de casa. / 1: Eu corro para dentro quando escuto. / 0: A vila sempre se junta.
+- (4) 0: Quem sai a essa hora? Ah, é o humano. / 1: Corajoso ou distraído, ainda não sei. / 0: Que a noite seja gentil com essa pessoa.
+- (4) 0: Pilhador é a pior coisa que existe. / 1: Eu fecho as portas mais cedo por via das dúvidas. / 0: A vila é forte quando está unida.
+- (3) 0: Dizem que tem brilho de diamante bem fundo. / 1: É verdade. / 0: Melhor deixar o fundo em paz.
+- (3) 0: A noite está fria. / 1: Fica pertinho de mim que esquenta. / 0: Amanhã o sol esquenta de novo.
+- (3) 0: Um gato dormindo na porta dá sorte. / 1: Gato quieto é gato em guarda. / 0: Cada um com o seu trabalho.
+- (5) 0: Olha lá, o humano caminhando no escuro. / 1: Corajoso ou distraído, ainda não sei. / 0: Que a noite seja gentil com essa pessoa.
+- (5) 0: O humano está segurando esmeraldas, reparou? / 1: Parece útil, isso. / 0: Vou perguntar, quem sabe.
+
+### aldeão + aldeão, dia, jogador com armadura de ferro
+- (5) 0: Dizem que pilhadores atacam vilas inteiras. / 1: Prefiro nem pensar nisso. / 0: Melhor estar sempre preparado.
+- (3) 0: Dizem que creeper tem medo de gato. / 1: Pois é. / 0: Por isso fico de olho em tudo.
+- (4) 0: Já viu um portal roxo? / 1: Ouvi histórias, mas não sei se são verdade. / 0: Vai saber o que é verdade.
+- (5) 0: Dizem que pilhadores atacam vilas inteiras. / 1: Eu fecho as portas mais cedo por via das dúvidas. / 0: Melhor estar sempre preparado.
+- (5) 0: Esmeralda é a moeda que todo mundo quer. / 1: Um bom estoque vale ouro, ou melhor, esmeralda. / 0: Cada esmeralda conta.
+- (4) 0: Olha só, o humano está de uma armadura de ferro. / 1: Deve ter custado caro. / 0: Pelo menos protege a vila também.
+- (4) 0: Comerciante que aparece do nada traz boas histórias. / 1: Ele nunca fica mais de um dia. / 0: Cada visita rende uma boa história.
+- (4) 0: Olha o humano na rua. Bom cliente, talvez. / 1: Hoje o meu estoque está bom. / 0: Que venha negociar.
+- (4) 0: O humano anda por aí de novo. / 1: Gosto quando tem movimento por aqui. / 0: Que siga o caminho dele.
+- (4) 0: Reparou na roupa do humano? É uma armadura de ferro. / 1: Deve ter custado caro. / 0: Pelo menos protege a vila também.
+
+### aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)
+- (4) 0: O sol está gostoso, né? / 1: É, hoje nem dá vontade de reclamar. / 0: Pena que a noite chega logo.
+- (4) 0: Aquelas abelhas são bem mais ocupadas que a gente. / 1: Só não mexa na colmeia, elas se zangam. / 0: Elas sabem o que fazem.
+- (5) 0: Com o golem por perto, durmo tranquilo. / 1: Proteger a vila é o meu trabalho. / 0: Por isso a vila ainda existe.
+- (4) 0: Olha como o céu está limpo. / 1: Dia assim alegra qualquer um. / 0: Hoje está tudo calmo.
+- (4) 0: Aquelas abelhas são bem mais ocupadas que a gente. / 1: Só não mexa na colmeia, elas se zangam. / 0: Respeito muito esse esforço.
+- (4) 0: Olha como o céu está limpo. / 1: Eu podia passar o dia olhando para o céu. / 0: Hoje está tudo calmo.
+- (5) 0: Já vi o golem proteger uma casa inteira. / 1: Eu só faço o que preciso. / 0: Por isso a vila ainda existe.
+- (4) 0: Dá uma sensação boa ter você por perto. / 1: Enquanto eu estiver aqui, ninguém passa. / 0: Por isso a vila ainda existe.
+- (4) 0: Vi o humano passando agora há pouco. / 1: Gosto quando tem movimento por aqui. / 0: Que siga o caminho dele.
+- (5) 0: Com o golem por perto, durmo tranquilo. / 1: Proteger a vila é o meu trabalho. / 0: A vila agradece.
+
+### aldeão + aldeão, chuva, um deles tem fato de troca com o jogador
+- (4) 0: Já ouviu os sons que vêm do chão à noite? / 1: Escuridão e coisa ruim, dizem. / 0: Que ninguém desça sem tocha.
+- (4) 0: Olha só, o humano de novo. / 1: Ele sempre traz movimento. / 0: Vamos ver o que ele quer.
+- (4) 0: O humano deve ter um nome, mas eu não sei. / 1: Eu também só o chamo de humano. / 0: Quem sabe um dia ele conta.
+- (4) 0: Dizem que existe um mundo de fogo do outro lado. / 1: Prefiro nem chegar perto. / 0: Eu fico por aqui mesmo.
+- (4) 0: O sino chama todo mundo quando há perigo. / 1: Eu corro para dentro quando escuto. / 0: A vila sempre se junta.
+- (4) 0: Aquele humano eu já conheço de outros dias. / 1: Eu ainda não o conhecia. / 0: Ele é tranquilo, pode confiar.
+- (5) 0: A ideia de pilhadores me tira o sono. / 1: Prefiro nem pensar nisso. / 0: Melhor estar sempre preparado.
+- (4) 0: O humano fez uma troca justa comigo. / 1: Paga direito? / 0: Dá para confiar.
+- (4) 0: O humano ali já esteve comigo antes. / 1: Para mim é a primeira vez. / 0: Ele é tranquilo, pode confiar.
+- (5) 0: A ideia de pilhadores me tira o sono. / 1: Eu fecho as portas mais cedo por via das dúvidas. / 0: Melhor estar sempre preparado.
+
+### zumbi + zumbi, noite
+- (5) 0: Grrr... humano atrás da porta é um prêmio. / 1: Grrr... o cheiro de carne vem de dentro. / 0: Grrr... insiste.
+- (5) 0: A noite é boa. A fome também. / 1: Vamos... devagar... / 0: Quase... quase...
+- (4) 0: Grrr... bater na porta cansa. / 1: Grrr... paciência abre qualquer madeira. / 0: Grrr... insiste.
+- (4) 0: A noite é boa. A fome também. / 1: Grrrr... / 0: Quase... quase...
+- (4) 0: Aquele humano não está nos vendo. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+- (4) 0: Hoje a caça vai ser boa. / 1: Cada um por um lado. / 0: Que a noite comece.
+- (4) 0: Sinto cheiro de humano por perto. / 1: Cada um por um lado. / 0: Que a noite comece.
+- (4) 0: Grrr... bater na porta cansa. / 1: Grrr... o cheiro de carne vem de dentro. / 0: Grrr...
+- (5) 0: Grrr... aquela porta de madeira é dura. / 1: Grrr... um dia ela cede. / 0: Grrr...
+- (4) 0: Humano... cheiro de carne. / 1: Grrrr... / 0: Hmmm...
+
+### zumbi + esqueleto, noite
+- (4) 0: Dá para parar de me acertar com flecha? / 1: Foi sem querer. Quase. / 0: Grrr... vamos caçar juntos.
+- (4) 0: Seus ossos fazem barulho demais. / 1: De perto você só arrasta o pé. / 0: Grrr... vamos caçar juntos.
+- (4) 0: Noite clara é noite de caça. / 1: A escuridão é nossa casa. / 0: Vamos começar.
+- (4) 0: Aquele humano não está nos vendo. / 1: Silêncio, chega mais perto. / 0: Agora não. Espera o momento certo.
+- (4) 0: Aquele humano não está nos vendo. / 1: Cuidado com o que ele carrega. / 0: Eu avisei.
+- (4) 0: Você só sabe atirar de longe. / 1: Seus gemidos avisam a presa. / 0: Hmm... tá bom.
+- (3) 0: A noite é nossa. / 1: Eu também senti. / 0: Que a noite comece.
+- (5) 0: Tem um humano ali. / 1: Eu chego pela esquerda. / 0: Eu avisei.
+- (1) 0: Dá para parar de me acertar com flecha? / 1: De perto você só arrasta o pé. / 0: Hmm... tá bom.
+- (4) 0: A lua está cheia hoje. / 1: Hoje ninguém escapa. / 0: Vamos começar.
+
+### creeper + zumbi, dia
+- (4) 0: Dia é hora de se esconder. / 1: Esperar a noite é o jeito. / 0: Paciência.
+- (4) 0: Dia é hora de se esconder. / 1: Procura uma sombra. / 0: Paciência.
+- (4) 0: Ssss... odeio quando um gato aparece. / 1: Grrr... gato assusta até quem não tem medo. / 0: Ssss... assunto encerrado.
+- (5) 0: Ssss... gato me dá arrepio. / 1: Grrr... eu mantenho distância. / 0: Ssss... é melhor ficar longe deles.
+- (3) 0: Humano à vista. / 1: Eu chego pela esquerda. / 0: Eu avisei.
+- (3) 0: Aquele humano não está nos vendo. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+- (4) 0: Dia é hora de se esconder. / 1: Também não gosto. / 0: Falta pouco para escurecer.
+- (4) 0: Ssss... hoje eu vou explodir alguma coisa. / 1: Grrr... só não me leve junto. / 0: Ssss... fico de longe, prometo.
+- (4) 0: Ssss... hoje eu vou explodir alguma coisa. / 1: Grrr... explode longe de mim. / 0: Ssss... fico de longe, prometo.
+- (5) 0: Odeio o dia. / 1: Esperar a noite é o jeito. / 0: Falta pouco para escurecer.
+
+### aranha + zumbi, noite, jogador segura espada
+- (4) 0: Sss... eu fico no teto, você no chão. / 1: Grrr... quem pegar o humano primeiro. / 0: Sss... uma corrida, então.
+- (4) 0: Tem um humano ali. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+- (4) 0: Sss... eu fico no teto, você no chão. / 1: Grrr... quem pegar o humano primeiro. / 0: Sss... paciência.
+- (4) 0: Sinto cheiro de humano por perto. / 1: Que ninguém atrapalhe. / 0: Que a noite comece.
+- (4) 0: O humano carrega espada de ferro. Cuidado. / 1: Ele ainda não nos viu. / 0: Agora não.
+- (4) 0: Sss... a sua fome é barulhenta. / 1: Grrr... quem pegar o humano primeiro. / 0: Sss... uma corrida, então.
+- (4) 0: Sss... a sua fome é barulhenta. / 1: Grrr... quem pegar o humano primeiro. / 0: Sss... paciência.
+- (4) 0: Hoje a caça vai ser boa. / 1: Eu também senti. / 0: Que a noite comece.
+- (4) 0: Aquele humano tem espada de ferro na mão. / 1: Se ele usar, vai doer. / 0: Espera ele abaixar a guarda.
+- (4) 0: A noite é nossa. / 1: Vamos juntos, então. / 0: Quieto, vem vindo alguém.
+
+### esqueleto + creeper, chuva
+- (4) 0: Você explode e eu atiro. Dá um bom time. / 1: Ssss... eu chego perto, você mira de longe. / 0: Então vamos.
+- (4) 0: Humano à vista. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+- (3) 0: Chuva de novo, que droga. / 1: Eu só quero que passe. / 0: Eu espero aqui no escuro.
+- (3) 0: A água me deixa de mau humor. / 1: Os humanos ficam trancados, mas é irritante. / 0: Eu espero aqui no escuro.
+- (4) 0: Fica longe da minha flecha, hein? / 1: Ssss... eu chego perto, você mira de longe. / 0: Então vamos.
+- (4) 0: Fica longe da minha flecha, hein? / 1: Ssss... eu chego perto, você mira de longe. / 0: Combinado.
+- (4) 0: Tem um humano ali. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+- (4) 0: Fica longe da minha flecha, hein? / 1: Ssss... só não me acerta. / 0: Então vamos.
+- (4) 0: Aquele humano não está nos vendo. / 1: Eu chego pela esquerda. / 0: Agora não. Espera o momento certo.
+- (3) 0: A água me deixa de mau humor. / 1: Eu só quero que passe. / 0: Eu espero aqui no escuro.
+
+### enderman + bruxa, noite
+- (3) 0: Sinto cheiro de humano por perto. / 1: Eu também senti. / 0: Que a noite comece.
+- (3) 0: Aquele humano não está nos vendo. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+- (4) 0: Noite clara é noite de caça. / 1: A escuridão é nossa casa. / 0: Que a noite seja longa.
+- (4) 0: Noite clara é noite de caça. / 1: Os humanos dormem e a gente trabalha. / 0: Que a noite seja longa.
+- (1) 0: Sinto cheiro de humano por perto. / 1: Cada um por um lado. / 0: Que a noite comece.
+- (4) 0: Tem um humano ali. / 1: Cuidado com o que ele carrega. / 0: Eu avisei.
+- (4) 0: Quanto mais escuro, melhor. / 1: Hoje ninguém escapa. / 0: Vamos começar.
+- (4) 0: Escuridão boa, essa. / 1: Cada um por um lado. / 0: Que a noite comece.
+- (1) 0: Humano à vista. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+- (3) 0: Humano à vista. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+
+### zumbi + zumbi, jogador com armadura de ferro
+- (5) 0: O humano veste uma armadura de ferro. Duro de morder. / 1: Grrr... duro de morder. / 0: Grrr...
+- (4) 0: Grrr... aquela porta de madeira é dura. / 1: Grrr... o cheiro de carne vem de dentro. / 0: Grrr...
+- (4) 0: A noite é nossa. / 1: Eu também senti. / 0: Que a noite comece.
+- (5) 0: O humano veste uma armadura de ferro. Duro de morder. / 1: Grrr... duro de morder. / 0: Hmmm...
+- (5) 0: Escuridão boa, essa. / 1: Que ninguém atrapalhe. / 0: Que a noite comece.
+- (3) 0: Humano à vista. / 1: Eu chego pela esquerda. / 0: Agora não. Espera o momento certo.
+- (4) 0: Grrr... tem gente por perto. / 1: Vamos... devagar... / 0: Hmmm...
+- (4) 0: Aquele humano não está nos vendo. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+- (4) 0: Aquele humano não está nos vendo. / 1: Eu chego pela esquerda. / 0: Agora não. Espera o momento certo.
+- (4) 0: Metal... uma armadura de ferro... Grrr. / 1: Grrr... duro de morder. / 0: Hmmm...
+
+### esqueleto + esqueleto, jogador com armadura de diamante
+- (4) 0: Aquele humano não está nos vendo. / 1: Silêncio, chega mais perto. / 0: Agora não. Espera o momento certo.
+- (4) 0: Humano à vista. / 1: Eu chego pela esquerda. / 0: Eu avisei.
+- (4) 0: Ossos quietos, flechas prontas. / 1: Não erra desta vez. / 0: Já estou com a flecha encaixada.
+- (5) 0: Aquele humano está ao alcance de uma flecha. / 1: Não erra desta vez. / 0: Vamos esperar o momento certo.
+- (4) 0: Ossos quietos, flechas prontas. / 1: Eu cubro pela esquerda. / 0: Já estou com a flecha encaixada.
+- (5) 0: O humano veste uma armadura de diamante. Vai ser difícil acertar. / 1: Armadura nenhuma é perfeita. / 0: Vamos tentar mesmo assim.
+- (5) 0: Cada flecha que erra é uma vergonha. / 1: Eu nunca erro duas vezes. / 0: Vou acertar da próxima.
+- (5) 0: O humano veste uma armadura de diamante. Vai ser difícil acertar. / 1: Mire na cabeça. / 0: Vamos tentar mesmo assim.
+- (4) 0: Ossos quietos, flechas prontas. / 1: Eu cubro pela esquerda. / 0: Vamos esperar o momento certo.
+- (4) 0: Aquele humano está com uma armadura de diamante. / 1: Eu espero ele baixar a guarda. / 0: Paciência vence qualquer armadura.
+
+### aranha + aranha, noite
+- (4) 0: Quanto mais escuro, melhor. / 1: Os humanos dormem e a gente trabalha. / 0: Vamos começar.
+- (4) 0: Escuridão boa, essa. / 1: Vamos juntos, então. / 0: Que a noite comece.
+- (3) 0: Sinto cheiro de humano por perto. / 1: Que ninguém atrapalhe. / 0: Que a noite comece.
+- (4) 0: Sss... as paredes são minhas. / 1: Sss... eu sinto as vibrações. / 0: Sss...
+- (5) 0: Sss... o humano é muito barulhento. / 1: Sss... espere ele chegar mais perto. / 0: Sss... silêncio agora.
+- (5) 0: Hoje a caça vai ser boa. / 1: Eu também senti. / 0: Quieto, vem vindo alguém.
+- (5) 0: Sss... gosto do escuro e das paredes. / 1: Sss... subir é mais fácil que andar. / 0: Sss... a noite é nossa.
+- (5) 0: Sss... gosto do escuro e das paredes. / 1: Sss... a luz do sol incomoda os olhos. / 0: Sss... a noite é nossa.
+- (4) 0: Sinto cheiro de humano por perto. / 1: Que ninguém atrapalhe. / 0: Quieto, vem vindo alguém.
+- (5) 0: Quanto mais escuro, melhor. / 1: Os humanos dormem e a gente trabalha. / 0: Que a noite seja longa.
+
+### creeper + creeper, dia
+- (5) 0: Ssss... gato por perto não. / 1: Ssss... cuidado com os gatos. / 0: Ssss...
+- (5) 0: Tem um humano ali. / 1: Eu chego pela esquerda. / 0: Agora não. Espera o momento certo.
+- (5) 0: Odeio o dia. / 1: Também não gosto. / 0: Falta pouco para escurecer.
+- (5) 0: Odeio o dia. / 1: Também não gosto. / 0: Paciência.
+- (5) 0: Ssss... gato por perto não. / 1: Ssss... eu também ouvi. / 0: Ssss... paciência.
+- (4) 0: Humano à vista. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+- (5) 0: Ssss... gato por perto não dá. / 1: Ssss... eu corro assim que ouço. / 0: Ssss...
+- (5) 0: Ssss... aquele miado me arrepia. / 1: Ssss... eu corro assim que ouço. / 0: Ssss... fica longe deles.
+- (5) 0: Dia é hora de se esconder. / 1: Esperar a noite é o jeito. / 0: Paciência.
+- (4) 0: Aquele humano não está nos vendo. / 1: Silêncio, chega mais perto. / 0: Eu avisei.
+
+### enderman + enderman, noite
+- (4) 0: A água. Mantenha-se longe da água. / 1: Eu também odeio a chuva. / 0: Melhor sumir antes que ele olhe.
+- (5) 0: A noite é nossa. / 1: Eu também senti. / 0: Quieto, vem vindo alguém.
+- (3) 0: Aquele humano não está nos vendo. / 1: Eu chego pela esquerda. / 0: Agora não. Espera o momento certo.
+- (4) 0: Tem um humano ali. / 1: Cuidado com o que ele carrega. / 0: Agora não. Espera o momento certo.
+- (4) 0: Humano à vista. / 1: Eu chego pela esquerda. / 0: Eu avisei.
+- (5) 0: Não olhe nos olhos. Ele nos vê. / 1: Eu sinto o olhar dele. / 0: Vamos para outro lugar.
+- (4) 0: Mais um humano. Que fique longe dos meus blocos. / 1: Eu sinto o olhar dele. / 0: Vamos para outro lugar.
+- (3) 0: Não olhe nos olhos. Ele nos vê. / 1: Eu também odeio a chuva. / 0: Vamos para outro lugar.
+- (5) 0: Tem um humano ali. / 1: Cuidado com o que ele carrega. / 0: Eu avisei.
+- (3) 0: Sinto cheiro de humano por perto. / 1: Que ninguém atrapalhe. / 0: Que a noite comece.
+
+### bruxa + bruxa, chuva
+- (4) 0: A água me deixa de mau humor. / 1: Os humanos ficam trancados, mas é irritante. / 0: Depois a caça recomeça.
+- (4) 0: O cogumelo de hoje deu uma poção ótima. / 1: Eu misturo de tudo um pouco. / 0: Hehe, a receita é segredo.
+- (4) 0: Pântano bom é o que tem cogumelo à vontade. / 1: Meu caldeirão está sempre fervendo. / 0: Já sei qual testar primeiro.
+- (4) 0: Chuva de novo, que droga. / 1: Pelo menos a escuridão fica melhor. / 0: Depois a caça recomeça.
+- (4) 0: Essa chuva apaga tudo que a gente rastreia. / 1: Pelo menos a escuridão fica melhor. / 0: Eu espero aqui no escuro.
+- (5) 0: Poção de lentidão ficou perfeita hoje. / 1: Eu prefiro as venenosas. / 0: Hehe, depois a gente compara.
+- (4) 0: Hehe, tenho uma poção nova para testar. / 1: Mistura com cogumelo, dá um efeito curioso. / 0: Já sei qual receita usar.
+- (4) 0: Pântano bom é o que tem cogumelo à vontade. / 1: Eu misturo de tudo um pouco. / 0: Hehe, a receita é segredo.
+- (4) 0: A água me deixa de mau humor. / 1: Eu só quero que passe. / 0: Depois a caça recomeça.
+- (4) 0: Essa chuva apaga tudo que a gente rastreia. / 1: Eu só quero que passe. / 0: Eu espero aqui no escuro.
+
+### warden + warden, noite
+- (5) 0: Tem um humano ali. / 1: Silêncio, chega mais perto. / 0: Agora não. Espera o momento certo.
+- (4) 0: Hoje a caça vai ser boa. / 1: Vamos juntos, então. / 0: Quieto, vem vindo alguém.
+- (4) 0: Noite clara é noite de caça. / 1: Hoje ninguém escapa. / 0: Que a noite seja longa.
+- (1) 0: Noite clara é noite de caça. / 1: Os humanos dormem e a gente trabalha. / 0: Que a noite seja longa.
+- (5) 0: Eu sinto passos. / 1: Fica quieto. / 0: Escuta.
+- (4) 0: Há vibração por perto. / 1: Cada passo ecoa no meu peito. / 0: Escuta.
+- (1) 0: Tem um humano ali. / 1: Eu chego pela esquerda. / 0: Eu avisei.
+- (4) 0: Tem um humano ali. / 1: Cuidado com o que ele carrega. / 0: Eu avisei.
+- (5) 0: O silêncio é melhor. / 1: Eu também sinto. / 0: Escuta.
+- (5) 0: Eu sinto passos. / 1: Eu também sinto. / 0: Quieto.

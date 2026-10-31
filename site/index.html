@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MobVoz IA — converse de verdade com os mobs do Minecraft</title>
   <meta name="description" content="Mod Fabric para Minecraft Java 1.21.8: fale no microfone e os mobs respondem por voz, lembram de você, trocam itens, seguem ordens e conversam entre si. Alpha 0.1.">
   <meta name="theme-color" content="#14161a">
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 
@@ -435,12 +435,12 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
     <table class="tbl">
       <thead><tr><th></th><th>Sua própria API (ex.: DeepSeek)</th><th>Modelo local (Ollama)</th></tr></thead>
       <tbody>
-        <tr><td>Qualidade da conversa</td><td>Muito melhor: português natural e fiel aos fatos.</td><td>Menor: erra português, às vezes se contradiz e inventa desculpas.</td></tr>
-        <tr><td>Custo</td><td>Muito barato, na sua conta: uma bateria inteira de testes nossa, com centenas de chamadas, custou uma fração de dólar.</td><td>Grátis.</td></tr>
-        <tr><td>Peso no PC</td><td>Quase nenhum.</td><td>Cerca de 2,6 GB de disco e 3,7 GB de placa de vídeo (testado numa GTX 1660 SUPER).</td></tr>
-        <tr><td>Internet</td><td>Precisa.</td><td>Não precisa (depois de baixar).</td></tr>
-        <tr><td>O que sai do PC</td><td>O texto das conversas. Nunca o áudio.</td><td>Nada.</td></tr>
-        <tr><td>Como ligar</td><td><code>configurar-api.ps1</code> e <code>run-sidecar-api.bat</code></td><td><code>run-sidecar.bat</code></td></tr>
+        <tr><td>Qualidade da conversa</td><td data-label="Sua própria API">Muito melhor: português natural e fiel aos fatos.</td><td data-label="Modelo local (Ollama)">Menor: erra português, às vezes se contradiz e inventa desculpas.</td></tr>
+        <tr><td>Custo</td><td data-label="Sua própria API">Muito barato, na sua conta: uma bateria inteira de testes nossa, com centenas de chamadas, custou uma fração de dólar.</td><td data-label="Modelo local (Ollama)">Grátis.</td></tr>
+        <tr><td>Peso no PC</td><td data-label="Sua própria API">Quase nenhum.</td><td data-label="Modelo local (Ollama)">Cerca de 2,6 GB de disco e 3,7 GB de placa de vídeo (testado numa GTX 1660 SUPER).</td></tr>
+        <tr><td>Internet</td><td data-label="Sua própria API">Precisa.</td><td data-label="Modelo local (Ollama)">Não precisa (depois de baixar).</td></tr>
+        <tr><td>O que sai do PC</td><td data-label="Sua própria API">O texto das conversas. Nunca o áudio.</td><td data-label="Modelo local (Ollama)">Nada.</td></tr>
+        <tr><td>Como ligar</td><td data-label="Sua própria API"><code>configurar-api.ps1</code> e <code>run-sidecar-api.bat</code></td><td data-label="Modelo local (Ollama)"><code>run-sidecar.bat</code></td></tr>
       </tbody>
     </table>
 
@@ -489,7 +489,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
           <li>Todas as fases do roadmap implementadas (só as missões de chefes ficaram de fora).</li>
           <li>Mais de 110 testes de unidade e dezenas de testes automáticos dentro do Minecraft real (conversa por voz sintética, ordens, trocas, alianças, chefes, mundo vivo, salvar e carregar).</li>
           <li>Bateria de conversação com a DeepSeek: 48 de 48 frases entendidas, nenhuma obedeceu injeção de comando, nenhuma contradisse o servidor.</li>
-          <li>Conversas ambiente: nota 3,85 de 5 de um juiz de IA exigente, em 250 cenas de 25 tipos de par de mobs (zumbi com esqueleto ~4,2; animais de fazenda e lobo são o ponto mais fraco).</li>
+          <li>Conversas ambiente: 140 famílias de assunto e 1.112 falas prontas (sem gastar IA), nota 4,06 de 5 de um juiz de IA exigente em 250 cenas de 25 tipos de par de mobs; a bateria de 88 respostas de conversa livre (elogio, piada, medo, conselho, perguntas fora do jogo) não teve nenhuma falha de coerência.</li>
         </ul></div>
       <div class="dark"><h3>O que ninguém testou ainda</h3>
         <ul>
@@ -522,6 +522,6 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagem ampliada"><img alt=""></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><div><b>CONQUISTA DESBLOQUEADA</b><span id="toast-txt"></span></div></div>
 
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/app.js?v=3" defer></script>
 </body>
 </html>

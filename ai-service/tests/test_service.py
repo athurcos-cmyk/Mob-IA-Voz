@@ -226,6 +226,12 @@ class ThinAddressTest(unittest.TestCase):
         self.assertEqual("Quanto trigo!", service._thin_address("Quanto trigo, Bia!", h, ["Humano", "Bia"]))
         self.assertEqual("Bia gosta de cenoura.", service._thin_address("Bia gosta de cenoura.", h, ["Bia"]))
 
+    def test_spread_keeps_the_generic_address_in_about_a_third_of_lines(self):
+        speeches = [f"Resposta {i}, humano." for i in range(60)]
+        kept = sum("humano" in service._thin_address(t, [], ["Humano"], spread=True) for t in speeches)
+        self.assertTrue(10 <= kept <= 30, kept)
+        self.assertEqual("Oi, Bia.", service._thin_address("Oi, Bia.", [], ["Humano", "Bia"], spread=True))  # o nome aprendido nunca some por sorteio
+
 
 if __name__ == "__main__":
     unittest.main()

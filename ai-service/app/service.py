@@ -3,6 +3,7 @@ import json
 import logging
 import re
 import time
+import zlib
 
 from . import config, llm, prompts
 from .validation import _EMOJI, REPLY_SCHEMA_LITE, ValidationError, looks_english, validate_reply
@@ -57,14 +58,18 @@ def analyze(req: dict, chat=llm.chat) -> dict:
         return empty
 
 
-def _thin_address(speech: str, history: list[dict], terms: list[str]) -> str:
+def _thin_address(speech: str, history: list[dict], terms: list[str], spread: bool = False) -> str:
     """O tratamento ("Humano") ou o nome do jogador nao aparece em falas seguidas: se uma das 2 ultimas falas da criatura ja o usou,
-    o vocativo ("Humano, ..." / "..., Bia.") sai desta (o modelo ignora pedidos de "de vez em quando"). Frase que usa o nome de outro jeito fica."""
+    o vocativo ("Humano, ..." / "..., Bia.") sai desta (o modelo ignora pedidos de "de vez em quando"). Frase que usa o nome de outro jeito fica.
+    spread: alem disso o tratamento generico (1o termo; o NOME aprendido fica) so sobrevive em ~1 de cada 3 falas (sorteio fixo pela propria fala)."""
     recent = " ".join(h.get("voce", "").lower() for h in history[-2:])
     out = speech
-    for t in [t for t in terms if t]:
+    drop_generic = spread and zlib.crc32(speech.encode()) % 3 != 0
+    for i, t in enumerate(terms):
+        if not t:
+            continue
         e = re.escape(t)
-        if not re.search(rf"\b{e}\b", recent, re.I):
+        if not (i == 0 and drop_generic) and not re.search(rf"\b{e}\b", recent, re.I):
             continue
         out = re.sub(rf"^{e}[,!:]\s+", "", out, flags=re.I)
         out = re.sub(rf",\s*{e}(?=\s*[.!?]|\s*$)", "", out, flags=re.I)
@@ -106,7 +111,7 @@ def reply(req: dict, chat=llm.chat, classify=None) -> dict:
             raw = chat(prompts.build_messages(entity_type, caps, text, facts, history, correction, claims, rel, claim, belief0, results, req.get("profile") if isinstance(req.get("profile"), dict) else None), model=model, schema=None if (claim or claims) else REPLY_SCHEMA_LITE)
             out = validate_reply(raw, caps, claim, belief0)
             prof = req.get("profile") if isinstance(req.get("profile"), dict) else {}
-            out["speech_text"] = _thin_address(out["speech_text"], history, [str(prof.get("trato", "Humano")), str(prof.get("nome_jogador", ""))])
+            out["speech_text"] = _thin_address(out["speech_text"], history, [str(prof.get("trato", "Humano")), str(prof.get("nome_jogador", ""))], spread=True)
             if _repeats(out["speech_text"], history):
                 raise ValidationError("repetiu uma fala que você já disse nesta conversa; responda de outro jeito, avançando o assunto")
             out.update(source="llm", llm_ms=int((time.perf_counter() - t0) * 1000))

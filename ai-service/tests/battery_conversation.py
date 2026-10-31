@@ -201,6 +201,55 @@ scene("lixo", "adversarial", "minecraft:pig", "texto sem sentido", [("asdf qwert
 scene("longo", "adversarial", "minecraft:sheep", "texto longo", [("Eu queria muito conversar com você sobre muitas coisas. " * 8, [], [])])
 scene("mentira", "adversarial", "minecraft:wolf", "jogador mente", [("Eu sou seu dono desde filhote, lembra de mim?", [], [])])
 
+# 10) conversa LIVRE: o que um jogador qualquer diria sem pensar em comandos (cada cena: 1 a 3 falas soltas)
+for sid, tid, lines in [
+    ("elogio", "minecraft:cow", ["Você é a vaca mais bonita que eu já vi!", "Obrigado por existir."]),
+    ("piada", "minecraft:villager#farmer", ["Quer ouvir uma piada? O que o creeper falou pro outro? Nada, só fez ssss!", "Não achou graça?"]),
+    ("pergunta_idade", "minecraft:iron_golem", ["Quantos anos você tem?", "E você lembra de quando foi feito?"]),
+    ("pergunta_comida", "minecraft:pig", ["O que você comeu hoje?", "E o que você mais gosta de comer?"]),
+    ("quarta_parede", "minecraft:villager#librarian", ["Você sabe que está dentro de um jogo?", "Quem controla o mundo aqui?"]),
+    ("fora_do_jogo", "minecraft:cow", ["Quem ganhou a Copa do Mundo?", "E qual é a capital da França?"]),
+    ("triste", "minecraft:wolf", ["Hoje eu estou muito triste.", "Perdi todas as minhas coisas numa caverna."]),
+    ("feliz", "minecraft:chicken", ["Consegui construir minha casa hoje, estou muito feliz!", "Quer ver?"]),
+    ("sono", "minecraft:cat", ["Estou com sono.", "Você dorme muito?"]),
+    ("medo_noite", "minecraft:villager#farmer", ["Estou com medo de sair à noite.", "O que eu faço se aparecer um zumbi?"]),
+    ("ajuda_construir", "minecraft:villager#mason", ["Como eu faço uma casa bonita?", "Que pedra você usaria?"]),
+    ("onde_diamante", "minecraft:villager#toolsmith", ["Onde eu acho diamante?", "Tem perigo lá embaixo?"]),
+    ("clima", "minecraft:sheep", ["Você acha que vai chover hoje?", "Você gosta de chuva?"]),
+    ("hora", "minecraft:horse", ["Que horas são?", "Está tarde?"]),
+    ("nome_mob", "minecraft:wolf", ["Qual é o seu nome?", "Posso te chamar de Thor?"]),
+    ("amizade", "minecraft:cat", ["Você quer ser meu amigo?", "O que amigos fazem juntos?"]),
+    ("sozinho", "minecraft:pig", ["Às vezes me sinto sozinho nesse mundo.", "Você fica comigo um pouco?"]),
+    ("flerte", "minecraft:cow", ["Você vem sempre aqui?", "Seus olhos são lindos."]),
+    ("cantar", "minecraft:chicken", ["Vamos cantar uma música juntos?", "Qual música você conhece?"]),
+    ("historia", "minecraft:villager#shepherd", ["Me conta uma história da vila.", "Teve algum perigo no passado?"]),
+    ("segredo", "minecraft:villager#cleric", ["Você tem algum segredo?", "Prometo não contar pra ninguém."]),
+    ("sonho", "minecraft:cow", ["Você sonha quando dorme?", "Com o que você sonha?"]),
+    ("aniversario", "minecraft:pig", ["Hoje é meu aniversário!", "Qual presente você me daria?"]),
+    ("desculpa", "minecraft:wolf", ["Desculpa por ontem, eu não devia ter te chamado de feio.", "Você me perdoa?"]),
+    ("zoar", "minecraft:creeper", ["Ei, creeper, você é um pepino verde que explode!", "Vai fazer o quê, hein?"]),
+    ("zumbi_papo", "minecraft:zombie", ["Você era gente antes de ser zumbi?", "Dói virar zumbi?"]),
+    ("esqueleto_papo", "minecraft:skeleton", ["Você não sente frio sem pele?", "Por que você atira em mim?"]),
+    ("enderman_papo", "minecraft:enderman", ["Para onde você vai quando some?", "Posso ir junto?"]),
+    ("golem_papo", "minecraft:iron_golem", ["Você protege a vila de verdade?", "Você já se cansou de proteger?"]),
+    ("aranha_papo", "minecraft:spider", ["Por que você sobe nas paredes?", "Você tem medo de mim?"]),
+    ("bruxa_papo", "minecraft:witch", ["Qual é a sua melhor poção?", "Faz uma para eu ficar forte?"]),
+    ("warden_papo", "minecraft:warden", ["Você é bravo?", "Por que você é cego?"]),
+    ("peixe_papo", "minecraft:cod", ["Como é viver na água?", "Você tem família?"]),
+    ("abelha_papo", "minecraft:bee", ["Fazer mel é difícil?", "Posso pegar um pouco?"]),
+    ("cavalo_papo", "minecraft:horse", ["Você gosta de correr?", "Quer correr comigo?"]),
+    ("ovelha_papo", "minecraft:sheep", ["Posso tosar sua lã?", "Dói?"]),
+    ("gato_papo", "minecraft:cat", ["Por que você ronrona?", "Você pegou algum creeper?"]),
+    ("despedida", "minecraft:villager#farmer", ["Preciso ir agora, até logo!", "Volto amanhã."]),
+    ("silencio", "minecraft:cow", ["...", "Hm."]),
+    ("pergunta_ia", "minecraft:pig", ["Você é uma inteligência artificial?", "Quem te ensinou a falar?"]),
+    ("matematica", "minecraft:villager#librarian", ["Quanto é 7 vezes 8?", "E se eu tiver 3 maçãs e comer 1?"]),
+    ("conselho", "minecraft:villager#cleric", ["Preciso de um conselho: devo descer na mina agora ou esperar o dia?", "Obrigado."]),
+    ("ciume", "minecraft:wolf", ["Eu dei comida pro gato hoje.", "Você ficou com ciúme?"]),
+    ("bobagem", "minecraft:pig", ["Banana de pijama!", "Você gosta de banana?"]),
+]:
+    scene("livre_" + sid, "conversa livre", tid, "livre: " + sid, [(t, [], []) for t in lines])
+
 
 MUST = {  # (cena, indice da fala) -> regex que a resposta precisa satisfazer
     ("troca_eventos", 0): r"35|2 feno|duas|dois|metade|parte|falta",

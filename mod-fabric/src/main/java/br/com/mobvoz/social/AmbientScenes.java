@@ -201,7 +201,7 @@ public final class AmbientScenes {
             if (usedName) {
                 heard = name;
             }
-            lines.add(new Line(speakers[n], out.toString()));
+            lines.add(new Line(speakers[n], out.toString().replace("de o humano", "do humano").replace("em o humano", "no humano")));
         }
         return new Scene(f.id(), key, List.copyOf(lines), heard, f.aboutPlayer());
     }

@@ -343,7 +343,7 @@ fam("warden_vibracao", ["warden", "warden"], [],
     ["Escuta.", "Quieto."], weight=2)
 
 # ----------------------------------------------------------------------------------------------- animais: so o que um bicho percebe e quer
-fam("bicho_cheiro", ["animals", "animals"], ["day"],
+fam("bicho_cheiro", ["farm", "farm"], ["day"],
     ["Sentiu o cheiro do vento hoje?", "O ar está diferente hoje.", "Tem um cheiro bom por aqui."],
     ["Cheiro de grama, só isso.", "Eu só sinto o que tem para comer.", "É bom mesmo."],
     ["Gosto quando o dia cheira assim.", "Hmm, também."], weight=2)
@@ -399,10 +399,425 @@ fam("creeper_zumbi", ["creeper", "zombie"], [],
     ["Ssss...", "Ssss... silêncio."], weight=3)
 
 
+# =====================================================================================================================================
+# REVISAO + AMPLIACAO (2026-10-31), guiada pelo juiz de IA por familia (ai-service/tests/battery_families.py). Regras que o juiz cobrou:
+#  - fala de resposta e fecho em AFIRMACAO sobre o MESMO assunto (nada de pergunta sem resposta, nada de "Pois e." solto);
+#  - especie especifica conversa com a MESMA especie (a galinha so responde a galinha); bicho nao da conselho de gente;
+#  - falas sobre o mundo falam de habitos e sensacoes, nunca de um lugar ou fato que pode nao existir na cena.
+# =====================================================================================================================================
+def drop(*ids):
+    FAMILIES[:] = [f for f in FAMILIES if f["id"] not in ids]
+
+
+drop("vaca", "porco", "galinha", "ovelha", "lobo", "gato", "cavalo", "bicho_cheiro", "monstros_chuva", "jogador_passando", "jogador_apresenta",
+     "jogador_sem_nome", "cercado", "fome_bicho", "jogador_ferido", "jogador_fome")
+
+# ---- especies: a mesma especie conversa entre si, com falas so dela
+fam("vaca", ["cow", "cow"], [],
+    ["Muuu, o dia está calmo.", "Hoje o pasto está especialmente macio.", "Dá vontade de ficar mastigando devagar o dia todo.", "Muuu, o rebanho está todo junto hoje."],
+    ["Calma é o que a gente tem de melhor.", "Sem pressa, a vida rende mais.", "Aqui só precisamos de grama e sombra.", "Muuu, concordo."],
+    ["Quando escurecer, a gente se junta.", "Fica por perto, que é mais seguro."])
+fam("porco", ["pig", "pig"], [],
+    ["Fuço o dia inteiro e nunca me canso.", "Achei uma raiz gostosa debaixo da terra.", "Barro é a melhor parte do dia."],
+    ["Oink, cada um com o seu cantinho de lama.", "Achar comida enterrada é uma arte.", "Eu fuço do outro lado, então."],
+    ["Depois a gente se encontra no barro.", "Oink, a vida é boa."])
+fam("galinha", ["chicken", "chicken"], [],
+    ["Có có! Achei umas sementes no chão.", "Botei um ovo e já cacarejei para todo mundo.", "Có, hoje o dia foi só ciscar."],
+    ["Có có, ciscar é a melhor parte.", "Ovo novo é sempre uma alegria.", "Có, eu fico de olho no céu, por via das dúvidas."],
+    ["Có có, a vida é boa.", "Então vou ciscar mais um pouco."])
+fam("ovelha", ["sheep", "sheep"], [],
+    ["Mééé, minha lã está crescendo de novo.", "Passei o dia mordiscando grama.", "Hoje o vento deixa a lã toda arrepiada."],
+    ["Mééé, lã crescida aquece no frio.", "Depois da tosa a gente sente um friozinho.", "Grama boa faz lã boa."],
+    ["Mééé, que dia bom.", "A gente se junta quando escurecer."])
+fam("lobo", ["wolf", "wolf"], [],
+    ["Cheirei um osso enterrado ali perto.", "Fiquei de guarda a manhã toda.", "Ouvi um uivo lá longe."],
+    ["A matilha inteira escutou.", "Meu nariz nunca erra.", "Quem é da matilha, eu protejo."],
+    ["Auuu, fico de olho nos meus.", "Vamos patrulhar juntos."])
+fam("gato", ["cat", "cat"], [],
+    ["Dormi no sol a tarde toda.", "Creeper nenhum chega perto de mim.", "Hoje eu quase não saí do lugar."],
+    ["Sol é o melhor travesseiro.", "Eles têm medo de gato, é verdade.", "Cochilo é uma arte."],
+    ["Miau, agora vou dormir de novo.", "Ninguém me acorda hoje."])
+fam("cavalo", ["horse", "horse"], ["day"],
+    ["Dá vontade de correr até o vento passar por mim.", "Hoje o campo está livre, só falta espaço.", "Adoro um bom galope."],
+    ["Um galope longo limpa a cabeça.", "Eu prefiro trotar e olhar a paisagem.", "Correr é o que fazemos de melhor."],
+    ["Mais tarde a gente corre junto.", "Relincho de alegria."])
+
+# ---- calmos, revistos
+fam("bicho_cheiro", ["farm", "farm"], ["day"],
+    ["Tem um cheiro bom de grama no ar.", "O vento trouxe cheiro de chuva.", "Sinto cheiro de feno novo por perto."],
+    ["O nariz da gente não engana.", "Esse cheiro me dá fome.", "Eu também senti, vem de longe."],
+    ["Vou seguir o cheiro depois.", "Gosto quando o dia cheira assim."], weight=2)
+fam("cercado", ["farm", "farm"], [],
+    ["O cercado está cheio hoje.", "Tem espaço de sobra para todo mundo aqui.", "A cerca é alta, mas aqui dentro é seguro."],
+    ["Aqui dentro nada nos incomoda.", "Eu gosto de saber onde fica o meu cantinho.", "À noite a cerca faz companhia."],
+    ["Perto de vocês eu me sinto bem.", "Aqui pelo menos tem comida."])
+fam("fome_bicho", ["farm", "farm"], ["day"],
+    ["Estou com uma fome danada.", "Já passou da hora de comer.", "Fico de olho para ver se aparece comida."],
+    ["Eu também estou com o estômago vazio.", "Vou procurar uma touceira de grama.", "O cheiro de feno me deixa com mais fome."],
+    ["Quem chegar primeiro na comida, come.", "Vamos esperar mais um pouco."])
+fam("jogador_passando", ["calm", "calm"], ["day"],
+    ["O humano anda por aí de novo.", "Olha, é o humano outra vez.", "Vi o humano passando agora há pouco.", "O humano parece apressado."],
+    ["Ele passa sempre por aqui.", "Gosto quando tem movimento por aqui.", "Eu fico de olho nele."],
+    ["Vamos ver o que ele faz.", "Que siga o caminho dele."], weight=2)
+fam("jogador_apresenta", ["calm", "calm"], ["k0", "!k1"],
+    ["Está vendo quem passou? É {jogador}, eu já conheço.", "{Jogador} ali já esteve comigo antes.", "{Jogador} eu já conheço de outros dias."],
+    ["Eu ainda não conhecia.", "Nunca falei com ele.", "Então é bom saber quem é."],
+    ["Vale a pena conhecer.", "Ele é de boa conversa."], weight=3)
+fam("jogador_sem_nome", ["calm", "calm"], ["k0", "!n0", "!n1"],
+    ["Ninguém sabe como {jogador} se chama.", "Nunca perguntei o nome de {jogador}.", "{Jogador} deve ter um nome, mas eu não sei."],
+    ["Para mim é só o humano.", "Eu também só o chamo de humano.", "Alguém precisa perguntar."],
+    ["Quem sabe um dia ele conta.", "Eu pergunto da próxima vez."], weight=3)
+fam("jogador_ferido", ["villager", "villager"], ["hurt"],
+    ["{Jogador} parece ferido.", "Cuidado, {jogador} não está nada bem.", "Olha o estado de {jogador}, que pena."],
+    ["Uma boa refeição ajuda a se curar.", "Alguém devia oferecer ajuda a ele.", "Ele precisa descansar um pouco."],
+    ["Que se recupere logo.", "Tomara que passe depressa."], weight=3)
+fam("jogador_fome", ["villager", "villager"], ["hungry"],
+    ["{Jogador} está com cara de fome.", "Acho que {jogador} não come há um tempo."],
+    ["Dava para oferecer um pouco de pão.", "Quem está de barriga vazia não pensa direito.", "Comida resolve metade dos problemas."],
+    ["Se ele pedir, eu dou um jeito.", "Que ache o que comer."], weight=3)
+fam("bicho_jogador_ferido", ["animals", "animals"], ["hurt"],
+    ["O humano está machucado.", "Olha como o humano anda devagar.", "O humano parece sentir dor."],
+    ["Dá pena ver.", "Ele devia descansar à sombra.", "Eu fico quieto para não incomodar."],
+    ["Que melhore logo.", "Fico de olho nele."], weight=3)
+fam("bicho_jogador_fome", ["animals", "animals"], ["hungry"],
+    ["O humano está com cara de fome.", "O humano ficou olhando para a comida.", "O humano deve estar faminto."],
+    ["Aqui só tem capim, mas é bom.", "Ele devia achar algo para comer.", "A fome deixa todo mundo de mau humor."],
+    ["Que ache comida logo.", "Eu entendo bem essa fome."], weight=3)
+fam("bicho_jogador_conhecido", ["animals", "animals"], ["k0"],
+    ["O humano já esteve aqui antes.", "Esse humano eu já conheço.", "O cheiro do humano me é familiar."],
+    ["Eu também me lembro dele.", "Ele parece de boa índole.", "Aqui ele é sempre bem-vindo."],
+    ["Boa gente.", "Vamos ver o que ele quer hoje."], weight=2)
+fam("monstros_chuva", ["monsters", "monsters"], ["rain"],
+    ["Essa chuva apaga tudo que a gente rastreia.", "Chuva de novo, que droga.", "A água me deixa de mau humor."],
+    ["Pelo menos a escuridão fica melhor.", "Os humanos ficam trancados, mas é irritante.", "Eu só quero que passe."],
+    ["Depois a caça recomeça.", "Eu espero aqui no escuro."], weight=2)
+
+# ---- animais: habitos e sensacoes
+fam("bicho_lama", ["farm", "farm"], [],
+    ["A lama fresca é a melhor coisa do calor.", "Depois da chuva a lama fica perfeita.", "Lama macia faz bem para os cascos."],
+    ["Eu me deito nela e fico à vontade.", "Sujar o casco é um prazer.", "Barro seco coça, barro molhado é paz."],
+    ["Amanhã a lama ainda estará lá.", "Que dia bom para quem gosta de lama."])
+fam("bicho_agua", ["animals", "animals"], ["day"],
+    ["Água fresquinha é o que eu mais quero.", "A sede aperta quando o sol esquenta.", "Beber água limpa é um prazer."],
+    ["Água boa é metade do dia bom.", "Eu vou beber depois.", "Sede passa rápido com água fresca."],
+    ["Depois a gente vai juntos.", "Que a água nunca falte."])
+fam("bicho_abelha", ["farm", "farm"], ["day", "clear"],
+    ["Tem uma abelha zumbindo perto de mim.", "As abelhas hoje estão agitadas.", "O zumbido das abelhas me faz companhia."],
+    ["Elas só querem as flores.", "Se ninguém mexer, elas não incomodam.", "O zumbido até acalma."],
+    ["Melhor deixar elas em paz.", "Que continuem trabalhando."])
+fam("bicho_cochilo", ["animals", "animals"], ["day"],
+    ["Vou cochilar um pouco aqui.", "O sol me deixou com sono.", "Esse canto está ótimo para dormir."],
+    ["Eu também estou com sono.", "Cochilo depois de comer é o melhor.", "Fecha os olhos que eu vigio."],
+    ["Me acorda quando o sol baixar.", "Boa soneca."])
+fam("bicho_vento", ["farm", "farm"], ["day"],
+    ["Hoje venta bastante.", "O vento está fazendo o capim dançar.", "O vento hoje traz cheiros de longe."],
+    ["Dá para ouvir o capim farfalhando.", "Eu gosto do vento no pelo.", "O vento esfria o calor."],
+    ["Vento bom é vento fraco.", "Que continue assim."])
+fam("bicho_barulho_estranho", ["animals", "animals"], ["night"],
+    ["Ouvi um gemido estranho lá longe.", "Escutei alguma coisa arrastando os pés.", "Tem algo gemendo no escuro."],
+    ["Parece coisa de zumbi.", "Melhor ficar longe da cerca.", "Eu me encolho quando ouço isso."],
+    ["Se chegar perto, a gente foge junto.", "Eu fico atento."], weight=2)
+fam("bicho_noite_lua", ["animals", "animals"], ["night", "clear"],
+    ["A lua está grande hoje.", "Dá para ver tudo com essa luz.", "A noite está clara."],
+    ["Fica mais fácil de enxergar o perigo.", "A luz da lua acalma.", "Eu gosto do silêncio da noite."],
+    ["Fica por perto.", "Que a noite passe tranquila."])
+fam("bicho_manha", ["farm", "farm"], ["day"],
+    ["O sol da manhã é o melhor.", "De manhã o capim está cheio de orvalho.", "Gosto do começo do dia."],
+    ["O orvalho deixa tudo fresco.", "Tudo parece mais calmo cedo.", "É a melhor hora para comer."],
+    ["Que o dia seja bom.", "Vamos aproveitar a luz."])
+fam("bicho_hora_comer", ["farm", "farm"], ["day"],
+    ["Acho que já está na hora de comer.", "O estômago avisa a hora certa.", "Sinto cheiro de comida chegando."],
+    ["O meu também está reclamando.", "Quem chega primeiro come melhor.", "Hora de comer é a melhor hora."],
+    ["Vamos juntos.", "Guarda um lugar para mim."])
+fam("bicho_filhotes_cuidado", ["animals", "animals"], [],
+    ["Cuidar dos pequenos dá trabalho.", "Os mais novos aprendem rápido.", "Os pequenos sempre querem brincar."],
+    ["Mas vale a pena cada dia.", "Eu também fico de olho neles.", "Daqui a pouco já estão grandes."],
+    ["Cada um cresce no seu tempo.", "Que cresçam fortes."])
+
+# ---- aldeoes: assuntos da vila
+fam("vila_sino", ["villager", "villager"], [],
+    ["O sino da vila é o som que mais me assusta.", "Quando o sino toca, ninguém fica fora de casa.", "O sino chama todo mundo quando há perigo."],
+    ["Eu corro para dentro quando escuto.", "Tomara que seja sempre só um aviso.", "A vila inteira ouve."],
+    ["O golem fica de olho em tudo.", "A vila sempre se junta."])
+fam("vila_pilhadores", ["villager", "villager"], [],
+    ["Pilhador é a pior coisa que existe.", "Dizem que pilhadores atacam vilas inteiras.", "A ideia de pilhadores me tira o sono."],
+    ["O golem não deixa ninguém passar.", "Eu fecho as portas mais cedo por via das dúvidas.", "Prefiro nem pensar nisso."],
+    ["Melhor estar sempre preparado.", "A vila é forte quando está unida."], weight=2)
+fam("vila_comerciante", ["villager", "villager"], ["day"],
+    ["Comerciante viajante é sempre uma surpresa.", "O comerciante de lhamas vende coisas raras.", "Comerciante que aparece do nada traz boas histórias."],
+    ["Ele nunca fica mais de um dia.", "Eu sempre olho o que ele traz.", "As lhamas dele cospem em quem se aproxima."],
+    ["Cada visita rende uma boa história.", "Quem sabe ele volte."])
+fam("vila_gato", ["villager", "villager"], [],
+    ["Gato na vila é bom para afastar creeper.", "Dizem que os gatos protegem a vila dos creepers.", "Um gato dormindo na porta dá sorte."],
+    ["Creeper nem chega perto de um gato.", "Eu deixo leite para o gato da vila.", "Gato quieto é gato em guarda."],
+    ["Cada um com o seu trabalho.", "Gato é bem-vindo em qualquer casa."])
+fam("vila_esmeralda", ["villager", "villager"], ["day"],
+    ["Esmeralda é a moeda que todo mundo quer.", "O preço das esmeraldas muda todo dia.", "Guardar esmeraldas é guardar sossego."],
+    ["Quem negocia bem nunca passa aperto.", "Eu troco o que sobra por esmeraldas.", "Um bom estoque vale ouro, ou melhor, esmeralda."],
+    ["Negócio honesto é o melhor negócio.", "Cada esmeralda conta."])
+fam("vila_tempestade", ["villager", "villager"], ["thunder"],
+    ["Fechei as janelas por causa da tempestade.", "Esse temporal sacode a casa inteira.", "A tempestade assusta até o golem."],
+    ["Dentro de casa a gente fica seguro.", "Raio que cai perto faz tudo tremer.", "Eu acendo uma tocha e espero passar."],
+    ["Amanhã o céu limpa.", "A vila aguenta qualquer tempo."], weight=2)
+fam("vila_pao", ["villager", "villager"], ["day"],
+    ["O pão fresco cheira a casa boa.", "Falta pão quando a colheita é fraca.", "Pão repartido rende mais."],
+    ["Trigo bom faz pão bom.", "Eu guardo um pouco para o dia seguinte.", "Uma casa sem pão fica triste."],
+    ["O melhor perfume é o do forno.", "Pão e conversa fazem a vila."])
+fam("vila_porta_noite", ["villager", "villager"], ["night"],
+    ["Eu confiro a porta antes de dormir.", "A porta bem trancada é a minha paz.", "À noite todo cuidado é pouco."],
+    ["Zumbi quebra porta de madeira, sabia?", "Uma luz na entrada ajuda a afastar os monstros.", "Eu prendo tudo duas vezes."],
+    ["Dorme bem.", "Amanhã tudo estará no lugar."], weight=2)
+fam("vila_manha", ["villager", "villager"], ["day"],
+    ["A manhã na vila é a melhor hora.", "Gosto de abrir a porta quando o sol nasce.", "Um dia novo sempre traz boas trocas."],
+    ["Todo mundo acorda de bom humor.", "O trabalho rende mais cedo.", "O ar da manhã faz bem."],
+    ["Que o dia seja bom.", "Vamos aproveitar a luz."])
+fam("golem_orgulho", ["villager", "golem"], [],
+    ["Quando o golem passa, a vila respira aliviada.", "Com o golem por perto, durmo tranquilo.", "Já vi o golem proteger uma casa inteira."],
+    ["Eu só faço o que preciso.", "Ninguém passa enquanto eu estiver de pé.", "Proteger a vila é o meu trabalho."],
+    ["Por isso a vila ainda existe.", "A vila agradece."], weight=2)
+fam("golem_ronda", ["golem", "villager"], [],
+    ["Dei a volta na vila e está tudo calmo.", "Fiz a ronda e nada se mexeu.", "A noite foi tranquila na vila."],
+    ["Valeu, a gente dorme melhor assim.", "Sem você, eu não teria coragem de sair.", "A vila é segura por sua causa."],
+    ["Fico de pé até amanhecer.", "É o que sei fazer."], weight=2)
+
+# ---- aldeoes: ofícios
+fam("acougueiro", ["villager:butcher", "villager"], [],
+    ["A carne de hoje está bem fresca.", "Cortar carne é um ofício que exige respeito.", "Meu cutelo está afiado como nunca."],
+    ["Sem você, a vila passaria fome.", "Cheiro de carne assando chama todo mundo.", "Cada ofício tem a sua importância."],
+    ["Passa aqui quando quiser levar um pedaço.", "O fogo do defumador nunca apaga."])
+fam("pescador", ["villager:fisherman", "villager"], [],
+    ["O rio hoje está generoso.", "Peixe fresco é meu orgulho.", "A isca certa muda tudo."],
+    ["Peixe assado é um banquete.", "Eu nunca tive paciência para pescar.", "A vila come melhor por sua causa."],
+    ["Amanhã volto cedo ao rio.", "Quem pesca aprende a esperar."])
+fam("flecheiro", ["villager:fletcher", "villager"], [],
+    ["Fiz flechas novas esta manhã.", "Pena de galinha faz flecha voar reto.", "Uma boa flecha precisa de equilíbrio."],
+    ["Precisão é uma virtude.", "A vila fica mais segura com boas flechas.", "Isso é trabalho de mestre."],
+    ["Cada flecha tem seu destino.", "Mira firme e coração calmo."])
+fam("pedreiro", ["villager:mason", "villager"], [],
+    ["A pedra de hoje está ótima.", "Pedra lisa dá casa firme.", "Um muro bem feito dura gerações."],
+    ["As casas daqui duram mesmo.", "Sem pedra, a vila seria de lama.", "O seu trabalho segura tudo de pé."],
+    ["Pedra sobre pedra, a vila cresce.", "Tem muito o que construir ainda."])
+fam("armeiro", ["villager:armorer", "villager"], [],
+    ["A armadura sai melhor com o fogo forte.", "Ferro bem forjado é meio caminho andado.", "Cada peça de armadura conta uma história."],
+    ["Quem usa uma peça sua fica mais seguro.", "O barulho da forja é música.", "Deve ser pesado trabalhar com tanto metal."],
+    ["Metal bom vira proteção boa.", "O fogo da forja não pode apagar."])
+fam("ferreiro_armas", ["villager:weaponsmith", "villager"], [],
+    ["Afiar uma espada pede paciência.", "Hoje o machado ficou perfeito.", "Uma lâmina boa nunca precisa de pressa."],
+    ["Espero que nunca precisem usar.", "A vila dorme melhor com ferro bom por perto.", "Isso é arte, não só ofício."],
+    ["Arma boa é a que não precisa sair da bainha.", "Mais um dia, mais uma lâmina."])
+fam("curtidor", ["villager:leatherworker", "villager"], [],
+    ["O couro de hoje está macio.", "Bota de couro dura uma vida.", "Cortar couro pede mão firme."],
+    ["Ninguém anda bem sem bota boa.", "O cheiro de couro é inconfundível.", "Esse ofício é mais difícil do que parece."],
+    ["Couro bem curtido não rasga.", "Cada peça sai única."])
+fam("cartografo", ["villager:cartographer", "villager"], [],
+    ["Desenhei um mapa novo hoje.", "Mapa bom mostra mais do que estradas.", "Todo caminho começa num bom desenho."],
+    ["Eu nunca saio da vila, mas gosto de olhar os mapas.", "Deve ser bonito ver o mundo no papel.", "O mundo além das colinas deve ser enorme."],
+    ["Um dia alguém percorre o que eu desenhei.", "O mapa guarda o que ninguém viu."])
+
+# ---- calmos gerais
+fam("ceu_nuvens", ["calm", "calm"], ["day", "clear"],
+    ["Tem nuvem bonita no céu hoje.", "O céu hoje está bem azul.", "Olha como o céu está limpo."],
+    ["Dá gosto de olhar para cima.", "Dia assim alegra qualquer um.", "Eu podia passar o dia olhando para o céu."],
+    ["Que ele fique assim o dia todo.", "Hoje está tudo calmo."])
+fam("ceu_estrelas", ["calm", "calm"], ["night", "clear"],
+    ["Dá para ver as estrelas hoje.", "O céu está cheio de estrelas.", "A lua está bonita hoje."],
+    ["Nunca vi tantas juntas.", "A noite fica menos assustadora assim.", "Cada uma parece uma luzinha."],
+    ["Boa noite para olhar para cima.", "Mas fica por perto."], weight=2)
+fam("madrugada", ["calm", "calm"], ["dawn"],
+    ["Acordei cedo hoje.", "A manhã está chegando devagar.", "O primeiro sol é o mais bonito."],
+    ["Gosto desse silêncio antes de todos acordarem.", "O dia que começa assim promete.", "O frio da madrugada passa logo."],
+    ["Vai ser um bom dia.", "Que ele seja tranquilo."], weight=2)
+fam("noite_frio", ["calm", "calm"], ["night"],
+    ["A noite está fria.", "O vento da noite gela até os ossos.", "Hoje esfriou de verdade."],
+    ["Fica pertinho de mim que esquenta.", "Escondido do vento é melhor.", "A gente se acostuma com o frio."],
+    ["Amanhã o sol esquenta de novo.", "Ainda bem que o dia volta."])
+fam("jogador_voltou", ["calm", "calm"], ["k0"],
+    ["O humano voltou por aqui.", "Olha só, o humano de novo.", "Já conheço esse humano."],
+    ["Gosto quando ele volta.", "Ele sempre traz movimento.", "Ele já é de casa."],
+    ["Que fique à vontade.", "Vamos ver o que ele quer."], weight=2)
+
+# ---- monstros (entre si)
+fam("zumbi_sol", ["zombie", "zombie"], ["day"],
+    ["Grrr... o sol queima a minha pele.", "Grrr... odeio o dia.", "Grrr... preciso de sombra."],
+    ["Grrr... a sombra é a única amiga.", "Grrr... espera a noite chegar.", "Grrr... quem tem a pele podre sofre mais."],
+    ["Grrr... paciência.", "Grrr... falta pouco."])
+fam("zumbi_porta", ["zombie", "zombie"], [],
+    ["Grrr... aquela porta de madeira é dura.", "Grrr... humano atrás da porta é um prêmio.", "Grrr... bater na porta cansa."],
+    ["Grrr... um dia ela cede.", "Grrr... paciência abre qualquer madeira.", "Grrr... o cheiro de carne vem de dentro."],
+    ["Grrr... insiste.", "Grrr..."])
+fam("esqueleto_sombra", ["skeleton", "skeleton"], ["day"],
+    ["O sol arruína os meus ossos.", "Fico sempre perto de uma sombra.", "De dia eu me escondo."],
+    ["Dia é bom para ficar parado.", "À noite a mira é melhor.", "Quem se queima não acerta nada."],
+    ["Quando escurecer, eu atiro.", "Falta pouco para a minha hora."])
+fam("esqueleto_flechas", ["skeleton", "skeleton"], [],
+    ["Minhas flechas acabam rápido.", "Uma boa flecha precisa de pena e osso.", "Cada flecha que erra é uma vergonha."],
+    ["Pega algumas do chão.", "A pontaria vem com a prática.", "Eu nunca erro duas vezes."],
+    ["Mais uma tentativa.", "Vou acertar da próxima."])
+fam("aranha_caverna", ["spider", "spider"], [],
+    ["Sss... a caverna é melhor que a superfície.", "Sss... gosto do escuro e das paredes.", "Sss... a teia é a minha casa."],
+    ["Sss... na sombra ninguém nos vê.", "Sss... a luz do sol incomoda os olhos.", "Sss... subir é mais fácil que andar."],
+    ["Sss... a noite é nossa.", "Sss..."])
+fam("aranha_presa", ["spider", "spider"], [],
+    ["Sss... o humano é muito barulhento.", "Sss... hoje vou tecer uma teia grande.", "Sss... o que se mexe vira jantar."],
+    ["Sss... paciência é tudo.", "Sss... a teia faz o serviço sozinha.", "Sss... espere ele chegar mais perto."],
+    ["Sss... silêncio agora.", "Sss... quase."])
+fam("creeper_gato", ["creeper", "creeper"], [],
+    ["Ssss... gato por perto não dá.", "Ssss... aquele miado me arrepia.", "Ssss... gato é inimigo declarado."],
+    ["Ssss... eu corro assim que ouço.", "Ssss... eles me olham e eu me esvazio.", "Ssss... melhor evitar."],
+    ["Ssss... fica longe deles.", "Ssss..."])
+fam("creeper_silencio", ["creeper", "creeper"], [],
+    ["Ssss... o segredo é chegar sem fazer barulho.", "Ssss... paciência antes da explosão.", "Ssss... eu sou só um sussurro."],
+    ["Ssss... a surpresa é metade da graça.", "Ssss... quem escuta tarde, escuta demais.", "Ssss... o chiado é o único aviso."],
+    ["Ssss... silêncio.", "Ssss..."])
+fam("enderman_bloco", ["enderman", "enderman"], [],
+    ["Achei um bloco interessante hoje.", "Gosto de levar os blocos que me agradam.", "Cada bloco que carrego é um tesouro."],
+    ["Eu também guardo os meus em lugares escondidos.", "Ninguém entende o valor de um bloco.", "É só um capricho nosso."],
+    ["Ninguém precisa saber.", "Cada um com o seu tesouro."])
+fam("enderman_agua", ["enderman", "enderman"], [],
+    ["A chuva é a minha pior inimiga.", "A água me queima como fogo.", "Eu fico longe de qualquer poça."],
+    ["Eu me teletransporto quando ela cai.", "Água em excesso é um castigo.", "Por isso eu prefiro lugares secos."],
+    ["Que a chuva fique longe.", "Eu sumo antes que me molhe."])
+fam("bruxa_cogumelo", ["witch", "witch"], [],
+    ["O cogumelo de hoje deu uma poção ótima.", "Pântano bom é o que tem cogumelo à vontade.", "Cada ingrediente tem a sua hora."],
+    ["Meu caldeirão está sempre fervendo.", "Eu misturo de tudo um pouco.", "Poção ruim vira lição."],
+    ["Hehe, a receita é segredo.", "Já sei qual testar primeiro."])
+fam("bruxa_pocao2", ["witch", "witch"], [],
+    ["Poção de lentidão ficou perfeita hoje.", "Hehe, acertei a mistura certa.", "Uma poção nova sempre me anima."],
+    ["Eu prefiro as venenosas.", "A minha acerta de longe.", "Quero ver o efeito nos humanos."],
+    ["Hehe, a prática leva à perfeição.", "Hehe, depois a gente compara."])
+fam("warden_sculk", ["warden", "warden"], [],
+    ["O sculk sente tudo ao meu redor.", "Cada passo faz o chão vibrar.", "Eu escuto o coração dos intrusos."],
+    ["O silêncio é o meu aliado.", "Quem corre faz mais barulho.", "Eu não preciso de olhos."],
+    ["Escuta.", "Quieto."])
+fam("monstros_lua", ["monsters", "monsters"], ["night"],
+    ["A lua está cheia hoje.", "Noite clara é noite de caça.", "Quanto mais escuro, melhor."],
+    ["Os humanos dormem e a gente trabalha.", "Hoje ninguém escapa.", "A escuridão é nossa casa."],
+    ["Que a noite seja longa.", "Vamos começar."])
+fam("monstros_armadura", ["monsters", "monsters"], ["armor"],
+    ["O humano veste {armadura}. Vai dar trabalho.", "Aquele humano está com {armadura}.", "Olha só, o humano trouxe {armadura}."],
+    ["Todo metal cansa no fim.", "Eu espero ele baixar a guarda.", "A gente cansa ele primeiro."],
+    ["Paciência vence qualquer armadura.", "Cada brecha serve."], weight=3)
+fam("monstros_item", ["monsters", "monsters"], ["holds"],
+    ["O humano carrega {item}. Cuidado.", "Aquele humano tem {item} na mão.", "O humano segura {item}."],
+    ["Se ele usar, vai doer.", "Eu vou pela esquerda.", "Ele ainda não nos viu."],
+    ["Espera ele abaixar a guarda.", "Agora não."], weight=3)
+fam("monstros_ferido", ["monsters", "monsters"], ["hurt"],
+    ["O humano está ferido.", "Cheiro de sangue por perto.", "O humano mal consegue andar."],
+    ["É a nossa chance.", "Ele não vai longe.", "Eu fico por perto."],
+    ["Sem pressa.", "Deixa ele vir."], weight=3)
+
+
+# ---- rodada 2 do juiz: reescritas das familias que ficaram abaixo de 4.0 (respostas sobre o MESMO assunto, sem perguntas soltas, sem adjetivos de genero)
+drop("cercado", "jogador_nome_conta", "jogador_dono", "gato", "golem_flor", "bicho_jogador_noite", "jogador_apresenta", "bicho_filhotes_cuidado",
+     "clerigo", "curiosidade_quadrado", "jogador_nome_ambos", "warden_sculk")
+
+fam("cercado", ["farm", "farm"], [],
+    ["O cercado está cheio hoje.", "Tem espaço de sobra aqui dentro.", "A cerca deixa a gente todo no mesmo canto."],
+    ["Gosto de ter companhia por perto.", "Aqui dentro a grama chega para todos.", "Perto da cerca é onde eu fico."],
+    ["Assim ninguém se perde.", "Hoje está bom aqui."])
+fam("jogador_nome_conta", ["calm", "calm"], ["n0", "!n1"],
+    ["O nome desse humano é {nome}, ele me contou.", "Sabe o nome daquele humano? É {nome}.", "Aquele humano me disse que se chama {nome}."],
+    ["{Nome}? Não sabia, vou guardar.", "Então é {nome}. Obrigado por contar.", "Agora posso chamar pelo nome."],
+    ["Quando ele voltar, eu chamo pelo nome.", "Nome ajuda a lembrar de quem é."], weight=4)
+fam("jogador_nome_ambos", ["calm", "calm"], ["n0", "n1"],
+    ["{Nome} voltou! Que bom ver.", "Olha quem está aí, {nome}.", "{Nome} está por aqui hoje."],
+    ["É sempre bom ver {nome} por aqui.", "Fico contente quando {nome} aparece.", "Também gosto de ver {nome}."],
+    ["Vou dar um oi.", "Bom ter gente conhecida."], weight=4)
+fam("jogador_dono", ["calm", "calm"], ["f0:TAMED"],
+    ["Agora eu sou de {jogador}, e isso me faz bem.", "{Jogador} cuida de mim agora, sabia?", "{Jogador} é o meu dono agora."],
+    ["Ele te trata bem?", "Está feliz assim?", "Está sendo bem cuidado?"],
+    ["Trata, sim, e estou bem.", "Estou, sim, de verdade."], weight=4)
+fam("gato", ["cat", "cat"], [],
+    ["Dormi no sol a tarde toda.", "Hoje eu quase não saí do lugar.", "Sol quente e silêncio é tudo que eu peço."],
+    ["Sol é o melhor travesseiro.", "Cochilo bom não precisa de mais nada.", "Eu também prefiro ficar parado."],
+    ["Miau, agora vou dormir de novo.", "Ninguém me acorda hoje."])
+fam("golem_flor", ["golem", "villager"], ["day"],
+    ["Achei uma papoula perto do caminho e guardei.", "Gosto de levar uma flor a quem trata bem os moradores."],
+    ["Flor combina com você, mesmo sendo de ferro.", "Isso alegra a vila toda.", "A vila gosta quando você faz isso."],
+    ["É o meu jeito de agradecer.", "Cuidar também é isso."])
+fam("bicho_jogador_noite", ["animals", "animals"], ["night"],
+    ["Tem alguém andando no escuro.", "O humano caminha de noite.", "Olha lá, o humano no escuro."],
+    ["Eu fico quieto até ele passar.", "Melhor ele passar longe de mim.", "Ele devia ter medo do escuro."],
+    ["Eu fico por aqui.", "Que passe sem nos incomodar."], weight=2)
+fam("jogador_apresenta", ["calm", "calm"], ["k0", "!k1"],
+    ["{Jogador} ali já esteve comigo antes.", "Aquele humano eu já conheço de outros dias.", "Reconheci {jogador}, já nos vimos antes."],
+    ["Eu ainda não o conhecia.", "Para mim é a primeira vez que o vejo.", "Nunca tinha cruzado com ele."],
+    ["Vale a pena conhecer.", "Ele é tranquilo, pode confiar."], weight=3)
+fam("bicho_filhotes_cuidado", ["animals", "animals"], [],
+    ["Os filhotes não param quietos.", "Os pequenos vivem atrás da gente."],
+    ["Eu fico de olho para não se perderem.", "Daqui a pouco já estão do nosso tamanho.", "Os meus dormem em cima de mim."],
+    ["Tomara que cresçam fortes.", "Daqui a pouco eles se viram sozinhos."])
+fam("clerigo", ["villager:cleric", "villager"], [],
+    ["As poções de hoje ficaram boas.", "Tem muita coisa misturada no meu caldeirão.", "Dizem que meu laboratório cheira estranho."],
+    ["Cheira mesmo, mas a gente se acostuma.", "Se alguém adoecer, você dá um jeito.", "Eu prefiro não provar nada daí."],
+    ["Poção boa não precisa de cheiro bom.", "No fim, sempre funciona."])
+fam("curiosidade_quadrado", ["villager", "villager"], [],
+    ["Tudo aqui é quadrado, já reparou?", "Eu sonhei que o mundo era redondo.", "O sol nasce sempre do mesmo lado, já reparou?"],
+    ["Já reparei, e nunca entendi por quê.", "Que ideia estranha, mas me deixou pensando.", "Esse mundo é cheio de mistérios."],
+    ["Pelo menos é um mundo bonito.", "Melhor não pensar muito nisso."])
+fam("warden_sculk", ["warden", "warden"], [],
+    ["O sculk sente tudo ao meu redor.", "Cada passo faz o chão vibrar.", "Eu escuto o coração dos intrusos."],
+    ["O silêncio é o meu aliado.", "Quem corre faz mais barulho.", "Eu não preciso de olhos."],
+    ["O sculk nunca se engana.", "Quieto, alguém se aproxima."])
+
+
+# ---- rodada 3 do juiz: falas mais coladas no mesmo assunto
+drop("curiosidade_quadrado", "cercado", "creeper_zumbi", "bicho_jogador_chuva", "bicho_jogador_fome", "bicho_jogador_noite", "curiosidade_enderman",
+     "jogador_ameacou", "jogador_apresenta", "jogador_conhecido", "jogador_dono")
+
+fam("curiosidade_quadrado", ["villager", "villager"], [],
+    ["Tudo aqui é quadrado, já reparou?", "O sol nasce sempre do mesmo lado, já reparou?"],
+    ["Já reparei, e nunca entendi por quê.", "Reparei, mas nunca perguntei a ninguém."],
+    ["Quem sabe um dia alguém explica.", "Deixa para lá, a vila é boa assim."])
+fam("cercado", ["farm", "farm"], [],
+    ["O cercado está movimentado hoje.", "Tem bastante gente aqui no cercado hoje."],
+    ["Gosto de ter companhia por perto.", "Assim ninguém fica sozinho."],
+    ["Aqui dentro a gente se sente em casa.", "Que o dia seja calmo."])
+fam("creeper_zumbi", ["creeper", "zombie"], [],
+    ["Ssss... gato me dá arrepio.", "Ssss... odeio quando um gato aparece."],
+    ["Grrr... gato assusta até quem não tem medo.", "Grrr... eu mantenho distância."],
+    ["Ssss... é melhor ficar longe deles.", "Ssss... assunto encerrado."], weight=3)
+fam("creeper_zumbi_explode", ["creeper", "zombie"], [],
+    ["Ssss... hoje eu vou explodir alguma coisa.", "Ssss... estou com vontade de explodir."],
+    ["Grrr... explode longe de mim.", "Grrr... só não me leve junto."],
+    ["Ssss... fico de longe, prometo.", "Ssss... sem promessas."], weight=3)
+fam("bicho_jogador_chuva", ["animals", "animals"], ["rain"],
+    ["O humano está na chuva.", "Olha o humano debaixo da chuva."],
+    ["Ele deve estar todo molhado.", "Eu prefiro um canto seco."],
+    ["Eu fico aqui, abrigado.", "Cada um com o seu jeito de passar a chuva."], weight=2)
+fam("bicho_jogador_fome", ["animals", "animals"], ["hungry"],
+    ["O humano está com cara de fome.", "O humano ficou olhando para a comida.", "O humano deve estar faminto."],
+    ["Ele devia achar algo para comer.", "Eu também fico de mau humor quando passo fome."],
+    ["Tomara que ele ache comida logo.", "Eu entendo bem essa fome."], weight=3)
+fam("bicho_jogador_noite", ["animals", "animals"], ["night"],
+    ["Tem alguém andando no escuro.", "O humano caminha de noite.", "Olha lá, o humano no escuro."],
+    ["Eu me encolho até ele passar.", "Melhor ele passar longe de mim."],
+    ["Tomara que passe sem nos incomodar.", "Daqui a pouco o silêncio volta."], weight=2)
+fam("curiosidade_enderman", ["villager", "villager"], ["night"],
+    ["Dizem que enderman odeia água.", "Já viu aqueles olhos roxos no escuro?", "Tem uns bichos altos que levam blocos embora."],
+    ["Melhor não encarar, dizem que ficam bravos.", "Eles somem num piscar de olhos.", "Eu mantenho distância deles."],
+    ["Deve ser uma vida estranha.", "Melhor ficar longe deles."])
+fam("jogador_ameacou", ["calm", "calm"], ["f0:THREAT_SPOKEN"],
+    ["{Jogador} me ameaçou uma vez, só com palavras.", "Eu me assustei com as palavras de {jogador} outro dia."],
+    ["Tem quem fale sem pensar.", "Espero que tenha sido um mal-entendido.", "Palavras assustam, eu entendo."],
+    ["Vou dar uma chance a ele.", "Vou ficar de olho, por via das dúvidas."], weight=4)
+fam("jogador_apresenta", ["calm", "calm"], ["k0", "!k1"],
+    ["{Jogador} ali já esteve comigo antes.", "Aquele humano eu já conheço de outros dias."],
+    ["Eu ainda não o conhecia.", "Para mim é a primeira vez."],
+    ["Ele é tranquilo, pode confiar.", "Quem sabe vocês se dão bem."], weight=3)
+fam("jogador_conhecido", ["calm", "calm"], ["k0"],
+    ["Eu já conversei com {jogador}, sabia?", "Já cruzei com {jogador} por aqui antes.", "{Jogador} e eu já conversamos um pouco."],
+    ["E como foi?", "Foi tranquilo?"],
+    ["Foi tranquilo, achei simpático.", "Dá para conversar numa boa."], weight=2)
+fam("jogador_dono", ["calm", "calm"], ["f0:TAMED"],
+    ["Agora eu sou de {jogador}, e isso me faz bem.", "{Jogador} cuida de mim agora, sabia?", "{Jogador} é o meu dono agora."],
+    ["Ele te trata bem?", "Está feliz assim?"],
+    ["Ele me trata bem, estou feliz.", "Estou feliz, sim, de verdade."], weight=4)
+
+
 GENERIC_B = ["Pois é.", "É verdade.", "Também acho.", "Nem me fale."]
 for _f in FAMILIES:
-    if _f["id"] in {"pasto", "cercado", "afazeres", "fofoca_vila", "colheita", "curiosidade_quadrado", "curiosidade_fundo", "curiosidade_portal",
-                    "curiosidade_creeper", "curiosidade_abelha", "jogador_sem_nome", "sol", "chuva", "bicho_cheiro", "bicho_sombra"}:
+    if _f["id"] in {"pasto", "colheita", "curiosidade_fundo", "curiosidade_portal", "curiosidade_creeper", "sol", "chuva", "bicho_sombra"}:
         _f["bg"] = list(GENERIC_B)  # so depois de afirmacao (o motor nunca as usa para responder a uma pergunta)
 
 

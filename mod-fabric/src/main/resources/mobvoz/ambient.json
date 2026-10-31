@@ -367,12 +367,7 @@
     "Eu também tenho a minha lista.",
     "Se eu terminar antes, ajudo você."
    ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
+   "bg": [],
    "c": [
     "Valeu, ajuda é sempre bem-vinda.",
     "Assim a gente termina logo."
@@ -399,12 +394,7 @@
     "Aqui na vila as notícias correm rápido.",
     "Melhor não sair sozinho por lá."
    ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
+   "bg": [],
    "c": [
     "Se souber de algo, me conta.",
     "Vou ficar de olho."
@@ -435,33 +425,6 @@
    "c": [
     "Por isso a vila ainda existe.",
     "Qualquer coisa, grito por você."
-   ]
-  },
-  {
-   "id": "golem_flor",
-   "who": [
-    "golem",
-    "villager"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Hoje encontrei uma flor perto do caminho.",
-    "Gosto de levar uma flor a quem trata bem os moradores.",
-    "Já tem muito tempo que não vejo ninguém sorrir por aqui."
-   ],
-   "b": [
-    "Flor combina com você, mesmo sendo de ferro.",
-    "Que gesto bonito.",
-    "Isso alegra a vila toda."
-   ],
-   "bg": [],
-   "c": [
-    "É o meu jeito de agradecer.",
-    "Cuidar também é isso."
    ]
   },
   {
@@ -542,31 +505,6 @@
    ]
   },
   {
-   "id": "clerigo",
-   "who": [
-    "villager:cleric",
-    "villager"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "As poções de hoje ficaram bonitas.",
-    "Tem coisa estranha misturada no meu caldeirão, e funciona.",
-    "Dizem que meu laboratório cheira esquisito."
-   ],
-   "b": [
-    "Cheira mesmo, mas a gente se acostuma.",
-    "Se alguém ficar doente, você dá um jeito.",
-    "Prefiro não provar nada daí."
-   ],
-   "bg": [],
-   "c": [
-    "Poção boa tem de tudo um pouco.",
-    "É tudo ciência, juro."
-   ]
-  },
-  {
    "id": "pastor",
    "who": [
     "villager:shepherd",
@@ -627,62 +565,6 @@
    ]
   },
   {
-   "id": "cercado",
-   "who": [
-    "farm",
-    "farm"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "O cercado está apertado hoje.",
-    "Tem espaço de sobra para todo mundo aqui.",
-    "Será que um dia essa cerca abre?"
-   ],
-   "b": [
-    "Antes aqui do que solto à noite.",
-    "Cerca é sinal de que alguém cuida da gente.",
-    "Gosto de saber onde fica o meu cantinho."
-   ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
-   "c": [
-    "Verdade, perto de vocês eu me sinto bem.",
-    "Aqui pelo menos tem comida."
-   ]
-  },
-  {
-   "id": "fome_bicho",
-   "who": [
-    "farm",
-    "farm"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Será que hoje alguém traz comida?",
-    "Fico de olho para ver se aparece alguém com trigo.",
-    "Estou com uma fome danada."
-   ],
-   "b": [
-    "Paciência, sempre aparece alguém.",
-    "Quem espera, come."
-   ],
-   "bg": [],
-   "c": [
-    "Vamos esperar, então.",
-    "Alguma hora vem."
-   ]
-  },
-  {
    "id": "medo_lobo",
    "who": [
     "farm",
@@ -707,217 +589,6 @@
    "c": [
     "Vamos ficar de olho.",
     "Se vier, a gente corre."
-   ]
-  },
-  {
-   "id": "galinha",
-   "who": [
-    "chicken",
-    "farm"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Có có! Achei umas sementes no chão.",
-    "Botei um ovo e já cacarejei para todo mundo.",
-    "Hoje o dia foi só ciscar.",
-    "Có, tem raposa por perto?"
-   ],
-   "b": [
-    "Que sorte a sua.",
-    "Cuidado com a raposa.",
-    "Eu fico de olho no céu, por via das dúvidas.",
-    "Ovo novo é sempre uma alegria."
-   ],
-   "bg": [],
-   "c": [
-    "Có có, a vida é boa.",
-    "Então vou ciscar mais um pouco."
-   ]
-  },
-  {
-   "id": "ovelha",
-   "who": [
-    "sheep",
-    "farm"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Minha lã está crescendo de novo.",
-    "Mééé, passei o dia mordiscando grama.",
-    "Sinto que estou ganhando lã a cada dia."
-   ],
-   "b": [
-    "A lã fica bonita assim.",
-    "Tem que tosar logo, hein?",
-    "Tem quem inveje essa lã."
-   ],
-   "bg": [],
-   "c": [
-    "Eu gosto do vento na lã.",
-    "Depois eu cresço de novo."
-   ]
-  },
-  {
-   "id": "porco",
-   "who": [
-    "pig",
-    "farm"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Achei algo gostoso enterrado.",
-    "Fuço o dia inteiro e nunca me canso.",
-    "Barro é a melhor parte da vida."
-   ],
-   "b": [
-    "Não conta para ninguém onde achou.",
-    "Só cuidado para não se sujar demais."
-   ],
-   "bg": [],
-   "c": [
-    "Sujeira é parte do charme.",
-    "Depois eu mostro o lugar."
-   ]
-  },
-  {
-   "id": "vaca",
-   "who": [
-    "cow",
-    "farm"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Muuu, o dia está calmo.",
-    "Hoje o pasto está especialmente macio.",
-    "Dá vontade de ficar mastigando devagar o dia todo."
-   ],
-   "b": [
-    "Calma é o que a gente tem de melhor.",
-    "Sem pressa, a vida rende mais.",
-    "Aqui a gente só precisa de grama e sombra."
-   ],
-   "bg": [],
-   "c": [
-    "Muuu, concordo.",
-    "Quando escurecer a gente se junta."
-   ]
-  },
-  {
-   "id": "lobo",
-   "who": [
-    "wolf",
-    "animals"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Estou de olho em tudo por aqui.",
-    "Cheirei um osso enterrado ali perto.",
-    "Um dia ainda pego aquele esqueleto."
-   ],
-   "b": [
-    "Cuidado para não assustar ninguém.",
-    "Você parece sempre alerta.",
-    "É bom ter alguém que vigia."
-   ],
-   "bg": [],
-   "c": [
-    "Quem é da matilha eu protejo.",
-    "Meu nariz nunca erra."
-   ]
-  },
-  {
-   "id": "gato",
-   "who": [
-    "cat",
-    "animals"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Dormi no sol a tarde toda.",
-    "Creeper nenhum chega perto de mim.",
-    "Hoje eu não faço nada, e está ótimo."
-   ],
-   "b": [
-    "Que vida boa a sua.",
-    "Você realmente não tem pressa.",
-    "Dizem que gato afasta creeper, é verdade?"
-   ],
-   "bg": [],
-   "c": [
-    "É verdade. Eles têm medo de mim.",
-    "Dizem que é sorte, mas é esperteza."
-   ]
-  },
-  {
-   "id": "cavalo",
-   "who": [
-    "horse",
-    "animals"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Dá vontade de correr até o vento passar por mim.",
-    "Hoje o campo está livre, só falta espaço.",
-    "Adoro um bom galope."
-   ],
-   "b": [
-    "Eu prefiro trotar devagar e olhar a paisagem.",
-    "Corre mesmo, que eu fico olhando.",
-    "Só cuide para não cair em buraco."
-   ],
-   "bg": [],
-   "c": [
-    "Mais tarde eu corro.",
-    "Correr é o que eu faço de melhor."
-   ]
-  },
-  {
-   "id": "curiosidade_quadrado",
-   "who": [
-    "villager",
-    "villager"
-   ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Você já parou para pensar por que tudo aqui é quadrado?",
-    "Sonhei que o mundo era redondo.",
-    "Já notou que o sol nasce sempre do mesmo lado?"
-   ],
-   "b": [
-    "Já! E ninguém sabe responder.",
-    "Que ideia estranha.",
-    "Nunca tinha reparado, agora vou pensar nisso o dia todo."
-   ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
-   "c": [
-    "Pois é, o mundo é cheio de mistérios.",
-    "Melhor nem pensar muito nisso.",
-    "Pelo menos é um mundo bonito."
    ]
   },
   {
@@ -1011,33 +682,6 @@
    ]
   },
   {
-   "id": "curiosidade_enderman",
-   "who": [
-    "villager",
-    "villager"
-   ],
-   "need": [
-    "night"
-   ],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Dizem que enderman odeia água.",
-    "Já viu aqueles olhos roxos no escuro?",
-    "Tem uns bichos altos que levam blocos embora."
-   ],
-   "b": [
-    "Melhor não encarar, dizem que ficam bravos.",
-    "Nunca falei com um, mas tenho vontade.",
-    "Eles somem num piscar de olhos."
-   ],
-   "bg": [],
-   "c": [
-    "Deve ser uma vida estranha.",
-    "Cada um com seu jeito, né?"
-   ]
-  },
-  {
    "id": "curiosidade_abelha",
    "who": [
     "calm",
@@ -1058,45 +702,10 @@
     "Só não mexa na colmeia, elas se zangam.",
     "Dizem que o mel é uma maravilha."
    ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
+   "bg": [],
    "c": [
     "Elas sabem o que fazem.",
     "Respeito muito esse esforço."
-   ]
-  },
-  {
-   "id": "jogador_passando",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 2,
-   "player": true,
-   "a": [
-    "{Jogador} anda por aí de novo.",
-    "Olha, é {jogador} outra vez.",
-    "Vi {jogador} passando agora há pouco.",
-    "{Jogador} parece apressado, né?"
-   ],
-   "b": [
-    "Gosto quando tem movimento por aqui.",
-    "Será que vem conversar?",
-    "Eu fico de olho.",
-    "Pois é."
-   ],
-   "bg": [],
-   "c": [
-    "Vamos ver o que vai fazer.",
-    "Eu também.",
-    "Vamos ver o que acontece."
    ]
   },
   {
@@ -1178,208 +787,6 @@
    "c": [
     "Vou perguntar, quem sabe.",
     "Cada um carrega o que precisa."
-   ]
-  },
-  {
-   "id": "jogador_ferido",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "hurt"
-   ],
-   "weight": 3,
-   "player": true,
-   "a": [
-    "{Jogador} parece ferido.",
-    "Cuidado, {jogador} não está nada bem.",
-    "Olha o estado de {jogador}, que pena."
-   ],
-   "b": [
-    "Precisa se cuidar, isso sim.",
-    "Uma boa refeição ajuda a se curar.",
-    "Alguém devia oferecer ajuda.",
-    "Bem que podia descansar um pouco."
-   ],
-   "bg": [],
-   "c": [
-    "Ao menos está vivo.",
-    "Que se recupere logo."
-   ]
-  },
-  {
-   "id": "jogador_fome",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "hungry"
-   ],
-   "weight": 3,
-   "player": true,
-   "a": [
-    "{Jogador} está com cara de fome.",
-    "Acho que {jogador} não come há um tempo."
-   ],
-   "b": [
-    "Quem tem comida devia dividir.",
-    "Quem está de barriga vazia não pensa direito.",
-    "Comida resolve metade dos problemas."
-   ],
-   "bg": [],
-   "c": [
-    "Se eu tivesse, dividia.",
-    "Que ache o que comer."
-   ]
-  },
-  {
-   "id": "jogador_conhecido",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "k0"
-   ],
-   "weight": 2,
-   "player": true,
-   "a": [
-    "Eu já conversei com {jogador}, sabia?",
-    "Já cruzei com {jogador} por aqui antes.",
-    "{Jogador} e eu já conversamos um pouco."
-   ],
-   "b": [
-    "E como foi?",
-    "Me conta, o que foi que disse?",
-    "Que interessante."
-   ],
-   "bg": [],
-   "c": [
-    "Dá para conversar numa boa.",
-    "Foi tranquilo, achei simpático.",
-    "Cada conversa é diferente."
-   ]
-  },
-  {
-   "id": "jogador_apresenta",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "k0",
-    "!k1"
-   ],
-   "weight": 3,
-   "player": true,
-   "a": [
-    "Está vendo aquela pessoa? É {jogador}. Já conversei com ela.",
-    "Está vendo quem passou? É {jogador}, eu já conheço.",
-    "Olha quem está aí: {jogador}. Passa sempre por aqui."
-   ],
-   "b": [
-    "Não conhecia, nunca falei com essa pessoa.",
-    "Ah, então é ela? Vou prestar atenção.",
-    "Parece alguém interessante."
-   ],
-   "bg": [],
-   "c": [
-    "Vale a pena puxar assunto.",
-    "Vai lá falar, não morde.",
-    "Boa sorte."
-   ]
-  },
-  {
-   "id": "jogador_nome_conta",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "n0",
-    "!n1"
-   ],
-   "weight": 4,
-   "player": true,
-   "a": [
-    "Sabia que essa pessoa se chama {nome}?",
-    "O nome daquele humano é {nome}, ele me disse.",
-    "Me contou pessoalmente: é {nome}."
-   ],
-   "b": [
-    "{Nome}? Não sabia, vou guardar.",
-    "Que nome bonito, {nome}.",
-    "Boa, agora posso chamar pelo nome."
-   ],
-   "bg": [],
-   "c": [
-    "Aqui a gente se trata pelo nome.",
-    "É bom saber com quem se fala.",
-    "Nome é a primeira coisa que a gente deveria saber."
-   ]
-  },
-  {
-   "id": "jogador_sem_nome",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "k0",
-    "!n0",
-    "!n1"
-   ],
-   "weight": 3,
-   "player": true,
-   "a": [
-    "Você sabe o nome dessa pessoa?",
-    "Será que aquele humano tem nome?",
-    "Nunca perguntei como se chama {jogador}."
-   ],
-   "b": [
-    "Nunca perguntei. Para mim é só um humano.",
-    "Deve ter, todo mundo tem.",
-    "Alguém devia perguntar."
-   ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
-   "c": [
-    "Da próxima vez eu pergunto.",
-    "Quem sabe conta."
-   ]
-  },
-  {
-   "id": "jogador_nome_ambos",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "n0",
-    "n1"
-   ],
-   "weight": 4,
-   "player": true,
-   "a": [
-    "{Nome} voltou! Que bom ver essa pessoa.",
-    "Olha quem está aí, {nome}.",
-    "{Nome} anda ocupado hoje."
-   ],
-   "b": [
-    "É sempre bom ver {nome} por aqui.",
-    "Eu também fico contente.",
-    "Será que veio conversar?"
-   ],
-   "bg": [],
-   "c": [
-    "Vou dar um oi.",
-    "Bom ter gente conhecida."
    ]
   },
   {
@@ -1516,32 +923,6 @@
    ]
   },
   {
-   "id": "jogador_ameacou",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "f0:THREAT_SPOKEN"
-   ],
-   "weight": 4,
-   "player": true,
-   "a": [
-    "{Jogador} me ameaçou uma vez, só com palavras.",
-    "Eu me assustei com as palavras de {jogador} outro dia."
-   ],
-   "b": [
-    "Tem quem fale sem pensar.",
-    "Ameaça de boca pesa, né?",
-    "Espero que tenha sido um mal-entendido."
-   ],
-   "bg": [],
-   "c": [
-    "Pode ser.",
-    "Vou dar uma chance."
-   ]
-  },
-  {
    "id": "jogador_acalmou",
    "who": [
     "calm",
@@ -1565,33 +946,6 @@
    "c": [
     "Não esqueci essa gentileza.",
     "Fez bem, de verdade."
-   ]
-  },
-  {
-   "id": "jogador_dono",
-   "who": [
-    "calm",
-    "calm"
-   ],
-   "need": [
-    "f0:TAMED"
-   ],
-   "weight": 4,
-   "player": true,
-   "a": [
-    "Agora eu sou de {jogador}, e isso me faz bem.",
-    "{Jogador} cuida de mim agora, sabia?",
-    "Tenho dono agora: {jogador}."
-   ],
-   "b": [
-    "Cuida bem de você?",
-    "Que sorte a sua.",
-    "Sempre quis ter alguém assim."
-   ],
-   "bg": [],
-   "c": [
-    "Cuida sim.",
-    "Estou bem melhor."
    ]
   },
   {
@@ -2041,38 +1395,6 @@
    ]
   },
   {
-   "id": "bicho_cheiro",
-   "who": [
-    "animals",
-    "animals"
-   ],
-   "need": [
-    "day"
-   ],
-   "weight": 2,
-   "player": false,
-   "a": [
-    "Sentiu o cheiro do vento hoje?",
-    "O ar está diferente hoje.",
-    "Tem um cheiro bom por aqui."
-   ],
-   "b": [
-    "Cheiro de grama, só isso.",
-    "Eu só sinto o que tem para comer.",
-    "É bom mesmo."
-   ],
-   "bg": [
-    "Pois é.",
-    "É verdade.",
-    "Também acho.",
-    "Nem me fale."
-   ],
-   "c": [
-    "Gosto quando o dia cheira assim.",
-    "Hmm, também."
-   ]
-  },
-  {
    "id": "bicho_barulho",
    "who": [
     "animals",
@@ -2133,59 +1455,6 @@
    ]
   },
   {
-   "id": "bicho_jogador_noite",
-   "who": [
-    "animals",
-    "animals"
-   ],
-   "need": [
-    "night"
-   ],
-   "weight": 2,
-   "player": false,
-   "a": [
-    "Tem alguém andando no escuro.",
-    "O humano caminha de noite.",
-    "Olha lá, o humano no escuro."
-   ],
-   "b": [
-    "Eu fico quieto.",
-    "Ele não tem medo?",
-    "Cada um com o seu jeito."
-   ],
-   "bg": [],
-   "c": [
-    "É um bicho corajoso, esse aí.",
-    "Eu não sairia."
-   ]
-  },
-  {
-   "id": "bicho_jogador_chuva",
-   "who": [
-    "animals",
-    "animals"
-   ],
-   "need": [
-    "rain"
-   ],
-   "weight": 2,
-   "player": false,
-   "a": [
-    "O humano está na chuva.",
-    "Olha o humano debaixo da chuva."
-   ],
-   "b": [
-    "Ele não se importa?",
-    "Eu prefiro um canto seco.",
-    "Fica molhado, coitado."
-   ],
-   "bg": [],
-   "c": [
-    "Cada um com o seu gosto.",
-    "Eu só queria sombra."
-   ]
-  },
-  {
    "id": "monstros_noite",
    "who": [
     "monsters",
@@ -2240,32 +1509,6 @@
    "c": [
     "Falta pouco para escurecer.",
     "Paciência."
-   ]
-  },
-  {
-   "id": "monstros_chuva",
-   "who": [
-    "monsters",
-    "monsters"
-   ],
-   "need": [
-    "rain"
-   ],
-   "weight": 2,
-   "player": false,
-   "a": [
-    "Essa chuva estraga tudo.",
-    "Chuva de novo, que droga."
-   ],
-   "b": [
-    "Pelo menos os humanos ficam em casa.",
-    "Eu só quero que passe.",
-    "Procura um abrigo."
-   ],
-   "bg": [],
-   "c": [
-    "Vai passar.",
-    "Eu espero aqui."
    ]
   },
   {
@@ -2365,6 +1608,1911 @@
    ]
   },
   {
+   "id": "vaca",
+   "who": [
+    "cow",
+    "cow"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Muuu, o dia está calmo.",
+    "Hoje o pasto está especialmente macio.",
+    "Dá vontade de ficar mastigando devagar o dia todo.",
+    "Muuu, o rebanho está todo junto hoje."
+   ],
+   "b": [
+    "Calma é o que a gente tem de melhor.",
+    "Sem pressa, a vida rende mais.",
+    "Aqui só precisamos de grama e sombra.",
+    "Muuu, concordo."
+   ],
+   "bg": [],
+   "c": [
+    "Quando escurecer, a gente se junta.",
+    "Fica por perto, que é mais seguro."
+   ]
+  },
+  {
+   "id": "porco",
+   "who": [
+    "pig",
+    "pig"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Fuço o dia inteiro e nunca me canso.",
+    "Achei uma raiz gostosa debaixo da terra.",
+    "Barro é a melhor parte do dia."
+   ],
+   "b": [
+    "Oink, cada um com o seu cantinho de lama.",
+    "Achar comida enterrada é uma arte.",
+    "Eu fuço do outro lado, então."
+   ],
+   "bg": [],
+   "c": [
+    "Depois a gente se encontra no barro.",
+    "Oink, a vida é boa."
+   ]
+  },
+  {
+   "id": "galinha",
+   "who": [
+    "chicken",
+    "chicken"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Có có! Achei umas sementes no chão.",
+    "Botei um ovo e já cacarejei para todo mundo.",
+    "Có, hoje o dia foi só ciscar."
+   ],
+   "b": [
+    "Có có, ciscar é a melhor parte.",
+    "Ovo novo é sempre uma alegria.",
+    "Có, eu fico de olho no céu, por via das dúvidas."
+   ],
+   "bg": [],
+   "c": [
+    "Có có, a vida é boa.",
+    "Então vou ciscar mais um pouco."
+   ]
+  },
+  {
+   "id": "ovelha",
+   "who": [
+    "sheep",
+    "sheep"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Mééé, minha lã está crescendo de novo.",
+    "Passei o dia mordiscando grama.",
+    "Hoje o vento deixa a lã toda arrepiada."
+   ],
+   "b": [
+    "Mééé, lã crescida aquece no frio.",
+    "Depois da tosa a gente sente um friozinho.",
+    "Grama boa faz lã boa."
+   ],
+   "bg": [],
+   "c": [
+    "Mééé, que dia bom.",
+    "A gente se junta quando escurecer."
+   ]
+  },
+  {
+   "id": "lobo",
+   "who": [
+    "wolf",
+    "wolf"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Cheirei um osso enterrado ali perto.",
+    "Fiquei de guarda a manhã toda.",
+    "Ouvi um uivo lá longe."
+   ],
+   "b": [
+    "A matilha inteira escutou.",
+    "Meu nariz nunca erra.",
+    "Quem é da matilha, eu protejo."
+   ],
+   "bg": [],
+   "c": [
+    "Auuu, fico de olho nos meus.",
+    "Vamos patrulhar juntos."
+   ]
+  },
+  {
+   "id": "cavalo",
+   "who": [
+    "horse",
+    "horse"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Dá vontade de correr até o vento passar por mim.",
+    "Hoje o campo está livre, só falta espaço.",
+    "Adoro um bom galope."
+   ],
+   "b": [
+    "Um galope longo limpa a cabeça.",
+    "Eu prefiro trotar e olhar a paisagem.",
+    "Correr é o que fazemos de melhor."
+   ],
+   "bg": [],
+   "c": [
+    "Mais tarde a gente corre junto.",
+    "Relincho de alegria."
+   ]
+  },
+  {
+   "id": "bicho_cheiro",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Tem um cheiro bom de grama no ar.",
+    "O vento trouxe cheiro de chuva.",
+    "Sinto cheiro de feno novo por perto."
+   ],
+   "b": [
+    "O nariz da gente não engana.",
+    "Esse cheiro me dá fome.",
+    "Eu também senti, vem de longe."
+   ],
+   "bg": [],
+   "c": [
+    "Vou seguir o cheiro depois.",
+    "Gosto quando o dia cheira assim."
+   ]
+  },
+  {
+   "id": "fome_bicho",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Estou com uma fome danada.",
+    "Já passou da hora de comer.",
+    "Fico de olho para ver se aparece comida."
+   ],
+   "b": [
+    "Eu também estou com o estômago vazio.",
+    "Vou procurar uma touceira de grama.",
+    "O cheiro de feno me deixa com mais fome."
+   ],
+   "bg": [],
+   "c": [
+    "Quem chegar primeiro na comida, come.",
+    "Vamos esperar mais um pouco."
+   ]
+  },
+  {
+   "id": "jogador_passando",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 2,
+   "player": true,
+   "a": [
+    "O humano anda por aí de novo.",
+    "Olha, é o humano outra vez.",
+    "Vi o humano passando agora há pouco.",
+    "O humano parece apressado."
+   ],
+   "b": [
+    "Ele passa sempre por aqui.",
+    "Gosto quando tem movimento por aqui.",
+    "Eu fico de olho nele."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos ver o que ele faz.",
+    "Que siga o caminho dele."
+   ]
+  },
+  {
+   "id": "jogador_sem_nome",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "k0",
+    "!n0",
+    "!n1"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "Ninguém sabe como {jogador} se chama.",
+    "Nunca perguntei o nome de {jogador}.",
+    "{Jogador} deve ter um nome, mas eu não sei."
+   ],
+   "b": [
+    "Para mim é só o humano.",
+    "Eu também só o chamo de humano.",
+    "Alguém precisa perguntar."
+   ],
+   "bg": [],
+   "c": [
+    "Quem sabe um dia ele conta.",
+    "Eu pergunto da próxima vez."
+   ]
+  },
+  {
+   "id": "jogador_ferido",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "hurt"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} parece ferido.",
+    "Cuidado, {jogador} não está nada bem.",
+    "Olha o estado de {jogador}, que pena."
+   ],
+   "b": [
+    "Uma boa refeição ajuda a se curar.",
+    "Alguém devia oferecer ajuda a ele.",
+    "Ele precisa descansar um pouco."
+   ],
+   "bg": [],
+   "c": [
+    "Que se recupere logo.",
+    "Tomara que passe depressa."
+   ]
+  },
+  {
+   "id": "jogador_fome",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "hungry"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} está com cara de fome.",
+    "Acho que {jogador} não come há um tempo."
+   ],
+   "b": [
+    "Dava para oferecer um pouco de pão.",
+    "Quem está de barriga vazia não pensa direito.",
+    "Comida resolve metade dos problemas."
+   ],
+   "bg": [],
+   "c": [
+    "Se ele pedir, eu dou um jeito.",
+    "Que ache o que comer."
+   ]
+  },
+  {
+   "id": "bicho_jogador_ferido",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "hurt"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "O humano está machucado.",
+    "Olha como o humano anda devagar.",
+    "O humano parece sentir dor."
+   ],
+   "b": [
+    "Dá pena ver.",
+    "Ele devia descansar à sombra.",
+    "Eu fico quieto para não incomodar."
+   ],
+   "bg": [],
+   "c": [
+    "Que melhore logo.",
+    "Fico de olho nele."
+   ]
+  },
+  {
+   "id": "bicho_jogador_conhecido",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "k0"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "O humano já esteve aqui antes.",
+    "Esse humano eu já conheço.",
+    "O cheiro do humano me é familiar."
+   ],
+   "b": [
+    "Eu também me lembro dele.",
+    "Ele parece de boa índole.",
+    "Aqui ele é sempre bem-vindo."
+   ],
+   "bg": [],
+   "c": [
+    "Boa gente.",
+    "Vamos ver o que ele quer hoje."
+   ]
+  },
+  {
+   "id": "monstros_chuva",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "rain"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Essa chuva apaga tudo que a gente rastreia.",
+    "Chuva de novo, que droga.",
+    "A água me deixa de mau humor."
+   ],
+   "b": [
+    "Pelo menos a escuridão fica melhor.",
+    "Os humanos ficam trancados, mas é irritante.",
+    "Eu só quero que passe."
+   ],
+   "bg": [],
+   "c": [
+    "Depois a caça recomeça.",
+    "Eu espero aqui no escuro."
+   ]
+  },
+  {
+   "id": "bicho_lama",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A lama fresca é a melhor coisa do calor.",
+    "Depois da chuva a lama fica perfeita.",
+    "Lama macia faz bem para os cascos."
+   ],
+   "b": [
+    "Eu me deito nela e fico à vontade.",
+    "Sujar o casco é um prazer.",
+    "Barro seco coça, barro molhado é paz."
+   ],
+   "bg": [],
+   "c": [
+    "Amanhã a lama ainda estará lá.",
+    "Que dia bom para quem gosta de lama."
+   ]
+  },
+  {
+   "id": "bicho_agua",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Água fresquinha é o que eu mais quero.",
+    "A sede aperta quando o sol esquenta.",
+    "Beber água limpa é um prazer."
+   ],
+   "b": [
+    "Água boa é metade do dia bom.",
+    "Eu vou beber depois.",
+    "Sede passa rápido com água fresca."
+   ],
+   "bg": [],
+   "c": [
+    "Depois a gente vai juntos.",
+    "Que a água nunca falte."
+   ]
+  },
+  {
+   "id": "bicho_abelha",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day",
+    "clear"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Tem uma abelha zumbindo perto de mim.",
+    "As abelhas hoje estão agitadas.",
+    "O zumbido das abelhas me faz companhia."
+   ],
+   "b": [
+    "Elas só querem as flores.",
+    "Se ninguém mexer, elas não incomodam.",
+    "O zumbido até acalma."
+   ],
+   "bg": [],
+   "c": [
+    "Melhor deixar elas em paz.",
+    "Que continuem trabalhando."
+   ]
+  },
+  {
+   "id": "bicho_cochilo",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Vou cochilar um pouco aqui.",
+    "O sol me deixou com sono.",
+    "Esse canto está ótimo para dormir."
+   ],
+   "b": [
+    "Eu também estou com sono.",
+    "Cochilo depois de comer é o melhor.",
+    "Fecha os olhos que eu vigio."
+   ],
+   "bg": [],
+   "c": [
+    "Me acorda quando o sol baixar.",
+    "Boa soneca."
+   ]
+  },
+  {
+   "id": "bicho_vento",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Hoje venta bastante.",
+    "O vento está fazendo o capim dançar.",
+    "O vento hoje traz cheiros de longe."
+   ],
+   "b": [
+    "Dá para ouvir o capim farfalhando.",
+    "Eu gosto do vento no pelo.",
+    "O vento esfria o calor."
+   ],
+   "bg": [],
+   "c": [
+    "Vento bom é vento fraco.",
+    "Que continue assim."
+   ]
+  },
+  {
+   "id": "bicho_barulho_estranho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Ouvi um gemido estranho lá longe.",
+    "Escutei alguma coisa arrastando os pés.",
+    "Tem algo gemendo no escuro."
+   ],
+   "b": [
+    "Parece coisa de zumbi.",
+    "Melhor ficar longe da cerca.",
+    "Eu me encolho quando ouço isso."
+   ],
+   "bg": [],
+   "c": [
+    "Se chegar perto, a gente foge junto.",
+    "Eu fico atento."
+   ]
+  },
+  {
+   "id": "bicho_noite_lua",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "night",
+    "clear"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A lua está grande hoje.",
+    "Dá para ver tudo com essa luz.",
+    "A noite está clara."
+   ],
+   "b": [
+    "Fica mais fácil de enxergar o perigo.",
+    "A luz da lua acalma.",
+    "Eu gosto do silêncio da noite."
+   ],
+   "bg": [],
+   "c": [
+    "Fica por perto.",
+    "Que a noite passe tranquila."
+   ]
+  },
+  {
+   "id": "bicho_manha",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O sol da manhã é o melhor.",
+    "De manhã o capim está cheio de orvalho.",
+    "Gosto do começo do dia."
+   ],
+   "b": [
+    "O orvalho deixa tudo fresco.",
+    "Tudo parece mais calmo cedo.",
+    "É a melhor hora para comer."
+   ],
+   "bg": [],
+   "c": [
+    "Que o dia seja bom.",
+    "Vamos aproveitar a luz."
+   ]
+  },
+  {
+   "id": "bicho_hora_comer",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Acho que já está na hora de comer.",
+    "O estômago avisa a hora certa.",
+    "Sinto cheiro de comida chegando."
+   ],
+   "b": [
+    "O meu também está reclamando.",
+    "Quem chega primeiro come melhor.",
+    "Hora de comer é a melhor hora."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos juntos.",
+    "Guarda um lugar para mim."
+   ]
+  },
+  {
+   "id": "vila_sino",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O sino da vila é o som que mais me assusta.",
+    "Quando o sino toca, ninguém fica fora de casa.",
+    "O sino chama todo mundo quando há perigo."
+   ],
+   "b": [
+    "Eu corro para dentro quando escuto.",
+    "Tomara que seja sempre só um aviso.",
+    "A vila inteira ouve."
+   ],
+   "bg": [],
+   "c": [
+    "O golem fica de olho em tudo.",
+    "A vila sempre se junta."
+   ]
+  },
+  {
+   "id": "vila_pilhadores",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Pilhador é a pior coisa que existe.",
+    "Dizem que pilhadores atacam vilas inteiras.",
+    "A ideia de pilhadores me tira o sono."
+   ],
+   "b": [
+    "O golem não deixa ninguém passar.",
+    "Eu fecho as portas mais cedo por via das dúvidas.",
+    "Prefiro nem pensar nisso."
+   ],
+   "bg": [],
+   "c": [
+    "Melhor estar sempre preparado.",
+    "A vila é forte quando está unida."
+   ]
+  },
+  {
+   "id": "vila_comerciante",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Comerciante viajante é sempre uma surpresa.",
+    "O comerciante de lhamas vende coisas raras.",
+    "Comerciante que aparece do nada traz boas histórias."
+   ],
+   "b": [
+    "Ele nunca fica mais de um dia.",
+    "Eu sempre olho o que ele traz.",
+    "As lhamas dele cospem em quem se aproxima."
+   ],
+   "bg": [],
+   "c": [
+    "Cada visita rende uma boa história.",
+    "Quem sabe ele volte."
+   ]
+  },
+  {
+   "id": "vila_gato",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Gato na vila é bom para afastar creeper.",
+    "Dizem que os gatos protegem a vila dos creepers.",
+    "Um gato dormindo na porta dá sorte."
+   ],
+   "b": [
+    "Creeper nem chega perto de um gato.",
+    "Eu deixo leite para o gato da vila.",
+    "Gato quieto é gato em guarda."
+   ],
+   "bg": [],
+   "c": [
+    "Cada um com o seu trabalho.",
+    "Gato é bem-vindo em qualquer casa."
+   ]
+  },
+  {
+   "id": "vila_esmeralda",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Esmeralda é a moeda que todo mundo quer.",
+    "O preço das esmeraldas muda todo dia.",
+    "Guardar esmeraldas é guardar sossego."
+   ],
+   "b": [
+    "Quem negocia bem nunca passa aperto.",
+    "Eu troco o que sobra por esmeraldas.",
+    "Um bom estoque vale ouro, ou melhor, esmeralda."
+   ],
+   "bg": [],
+   "c": [
+    "Negócio honesto é o melhor negócio.",
+    "Cada esmeralda conta."
+   ]
+  },
+  {
+   "id": "vila_tempestade",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "thunder"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Fechei as janelas por causa da tempestade.",
+    "Esse temporal sacode a casa inteira.",
+    "A tempestade assusta até o golem."
+   ],
+   "b": [
+    "Dentro de casa a gente fica seguro.",
+    "Raio que cai perto faz tudo tremer.",
+    "Eu acendo uma tocha e espero passar."
+   ],
+   "bg": [],
+   "c": [
+    "Amanhã o céu limpa.",
+    "A vila aguenta qualquer tempo."
+   ]
+  },
+  {
+   "id": "vila_pao",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O pão fresco cheira a casa boa.",
+    "Falta pão quando a colheita é fraca.",
+    "Pão repartido rende mais."
+   ],
+   "b": [
+    "Trigo bom faz pão bom.",
+    "Eu guardo um pouco para o dia seguinte.",
+    "Uma casa sem pão fica triste."
+   ],
+   "bg": [],
+   "c": [
+    "O melhor perfume é o do forno.",
+    "Pão e conversa fazem a vila."
+   ]
+  },
+  {
+   "id": "vila_porta_noite",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Eu confiro a porta antes de dormir.",
+    "A porta bem trancada é a minha paz.",
+    "À noite todo cuidado é pouco."
+   ],
+   "b": [
+    "Zumbi quebra porta de madeira, sabia?",
+    "Uma luz na entrada ajuda a afastar os monstros.",
+    "Eu prendo tudo duas vezes."
+   ],
+   "bg": [],
+   "c": [
+    "Dorme bem.",
+    "Amanhã tudo estará no lugar."
+   ]
+  },
+  {
+   "id": "vila_manha",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A manhã na vila é a melhor hora.",
+    "Gosto de abrir a porta quando o sol nasce.",
+    "Um dia novo sempre traz boas trocas."
+   ],
+   "b": [
+    "Todo mundo acorda de bom humor.",
+    "O trabalho rende mais cedo.",
+    "O ar da manhã faz bem."
+   ],
+   "bg": [],
+   "c": [
+    "Que o dia seja bom.",
+    "Vamos aproveitar a luz."
+   ]
+  },
+  {
+   "id": "golem_orgulho",
+   "who": [
+    "villager",
+    "golem"
+   ],
+   "need": [],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Quando o golem passa, a vila respira aliviada.",
+    "Com o golem por perto, durmo tranquilo.",
+    "Já vi o golem proteger uma casa inteira."
+   ],
+   "b": [
+    "Eu só faço o que preciso.",
+    "Ninguém passa enquanto eu estiver de pé.",
+    "Proteger a vila é o meu trabalho."
+   ],
+   "bg": [],
+   "c": [
+    "Por isso a vila ainda existe.",
+    "A vila agradece."
+   ]
+  },
+  {
+   "id": "golem_ronda",
+   "who": [
+    "golem",
+    "villager"
+   ],
+   "need": [],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Dei a volta na vila e está tudo calmo.",
+    "Fiz a ronda e nada se mexeu.",
+    "A noite foi tranquila na vila."
+   ],
+   "b": [
+    "Valeu, a gente dorme melhor assim.",
+    "Sem você, eu não teria coragem de sair.",
+    "A vila é segura por sua causa."
+   ],
+   "bg": [],
+   "c": [
+    "Fico de pé até amanhecer.",
+    "É o que sei fazer."
+   ]
+  },
+  {
+   "id": "acougueiro",
+   "who": [
+    "villager:butcher",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A carne de hoje está bem fresca.",
+    "Cortar carne é um ofício que exige respeito.",
+    "Meu cutelo está afiado como nunca."
+   ],
+   "b": [
+    "Sem você, a vila passaria fome.",
+    "Cheiro de carne assando chama todo mundo.",
+    "Cada ofício tem a sua importância."
+   ],
+   "bg": [],
+   "c": [
+    "Passa aqui quando quiser levar um pedaço.",
+    "O fogo do defumador nunca apaga."
+   ]
+  },
+  {
+   "id": "pescador",
+   "who": [
+    "villager:fisherman",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O rio hoje está generoso.",
+    "Peixe fresco é meu orgulho.",
+    "A isca certa muda tudo."
+   ],
+   "b": [
+    "Peixe assado é um banquete.",
+    "Eu nunca tive paciência para pescar.",
+    "A vila come melhor por sua causa."
+   ],
+   "bg": [],
+   "c": [
+    "Amanhã volto cedo ao rio.",
+    "Quem pesca aprende a esperar."
+   ]
+  },
+  {
+   "id": "flecheiro",
+   "who": [
+    "villager:fletcher",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Fiz flechas novas esta manhã.",
+    "Pena de galinha faz flecha voar reto.",
+    "Uma boa flecha precisa de equilíbrio."
+   ],
+   "b": [
+    "Precisão é uma virtude.",
+    "A vila fica mais segura com boas flechas.",
+    "Isso é trabalho de mestre."
+   ],
+   "bg": [],
+   "c": [
+    "Cada flecha tem seu destino.",
+    "Mira firme e coração calmo."
+   ]
+  },
+  {
+   "id": "pedreiro",
+   "who": [
+    "villager:mason",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A pedra de hoje está ótima.",
+    "Pedra lisa dá casa firme.",
+    "Um muro bem feito dura gerações."
+   ],
+   "b": [
+    "As casas daqui duram mesmo.",
+    "Sem pedra, a vila seria de lama.",
+    "O seu trabalho segura tudo de pé."
+   ],
+   "bg": [],
+   "c": [
+    "Pedra sobre pedra, a vila cresce.",
+    "Tem muito o que construir ainda."
+   ]
+  },
+  {
+   "id": "armeiro",
+   "who": [
+    "villager:armorer",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A armadura sai melhor com o fogo forte.",
+    "Ferro bem forjado é meio caminho andado.",
+    "Cada peça de armadura conta uma história."
+   ],
+   "b": [
+    "Quem usa uma peça sua fica mais seguro.",
+    "O barulho da forja é música.",
+    "Deve ser pesado trabalhar com tanto metal."
+   ],
+   "bg": [],
+   "c": [
+    "Metal bom vira proteção boa.",
+    "O fogo da forja não pode apagar."
+   ]
+  },
+  {
+   "id": "ferreiro_armas",
+   "who": [
+    "villager:weaponsmith",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Afiar uma espada pede paciência.",
+    "Hoje o machado ficou perfeito.",
+    "Uma lâmina boa nunca precisa de pressa."
+   ],
+   "b": [
+    "Espero que nunca precisem usar.",
+    "A vila dorme melhor com ferro bom por perto.",
+    "Isso é arte, não só ofício."
+   ],
+   "bg": [],
+   "c": [
+    "Arma boa é a que não precisa sair da bainha.",
+    "Mais um dia, mais uma lâmina."
+   ]
+  },
+  {
+   "id": "curtidor",
+   "who": [
+    "villager:leatherworker",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O couro de hoje está macio.",
+    "Bota de couro dura uma vida.",
+    "Cortar couro pede mão firme."
+   ],
+   "b": [
+    "Ninguém anda bem sem bota boa.",
+    "O cheiro de couro é inconfundível.",
+    "Esse ofício é mais difícil do que parece."
+   ],
+   "bg": [],
+   "c": [
+    "Couro bem curtido não rasga.",
+    "Cada peça sai única."
+   ]
+  },
+  {
+   "id": "cartografo",
+   "who": [
+    "villager:cartographer",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Desenhei um mapa novo hoje.",
+    "Mapa bom mostra mais do que estradas.",
+    "Todo caminho começa num bom desenho."
+   ],
+   "b": [
+    "Eu nunca saio da vila, mas gosto de olhar os mapas.",
+    "Deve ser bonito ver o mundo no papel.",
+    "O mundo além das colinas deve ser enorme."
+   ],
+   "bg": [],
+   "c": [
+    "Um dia alguém percorre o que eu desenhei.",
+    "O mapa guarda o que ninguém viu."
+   ]
+  },
+  {
+   "id": "ceu_nuvens",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "day",
+    "clear"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Tem nuvem bonita no céu hoje.",
+    "O céu hoje está bem azul.",
+    "Olha como o céu está limpo."
+   ],
+   "b": [
+    "Dá gosto de olhar para cima.",
+    "Dia assim alegra qualquer um.",
+    "Eu podia passar o dia olhando para o céu."
+   ],
+   "bg": [],
+   "c": [
+    "Que ele fique assim o dia todo.",
+    "Hoje está tudo calmo."
+   ]
+  },
+  {
+   "id": "ceu_estrelas",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "night",
+    "clear"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Dá para ver as estrelas hoje.",
+    "O céu está cheio de estrelas.",
+    "A lua está bonita hoje."
+   ],
+   "b": [
+    "Nunca vi tantas juntas.",
+    "A noite fica menos assustadora assim.",
+    "Cada uma parece uma luzinha."
+   ],
+   "bg": [],
+   "c": [
+    "Boa noite para olhar para cima.",
+    "Mas fica por perto."
+   ]
+  },
+  {
+   "id": "madrugada",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "dawn"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Acordei cedo hoje.",
+    "A manhã está chegando devagar.",
+    "O primeiro sol é o mais bonito."
+   ],
+   "b": [
+    "Gosto desse silêncio antes de todos acordarem.",
+    "O dia que começa assim promete.",
+    "O frio da madrugada passa logo."
+   ],
+   "bg": [],
+   "c": [
+    "Vai ser um bom dia.",
+    "Que ele seja tranquilo."
+   ]
+  },
+  {
+   "id": "noite_frio",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A noite está fria.",
+    "O vento da noite gela até os ossos.",
+    "Hoje esfriou de verdade."
+   ],
+   "b": [
+    "Fica pertinho de mim que esquenta.",
+    "Escondido do vento é melhor.",
+    "A gente se acostuma com o frio."
+   ],
+   "bg": [],
+   "c": [
+    "Amanhã o sol esquenta de novo.",
+    "Ainda bem que o dia volta."
+   ]
+  },
+  {
+   "id": "jogador_voltou",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "k0"
+   ],
+   "weight": 2,
+   "player": true,
+   "a": [
+    "O humano voltou por aqui.",
+    "Olha só, o humano de novo.",
+    "Já conheço esse humano."
+   ],
+   "b": [
+    "Gosto quando ele volta.",
+    "Ele sempre traz movimento.",
+    "Ele já é de casa."
+   ],
+   "bg": [],
+   "c": [
+    "Que fique à vontade.",
+    "Vamos ver o que ele quer."
+   ]
+  },
+  {
+   "id": "zumbi_sol",
+   "who": [
+    "zombie",
+    "zombie"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Grrr... o sol queima a minha pele.",
+    "Grrr... odeio o dia.",
+    "Grrr... preciso de sombra."
+   ],
+   "b": [
+    "Grrr... a sombra é a única amiga.",
+    "Grrr... espera a noite chegar.",
+    "Grrr... quem tem a pele podre sofre mais."
+   ],
+   "bg": [],
+   "c": [
+    "Grrr... paciência.",
+    "Grrr... falta pouco."
+   ]
+  },
+  {
+   "id": "zumbi_porta",
+   "who": [
+    "zombie",
+    "zombie"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Grrr... aquela porta de madeira é dura.",
+    "Grrr... humano atrás da porta é um prêmio.",
+    "Grrr... bater na porta cansa."
+   ],
+   "b": [
+    "Grrr... um dia ela cede.",
+    "Grrr... paciência abre qualquer madeira.",
+    "Grrr... o cheiro de carne vem de dentro."
+   ],
+   "bg": [],
+   "c": [
+    "Grrr... insiste.",
+    "Grrr..."
+   ]
+  },
+  {
+   "id": "esqueleto_sombra",
+   "who": [
+    "skeleton",
+    "skeleton"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O sol arruína os meus ossos.",
+    "Fico sempre perto de uma sombra.",
+    "De dia eu me escondo."
+   ],
+   "b": [
+    "Dia é bom para ficar parado.",
+    "À noite a mira é melhor.",
+    "Quem se queima não acerta nada."
+   ],
+   "bg": [],
+   "c": [
+    "Quando escurecer, eu atiro.",
+    "Falta pouco para a minha hora."
+   ]
+  },
+  {
+   "id": "esqueleto_flechas",
+   "who": [
+    "skeleton",
+    "skeleton"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Minhas flechas acabam rápido.",
+    "Uma boa flecha precisa de pena e osso.",
+    "Cada flecha que erra é uma vergonha."
+   ],
+   "b": [
+    "Pega algumas do chão.",
+    "A pontaria vem com a prática.",
+    "Eu nunca erro duas vezes."
+   ],
+   "bg": [],
+   "c": [
+    "Mais uma tentativa.",
+    "Vou acertar da próxima."
+   ]
+  },
+  {
+   "id": "aranha_caverna",
+   "who": [
+    "spider",
+    "spider"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Sss... a caverna é melhor que a superfície.",
+    "Sss... gosto do escuro e das paredes.",
+    "Sss... a teia é a minha casa."
+   ],
+   "b": [
+    "Sss... na sombra ninguém nos vê.",
+    "Sss... a luz do sol incomoda os olhos.",
+    "Sss... subir é mais fácil que andar."
+   ],
+   "bg": [],
+   "c": [
+    "Sss... a noite é nossa.",
+    "Sss..."
+   ]
+  },
+  {
+   "id": "aranha_presa",
+   "who": [
+    "spider",
+    "spider"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Sss... o humano é muito barulhento.",
+    "Sss... hoje vou tecer uma teia grande.",
+    "Sss... o que se mexe vira jantar."
+   ],
+   "b": [
+    "Sss... paciência é tudo.",
+    "Sss... a teia faz o serviço sozinha.",
+    "Sss... espere ele chegar mais perto."
+   ],
+   "bg": [],
+   "c": [
+    "Sss... silêncio agora.",
+    "Sss... quase."
+   ]
+  },
+  {
+   "id": "creeper_gato",
+   "who": [
+    "creeper",
+    "creeper"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Ssss... gato por perto não dá.",
+    "Ssss... aquele miado me arrepia.",
+    "Ssss... gato é inimigo declarado."
+   ],
+   "b": [
+    "Ssss... eu corro assim que ouço.",
+    "Ssss... eles me olham e eu me esvazio.",
+    "Ssss... melhor evitar."
+   ],
+   "bg": [],
+   "c": [
+    "Ssss... fica longe deles.",
+    "Ssss..."
+   ]
+  },
+  {
+   "id": "creeper_silencio",
+   "who": [
+    "creeper",
+    "creeper"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Ssss... o segredo é chegar sem fazer barulho.",
+    "Ssss... paciência antes da explosão.",
+    "Ssss... eu sou só um sussurro."
+   ],
+   "b": [
+    "Ssss... a surpresa é metade da graça.",
+    "Ssss... quem escuta tarde, escuta demais.",
+    "Ssss... o chiado é o único aviso."
+   ],
+   "bg": [],
+   "c": [
+    "Ssss... silêncio.",
+    "Ssss..."
+   ]
+  },
+  {
+   "id": "enderman_bloco",
+   "who": [
+    "enderman",
+    "enderman"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Achei um bloco interessante hoje.",
+    "Gosto de levar os blocos que me agradam.",
+    "Cada bloco que carrego é um tesouro."
+   ],
+   "b": [
+    "Eu também guardo os meus em lugares escondidos.",
+    "Ninguém entende o valor de um bloco.",
+    "É só um capricho nosso."
+   ],
+   "bg": [],
+   "c": [
+    "Ninguém precisa saber.",
+    "Cada um com o seu tesouro."
+   ]
+  },
+  {
+   "id": "enderman_agua",
+   "who": [
+    "enderman",
+    "enderman"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A chuva é a minha pior inimiga.",
+    "A água me queima como fogo.",
+    "Eu fico longe de qualquer poça."
+   ],
+   "b": [
+    "Eu me teletransporto quando ela cai.",
+    "Água em excesso é um castigo.",
+    "Por isso eu prefiro lugares secos."
+   ],
+   "bg": [],
+   "c": [
+    "Que a chuva fique longe.",
+    "Eu sumo antes que me molhe."
+   ]
+  },
+  {
+   "id": "bruxa_cogumelo",
+   "who": [
+    "witch",
+    "witch"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O cogumelo de hoje deu uma poção ótima.",
+    "Pântano bom é o que tem cogumelo à vontade.",
+    "Cada ingrediente tem a sua hora."
+   ],
+   "b": [
+    "Meu caldeirão está sempre fervendo.",
+    "Eu misturo de tudo um pouco.",
+    "Poção ruim vira lição."
+   ],
+   "bg": [],
+   "c": [
+    "Hehe, a receita é segredo.",
+    "Já sei qual testar primeiro."
+   ]
+  },
+  {
+   "id": "bruxa_pocao2",
+   "who": [
+    "witch",
+    "witch"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Poção de lentidão ficou perfeita hoje.",
+    "Hehe, acertei a mistura certa.",
+    "Uma poção nova sempre me anima."
+   ],
+   "b": [
+    "Eu prefiro as venenosas.",
+    "A minha acerta de longe.",
+    "Quero ver o efeito nos humanos."
+   ],
+   "bg": [],
+   "c": [
+    "Hehe, a prática leva à perfeição.",
+    "Hehe, depois a gente compara."
+   ]
+  },
+  {
+   "id": "monstros_lua",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "A lua está cheia hoje.",
+    "Noite clara é noite de caça.",
+    "Quanto mais escuro, melhor."
+   ],
+   "b": [
+    "Os humanos dormem e a gente trabalha.",
+    "Hoje ninguém escapa.",
+    "A escuridão é nossa casa."
+   ],
+   "bg": [],
+   "c": [
+    "Que a noite seja longa.",
+    "Vamos começar."
+   ]
+  },
+  {
+   "id": "monstros_armadura",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "armor"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "O humano veste {armadura}. Vai dar trabalho.",
+    "Aquele humano está com {armadura}.",
+    "Olha só, o humano trouxe {armadura}."
+   ],
+   "b": [
+    "Todo metal cansa no fim.",
+    "Eu espero ele baixar a guarda.",
+    "A gente cansa ele primeiro."
+   ],
+   "bg": [],
+   "c": [
+    "Paciência vence qualquer armadura.",
+    "Cada brecha serve."
+   ]
+  },
+  {
+   "id": "monstros_item",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "holds"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "O humano carrega {item}. Cuidado.",
+    "Aquele humano tem {item} na mão.",
+    "O humano segura {item}."
+   ],
+   "b": [
+    "Se ele usar, vai doer.",
+    "Eu vou pela esquerda.",
+    "Ele ainda não nos viu."
+   ],
+   "bg": [],
+   "c": [
+    "Espera ele abaixar a guarda.",
+    "Agora não."
+   ]
+  },
+  {
+   "id": "monstros_ferido",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "hurt"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "O humano está ferido.",
+    "Cheiro de sangue por perto.",
+    "O humano mal consegue andar."
+   ],
+   "b": [
+    "É a nossa chance.",
+    "Ele não vai longe.",
+    "Eu fico por perto."
+   ],
+   "bg": [],
+   "c": [
+    "Sem pressa.",
+    "Deixa ele vir."
+   ]
+  },
+  {
+   "id": "jogador_nome_conta",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "n0",
+    "!n1"
+   ],
+   "weight": 4,
+   "player": true,
+   "a": [
+    "O nome desse humano é {nome}, ele me contou.",
+    "Sabe o nome daquele humano? É {nome}.",
+    "Aquele humano me disse que se chama {nome}."
+   ],
+   "b": [
+    "{Nome}? Não sabia, vou guardar.",
+    "Então é {nome}. Obrigado por contar.",
+    "Agora posso chamar pelo nome."
+   ],
+   "bg": [],
+   "c": [
+    "Quando ele voltar, eu chamo pelo nome.",
+    "Nome ajuda a lembrar de quem é."
+   ]
+  },
+  {
+   "id": "jogador_nome_ambos",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "n0",
+    "n1"
+   ],
+   "weight": 4,
+   "player": true,
+   "a": [
+    "{Nome} voltou! Que bom ver.",
+    "Olha quem está aí, {nome}.",
+    "{Nome} está por aqui hoje."
+   ],
+   "b": [
+    "É sempre bom ver {nome} por aqui.",
+    "Fico contente quando {nome} aparece.",
+    "Também gosto de ver {nome}."
+   ],
+   "bg": [],
+   "c": [
+    "Vou dar um oi.",
+    "Bom ter gente conhecida."
+   ]
+  },
+  {
+   "id": "gato",
+   "who": [
+    "cat",
+    "cat"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Dormi no sol a tarde toda.",
+    "Hoje eu quase não saí do lugar.",
+    "Sol quente e silêncio é tudo que eu peço."
+   ],
+   "b": [
+    "Sol é o melhor travesseiro.",
+    "Cochilo bom não precisa de mais nada.",
+    "Eu também prefiro ficar parado."
+   ],
+   "bg": [],
+   "c": [
+    "Miau, agora vou dormir de novo.",
+    "Ninguém me acorda hoje."
+   ]
+  },
+  {
+   "id": "golem_flor",
+   "who": [
+    "golem",
+    "villager"
+   ],
+   "need": [
+    "day"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Achei uma papoula perto do caminho e guardei.",
+    "Gosto de levar uma flor a quem trata bem os moradores."
+   ],
+   "b": [
+    "Flor combina com você, mesmo sendo de ferro.",
+    "Isso alegra a vila toda.",
+    "A vila gosta quando você faz isso."
+   ],
+   "bg": [],
+   "c": [
+    "É o meu jeito de agradecer.",
+    "Cuidar também é isso."
+   ]
+  },
+  {
+   "id": "bicho_filhotes_cuidado",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Os filhotes não param quietos.",
+    "Os pequenos vivem atrás da gente."
+   ],
+   "b": [
+    "Eu fico de olho para não se perderem.",
+    "Daqui a pouco já estão do nosso tamanho.",
+    "Os meus dormem em cima de mim."
+   ],
+   "bg": [],
+   "c": [
+    "Tomara que cresçam fortes.",
+    "Daqui a pouco eles se viram sozinhos."
+   ]
+  },
+  {
+   "id": "clerigo",
+   "who": [
+    "villager:cleric",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "As poções de hoje ficaram boas.",
+    "Tem muita coisa misturada no meu caldeirão.",
+    "Dizem que meu laboratório cheira estranho."
+   ],
+   "b": [
+    "Cheira mesmo, mas a gente se acostuma.",
+    "Se alguém adoecer, você dá um jeito.",
+    "Eu prefiro não provar nada daí."
+   ],
+   "bg": [],
+   "c": [
+    "Poção boa não precisa de cheiro bom.",
+    "No fim, sempre funciona."
+   ]
+  },
+  {
+   "id": "warden_sculk",
+   "who": [
+    "warden",
+    "warden"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O sculk sente tudo ao meu redor.",
+    "Cada passo faz o chão vibrar.",
+    "Eu escuto o coração dos intrusos."
+   ],
+   "b": [
+    "O silêncio é o meu aliado.",
+    "Quem corre faz mais barulho.",
+    "Eu não preciso de olhos."
+   ],
+   "bg": [],
+   "c": [
+    "O sculk nunca se engana.",
+    "Quieto, alguém se aproxima."
+   ]
+  },
+  {
+   "id": "curiosidade_quadrado",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Tudo aqui é quadrado, já reparou?",
+    "O sol nasce sempre do mesmo lado, já reparou?"
+   ],
+   "b": [
+    "Já reparei, e nunca entendi por quê.",
+    "Reparei, mas nunca perguntei a ninguém."
+   ],
+   "bg": [],
+   "c": [
+    "Quem sabe um dia alguém explica.",
+    "Deixa para lá, a vila é boa assim."
+   ]
+  },
+  {
+   "id": "cercado",
+   "who": [
+    "farm",
+    "farm"
+   ],
+   "need": [],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "O cercado está movimentado hoje.",
+    "Tem bastante gente aqui no cercado hoje."
+   ],
+   "b": [
+    "Gosto de ter companhia por perto.",
+    "Assim ninguém fica sozinho."
+   ],
+   "bg": [],
+   "c": [
+    "Aqui dentro a gente se sente em casa.",
+    "Que o dia seja calmo."
+   ]
+  },
+  {
    "id": "creeper_zumbi",
    "who": [
     "creeper",
@@ -2374,17 +3522,248 @@
    "weight": 3,
    "player": false,
    "a": [
-    "Ssss... não chegue perto de gato.",
-    "Ssss... hoje eu exploro."
+    "Ssss... gato me dá arrepio.",
+    "Ssss... odeio quando um gato aparece."
    ],
    "b": [
-    "Grrr... explode longe de mim.",
-    "Grrr... gato é bicho ruim."
+    "Grrr... gato assusta até quem não tem medo.",
+    "Grrr... eu mantenho distância."
    ],
    "bg": [],
    "c": [
-    "Ssss...",
-    "Ssss... silêncio."
+    "Ssss... é melhor ficar longe deles.",
+    "Ssss... assunto encerrado."
+   ]
+  },
+  {
+   "id": "creeper_zumbi_explode",
+   "who": [
+    "creeper",
+    "zombie"
+   ],
+   "need": [],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Ssss... hoje eu vou explodir alguma coisa.",
+    "Ssss... estou com vontade de explodir."
+   ],
+   "b": [
+    "Grrr... explode longe de mim.",
+    "Grrr... só não me leve junto."
+   ],
+   "bg": [],
+   "c": [
+    "Ssss... fico de longe, prometo.",
+    "Ssss... sem promessas."
+   ]
+  },
+  {
+   "id": "bicho_jogador_chuva",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "rain"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "O humano está na chuva.",
+    "Olha o humano debaixo da chuva."
+   ],
+   "b": [
+    "Ele deve estar todo molhado.",
+    "Eu prefiro um canto seco."
+   ],
+   "bg": [],
+   "c": [
+    "Eu fico aqui, abrigado.",
+    "Cada um com o seu jeito de passar a chuva."
+   ]
+  },
+  {
+   "id": "bicho_jogador_fome",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "hungry"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "O humano está com cara de fome.",
+    "O humano ficou olhando para a comida.",
+    "O humano deve estar faminto."
+   ],
+   "b": [
+    "Ele devia achar algo para comer.",
+    "Eu também fico de mau humor quando passo fome."
+   ],
+   "bg": [],
+   "c": [
+    "Tomara que ele ache comida logo.",
+    "Eu entendo bem essa fome."
+   ]
+  },
+  {
+   "id": "bicho_jogador_noite",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Tem alguém andando no escuro.",
+    "O humano caminha de noite.",
+    "Olha lá, o humano no escuro."
+   ],
+   "b": [
+    "Eu me encolho até ele passar.",
+    "Melhor ele passar longe de mim."
+   ],
+   "bg": [],
+   "c": [
+    "Tomara que passe sem nos incomodar.",
+    "Daqui a pouco o silêncio volta."
+   ]
+  },
+  {
+   "id": "curiosidade_enderman",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Dizem que enderman odeia água.",
+    "Já viu aqueles olhos roxos no escuro?",
+    "Tem uns bichos altos que levam blocos embora."
+   ],
+   "b": [
+    "Melhor não encarar, dizem que ficam bravos.",
+    "Eles somem num piscar de olhos.",
+    "Eu mantenho distância deles."
+   ],
+   "bg": [],
+   "c": [
+    "Deve ser uma vida estranha.",
+    "Melhor ficar longe deles."
+   ]
+  },
+  {
+   "id": "jogador_ameacou",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "f0:THREAT_SPOKEN"
+   ],
+   "weight": 4,
+   "player": true,
+   "a": [
+    "{Jogador} me ameaçou uma vez, só com palavras.",
+    "Eu me assustei com as palavras de {jogador} outro dia."
+   ],
+   "b": [
+    "Tem quem fale sem pensar.",
+    "Espero que tenha sido um mal-entendido.",
+    "Palavras assustam, eu entendo."
+   ],
+   "bg": [],
+   "c": [
+    "Vou dar uma chance a ele.",
+    "Vou ficar de olho, por via das dúvidas."
+   ]
+  },
+  {
+   "id": "jogador_apresenta",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "k0",
+    "!k1"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} ali já esteve comigo antes.",
+    "Aquele humano eu já conheço de outros dias."
+   ],
+   "b": [
+    "Eu ainda não o conhecia.",
+    "Para mim é a primeira vez."
+   ],
+   "bg": [],
+   "c": [
+    "Ele é tranquilo, pode confiar.",
+    "Quem sabe vocês se dão bem."
+   ]
+  },
+  {
+   "id": "jogador_conhecido",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "k0"
+   ],
+   "weight": 2,
+   "player": true,
+   "a": [
+    "Eu já conversei com {jogador}, sabia?",
+    "Já cruzei com {jogador} por aqui antes.",
+    "{Jogador} e eu já conversamos um pouco."
+   ],
+   "b": [
+    "E como foi?",
+    "Foi tranquilo?"
+   ],
+   "bg": [],
+   "c": [
+    "Foi tranquilo, achei simpático.",
+    "Dá para conversar numa boa."
+   ]
+  },
+  {
+   "id": "jogador_dono",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "f0:TAMED"
+   ],
+   "weight": 4,
+   "player": true,
+   "a": [
+    "Agora eu sou de {jogador}, e isso me faz bem.",
+    "{Jogador} cuida de mim agora, sabia?",
+    "{Jogador} é o meu dono agora."
+   ],
+   "b": [
+    "Ele te trata bem?",
+    "Está feliz assim?"
+   ],
+   "bg": [],
+   "c": [
+    "Ele me trata bem, estou feliz.",
+    "Estou feliz, sim, de verdade."
    ]
   }
  ]

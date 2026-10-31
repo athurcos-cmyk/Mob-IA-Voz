@@ -262,3 +262,99 @@ footer b { color: #fff; }
   .cloud, .star { animation: none; }
   .progress i, .toast { transition: none; }
 }
+
+
+/* =====================================================================================================
+   CELULAR E TABLET (mobile-first de verdade: alvos de toque >= 44px, uma coluna, tabelas viram cartoes)
+   ===================================================================================================== */
+h1, h2, h3, p, li, td, th, summary, figcaption { overflow-wrap: break-word; }
+.hotbar { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+footer { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+
+@media (max-width: 900px) {
+  .shots { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .feat-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  html { scroll-padding-top: 64px; }
+  body { font-size: 17px; line-height: 1.55; }
+  .band { padding: 48px 16px; }
+  .wrap { max-width: 100%; }
+  h2 { font-size: 1.02rem; line-height: 1.5; text-shadow: 3px 3px 0 var(--shadow); }
+  h3 { font-size: 1.05rem; }
+  .lead { font-size: 1.02rem; margin-bottom: 20px; }
+  .eyebrow { font-size: 0.6rem; line-height: 1.6; }
+
+  /* barra de topo: itens maiores para o dedo, rolagem horizontal suave */
+  .hotbar ul { padding: 6px 8px; gap: 5px; scroll-snap-type: x proximity; }
+  .hotbar a { min-height: 44px; padding: 6px 11px; font-size: 0.8rem; scroll-snap-align: center; }
+
+  /* topo */
+  .hero { padding: 96px 16px 128px; min-height: auto; }
+  .hero::after { height: 96px; }
+  .hero h1 { font-size: 1.25rem; line-height: 1.5; }
+  .hero p.sub { font-size: 1.02rem; padding: 12px 14px; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25); }
+  .star { display: none; }
+  .badges { gap: 8px; margin: 14px 0 16px; }
+  .badge { font-size: 0.74rem; padding: 4px 8px; }
+  .btns { flex-direction: column; gap: 10px; }
+  .btns .btn { width: 100%; justify-content: center; min-height: 50px; text-align: center; }
+  .hero .frame { transform: none; border-width: 4px; }
+  .sign { margin-top: -34px; padding: 14px 14px; gap: 12px; }
+  .sign img { width: 28px; height: 28px; }
+
+  /* paineis, galeria, cartoes */
+  .gui, .dark, .feat { padding: 16px 16px 18px; }
+  .shots, .feat-grid { grid-template-columns: 1fr; gap: 18px; }
+  .shot.wide { grid-column: auto; }
+  .shot figcaption { font-size: 0.93rem; }
+  .cols { grid-template-columns: 1fr; gap: 16px; }
+  .legend { font-size: 0.85rem; gap: 6px 8px; }
+  .chip { font-size: 0.7rem; }
+
+  /* fluxo "como funciona": um bloco por linha, sem as setas laterais */
+  .flow { flex-direction: column; gap: 8px; }
+  .flow .arrow { display: none; }
+  .flow .node { flex: 1 1 auto; }
+
+  /* instalacao */
+  .progress { height: 26px; }
+  .step { padding-top: 60px; padding-left: 0; }
+  .step::before { width: 48px; height: 48px; font-size: 0.9rem; }
+  .step .gui { padding: 14px 14px 16px; }
+  .step h3 { font-size: 1.02rem; }
+  .step label.did { min-height: 44px; }
+  .code pre { padding: 10px 12px; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .code .copy { position: static; display: block; width: 100%; margin-top: 6px; min-height: 44px; }
+  .btn.small { min-height: 44px; }
+  .versions th, .versions td { padding: 6px 8px; font-size: 0.92rem; }
+  .tabs { gap: 6px; }
+  .tab { flex: 1 1 auto; min-height: 44px; padding: 8px 10px; font-size: 0.88rem; text-align: center; }
+  .voice-btn { flex: 1 1 40%; justify-content: center; min-height: 44px; }
+
+  /* tabelas viram cartoes: cada linha um bloco, cada celula com o seu rotulo */
+  .tbl, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+  .tbl thead { display: none; }
+  .tbl tr { border: 3px solid #000; margin: 0 0 12px; background: rgba(0, 0, 0, 0.35); }
+  .tbl td { border: 0; border-bottom: 2px solid #000; padding: 8px 12px; white-space: normal !important; }
+  .tbl td:last-child { border-bottom: 0; }
+  .tbl td:first-child { background: #2b2b2b; font-size: 0.98rem; }
+  .tbl td[data-label]::before { content: attr(data-label); display: block; font-weight: 900; font-size: 0.74rem; color: var(--gold); letter-spacing: 0.02em; margin-bottom: 2px; }
+
+  /* perguntas frequentes */
+  summary { min-height: 48px; padding: 10px 14px; }
+  details > div { padding: 2px 14px 16px 14px; }
+
+  /* aviso de conquista e visualizador de imagem */
+  .toast { left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: none; }
+  .lightbox { padding: 8px; }
+  .lightbox img { border-width: 3px; }
+}
+
+@media (max-width: 380px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 1.1rem; }
+  h2 { font-size: 0.92rem; }
+  .btn { font-size: 0.95rem; padding: 10px 12px; }
+}

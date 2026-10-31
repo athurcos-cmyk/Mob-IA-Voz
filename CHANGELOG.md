@@ -45,3 +45,4 @@
 ### Limitações conhecidas
 
 Veja `STATUS.md` ("Limitações conhecidas").
+- **Ambiente +60% (2026-10-31)**: de 85 famílias / 695 falas únicas para 140 famílias / 1.112 (ofícios de aldeão, vila, hábitos dos bichos, monstros entre si); 28 famílias reescritas depois do juiz por família (`ai-service/tests/battery_families.py`, média 4,58, nenhuma abaixo de 3,8). Pares: 3,85 → 4,06. Conversa livre: bateria `livre_` (44 cenas). O tratamento genérico "Humano" agora aparece em ~1 de cada 3 falas (antes ~48%). "de o humano" vira "do humano".
