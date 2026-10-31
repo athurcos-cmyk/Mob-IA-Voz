@@ -13,23 +13,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
 
+<div class="topbar">
+  <a class="brand" href="#inicio">MobVoz <span>IA</span></a>
+  <span class="depth-mini" aria-hidden="true">Y <b data-y>64</b></span>
+  <a class="btn green small" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+</div>
+
 <nav class="hotbar" aria-label="Seções da página">
   <ul>
-    <li><a href="#inicio"><img class="pixel" src="assets/img/ui/icon-star.png" alt="">Início</a></li>
-    <li><a href="#acao"><img class="pixel" src="assets/img/ui/icon-eye.png" alt="">Em ação</a></li>
-    <li><a href="#funcoes"><img class="pixel" src="assets/img/ui/icon-bubble.png" alt="">O que faz</a></li>
-    <li><a href="#como"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt="">Como funciona</a></li>
-    <li><a href="#instalar"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt="">Instalar</a></li>
-    <li><a href="#comandos"><img class="pixel" src="assets/img/ui/icon-tag.png" alt="">Comandos</a></li>
-    <li><a href="#ia"><img class="pixel" src="assets/img/ui/icon-book.png" alt="">IA e voz</a></li>
-    <li><a href="#problemas"><img class="pixel" src="assets/img/ui/icon-shield.png" alt="">Problemas</a></li>
-    <li><a href="#estado"><img class="pixel" src="assets/img/ui/icon-lock.png" alt="">Estado</a></li>
+    <li class="pri"><a href="#inicio"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""><span>Início</span></a></li>
+    <li class="pri"><a href="#acao"><img class="pixel" src="assets/img/ui/icon-eye.png" alt=""><span>Em ação</span></a></li>
+    <li class="sec"><a href="#funcoes"><img class="pixel" src="assets/img/ui/icon-bubble.png" alt=""><span>O que faz</span></a></li>
+    <li class="sec"><a href="#como"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><span>Como funciona</span></a></li>
+    <li class="pri"><a href="#instalar"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><span>Instalar</span></a></li>
+    <li class="pri"><a href="#comandos"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><span>Comandos</span></a></li>
+    <li class="sec"><a href="#ia"><img class="pixel" src="assets/img/ui/icon-book.png" alt=""><span>IA e voz</span></a></li>
+    <li class="sec"><a href="#problemas"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><span>Problemas</span></a></li>
+    <li class="sec"><a href="#estado"><img class="pixel" src="assets/img/ui/icon-lock.png" alt=""><span>Estado</span></a></li>
+    <li class="more-li"><button type="button" id="more-btn" aria-haspopup="dialog" aria-controls="more-sheet"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><span>Mais</span></button></li>
   </ul>
 </nav>
+<div class="depth" aria-hidden="true"><div class="m"></div><div><small data-biome>SUPERFÍCIE</small><br>Y <b data-y>64</b></div></div>
+<div class="sheet" id="more-sheet" role="dialog" aria-label="Todas as seções" hidden><div class="sheet-card"><h3>Ir para</h3><div class="sheet-grid" id="sheet-grid"></div><button type="button" class="btn small" id="sheet-close">Fechar</button></div></div>
 
 <!-- ======================================================= INÍCIO -->
 <header class="hero" id="inicio">
@@ -48,13 +57,17 @@
         <span class="badge">Roda no seu PC</span>
       </div>
       <div class="btns">
-        <a class="btn green" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar o mod (Alpha 0.1)</a>
+        <a class="btn green big" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar o mod (Alpha 0.1)</a>
         <a class="btn" href="#instalar">Instalar passo a passo</a>
-        <a class="btn" href="#acao">Ver em ação</a>
+        <a class="btn ghost" href="#acao">Ver em ação</a>
       </div>
     </div>
     <div class="frame">
       <img src="assets/img/conversa-vaca.png" width="1280" height="720" alt="Jogador conversando com uma vaca: o texto digitado e a resposta da vaca aparecem no chat, com uma estrela amarela sobre ela.">
+      <div class="chat" id="chat" aria-hidden="true">
+        <p class="you"><img class="pixel" src="assets/img/ui/icon-mic.png" alt=""><span id="t-you">Oi, tudo bem?</span></p>
+        <p class="mob" id="t-mob-box" data-who="Vaca"><span id="t-mob">Muuu! O capim hoje está uma delícia.</span></p>
+      </div>
     </div>
   </div>
 </header>
@@ -67,12 +80,13 @@
 </div>
 
 <!-- ======================================================= EM AÇÃO -->
-<section class="band dirt" id="acao">
+<section class="band grass" id="acao" style="--veil:0.58" data-layer="Superfície">
   <div class="wrap">
     <p class="eyebrow">VEJA FUNCIONANDO</p>
     <h2>O mod <span class="tag">em ação</span></h2>
     <p class="lead">Estes prints saem de testes automáticos que rodam o jogo de verdade: um jogador digita (o mesmo caminho do modo chat) e as criaturas respondem com a IA, em voz e legenda. Na vida real você fala no microfone.</p>
 
+    <p class="shots-hint">&#8592; DESLIZE PARA VER MAIS &#8594;</p>
     <div class="shots">
       <figure class="shot wide"><button type="button" data-zoom><img src="assets/img/vila-aerea.png" width="1280" height="720" alt="Vista de cima de uma vila do Minecraft com casas, barracas e aldeões." loading="lazy"></button>
         <figcaption><b>Numa vila de verdade.</b> Cada aldeão e cada animal ali pode ser alvo de conversa, troca ou ordem.</figcaption></figure>
@@ -114,7 +128,7 @@
 </section>
 
 <!-- ======================================================= FUNÇÕES -->
-<section class="band stone" id="funcoes">
+<section class="band dirt" id="funcoes" data-layer="Subsolo">
   <div class="wrap">
     <p class="eyebrow">TUDO QUE O MOD FAZ</p>
     <h2>Mobs com <span class="tag">vida própria</span></h2>
@@ -190,7 +204,7 @@
 </section>
 
 <!-- ======================================================= COMO FUNCIONA -->
-<section class="band deep" id="como">
+<section class="band stone" id="como" data-layer="Pedra">
   <div class="wrap">
     <p class="eyebrow">POR DENTRO</p>
     <h2>Como <span class="tag">funciona</span></h2>
@@ -219,7 +233,7 @@
 </section>
 
 <!-- ======================================================= INSTALAR -->
-<section class="band grass" id="instalar" style="--veil:0.62">
+<section class="band planks" id="instalar" style="--veil:0.66" data-layer="Bancada">
   <div class="wrap">
     <p class="eyebrow">DO ZERO, NUM PC LIMPO</p>
     <h2>Instalação <span class="tag">passo a passo</span></h2>
@@ -367,7 +381,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 </section>
 
 <!-- ======================================================= COMANDOS -->
-<section class="band planks" id="comandos">
+<section class="band stone" id="comandos" data-layer="Pedra">
   <div class="wrap">
     <p class="eyebrow">DENTRO DO MINECRAFT</p>
     <h2>Comandos e <span class="tag">controles</span></h2>
@@ -462,7 +476,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 </section>
 
 <!-- ======================================================= PROBLEMAS -->
-<section class="band stone" id="problemas">
+<section class="band deep" id="problemas" data-layer="Deepslate">
   <div class="wrap">
     <p class="eyebrow">SE ALGO DER ERRADO</p>
     <h2>Solução de <span class="tag">problemas</span></h2>
@@ -479,7 +493,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 </section>
 
 <!-- ======================================================= ESTADO -->
-<section class="band dirt" id="estado">
+<section class="band deep" id="estado" data-layer="Deepslate">
   <div class="wrap">
     <p class="eyebrow">SEM ENROLAÇÃO</p>
     <h2>Estado do projeto: <span class="tag">Alpha 0.1</span></h2>
@@ -511,8 +525,9 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
   </div>
 </section>
 
-<footer id="creditos">
+<footer id="creditos" data-layer="Bedrock">
   <div class="wrap">
+    <p class="bedrock">Y -59 · Bedrock. Você chegou ao fundo da página.</p>
     <p><b>MobVoz IA</b> — Alpha 0.1 · Código aberto em <a href="https://github.com/athurcos-cmyk/Mob-IA-Voz" target="_blank" rel="noopener">github.com/athurcos-cmyk/Mob-IA-Voz</a>. Código próprio sob licença MIT.</p>
     <p><b>Feito com:</b> Fabric e Fabric API (Apache-2.0) · Simple Voice Chat (necessário; baixado do site dele) · Whisper via faster-whisper (MIT) · Kokoro-82M (pesos Apache-2.0) e Piper (vozes CC0) para a voz · Ollama (MIT) e Qwen3 (Apache-2.0) para a IA local · DeepSeek, se você usar a API. O Piper e o espeak-ng que o Kokoro usa são GPL-3.0: ficam só no seu PC, num processo separado, e não vão dentro do mod.</p>
     <p>As texturas e ícones desta página são arte própria. <b>Este é um projeto de fã e não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</b> “Minecraft” é marca da Mojang Studios.</p>
@@ -522,6 +537,6 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagem ampliada"><img alt=""></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><div><b>CONQUISTA DESBLOQUEADA</b><span id="toast-txt"></span></div></div>
 
-<script src="assets/js/app.js?v=3" defer></script>
+<script src="assets/js/app.js?v=4" defer></script>
 </body>
 </html>

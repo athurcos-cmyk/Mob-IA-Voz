@@ -133,4 +133,141 @@
     lb.addEventListener("click", () => lb.classList.remove("open"));
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") lb.classList.remove("open"); });
   }
+
+  /* ================= v4 ================= */
+  const small = window.matchMedia("(max-width: 700px)");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ---- camada de cada secao no cabecalho dela ---- */
+  $$("section[data-layer]").forEach((sec) => {
+    const eb = $(".eyebrow", sec);
+    if (eb) eb.dataset.layerLabel = sec.dataset.layer;
+  });
+
+  /* ---- medidor de profundidade: Y 64 no ceu ate Y -59 no bedrock ---- */
+  const yEls = $$("[data-y]");
+  const biomeEl = $("[data-biome]");
+  const meter = $(".depth .m");
+  const hero = $("#inicio");
+  const layers = $$("section[data-layer]");
+  let tick = false;
+  function depth() {
+    tick = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    const y = Math.round(64 - p * 123);
+    yEls.forEach((e) => { e.textContent = y; });
+    if (meter) meter.style.setProperty("--p", (p * 100).toFixed(1) + "%");
+    if (biomeEl) {
+      const mid = window.scrollY + window.innerHeight * 0.5;
+      let name = hero && mid < hero.offsetTop + hero.offsetHeight ? "CÉU" : "SUPERFÍCIE";
+      layers.forEach((s) => { if (mid >= s.offsetTop) name = s.dataset.layer; });
+      if (p > 0.985) name = "Bedrock";
+      biomeEl.textContent = name.toUpperCase();
+    }
+  }
+  window.addEventListener("scroll", () => { if (!tick) { tick = true; requestAnimationFrame(depth); } }, { passive: true });
+  window.addEventListener("resize", depth);
+  depth();
+
+  /* ---- "Mais": folha com todas as secoes (celular) ---- */
+  const sheet = $("#more-sheet");
+  const grid = $("#sheet-grid");
+  const moreBtn = $("#more-btn");
+  if (sheet && grid && moreBtn) {
+    $$(".hotbar li.sec a").forEach((a) => {
+      const c = a.cloneNode(true);
+      c.addEventListener("click", closeSheet);
+      grid.appendChild(c);
+    });
+    function openSheet() { sheet.hidden = false; moreBtn.setAttribute("aria-expanded", "true"); const f = $("a", grid); if (f) f.focus(); }
+    function closeSheet() { sheet.hidden = true; moreBtn.setAttribute("aria-expanded", "false"); moreBtn.focus(); }
+    moreBtn.addEventListener("click", openSheet);
+    $("#sheet-close").addEventListener("click", closeSheet);
+    sheet.addEventListener("click", (e) => { if (e.target === sheet) closeSheet(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+  }
+
+  /* ---- conversa de exemplo digitando no topo ---- */
+  const tYou = $("#t-you");
+  const tMob = $("#t-mob");
+  const tBox = $("#t-mob-box");
+  if (tYou && tMob && tBox && !reduced.matches) {
+    const demo = [
+      ["Oi, tudo bem?", "Vaca", "Muuu! O capim hoje está uma delícia."],
+      ["Quer trocar trigo?", "Aldeão", "Quero, três fenos por uma esmeralda."],
+      ["Tem alguém aí?", "Zumbi", "Humano... sinto cheiro de carne."],
+      ["Posso ir com você?", "Lobo", "Se me trouxer um osso, a gente conversa."],
+      ["Fala baixo.", "Warden", "Cada passo seu treme o chão."]
+    ];
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    async function type(el, text, speed) {
+      el.classList.add("typing");
+      el.textContent = "";
+      for (const ch of text) {
+        el.textContent += ch;
+        await wait(speed);
+        while (document.hidden) await wait(400);
+      }
+      el.classList.remove("typing");
+    }
+    (async function loop() {
+      let i = 0;
+      await wait(2600);
+      for (;;) {
+        const [you, who, mob] = demo[i % demo.length];
+        tBox.classList.add("idle");
+        await type(tYou, you, 55);
+        await wait(450);
+        tBox.dataset.who = who;
+        tBox.classList.remove("idle");
+        await type(tMob, mob, 32);
+        await wait(3200);
+        i++;
+      }
+    })();
+  }
+
+  /* ---- instalacao no celular: so o passo atual aberto ---- */
+  function nextOpen() {
+    const first = steps.find((s) => !s.classList.contains("done"));
+    steps.forEach((s) => s.classList.toggle("closed", s !== first));
+    return first;
+  }
+  function fold() {
+    steps.forEach((s) => {
+      const h = $(".gui > h3", s);
+      s.classList.toggle("fold", small.matches);
+      if (!h) return;
+      if (small.matches) { h.setAttribute("role", "button"); h.tabIndex = 0; }
+      else { h.removeAttribute("role"); h.removeAttribute("tabindex"); h.removeAttribute("aria-expanded"); }
+    });
+    if (small.matches) { nextOpen(); syncAria(); } else steps.forEach((s) => s.classList.remove("closed"));
+  }
+  function syncAria() {
+    steps.forEach((s) => { const h = $(".gui > h3", s); if (h) h.setAttribute("aria-expanded", String(!s.classList.contains("closed"))); });
+  }
+  steps.forEach((s) => {
+    const h = $(".gui > h3", s);
+    const cb = $("input[type=checkbox]", s);
+    if (h) {
+      const toggle = () => { if (!small.matches) return; s.classList.toggle("closed"); syncAria(); };
+      h.addEventListener("click", toggle);
+      h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    }
+    if (cb) cb.addEventListener("change", () => {
+      if (!small.matches || !cb.checked) return;
+      const nxt = nextOpen();
+      syncAria();
+      if (nxt) nxt.scrollIntoView({ behavior: reduced.matches ? "auto" : "smooth", block: "start" });
+    });
+  });
+  small.addEventListener("change", fold);
+  fold();
+
+  /* ---- funcoes no celular: toque no cartao para ler tudo ---- */
+  $$(".feat").forEach((f) => f.addEventListener("click", (e) => {
+    if (!small.matches || e.target.closest("a")) return;
+    f.classList.toggle("open");
+  }));
 })();
