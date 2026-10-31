@@ -56,4 +56,5 @@ Este pacote contém a base Fabric da fase 0 em `mod-fabric/`. Ela inicia no clie
 - Declarações como "sou seu pai" ou "sou rei das esmeraldas" podem se tornar **crenças de personagens**, mas não fatos falsos do servidor. Mobs podem acreditar, desconfiar, fingir acreditar ou confrontar depois.
 - Vinculações como galinha chamar jogador de "pai", segui-lo, aguardar e respeitar ordem de não entrar em portal fazem parte dos requisitos, com teste de persistência.
 - Adicionamos `docs/12_LIBERDADE_CRENÇAS_ALIANCAS.md`, `docs/13_IDEIAS_DIFERENCIAIS.md`, `docs/14_COMO_USAR_O_PACOTE.md` e um exemplo `config/social_state.sample.json`.
+- **Estado real do projeto:** `STATUS.md` (fases, como retomar, limites), `CHANGELOG.md`, `INSTALL.md`. Documentos do que foi construído depois do roadmap: `docs/15_NEGOCIACAO_E_TROCAS.md`, `docs/16_CONSCIENCIA_E_REACOES.md`, `docs/17_INTERACOES_NATURAIS.md`, `docs/18_BATERIA_DE_CONVERSACAO.md` e `tools/gen/README.md` (geradores de dados).
 - **Leia `docs/14_COMO_USAR_O_PACOTE.md` primeiro** se não souber como usar os arquivos com Codex ou Claude.

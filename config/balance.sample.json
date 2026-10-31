@@ -17,7 +17,7 @@
   },
   "gameplay": {
     "economyMode": "survival_balanced",
-    "maxActiveFollowersPerPlayer": 2,
+    "maxActiveFollowersPerPlayer": 15,
     "bossContractsEnabled": false,
     "bossDestructionOnAlliance": false,
     "allowRewardSpawningOutsideApprovedRecipes": false,
@@ -38,13 +38,6 @@
   "access": {
     "localServiceOnly": true,
     "allowOtherPlayersVoiceProcessingByDefault": false
-  },
-  "rareRecipes": {
-    "wither_skeleton_gold_skull_v1": {
-      "enabledByDefault": false,
-      "requiresAdminOptIn": true,
-      "cooldownTicks": 72000
-    }
   },
   "social": {
     "allowPlayerLiesAndRoleplay": true,

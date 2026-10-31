@@ -3,6 +3,11 @@ mod-fabric/.gradle/
 mod-fabric/.gradle-user-home/
 mod-fabric/build/
 mod-fabric/run/
-mod-fabric/.idea/
-mod-fabric/.vscode/
-
+ai-service/.venv/
+ai-service/models/
+**/__pycache__/
+*.pyc
+.claude/
+site/.vercel/
+ai-service/models/
+*.log

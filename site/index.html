@@ -1,0 +1,525 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MobVoz IA — converse de verdade com os mobs do Minecraft</title>
+  <meta name="description" content="Mod Fabric para Minecraft Java 1.21.8: fale no microfone e os mobs respondem por voz, lembram de você, trocam itens, seguem ordens e conversam entre si. Alpha 0.1.">
+  <meta name="theme-color" content="#14161a">
+  <meta property="og:title" content="MobVoz IA — converse de verdade com os mobs do Minecraft">
+  <meta property="og:description" content="Fale no microfone e os mobs respondem por voz, lembram de você e agem. Mod Fabric 1.21.8 (Alpha).">
+  <meta property="og:image" content="assets/img/conversa-vaca.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="hotbar" aria-label="Seções da página">
+  <ul>
+    <li><a href="#inicio"><img class="pixel" src="assets/img/ui/icon-star.png" alt="">Início</a></li>
+    <li><a href="#acao"><img class="pixel" src="assets/img/ui/icon-eye.png" alt="">Em ação</a></li>
+    <li><a href="#funcoes"><img class="pixel" src="assets/img/ui/icon-bubble.png" alt="">O que faz</a></li>
+    <li><a href="#como"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt="">Como funciona</a></li>
+    <li><a href="#instalar"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt="">Instalar</a></li>
+    <li><a href="#comandos"><img class="pixel" src="assets/img/ui/icon-tag.png" alt="">Comandos</a></li>
+    <li><a href="#ia"><img class="pixel" src="assets/img/ui/icon-book.png" alt="">IA e voz</a></li>
+    <li><a href="#problemas"><img class="pixel" src="assets/img/ui/icon-shield.png" alt="">Problemas</a></li>
+    <li><a href="#estado"><img class="pixel" src="assets/img/ui/icon-lock.png" alt="">Estado</a></li>
+  </ul>
+</nav>
+
+<!-- ======================================================= INÍCIO -->
+<header class="hero" id="inicio">
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <img class="star s1 pixel" src="assets/img/ui/icon-star.png" alt="">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:#0b3d19">MOD PARA MINECRAFT JAVA 1.21.8 · FABRIC</p>
+      <h1>Fale com os <span>mobs</span>.<br>Eles respondem.</h1>
+      <p class="sub">Aponte para uma vaca, um aldeão ou até um Warden, fale no microfone e ouça a resposta, em português, vinda do próprio mob. Eles lembram de você, trocam itens, seguem ordens e conversam entre si.</p>
+      <div class="badges">
+        <span class="badge alpha">ALPHA 0.1</span>
+        <span class="badge">Minecraft 1.21.8</span>
+        <span class="badge">Fabric</span>
+        <span class="badge">Português do Brasil</span>
+        <span class="badge">Roda no seu PC</span>
+      </div>
+      <div class="btns">
+        <a class="btn green" href="#instalar">Instalar passo a passo</a>
+        <a class="btn" href="#acao">Ver em ação</a>
+      </div>
+    </div>
+    <div class="frame">
+      <img src="assets/img/conversa-vaca.png" width="1280" height="720" alt="Jogador conversando com uma vaca: o texto digitado e a resposta da vaca aparecem no chat, com uma estrela amarela sobre ela.">
+    </div>
+  </div>
+</header>
+
+<div style="padding:0 20px;background:#2b2018">
+  <div class="sign" role="note">
+    <img class="pixel" src="assets/img/ui/icon-bolt.png" alt="">
+    <div><strong>VERSÃO ALPHA 0.1.</strong> O mod está completo nas funções e passou em centenas de testes automáticos dentro do jogo, mas <b>ninguém jogou ainda com um microfone de verdade</b>. Espere arestas. A instalação é técnica: reserve cerca de meia hora e siga os passos abaixo.</div>
+  </div>
+</div>
+
+<!-- ======================================================= EM AÇÃO -->
+<section class="band dirt" id="acao">
+  <div class="wrap">
+    <p class="eyebrow">VEJA FUNCIONANDO</p>
+    <h2>O mod <span class="tag">em ação</span></h2>
+    <p class="lead">Estes prints saem de testes automáticos que rodam o jogo de verdade: um jogador digita (o mesmo caminho do modo chat) e as criaturas respondem com a IA, em voz e legenda. Na vida real você fala no microfone.</p>
+
+    <div class="shots">
+      <figure class="shot wide"><button type="button" data-zoom><img src="assets/img/vila-aerea.png" width="1280" height="720" alt="Vista de cima de uma vila do Minecraft com casas, barracas e aldeões." loading="lazy"></button>
+        <figcaption><b>Numa vila de verdade.</b> Cada aldeão e cada animal ali pode ser alvo de conversa, troca ou ordem.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/estrela-na-vaca.png" width="1280" height="720" alt="Uma estrela amarela sobre uma vaca num cercado." loading="lazy"></button>
+        <figcaption><b>1. Mire.</b> Uma estrela marca com quem você fala (até 6 blocos, uma criatura só).</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/conversa-vaca.png" width="1280" height="720" alt="A vaca responde no chat: o capim está fresco e o rebanho por perto." loading="lazy"></button>
+        <figcaption><b>2. Fale.</b> A vaca responde por voz, vinda dela, e a legenda aparece.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/vaca-aprende-nome.png" width="1280" height="720" alt="Jogador diz o nome Bia e a vaca responde que vai lembrar e pergunta se o trigo é para ela." loading="lazy"></button>
+        <figcaption><b>Ela aprende o seu nome.</b> Só ela: as outras continuam chamando você de “Humano”. E repara no trigo na sua mão.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/vacas-querem-trigo.png" width="1280" height="720" alt="Duas vacas conversando: o humano está com trigos, queria um pouco também." loading="lazy"></button>
+        <figcaption><b>Mundo vivo.</b> Duas vacas notam o trigo e querem um pouco. Conversa pronta, sem gastar IA.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/negociacao-aldeao.png" width="1280" height="720" alt="O aldeão fazendeiro explica quanto vale o trigo e o que precisa jogar no chão para trocar por uma esmeralda." loading="lazy"></button>
+        <figcaption><b>Negociação.</b> O aldeão diz quanto vale cada item e o que jogar no chão para fechar a troca.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/aldeoes-conversando.png" width="1280" height="720" alt="Dois aldeões conversando entre si sobre o trigo que o jogador segura." loading="lazy"></button>
+        <figcaption><b>Aldeões entre si.</b> Conversam sobre o que você carrega, sobre o tempo, a vila.</figcaption></figure>
+
+      <figure class="shot"><button type="button" data-zoom><img src="assets/img/warden-pacto.png" width="1280" height="720" alt="Um Warden aceita seguir o jogador: ele promete seguir, mas pede que o trigo não farfalhe." loading="lazy"></button>
+        <figcaption><b>Até chefes.</b> Um Warden de confiança máxima aceita o pacto (desligado por padrão no mundo).</figcaption></figure>
+    </div>
+
+    <div class="dark" style="margin-top:34px">
+      <h3>Ouça as vozes</h3>
+      <p>Cada criatura tem tom e velocidade próprios. Estes áudios foram gerados no próprio PC, com a voz <b>Kokoro</b>.</p>
+      <div class="voices">
+        <button class="btn small voice-btn" type="button" data-audio="assets/audio/final_vaca.wav" aria-pressed="false">▶ Vaca</button>
+        <button class="btn small voice-btn" type="button" data-audio="assets/audio/final_galinha.wav" aria-pressed="false">▶ Galinha</button>
+        <button class="btn small voice-btn" type="button" data-audio="assets/audio/final_zumbi.wav" aria-pressed="false">▶ Zumbi</button>
+        <button class="btn small voice-btn" type="button" data-audio="assets/audio/final_aldeao.wav" aria-pressed="false">▶ Aldeão</button>
+        <button class="btn small voice-btn" type="button" data-audio="assets/audio/final_porco.wav" aria-pressed="false">▶ Porco</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= FUNÇÕES -->
+<section class="band stone" id="funcoes">
+  <div class="wrap">
+    <p class="eyebrow">TUDO QUE O MOD FAZ</p>
+    <h2>Mobs com <span class="tag">vida própria</span></h2>
+    <p class="lead">Não é um chatbot colado no jogo: o que a criatura diz tem consequência de verdade, e o que ela decide fazer, ela faz.</p>
+    <p class="legend">
+      <span class="chip ok">testado em jogo</span> funciona nos testes automáticos dentro do Minecraft
+      <span class="chip warn">sem teste humano</span> ninguém jogou isso ainda
+      <span class="chip off">desligado por padrão</span> o dono do mundo liga
+    </p>
+
+    <div class="feat-grid">
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-mic.png" alt=""><h3>Fale de verdade</h3>
+        <p>Mire numa criatura (uma estrela marca com quem você fala) e fale. A sua fala vira texto no seu PC e a resposta sai por voz, vinda dela (Simple Voice Chat).</p>
+        <span class="chip ok">testado em jogo (voz sintética)</span><span class="chip warn">microfone real: sem teste</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-book.png" alt=""><h3>Memória de cada um</h3>
+        <p>Cada criatura lembra o que viveu com você: presentes, trocas, golpes, consolo. O que o servidor viu (fato) fica separado do que você só disse (alegação).</p>
+        <span class="chip ok">testado em jogo</span><span class="chip ok">sobrevive a salvar e sair</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><h3>Ordens reais</h3>
+        <p>“Me segue”, “fica aqui”, “não entra no portal”, “me defende”, “não explode perto de mim”. Elas obedecem de verdade, ou recusam se não confiam. Quem fica para trás se teletransporta com segurança. Até 15 aliados por padrão.</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><h3>Trocas e negociação</h3>
+        <p>Peça algo e jogue os itens no chão perto dela: ela diz o que aceita, devolve a sobra e entrega. Dá para barganhar e convencer com bons motivos. O preço varia com a confiança e o humor. São 130 receitas em 46 criaturas e profissões.</p>
+        <span class="chip ok">testado em jogo</span><span class="chip warn">números a ajustar jogando</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-bone.png" alt=""><h3>Domar conversando</h3>
+        <p>Cavalos, lobos, gatos e outros se deixam domar se confiarem em você, com dono de verdade: cavalo montável, lobo e gato seus.</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-heart.png" alt=""><h3>Confiança, medo e mentiras</h3>
+        <p>Você pode mentir (“eu sou seu pai!”) e a criatura decide se acredita, conforme a personalidade. Ameaçar assusta, consolar acalma, devolver algo sem ser pedido conta como honestidade e é lembrado.</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><h3>Reagem ao seu tom</h3>
+        <p>Ameace um porco e ele foge de verdade; um zumbi avança; o Warden, que é cego, nem se abala. 66 criaturas têm origem, sentidos e medos próprios (pesquisados no wiki).</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-skull.png" alt=""><h3>Chefes aliados</h3>
+        <p>Warden e Wither seguem, guardam e defendem; o Dragão do Fim faz trégua. Só pactuam com muita confiança, traem quem os fere e não destroem blocos enquanto estiverem sob contrato.</p>
+        <span class="chip ok">testado em jogo</span><span class="chip off">desligado por padrão</span><span class="chip warn">Dragão só no Overworld</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><h3>Mundo vivo</h3>
+        <p>Perto de você, aldeões falam com aldeões, vacas com vacas, zumbis com zumbis, sobre o tempo, a vila e sobre você. Cada tipo de mob só conversa com quem faz sentido (vaca nunca fala de “trocar”). Falas prontas: não gastam IA.</p>
+        <span class="chip ok">testado em jogo</span><span class="chip warn">frequência e assuntos: palpites</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-eye.png" alt=""><h3>Reparam no que você tem</h3>
+        <p>O que você segura e veste vira assunto: a vaca vê o trigo e pergunta se é para ela, aldeões comentam a sua armadura, cada mob quer o que combina com ele.</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><h3>Seu nome, criatura a criatura</h3>
+        <p>Até saber o seu nome, você é “Humano”. Quando você diz (ou responde a uma pergunta de nome), só aquela criatura aprende. As outras só ficam sabendo por fofoca entre elas.</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-bubble.png" alt=""><h3>Modo chat</h3>
+        <p>Sem microfone? Digite <code>/mobvoz chat sim</code> e escreva no chat com a criatura na mira. A resposta vem como legenda (e em voz).</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-feather.png" alt=""><h3>Sua IA, seu ritmo</h3>
+        <p>IA local gratuita (Ollama) ou a sua própria API (como a DeepSeek). Voz principal Kokoro (mais natural) ou Piper (modo leve, bem mais rápido para gerar).</p>
+        <span class="chip ok">testado em jogo</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-lock.png" alt=""><h3>Privacidade</h3>
+        <p>O áudio nunca sai do seu PC e não é gravado. Nada de jogador vai para arquivo de log. Só o texto vai à API, e só se você escolher usar uma. Sem seu consentimento (<code>/mobvoz voz sim</code>) o microfone não é usado.</p>
+        <span class="chip ok">por desenho</span></article>
+
+      <article class="feat"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><h3>Servidor (alpha)</h3>
+        <p>Consentimento por jogador, checado no servidor. Testado num servidor dedicado com 1 jogador conectado.</p>
+        <span class="chip ok">1 jogador testado</span><span class="chip warn">2+ jogadores: sem teste</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= COMO FUNCIONA -->
+<section class="band deep" id="como">
+  <div class="wrap">
+    <p class="eyebrow">POR DENTRO</p>
+    <h2>Como <span class="tag">funciona</span></h2>
+    <p class="lead">A regra de ouro: <b>a IA só sugere; quem decide e executa é o servidor do jogo</b>. Por isso uma criatura nunca “inventa” que te deu um item nem ganha poderes que não tem.</p>
+
+    <div class="flow" role="list" aria-label="Caminho de uma fala">
+      <div class="node" role="listitem"><b>1. VOCÊ FALA</b>O microfone do Simple Voice Chat capta; o consentimento é conferido.</div>
+      <span class="arrow">&gt;</span>
+      <div class="node" role="listitem"><b>2. TEXTO</b>O Whisper (no seu PC) transforma em texto. O áudio não sai daí.</div>
+      <span class="arrow">&gt;</span>
+      <div class="node" role="listitem"><b>3. ENTENDER</b>A IA lê a frase e propõe: ordens, oferta, afirmação, tom.</div>
+      <span class="arrow">&gt;</span>
+      <div class="node" role="listitem"><b>4. DECIDIR</b>O servidor do mod valida, aplica e salva (confiança, espécie, regras).</div>
+      <span class="arrow">&gt;</span>
+      <div class="node" role="listitem"><b>5. RESPONDER</b>A IA fala sobre o resultado REAL, nunca sobre o que foi recusado.</div>
+      <span class="arrow">&gt;</span>
+      <div class="node" role="listitem"><b>6. VOZ</b>Kokoro ou Piper geram a voz; ela sai do mob, com som espacial.</div>
+    </div>
+
+    <div class="cols">
+      <div class="dark"><h3>O que fica no seu PC</h3><p>O mod (jar) é minúsculo (cerca de 300 KB). O peso está num serviço de IA separado, o “sidecar”, que escuta só em <code>127.0.0.1</code>: reconhecimento de fala, voz e (se você quiser) o modelo de linguagem local.</p></div>
+      <div class="dark"><h3>Fato × alegação × crença</h3><p>O que o servidor viu é fato e não pode ser reescrito. O que você disse é só alegação: a criatura pode acreditar, duvidar ou rir, mas isso nunca vira fato.</p></div>
+      <div class="dark"><h3>Sem comando do modelo</h3><p>Nada de console, <code>/give</code> ou código vindo da IA. Ela devolve um JSON estrito; o servidor só executa o que está numa lista permitida e passa pelas regras de economia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= INSTALAR -->
+<section class="band grass" id="instalar" style="--veil:0.62">
+  <div class="wrap">
+    <p class="eyebrow">DO ZERO, NUM PC LIMPO</p>
+    <h2>Instalação <span class="tag">passo a passo</span></h2>
+    <p class="lead">Feito para um computador onde nada está instalado. Marque cada passo como feito (fica salvo no seu navegador). Cada passo diz o que você deve ver quando deu certo.</p>
+
+    <div class="gui" style="margin-bottom:26px">
+      <h3>Antes de começar</h3>
+      <ul>
+        <li><b>Sistema:</b> Windows 10 ou 11 (só foi testado no Windows).</li>
+        <li><b>Memória:</b> 16 GB de RAM é o recomendado. <b>Disco:</b> uns 6 GB livres (e mais 2,6 GB se for usar IA local).</li>
+        <li><b>Conta do Minecraft Java Edition</b> e internet para baixar os arquivos.</li>
+        <li><b>Microfone</b> (ou use o modo chat, que não precisa).</li>
+        <li><b>Escolha a IA:</b> a sua própria API (como DeepSeek; bem melhor e não pesa no PC) ou o modelo local grátis (Ollama; pesa mais e é menos esperto). Você decide no passo 8.</li>
+      </ul>
+      <table class="versions">
+        <thead><tr><th>O quê</th><th>Versão usada nos testes</th></tr></thead>
+        <tbody>
+          <tr><td>Minecraft Java</td><td>1.21.8</td></tr>
+          <tr><td>Fabric Loader</td><td>0.17.3 ou mais novo</td></tr>
+          <tr><td>Fabric API</td><td>0.136.1+1.21.8</td></tr>
+          <tr><td>Simple Voice Chat</td><td>2.6.27 (para Fabric 1.21.8)</td></tr>
+          <tr><td>MobVoz IA</td><td>0.1.0 (Alpha)</td></tr>
+          <tr><td>Python</td><td>3.10 ou mais novo (testado com 3.14)</td></tr>
+          <tr><td>Ollama (só se usar IA local)</td><td>modelo <code>qwen3:4b</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="progress" aria-label="Progresso da instalação"><i id="prog-bar"></i><span id="prog-txt">0 de 13 passos</span></div>
+
+    <ol class="steps" id="steps">
+      <li class="step" data-step="1"><div class="gui">
+        <h3>Minecraft Launcher e a versão 1.21.8</h3>
+        <p>Instale o launcher oficial em <a href="https://www.minecraft.net/download" target="_blank" rel="noopener">minecraft.net/download</a> e entre com a sua conta. Crie uma instalação da versão <b>1.21.8</b> (Instalações &gt; Nova instalação &gt; Versão 1.21.8), jogue uma vez até o menu e feche. Isso baixa os arquivos do jogo.</p>
+        <p class="expect">O jogo abre no menu principal da 1.21.8.</p>
+        <p class="note">O launcher já traz o Java 21 dentro dele. Você só precisaria instalar o Java à parte se o instalador do Fabric reclamar (aí use o Temurin 21 em <a href="https://adoptium.net/temurin/releases/?version=21" target="_blank" rel="noopener">adoptium.net</a>).</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="2"><div class="gui">
+        <h3>Instalar o Fabric</h3>
+        <p>Baixe o instalador (arquivo <code>.exe</code>) em <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net/use/installer</a>. Na aba <b>Client</b>, deixe <b>Minecraft version: 1.21.8</b>, o <b>Loader</b> mais novo, e clique <b>Install</b>.</p>
+        <p class="expect">“Fabric successfully installed”. No launcher aparece a instalação <code>fabric-loader-1.21.8</code>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="3"><div class="gui">
+        <h3>Uma pasta de jogo só para o MobVoz</h3>
+        <p>Assim você não mistura nada com o seu Minecraft normal. Crie a pasta <code>C:\MobVozJogo</code>. No launcher: Instalações &gt; <code>fabric-loader-1.21.8</code> &gt; Editar &gt; <b>Mais opções</b> &gt; <b>Diretório do jogo</b> = <code>C:\MobVozJogo</code> &gt; Salvar.</p>
+        <p class="expect">A instalação mostra o caminho <code>C:\MobVozJogo</code>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="4"><div class="gui">
+        <h3>Baixar o MobVoz</h3>
+        <p>Baixe o arquivo <code>MobVozIA-0.1.0.zip</code> em <a href="https://github.com/athurcos-cmyk/Mob-IA-Voz/releases" target="_blank" rel="noopener">github.com/athurcos-cmyk/Mob-IA-Voz/releases</a> e extraia em <code>C:\MobVozIA</code>.</p>
+        <p class="note">O repositório é <b>privado</b>: peça acesso ao autor e entre no GitHub antes de baixar.</p>
+        <p class="expect">Dentro de <code>C:\MobVozIA</code> existem as pastas <code>mod</code> (com <code>mobvoz-0.1.0.jar</code>), <code>ai-service</code> e <code>docs</code>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="5"><div class="gui">
+        <h3>Os três mods na pasta <code>mods</code></h3>
+        <p>Crie <code>C:\MobVozJogo\mods</code> e coloque lá <b>3 arquivos</b>:</p>
+        <ol>
+          <li><code>mobvoz-0.1.0.jar</code> (de <code>C:\MobVozIA\mod</code>);</li>
+          <li><b>Fabric API</b> para 1.21.8, versão <code>0.136.1+1.21.8</code>: <a href="https://modrinth.com/mod/fabric-api/versions?g=1.21.8" target="_blank" rel="noopener">modrinth.com/mod/fabric-api</a>;</li>
+          <li><b>Simple Voice Chat</b> para Fabric 1.21.8: <a href="https://modrinth.com/mod/simple-voice-chat/versions?g=1.21.8" target="_blank" rel="noopener">modrinth.com/mod/simple-voice-chat</a>.</li>
+        </ol>
+        <p class="note">O Simple Voice Chat tem licença que não deixa redistribuir o arquivo: por isso você baixa direto do site dele.</p>
+        <p class="expect">Na pasta <code>mods</code>: três arquivos <code>.jar</code>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="6"><div class="gui">
+        <h3>Instalar o Python</h3>
+        <p>Baixe em <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a>. Na primeira tela do instalador, <b>marque “Add python.exe to PATH”</b> e instale. Depois abra o <b>PowerShell</b> (menu Iniciar) e confira:</p>
+        <div class="code"><pre>python --version</pre><button class="btn small copy" type="button">Copiar</button></div>
+        <p class="expect">Algo como <code>Python 3.14.3</code> (qualquer 3.10 ou mais novo serve).</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="7"><div class="gui">
+        <h3>Instalar o serviço de IA (um comando)</h3>
+        <p>No PowerShell:</p>
+        <div class="code"><pre>cd C:\MobVozIA\ai-service
+powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</pre><button class="btn small copy" type="button">Copiar</button></div>
+        <p>Ele cria o ambiente, instala as bibliotecas e baixa as vozes e o modelo de reconhecimento de fala (uns 1,2 GB; leva alguns minutos). Para um PC fraco, rode com <code>-Leve</code> no fim (instala só a voz Piper).</p>
+        <p class="expect">As etapas passam em verde e termina com “Pronto!”.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="8"><div class="gui">
+        <h3>Escolher a IA que conversa</h3>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-tab="api">A) Minha API (recomendado)</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="local">B) Modelo local (Ollama)</button>
+        </div>
+        <div class="tabpanel active" data-panel="api">
+          <p><b>Melhor qualidade e não pesa no PC.</b> Crie uma chave de API na DeepSeek (<a href="https://platform.deepseek.com/" target="_blank" rel="noopener">platform.deepseek.com</a>, menu “API keys”; precisa de crédito na conta). Cada teste completo que fizemos com centenas de chamadas custou uma fração de dólar. A chave é sua: <b>nunca a compartilhe</b>. Depois:</p>
+          <div class="code"><pre>cd C:\MobVozIA\ai-service
+powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class="btn small copy" type="button">Copiar</button></div>
+          <p>Cole a chave quando pedir (o texto não aparece). Para ligar o serviço, dê dois cliques em <code>run-sidecar-api.bat</code>.</p>
+          <p class="note">Só o texto das conversas vai à API. A voz e o seu áudio ficam no PC. Outras APIs compatíveis com a da OpenAI também funcionam (variáveis <code>MOBVOZ_API_URL</code> e <code>MOBVOZ_API_MODEL</code>).</p>
+        </div>
+        <div class="tabpanel" data-panel="local">
+          <p><b>De graça e offline, mas mais pesado e menos esperto.</b> Instale o <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a> e baixe o modelo (cerca de 2,6 GB):</p>
+          <div class="code"><pre>ollama pull qwen3:4b</pre><button class="btn small copy" type="button">Copiar</button></div>
+          <p>Para ligar o serviço, dê dois cliques em <code>run-sidecar.bat</code>. Numa placa de vídeo pequena ou sem placa, a resposta demora mais (use <code>llama3.2</code> se quiser algo mais leve: variável <code>MOBVOZ_MODEL</code>).</p>
+          <p class="note">O modelo local erra mais o português e às vezes se contradiz. Para a melhor experiência, use a opção A.</p>
+        </div>
+        <p class="expect">Com o serviço ligado, abra <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">http://127.0.0.1:8765/health</a> no navegador: aparece <code>"status": "ok"</code> e <code>"tts": "kokoro"</code>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="9"><div class="gui">
+        <h3>Deixar o serviço ligado</h3>
+        <p>O <code>run-sidecar-api.bat</code> (ou <code>run-sidecar.bat</code>) abre uma janela preta: <b>deixe-a aberta</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
+        <p class="expect">A janela mostra “MobVoz sidecar em http://127.0.0.1:8765” e, depois de alguns segundos, “aquecimento concluído”.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="10"><div class="gui">
+        <h3>Abrir o jogo</h3>
+        <p>No launcher, escolha a instalação <code>fabric-loader-1.21.8</code> e clique Jogar. Crie um mundo <b>Criativo</b> para testar (assim você pode usar comandos e invocar mobs).</p>
+        <p class="expect">O mundo abre sem erro. No chat, ao digitar <code>/mobvoz</code>, o jogo sugere os comandos.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="11"><div class="gui">
+        <h3>Configurar o microfone</h3>
+        <p>Dentro do mundo, aperte <kbd>V</kbd> (Simple Voice Chat). Escolha o <b>microfone</b> e use <b>ativação por voz</b> (se deixar “aperte para falar”, o mod só ouve enquanto você segura a tecla). Faça o teste de microfone da própria tela.</p>
+        <p class="expect">A barra de volume do microfone mexe quando você fala.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="12"><div class="gui">
+        <h3>Dar o consentimento (uma vez)</h3>
+        <p>No chat do jogo:</p>
+        <div class="code"><pre>/mobvoz voz sim
+/mobvoz status</pre><button class="btn small copy" type="button">Copiar</button></div>
+        <p>Sem isso nada do seu microfone é usado. <code>/mobvoz status</code> mostra se o serviço de IA está ligado.</p>
+        <p class="expect">O status mostra o serviço de IA <b>online</b>.</p>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step" data-step="13"><div class="gui">
+        <h3>Primeira conversa</h3>
+        <p>Invoque uma vaca na sua frente e mire nela:</p>
+        <div class="code"><pre>/summon cow ~ ~ ~3</pre><button class="btn small copy" type="button">Copiar</button></div>
+        <p>Uma <b>estrela amarela</b> aparece sobre ela. Fale: <i>“Oi, vaca! Tudo bem por aqui?”</i> e espere a resposta (voz + legenda). Sem microfone? Digite <code>/mobvoz chat sim</code> e escreva no chat.</p>
+        <p class="expect">A vaca responde em voz alta e a legenda aparece no chat, em amarelo.</p>
+        <label class="did"><input type="checkbox"> Funcionou! 🎉</label></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= COMANDOS -->
+<section class="band planks" id="comandos">
+  <div class="wrap">
+    <p class="eyebrow">DENTRO DO MINECRAFT</p>
+    <h2>Comandos e <span class="tag">controles</span></h2>
+
+    <div class="cols two">
+      <div class="dark"><h3>Comandos</h3>
+        <table class="tbl">
+          <tbody>
+            <tr><td><code>/mobvoz voz sim</code></td><td>Dá o consentimento para usar o microfone (<code>nao</code> desliga; <code>status</code> mostra).</td></tr>
+            <tr><td><code>/mobvoz chat sim</code></td><td>Modo chat: o que você escreve vai só para a criatura na mira (<code>nao</code> desliga).</td></tr>
+            <tr><td><code>/mobvoz falar &lt;texto&gt;</code></td><td>Manda uma mensagem à criatura na mira (qualquer modo).</td></tr>
+            <tr><td><code>/mobvoz legenda sim</code></td><td>Mostra legendas também para quem usa voz.</td></tr>
+            <tr><td><code>/mobvoz status</code></td><td>Estado do serviço de IA e tempos de resposta.</td></tr>
+            <tr><td><code>/mobvoz diag falar &lt;texto&gt;</code></td><td>Testa a IA por texto (diagnóstico).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dark"><h3>Controles</h3>
+        <ul>
+          <li><b>Mirar:</b> olhe para uma criatura a até 6 blocos, sem nada no meio. A <b>estrela</b> mostra quem vai ouvir.</li>
+          <li><b>Falar:</b> com a ativação por voz ligada, é só falar. Uma criatura de cada vez.</li>
+          <li><b>Presente:</b> segure um item e use <kbd>SHIFT</kbd> + botão direito na criatura.</li>
+          <li><b>Trocar:</b> jogue os itens no chão, perto dela.</li>
+          <li><b>Voz do Simple Voice Chat:</b> <kbd>V</kbd> abre as configurações.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:34px">O que dizer</h3>
+    <p class="lead" style="margin-bottom:14px">Fale livre, como com uma pessoa. Alguns exemplos que funcionam:</p>
+    <div class="cols">
+      <div class="dark"><h3>Conversar</h3><ul class="say"><li>O que você mais gosta de fazer?</li><li>Meu nome é Bia.</li><li>Você consegue me ver? (pergunte ao Warden)</li><li>O que você acha dos lobos?</li></ul></div>
+      <div class="dark"><h3>Mandar</h3><ul class="say"><li>Me segue!</li><li>Fica aqui e não entra no portal.</li><li>Me ajuda contra esse zumbi!</li><li>Não preciso mais da sua ajuda, pode ir.</li><li>Não explode perto de mim, vamos fazer as pazes?</li></ul></div>
+      <div class="dark"><h3>Trocar</h3><ul class="say"><li>Quer trocar cenouras comigo?</li><li>Quanto custa? Faz mais barato, sou seu amigo!</li><li>Esse ferro serve para você forjar espadas.</li><li>Preciso de 3 cabeças e te dou 3 ferros e 1 picareta.</li></ul></div>
+      <div class="dark"><h3>Brincar e testar</h3><ul class="say"><li>Aceita ser meu cavalo? Prometo cuidar de você.</li><li>Eu sou seu pai! (ela pode acreditar ou duvidar)</li><li>Vou te transformar em comida! (um porco foge)</li><li>Calma, não vou te machucar. (consolo acalma)</li></ul></div>
+    </div>
+
+    <details style="margin-top:30px"><summary>Para quem hospeda o mundo: o arquivo <code>config/mobvoz/server.json</code></summary>
+      <div>
+        <table class="tbl">
+          <thead><tr><th>Chave</th><th>O que faz (padrão)</th></tr></thead>
+          <tbody>
+            <tr><td><code>preset</code></td><td><code>low</code> | <code>balanced</code> | <code>high</code>: mexe só na carga (o <code>low</code> desliga as conversas ambiente).</td></tr>
+            <tr><td><code>voiceEngine</code></td><td><code>auto</code> (padrão), <code>kokoro</code> ou <code>piper</code> (modo leve).</td></tr>
+            <tr><td><code>ambientChatter</code></td><td>Conversas entre criaturas (ligado). <code>ambientCooldownSeconds</code>: intervalo na mesma região (60).</td></tr>
+            <tr><td><code>maxActiveFollowersPerPlayer</code></td><td>Aliados por jogador (15; máximo 32).</td></tr>
+            <tr><td><code>bossContractsEnabled</code></td><td>Liga pactos com Warden, Wither e Dragão (<b>desligado</b>).</td></tr>
+            <tr><td><code>bossDestructionOnAlliance</code></td><td>Se <code>false</code> (padrão), chefe sob contrato não quebra blocos.</td></tr>
+            <tr><td><code>requireVoiceConsent</code></td><td>Exige <code>/mobvoz voz sim</code> (ligado).</td></tr>
+            <tr><td><code>dynamicPrices</code>, <code>naturalEvents</code></td><td>Preço variável nas trocas e falas espontâneas dos aliados (ligados).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ======================================================= IA E VOZ -->
+<section class="band deep" id="ia">
+  <div class="wrap">
+    <p class="eyebrow">ESCOLHA O SEU CAMINHO</p>
+    <h2>IA própria, modelo local e <span class="tag">modo leve</span></h2>
+    <p class="lead">O mod funciona com os dois. O que muda é a qualidade da conversa e o peso no seu PC.</p>
+
+    <table class="tbl">
+      <thead><tr><th></th><th>Sua própria API (ex.: DeepSeek)</th><th>Modelo local (Ollama)</th></tr></thead>
+      <tbody>
+        <tr><td>Qualidade da conversa</td><td>Muito melhor: português natural e fiel aos fatos.</td><td>Menor: erra português, às vezes se contradiz e inventa desculpas.</td></tr>
+        <tr><td>Custo</td><td>Muito barato, na sua conta: uma bateria inteira de testes nossa, com centenas de chamadas, custou uma fração de dólar.</td><td>Grátis.</td></tr>
+        <tr><td>Peso no PC</td><td>Quase nenhum.</td><td>Cerca de 2,6 GB de disco e 3,7 GB de placa de vídeo (testado numa GTX 1660 SUPER).</td></tr>
+        <tr><td>Internet</td><td>Precisa.</td><td>Não precisa (depois de baixar).</td></tr>
+        <tr><td>O que sai do PC</td><td>O texto das conversas. Nunca o áudio.</td><td>Nada.</td></tr>
+        <tr><td>Como ligar</td><td><code>configurar-api.ps1</code> e <code>run-sidecar-api.bat</code></td><td><code>run-sidecar.bat</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="cols" style="margin-top:26px">
+      <div class="dark"><h3>Voz: Kokoro ou Piper</h3>
+        <p><b>Kokoro</b> (padrão) é muito mais natural e nítido; leva cerca de 1,5 s para gerar uma fala no processador. <b>Piper</b> é o modo leve: ~0,25 s por fala. Escolha com <code>"voiceEngine"</code> no <code>server.json</code> ou com a variável <code>MOBVOZ_TTS=piper</code>. Se faltar o Kokoro, o serviço usa o Piper sozinho.</p></div>
+      <div class="dark"><h3>Para um PC fraco</h3>
+        <ul>
+          <li>Instale com <code>instalar-sidecar.ps1 -Leve</code>.</li>
+          <li>Use a API em vez do modelo local.</li>
+          <li><code>"preset": "low"</code> e <code>"ambientChatter": false</code> no <code>server.json</code>.</li>
+          <li>Reconhecimento de fala menor: <code>MOBVOZ_STT_MODEL=base</code> (ou <code>tiny</code>).</li>
+          <li>Se usar IA local: <code>MOBVOZ_MODEL=llama3.2</code>.</li>
+        </ul></div>
+      <div class="dark"><h3>Variáveis do serviço</h3>
+        <p><code>MOBVOZ_PROVIDER</code> (<code>ollama</code> ou <code>api</code>), <code>MOBVOZ_MODEL</code>, <code>MOBVOZ_TTS</code>, <code>MOBVOZ_STT_MODEL</code>, <code>MOBVOZ_STT_DEVICE</code>, <code>MOBVOZ_API_URL</code>, <code>MOBVOZ_API_MODEL</code>, <code>MOBVOZ_PORT</code>, <code>MOBVOZ_TOKEN</code>. A chave da API vem de <code>%USERPROFILE%\.mobvoz\api.json</code>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= PROBLEMAS -->
+<section class="band stone" id="problemas">
+  <div class="wrap">
+    <p class="eyebrow">SE ALGO DER ERRADO</p>
+    <h2>Solução de <span class="tag">problemas</span></h2>
+    <details><summary>O HUD mostra “Sem resposta (IA offline?)”</summary><div>O serviço de IA não está ligado. Dê dois cliques em <code>run-sidecar-api.bat</code> (ou <code>run-sidecar.bat</code>) e deixe a janela aberta. Confira em <code>/mobvoz status</code> e em <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>. O jogo continua normal sem ele.</div></details>
+    <details><summary>A estrela não aparece</summary><div>Chegue mais perto (até 6 blocos), sem bloco no caminho (até uma cerca atrapalha), e feche qualquer tela aberta. Só aparece em uma criatura de cada vez.</div></details>
+    <details><summary>Eu falo e nada acontece</summary><div>No Simple Voice Chat (<kbd>V</kbd>), use <b>ativação por voz</b> e confira o microfone. Digite <code>/mobvoz voz sim</code> uma vez. Se ainda assim nada, use o modo chat (<code>/mobvoz chat sim</code>) para ver se o problema é só o microfone.</div></details>
+    <details><summary>“Não entendi a fala”</summary><div>Fale mais perto do microfone e sem ruído. O reconhecimento padrão é o Whisper <code>small</code> (no processador). Se tiver um PC forte, <code>MOBVOZ_STT_MODEL=medium</code> acerta mais.</div></details>
+    <details><summary>A resposta demora muito</summary><div>A primeira fala leva 10 a 15 s (carrega modelos). Se continuar lenta: use a API em vez do modelo local, troque a voz para Piper (<code>voiceEngine: "piper"</code>) ou feche outros programas que usem a placa de vídeo.</div></details>
+    <details><summary>A criatura não obedece</summary><div>É de propósito: confiança, espécie e personalidade decidem. Converse mais, dê presentes (<kbd>SHIFT</kbd> + botão direito), seja gentil. Mobs hostis e chefes pedem muito mais confiança.</div></details>
+    <details><summary>O PowerShell diz que não pode executar scripts</summary><div>Rode sempre com <code>powershell -ExecutionPolicy Bypass -File .\nome-do-script.ps1</code>, como nos passos acima.</div></details>
+    <details><summary>O jogo fecha ao abrir ou não mostra <code>/mobvoz</code></summary><div>Confira se a pasta de jogo (<code>C:\MobVozJogo\mods</code>) tem os 3 arquivos e se você abriu a instalação <code>fabric-loader-1.21.8</code>. A versão do Fabric API precisa ser a da 1.21.8.</div></details>
+    <details><summary>Ainda não resolveu?</summary><div>Mande para o autor: o que você fez, o que apareceu e o arquivo <code>C:\MobVozJogo\logs\latest.log</code> (ele não guarda áudio nem o que você falou).</div></details>
+  </div>
+</section>
+
+<!-- ======================================================= ESTADO -->
+<section class="band dirt" id="estado">
+  <div class="wrap">
+    <p class="eyebrow">SEM ENROLAÇÃO</p>
+    <h2>Estado do projeto: <span class="tag">Alpha 0.1</span></h2>
+    <div class="cols">
+      <div class="dark"><h3>O que está verificado</h3>
+        <ul>
+          <li>Todas as fases do roadmap implementadas (só as missões de chefes ficaram de fora).</li>
+          <li>Mais de 110 testes de unidade e dezenas de testes automáticos dentro do Minecraft real (conversa por voz sintética, ordens, trocas, alianças, chefes, mundo vivo, salvar e carregar).</li>
+          <li>Bateria de conversação com a DeepSeek: 48 de 48 frases entendidas, nenhuma obedeceu injeção de comando, nenhuma contradisse o servidor.</li>
+          <li>Conversas ambiente: nota 3,98 de 5 de um juiz de IA exigente (monstros ~4,6; animais ainda são o ponto mais fraco).</li>
+        </ul></div>
+      <div class="dark"><h3>O que ninguém testou ainda</h3>
+        <ul>
+          <li><b>Microfone real e ouvido humano</b>: tudo foi validado com voz sintética no lugar do microfone.</li>
+          <li>Duas pessoas ao mesmo tempo no mesmo servidor.</li>
+          <li>O Dragão do Fim dentro do Fim; missões (quests) de chefes.</li>
+          <li>Se o ritmo das conversas ambiente, os preços e os limiares de confiança são bons: são palpites a ajustar jogando.</li>
+          <li>Linux e macOS (só Windows testado) e PCs mais fracos que uma GTX 1660 SUPER.</li>
+        </ul></div>
+      <div class="dark"><h3>Limites conhecidos</h3>
+        <ul>
+          <li>O modelo local é bem menos esperto que uma API.</li>
+          <li>A voz tem só 3 vozes em pt-BR; o tom de cada criatura é ajustado por cima.</li>
+          <li>A primeira resposta é lenta (carrega modelos); a voz Kokoro leva ~1,5 s por fala.</li>
+          <li>Ordens de movimento só valem para mobs que andam por “goals” (animais e monstros comuns): aldeões, voadores e aquáticos recusam com honestidade.</li>
+        </ul></div>
+    </div>
+    <p class="rule">Encontrou um bug ou uma resposta esquisita? É exatamente o que esta fase Alpha quer descobrir. Conte ao autor o que você disse, qual criatura era e o que aconteceu.</p>
+  </div>
+</section>
+
+<footer id="creditos">
+  <div class="wrap">
+    <p><b>MobVoz IA</b> — Alpha 0.1 · Código em <code>github.com/athurcos-cmyk/Mob-IA-Voz</code> (repositório privado por enquanto). Código próprio sob licença MIT.</p>
+    <p><b>Feito com:</b> Fabric e Fabric API (Apache-2.0) · Simple Voice Chat (necessário; baixado do site dele) · Whisper via faster-whisper (MIT) · Kokoro-82M (pesos Apache-2.0) e Piper (vozes CC0) para a voz · Ollama (MIT) e Qwen3 (Apache-2.0) para a IA local · DeepSeek, se você usar a API. O Piper e o espeak-ng que o Kokoro usa são GPL-3.0: ficam só no seu PC, num processo separado, e não vão dentro do mod.</p>
+    <p>As texturas e ícones desta página são arte própria. <b>Este é um projeto de fã e não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</b> “Minecraft” é marca da Mojang Studios.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Imagem ampliada"><img alt=""></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><div><b>CONQUISTA DESBLOQUEADA</b><span id="toast-txt"></span></div></div>
+
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

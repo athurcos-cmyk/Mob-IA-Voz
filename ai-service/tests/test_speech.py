@@ -1,0 +1,50 @@
+import unittest
+from pathlib import Path
+
+import numpy as np
+
+from app import config, speech
+
+
+class SpeechUnitTests(unittest.TestCase):
+    def test_downsample_ratio(self):
+        pcm = (np.zeros(4800, dtype="<i2")).tobytes()
+        self.assertEqual(len(speech.pcm48_to_16k(pcm)), 1600)
+
+    def test_resample_length(self):
+        out = speech.resample(np.arange(22050, dtype=np.float32), 22050, 48000)
+        self.assertEqual(len(out), 48000)
+
+
+class TtsEngineTests(unittest.TestCase):
+    def test_kokoro_voice_mapping_and_limited_pitch_shift(self):
+        self.assertEqual("pm_santa", speech.kokoro_voice("pt_BR-jeff-medium", 0.6)[0])
+        self.assertEqual("pf_dora", speech.kokoro_voice("pt_BR-faber-medium", 1.4)[0])
+        self.assertEqual("pm_alex", speech.kokoro_voice("pt_BR-cadu-medium", 0.95)[0])
+        self.assertEqual("pf_dora", speech.kokoro_voice("pt_BR-faber-medium", 0.95)[0])
+        for p in (0.5, 0.7, 1.0, 1.4, 1.6):
+            self.assertTrue(0.92 <= speech.kokoro_voice("pt_BR-jeff-medium", p)[1] <= 1.08)
+
+    def test_piper_is_the_light_mode_and_missing_kokoro_falls_back(self):
+        import tempfile
+        from app import config
+        old, was = config.MODELS_DIR, speech._warned
+        try:
+            config.MODELS_DIR = tempfile.mkdtemp()  # sem os modelos do Kokoro
+            self.assertEqual("piper", speech.active_engine("kokoro"))
+            self.assertEqual("piper", speech.active_engine())
+            self.assertEqual("piper", speech.active_engine("piper"))
+        finally:
+            config.MODELS_DIR, speech._warned = old, was
+
+    @unittest.skipUnless(speech.kokoro_available() and (Path(config.MODELS_DIR) / "pt_BR-faber-medium.onnx").exists(), "modelos nao instalados")
+    def test_pitch_changes_the_voice_not_the_duration(self):
+        text = "Tudo bem por aqui, o pasto est\u00e1 macio hoje e o vento ajuda a correr."
+        for engine in ("kokoro", "piper"):
+            low = len(speech.synthesize(text, "pt_BR-jeff-medium", 0.7, 1.0, engine))
+            high = len(speech.synthesize(text, "pt_BR-jeff-medium", 1.4, 1.0, engine))
+            self.assertLess(abs(low - high) / max(low, high), 0.2, engine)
+
+
+if __name__ == "__main__":
+    unittest.main()

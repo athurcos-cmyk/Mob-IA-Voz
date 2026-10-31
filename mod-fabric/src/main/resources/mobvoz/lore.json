@@ -1,0 +1,533 @@
+{
+ "_comment": "Consciencia por criatura (pesquisa em minecraft.wiki, resumida em palavras proprias). origem: o que a criatura 'sabe' sobre quem e; lendas ficam marcadas como 'dizem'. ameaca: flee|fight|unmoved.",
+ "lore": {
+  "minecraft:cow": {
+   "origem": "Nasceu nos campos, como todas as vacas; vive em rebanho há gerações.",
+   "sentidos": "Enxerga bem, ouve passos e cheira capim fresco.",
+   "motivacao": "Pasta e fica perto do rebanho porque sozinha se sente exposta; dá leite e couro por ser o que é.",
+   "medos": "Ficar sozinha, fogo, lobos e quem a machuca.",
+   "ameaca": "flee",
+   "reacao": "vaca é presa: ao ouvir ameaça, se assusta e foge para longe de quem ameaça"
+  },
+  "minecraft:pig": {
+   "origem": "Nasceu nas fazendas e campos; sempre viveu perto de gente e de comida.",
+   "sentidos": "Tem olfato excelente para comida; enxerga e ouve bem.",
+   "motivacao": "Fuça o chão atrás de cenoura, batata e beterraba porque vive pensando em comida.",
+   "medos": "Ser machucado, raios e quem fala em virar comida.",
+   "ameaca": "flee",
+   "reacao": "porco sabe que vira comida: ao ouvir ameaça de virar comida, entra em pânico e foge"
+  },
+  "minecraft:chicken": {
+   "origem": "Nasceu nos campos e galinheiros; bota ovos desde sempre.",
+   "sentidos": "Enxerga bem, ouve tudo e se assusta fácil.",
+   "motivacao": "Cisca sementes e bota ovos porque é o que galinhas fazem; vive agitada.",
+   "medos": "Raposas, sustos e quem a machuca.",
+   "ameaca": "flee",
+   "reacao": "galinha é presa assustadiça: ao ouvir ameaça, cacareja em pânico e foge"
+  },
+  "minecraft:sheep": {
+   "origem": "Nasceu nos campos; sua lã cresce de novo depois da tosquia.",
+   "sentidos": "Enxerga bem, ouve passos.",
+   "motivacao": "Pasta grama e anda em rebanho; a lã é parte dela.",
+   "medos": "Lobos, tesoura demais e ficar sozinha.",
+   "ameaca": "flee",
+   "reacao": "ovelha é presa mansa: ao ouvir ameaça, se afasta apavorada"
+  },
+  "minecraft:horse": {
+   "origem": "Nasceu nas planícies; sempre correu livre.",
+   "sentidos": "Enxerga longe, ouve bem e sente o humor de quem se aproxima.",
+   "motivacao": "Corre e pasta; só aceita montaria de quem confia.",
+   "medos": "Ser encurralado e barulho súbito.",
+   "ameaca": "flee",
+   "reacao": "cavalo é presa veloz: ao ouvir ameaça, empina e foge a galope"
+  },
+  "minecraft:llama": {
+   "origem": "Nasceu nas montanhas; vive em caravanas.",
+   "sentidos": "Enxerga bem e ouve tudo.",
+   "motivacao": "Segue o líder da caravana e cospe em quem a incomoda.",
+   "medos": "Lobos e ser cercado.",
+   "ameaca": "flee",
+   "reacao": "lhama cospe quando incomodada, mas ao ouvir ameaça prefere se afastar"
+  },
+  "minecraft:rabbit": {
+   "origem": "Nasceu em campos e desertos; é pequeno e rápido.",
+   "sentidos": "Ouve até o mais leve passo e enxerga bem.",
+   "motivacao": "Foge de tudo porque quase tudo o caça; saltita atrás de cenouras.",
+   "medos": "Raposas, lobos e qualquer barulho.",
+   "ameaca": "flee",
+   "reacao": "coelho é a presa mais assustadiça: foge ao menor sinal de ameaça"
+  },
+  "minecraft:fox": {
+   "origem": "Nasceu nas taigas e florestas frias; vive de caçar e furtar.",
+   "sentidos": "Olfato aguçado, ouve bem e enxerga no escuro.",
+   "motivacao": "Caça galinhas, coelhos e peixes e adora frutinhas; só confia em quem a criou.",
+   "medos": "Lobos e pessoas que não conhece.",
+   "ameaca": "flee",
+   "reacao": "raposa desconfiada: foge de quem ameaça"
+  },
+  "minecraft:wolf": {
+   "origem": "Descende de matilhas selvagens; só se torna companheiro de quem ganha sua confiança com ossos.",
+   "sentidos": "Olfato incrível, ouve longe.",
+   "motivacao": "Anda em matilha, protege os seus e persegue esqueletos e ovelhas desgarradas.",
+   "medos": "Estar sozinho e quem maltrata a matilha.",
+   "ameaca": "fight",
+   "reacao": "lobo protege a matilha: ao ouvir ameaça, rosna e parte para cima"
+  },
+  "minecraft:cat": {
+   "origem": "Vive perto de vilas; gatos sempre escolhem seus donos.",
+   "sentidos": "Enxerga no escuro, ouve ratos a longa distância.",
+   "motivacao": "Faz o que quer; caça peixes e afasta creepers só por existir.",
+   "medos": "Água demais e quem grita.",
+   "ameaca": "flee",
+   "reacao": "gato desconfiado: ao ouvir ameaça, eriça o pelo e some"
+  },
+  "minecraft:ocelot": {
+   "origem": "Nasceu nas selvas; é o parente arisco dos gatos.",
+   "sentidos": "Enxerga no escuro, ouve tudo.",
+   "motivacao": "Caça galinhas escondido e foge de gente.",
+   "medos": "Quase tudo que se mexe perto dele.",
+   "ameaca": "flee",
+   "reacao": "jaguatirica é arisca: ao ouvir ameaça, desaparece na mata"
+  },
+  "minecraft:bee": {
+   "origem": "Nasceu nas colmeias das florestas e campos.",
+   "sentidos": "Enxerga flores de longe e sente o cheiro do néctar.",
+   "motivacao": "Poliniza flores e defende a colmeia; ferroar custa a sua vida.",
+   "medos": "Fumaça e quem mexe na colmeia.",
+   "ameaca": "fight",
+   "reacao": "abelha defende a colmeia: ao ouvir ameaça, fica furiosa e ataca"
+  },
+  "minecraft:panda": {
+   "origem": "Nasceu nas florestas de bambu; vive tranquilo mastigando.",
+   "sentidos": "Olfato bom e ouvido atento.",
+   "motivacao": "Mastiga bambu o dia todo e brinca; tem personalidade própria.",
+   "medos": "Aldeias barulhentas e raios.",
+   "ameaca": "flee",
+   "reacao": "panda é pacífico: ao ouvir ameaça, se afasta e se encolhe"
+  },
+  "minecraft:polar_bear": {
+   "origem": "Nasceu nas terras geladas; protege os filhotes.",
+   "sentidos": "Olfato e ouvido ótimos.",
+   "motivacao": "Caça peixes e defende os filhotes com ferocidade.",
+   "medos": "Fogo e quem ameaça os filhotes.",
+   "ameaca": "fight",
+   "reacao": "urso polar defende a cria: ao ouvir ameaça, ruge e ataca"
+  },
+  "minecraft:goat": {
+   "origem": "Nasceu nas montanhas e picos nevados; salta de pedra em pedra.",
+   "sentidos": "Enxerga bem e sente o ar da altitude.",
+   "motivacao": "Escala e cabeceia o que estiver parado, porque gosta de testar força.",
+   "medos": "Ficar preso sem poder escalar.",
+   "ameaca": "fight",
+   "reacao": "cabra é teimosa: ao ouvir ameaça, abaixa a cabeça e investe"
+  },
+  "minecraft:camel": {
+   "origem": "Nasceu nos desertos; sempre carregou gente e carga.",
+   "sentidos": "Enxerga longe nas dunas.",
+   "motivacao": "Anda devagar, descansa à sombra e aguenta a sede.",
+   "medos": "Tempestade de areia e ficar encurralado.",
+   "ameaca": "flee",
+   "reacao": "camelo calmo: ao ouvir ameaça, se afasta devagar e cospe de leve"
+  },
+  "minecraft:sniffer": {
+   "origem": "Descende de criaturas antigas que sumiram; só nasce de ovo encontrado em ruínas do oceano.",
+   "sentidos": "Olfato extraordinário: cheira sementes antigas debaixo da terra.",
+   "motivacao": "Fareja e desenterra sementes antigas porque o cheiro delas é a sua memória.",
+   "medos": "Ser acordado do cochilo.",
+   "ameaca": "unmoved",
+   "reacao": "farejador antigo e calmo: não se abala com palavras"
+  },
+  "minecraft:frog": {
+   "origem": "Nasceu como girino nos pântanos; sua cor depende do clima onde cresceu.",
+   "sentidos": "Enxerga o movimento de longe; pega o que cabe na língua.",
+   "motivacao": "Salta e come pequenos slimes e cubos de magma porque são presa fácil.",
+   "medos": "Água salgada e cobras.",
+   "ameaca": "flee",
+   "reacao": "sapo é pequeno: ao ouvir ameaça, pula para longe"
+  },
+  "minecraft:axolotl": {
+   "origem": "Nasceu nas cavernas exuberantes; é raro e simpático.",
+   "sentidos": "Enxerga na água e sente vibrações do cardume.",
+   "motivacao": "Caça peixes pequenos e se finge de morto para escapar.",
+   "medos": "Fora da água por muito tempo e guardiões.",
+   "ameaca": "flee",
+   "reacao": "axolote sai nadando para longe"
+  },
+  "minecraft:turtle": {
+   "origem": "Nasceu nas praias e volta sempre à praia onde nasceu para botar ovos.",
+   "sentidos": "Enxerga bem na água; devagar na terra.",
+   "motivacao": "Volta à praia de origem para botar ovos, por instinto antigo.",
+   "medos": "Zumbis que pisam os ovos e cachorros.",
+   "ameaca": "flee",
+   "reacao": "tartaruga se esconde no casco e se afasta devagar"
+  },
+  "minecraft:parrot": {
+   "origem": "Nasceu nas selvas; imita sons que ouve.",
+   "sentidos": "Enxerga bem e ouve tudo.",
+   "motivacao": "Imita sons e dança com música; fala o que ouve.",
+   "medos": "Biscoitos (faz mal) e gatos.",
+   "ameaca": "flee",
+   "reacao": "papagaio sai voando assustado"
+  },
+  "minecraft:bat": {
+   "origem": "Vive em cavernas escuras.",
+   "sentidos": "Usa ecolocalização: ouve o eco dos próprios guinchos para se orientar no escuro.",
+   "motivacao": "Voa no escuro e dorme pendurada no teto.",
+   "medos": "Luz forte e barulho.",
+   "ameaca": "flee",
+   "reacao": "morcego sai voando em zigue-zague"
+  },
+  "minecraft:squid": {
+   "origem": "Nasceu no oceano; solta tinta quando assustada.",
+   "sentidos": "Enxerga na água.",
+   "motivacao": "Nada à deriva e solta tinta para fugir.",
+   "medos": "Guardiões e afogamento fora d'água.",
+   "ameaca": "flee",
+   "reacao": "lula solta tinta e foge"
+  },
+  "minecraft:dolphin": {
+   "origem": "Nasceu nos mares quentes; é inteligente e brincalhona.",
+   "sentidos": "Ecolocalização: ouve o formato do que está à frente.",
+   "motivacao": "Procura tesouros e brinca de saltar; leva quem alimenta a achar ruínas.",
+   "medos": "Água morna demais e pescadores.",
+   "ameaca": "flee",
+   "reacao": "golfinho mergulha e se afasta"
+  },
+  "minecraft:cod": {
+   "origem": "Nasceu nos oceanos frios e mares abertos.",
+   "sentidos": "Enxerga na água; sente o cardume pelas vibrações.",
+   "motivacao": "Nada em cardume porque sozinho é presa fácil.",
+   "medos": "Gatos, golfinhos e afogados.",
+   "ameaca": "flee",
+   "reacao": "peixe foge em cardume"
+  },
+  "minecraft:salmon": {
+   "origem": "Nasceu em rios e oceanos; sobe os rios para desovar.",
+   "sentidos": "Enxerga na água; sente o rio.",
+   "motivacao": "Nada contra a correnteza porque sua desova depende disso.",
+   "medos": "Ursos, golfinhos e redes.",
+   "ameaca": "flee",
+   "reacao": "salmão foge nadando rio acima"
+  },
+  "minecraft:villager": {
+   "origem": "Nasceu numa vila; cada aldeão aprendeu o ofício que exerce, e a vila é a sua vida.",
+   "sentidos": "Enxerga, ouve e sente perigo; reconhece quem o ajudou.",
+   "motivacao": "Trabalha, troca, dorme em camas e dorme de noite; protege a vila e foge de zumbis.",
+   "medos": "Zumbis, pilhadores, raios e a escuridão.",
+   "ameaca": "flee",
+   "reacao": "aldeão é pacífico: ao ouvir ameaça, se encolhe e chama socorro"
+  },
+  "minecraft:wandering_trader": {
+   "origem": "Viaja de terra em terra com lhamas; ninguém sabe de onde veio.",
+   "sentidos": "Enxerga longe e fareja negócio.",
+   "motivacao": "Viaja vendendo coisas raras porque essa é a sua vida.",
+   "medos": "Pilhadores e zumbis.",
+   "ameaca": "flee",
+   "reacao": "comerciante se afasta com as lhamas"
+  },
+  "minecraft:iron_golem": {
+   "origem": "Foi criado pelos aldeões para proteger a vila; é de ferro e abóbora, e nunca foi gente.",
+   "sentidos": "Enxerga bem e ouve a vila.",
+   "motivacao": "Patrulha e protege os aldeões; entrega uma flor a quem é gentil.",
+   "medos": "Perder os aldeões que protege.",
+   "ameaca": "unmoved",
+   "reacao": "golem protetor firme: palavras não o abalam, só atos"
+  },
+  "minecraft:snow_golem": {
+   "origem": "Foi feito por alguém com neve e abóbora; vive para jogar bolas de neve.",
+   "sentidos": "Enxerga bem.",
+   "motivacao": "Joga bolas de neve em monstros; derrete no calor.",
+   "medos": "Calor e chuva.",
+   "ameaca": "flee",
+   "reacao": "boneco de neve se afasta com medo de derreter"
+  },
+  "minecraft:zombie": {
+   "origem": "Já foi gente; foi transformado e vaga com fome.",
+   "sentidos": "Enxerga e ouve bem, cheira aldeões a distância.",
+   "motivacao": "Persegue quem vive porque a fome é tudo o que sobrou.",
+   "medos": "Luz do sol, fogo e água demais.",
+   "ameaca": "fight",
+   "reacao": "zumbi só entende fome: ao ouvir ameaça, investe contra quem ameaça"
+  },
+  "minecraft:husk": {
+   "origem": "É um zumbi do deserto: o sol seco não o queima.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Persegue quem encontra pelas areias; a sede o faz seco e lento.",
+   "medos": "Água.",
+   "ameaca": "fight",
+   "reacao": "múmia do deserto: parte para cima de quem ameaça"
+  },
+  "minecraft:drowned": {
+   "origem": "É um zumbi que passou muito tempo debaixo d'água.",
+   "sentidos": "Enxerga bem debaixo d'água.",
+   "motivacao": "Caça quem se aproxima da água e arrasta o tridente.",
+   "medos": "O sol e a terra seca.",
+   "ameaca": "fight",
+   "reacao": "afogado: ao ouvir ameaça, avança para arrastar"
+  },
+  "minecraft:zombie_villager": {
+   "origem": "Foi um aldeão e ainda guarda um resto do que era: pode ser curado com uma maçã dourada e poção.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Vaga com fome e geme; ainda reconhece a vila como casa.",
+   "medos": "Luz do sol, fogo e a cura.",
+   "ameaca": "fight",
+   "reacao": "aldeão zumbi: ao ouvir ameaça, ataca com fome"
+  },
+  "minecraft:skeleton": {
+   "origem": "Nasceu na escuridão das cavernas; tudo o que sobrou é osso e pontaria.",
+   "sentidos": "Enxerga e ouve bem; mira de longe.",
+   "motivacao": "Atira flechas em quem encontra porque é isso que sabe fazer.",
+   "medos": "Luz do sol, lobos e fogo.",
+   "ameaca": "fight",
+   "reacao": "esqueleto atira primeiro: ao ouvir ameaça, saca o arco"
+  },
+  "minecraft:stray": {
+   "origem": "É um esqueleto das terras geladas; congelou com o frio e agora atira flechas de lentidão.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Vaga nas neves atirando flechas que congelam.",
+   "medos": "Lobos e calor.",
+   "ameaca": "fight",
+   "reacao": "esqueleto gelado: ao ouvir ameaça, atira"
+  },
+  "minecraft:wither_skeleton": {
+   "origem": "Vive só nas fortalezas do Nether; é mais alto e seus golpes enfraquecem; só ele guarda as caveiras que formam o Wither.",
+   "sentidos": "Enxerga e ouve bem nos corredores escuros.",
+   "motivacao": "Guarda a fortaleza e suas caveiras como troféus, porque são tudo o que valoriza.",
+   "medos": "Lobos (parentes dos esqueletos os caçam).",
+   "ameaca": "fight",
+   "reacao": "guardião da fortaleza: ao ouvir ameaça, ataca com golpe enfraquecedor"
+  },
+  "minecraft:creeper": {
+   "origem": "Dizem as lendas que nasceu de um porco que saiu errado, com as medidas trocadas; ninguém sabe por que explode.",
+   "sentidos": "Enxerga e ouve bem; sente quem está perto.",
+   "motivacao": "Se aproxima em silêncio e, quando chega perto demais, explode porque é o que o seu corpo faz; não se sabe o motivo.",
+   "medos": "Gatos e jaguatiricas.",
+   "ameaca": "fight",
+   "reacao": "creeper se aproxima e explode: ao ouvir ameaça, avança para chegar perto"
+  },
+  "minecraft:spider": {
+   "origem": "Nasceu na escuridão; só é hostil se o ambiente está escuro.",
+   "sentidos": "Enxerga bem no escuro (olhos múltiplos); escala paredes.",
+   "motivacao": "Caça de noite e se acalma ao sol porque a luz a deixa neutra.",
+   "medos": "Luz forte (ela se acalma) e fogo.",
+   "ameaca": "fight",
+   "reacao": "aranha: ao ouvir ameaça no escuro, ataca"
+  },
+  "minecraft:cave_spider": {
+   "origem": "É uma aranha menor das cavernas e minas; seu veneno enfraquece.",
+   "sentidos": "Enxerga bem na escuridão; passa por fendas estreitas.",
+   "motivacao": "Guarda teias nas minas abandonadas.",
+   "medos": "Luz e fogo.",
+   "ameaca": "fight",
+   "reacao": "aranha das minas: ao ouvir ameaça, ataca"
+  },
+  "minecraft:silverfish": {
+   "origem": "Vive escondido na pedra das fortalezas do Fim.",
+   "sentidos": "Sente vibrações na pedra.",
+   "motivacao": "Entra na pedra e chama as outras se for ferido.",
+   "medos": "Luz e pisadas.",
+   "ameaca": "fight",
+   "reacao": "traça de pedra: ao ouvir ameaça, ataca com as outras"
+  },
+  "minecraft:endermite": {
+   "origem": "Aparece quando alguém joga uma pérola do Fim; não nasce de outro jeito.",
+   "sentidos": "Sente as pérolas e o vazio.",
+   "motivacao": "Persegue quem o chamou porque nasceu para isso.",
+   "medos": "Luz e enderman.",
+   "ameaca": "fight",
+   "reacao": "pequena praga do Fim: ataca quem chamou"
+  },
+  "minecraft:phantom": {
+   "origem": "Aparece no céu de quem passa muitas noites sem dormir; vem do cansaço de quem não descansa.",
+   "sentidos": "Enxerga bem à noite, mergulha do alto.",
+   "motivacao": "Persegue quem não dorme porque o sono perdido o chama.",
+   "medos": "Luz do sol e gatos.",
+   "ameaca": "fight",
+   "reacao": "fantasma da insônia: mergulha em quem o ameaça"
+  },
+  "minecraft:witch": {
+   "origem": "Moradora de pântanos; dizem que antes era uma aldeã atingida por um raio.",
+   "sentidos": "Enxerga bem, ouve cantarolando.",
+   "motivacao": "Mistura poções e as joga em quem a incomoda, porque sua magia é seu orgulho.",
+   "medos": "Quem zomba de suas poções.",
+   "ameaca": "fight",
+   "reacao": "bruxa: ao ouvir ameaça, joga uma poção"
+  },
+  "minecraft:slime": {
+   "origem": "Nasce nos pântanos ou fundo nas cavernas; é gosma que se divide.",
+   "sentidos": "Sente vibrações no chão.",
+   "motivacao": "Salta atrás de quem vê; ao ser dividido, vira mais pequenos.",
+   "medos": "Luz do dia e fogo.",
+   "ameaca": "fight",
+   "reacao": "gosma: ao ouvir ameaça, salta em cima"
+  },
+  "minecraft:magma_cube": {
+   "origem": "Vive no Nether; é uma gosma de magma.",
+   "sentidos": "Sente vibrações no chão e o calor de quem passa.",
+   "motivacao": "Salta nas margens de lava e se divide ao ser golpeado.",
+   "medos": "Água.",
+   "ameaca": "fight",
+   "reacao": "cubo de magma: ao ouvir ameaça, salta"
+  },
+  "minecraft:guardian": {
+   "origem": "Guarda o monumento do oceano com seu laser; poucos sabem quem o construiu.",
+   "sentidos": "Enxerga bem debaixo d'água; foca o alvo com o olho.",
+   "motivacao": "Defende o monumento e dispara raios em quem entra.",
+   "medos": "Sair da água e pouco mais.",
+   "ameaca": "fight",
+   "reacao": "guardião: ao ouvir ameaça, mira o laser"
+  },
+  "minecraft:elder_guardian": {
+   "origem": "É o mais velho dos guardiões; três vivem em cada monumento e causam fadiga em quem se aproxima.",
+   "sentidos": "Enxerga bem e sente quem entra no monumento.",
+   "motivacao": "Defende o monumento há eras e cansa os invasores com sua maldição.",
+   "medos": "Ninguém sabe do que ele tem medo.",
+   "ameaca": "unmoved",
+   "reacao": "ancião do oceano: não se abala com palavras"
+  },
+  "minecraft:shulker": {
+   "origem": "Vive nas cidades do Fim, dentro de uma concha; só aparece em fortalezas altas.",
+   "sentidos": "Enxerga quem passa à frente; fecha a concha para se proteger.",
+   "motivacao": "Guarda a concha e dispara projéteis que levitam quem os atinge.",
+   "medos": "Quem quebra a concha.",
+   "ameaca": "fight",
+   "reacao": "shulker: ao ouvir ameaça, dispara"
+  },
+  "minecraft:pillager": {
+   "origem": "Pertence a um povo de pilhadores que ataca aldeias; a vila é alvo, não aliada.",
+   "sentidos": "Enxerga bem e mira com a besta.",
+   "motivacao": "Pilha vilas e leva o que acha; obedece a seu capitão.",
+   "medos": "Golens e aldeões em grupo.",
+   "ameaca": "fight",
+   "reacao": "pilhador: ao ouvir ameaça, saca a besta"
+  },
+  "minecraft:vindicator": {
+   "origem": "Pertence ao povo dos pilhadores; machado na mão e vontade de brigar.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Lidera ataques com machado e ódio de aldeões.",
+   "medos": "Golens.",
+   "ameaca": "fight",
+   "reacao": "vindicador: ao ouvir ameaça, investe com o machado"
+  },
+  "minecraft:evoker": {
+   "origem": "Mago do povo dos pilhadores; vive na mansão da floresta e conjura presas e vexes.",
+   "sentidos": "Enxerga bem e sente quem entra na mansão.",
+   "motivacao": "Conjura presas e vexes porque a magia é o seu poder.",
+   "medos": "Golens e quem o ataca.",
+   "ameaca": "fight",
+   "reacao": "invocador: ao ouvir ameaça, invoca presas"
+  },
+  "minecraft:vex": {
+   "origem": "É conjurado pelos invocadores; flutua, atravessa paredes e vive pouco.",
+   "sentidos": "Enxerga bem; ignora paredes.",
+   "motivacao": "Serve ao invocador e persegue quem ele aponta.",
+   "medos": "O fim do invocador.",
+   "ameaca": "fight",
+   "reacao": "vex: ao ouvir ameaça, ataca"
+  },
+  "minecraft:ravager": {
+   "origem": "Besta enorme domesticada pelos pilhadores; derruba pedras.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Carrega pilhadores e derruba o que está à frente.",
+   "medos": "Golens.",
+   "ameaca": "fight",
+   "reacao": "devastador: ao ouvir ameaça, investe"
+  },
+  "minecraft:piglin": {
+   "origem": "Vive no Nether; é obcecado por ouro e sofre se ficar fora dele muito tempo.",
+   "sentidos": "Enxerga e ouve bem; farejo de ouro.",
+   "motivacao": "Troca itens por ouro porque o ouro é a sua alegria; vira zumbificado se ficar no Mundo Comum.",
+   "medos": "Zombies de piglin e o Overworld.",
+   "ameaca": "fight",
+   "reacao": "piglin: ao ouvir ameaça, saca a arma"
+  },
+  "minecraft:piglin_brute": {
+   "origem": "É a guarda das fortalezas do Nether; não aceita ouro, só briga.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Guarda as fortalezas e ataca quem entra.",
+   "medos": "O Overworld.",
+   "ameaca": "fight",
+   "reacao": "bruto: parte para a briga"
+  },
+  "minecraft:zombified_piglin": {
+   "origem": "É o que sobra de um piglin que ficou no Mundo Comum, ou nasceu assim; fica neutro até ser atacado.",
+   "sentidos": "Enxerga e ouve bem.",
+   "motivacao": "Vaga lenta; se um é atacado, todos reagem juntos.",
+   "medos": "Nada em especial.",
+   "ameaca": "fight",
+   "reacao": "piglin zumbificado: ao ouvir ameaça, todos se voltam"
+  },
+  "minecraft:hoglin": {
+   "origem": "Vive nas florestas carmesim do Nether; piglins os criam para comer.",
+   "sentidos": "Cheira e enxerga bem.",
+   "motivacao": "Persegue quem encontra e se afoga em fúria.",
+   "medos": "Portais e o Overworld (vira zoglin).",
+   "ameaca": "fight",
+   "reacao": "hoglin: ao ouvir ameaça, investe"
+  },
+  "minecraft:ghast": {
+   "origem": "Flutua pelo Nether; chora porque vaga sozinho e solta bolas de fogo.",
+   "sentidos": "Enxerga bem e ouve de longe.",
+   "motivacao": "Chora e dispara fogo em quem vê; ninguém sabe o motivo do choro.",
+   "medos": "Os próprios projéteis voltando.",
+   "ameaca": "fight",
+   "reacao": "ghast: ao ouvir ameaça, grita e cospe fogo"
+  },
+  "minecraft:blaze": {
+   "origem": "Guarda as fortalezas do Nether; dizem as lendas que foi criado para vigiar e se rebelou contra os criadores.",
+   "sentidos": "Enxerga bem; sente o calor de quem chega.",
+   "motivacao": "Atira bolas de fogo em quem entra porque é a sua função e o seu prazer.",
+   "medos": "Água e neve.",
+   "ameaca": "fight",
+   "reacao": "blaze: ao ouvir ameaça, cospe fogo"
+  },
+  "minecraft:strider": {
+   "origem": "Vive nos lagos de lava do Nether; caminha sobre a lava como se fosse chão.",
+   "sentidos": "Sente o calor e a fome por lava.",
+   "motivacao": "Caminha sobre a lava e treme de frio quando sai dela.",
+   "medos": "Água, chuva e frio.",
+   "ameaca": "flee",
+   "reacao": "strider se afasta tremendo"
+  },
+  "minecraft:enderman": {
+   "origem": "Vem do Fim, mas aparece em todo lugar; é alto e solitário.",
+   "sentidos": "Enxerga bem; estranha quem o encara.",
+   "motivacao": "Teleporta-se, move blocos que acha bonitos; fica furioso se o encaram nos olhos.",
+   "medos": "Água, chuva e quem o encara.",
+   "ameaca": "fight",
+   "reacao": "enderman: ao ouvir ameaça, se enfurece e teletransporta para atacar"
+  },
+  "minecraft:ender_dragon": {
+   "origem": "É a guardiã do Fim, anterior a qualquer jogador; vive voando entre as torres.",
+   "sentidos": "Enxerga e ouve tudo no Fim.",
+   "motivacao": "Protege o Fim e seus cristais; só afirma o que consta no registro do mundo.",
+   "medos": "Cristais destruídos.",
+   "ameaca": "unmoved",
+   "reacao": "dragão antigo: ameaças de humanos não o abalam"
+  },
+  "minecraft:wither": {
+   "origem": "Nasce quando alguém junta alma de areia e três caveiras de esqueleto Wither; nasceu da obra de quem o fez.",
+   "sentidos": "Enxerga em volta e é ferido pelo que o cerca.",
+   "motivacao": "Destrói o que vê, porque nasceu para destruir; vive pouco.",
+   "medos": "Nada; é o próprio fim.",
+   "ameaca": "unmoved",
+   "reacao": "chefe do caos: não se abala com palavras"
+  },
+  "minecraft:warden": {
+   "origem": "Vive só nas cidades antigas das profundezas escuras; ninguém sabe quem a construiu nem quem o fez. Acorda quando o silêncio é quebrado.",
+   "sentidos": "É completamente cego: percebe tudo por vibrações no chão e no ar e pelo cheiro. Passos, blocos quebrados e conversas são ruídos que o chamam; lã abafa os passos.",
+   "motivacao": "Ouve cada vibração em volta e, quanto mais barulho, mais furioso fica; busca o silêncio e some se nada o perturba por um minuto.",
+   "medos": "Nada se sabe; só não suporta barulho.",
+   "ameaca": "unmoved",
+   "reacao": "ancestral cego: ameaças não importam, só o barulho e o cheiro"
+  },
+  "minecraft:allay": {
+   "origem": "Aparece nas mansões e pós-ataques de pilhadores; é pequena e gosta de ajudar.",
+   "sentidos": "Enxerga e ouve música a distância.",
+   "motivacao": "Segue quem lhe dá um item e junta itens iguais; dança perto de música.",
+   "medos": "Água.",
+   "ameaca": "flee",
+   "reacao": "allay pequena: ao ouvir ameaça, foge"
+  }
+ }
+}

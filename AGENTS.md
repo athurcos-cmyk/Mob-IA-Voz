@@ -15,7 +15,7 @@ Leia `README.md` e os documentos em `docs/` antes de implementar. Esta raiz cont
 11. **Segurança:** sidecar e Ollama ligados somente a localhost no início, sem portas externas e sem credenciais reais em repositório. Multiplayer exige autenticação/limites de acesso e política de voz.
 12. **Licenças:** não copie código/assets de mods concorrentes ou o mod não publicado de criadores. Verifique licença de modelos de TTS/LLM antes de distribuir.
 13. **Compatibilidade:** isole os perfis; não mova arquivos para `.minecraft/mods` global sem autorização.
-14. **Qualidade:** mudanças pequenas, testes reproduzíveis, diagnóstico de falhas antes de novos recursos, commits locais sem publicar repositório remoto.
+14. **Qualidade:** mudanças pequenas, testes reproduzíveis, diagnóstico de falhas antes de novos recursos, commits locais. **Publicação:** só com autorização do dono; em 2026-10-31 ele autorizou o repositório PRIVADO `github.com/athurcos-cmyk/Mob-IA-Voz` (nunca publicar chaves, o jar do Simple Voice Chat, modelos nem o `.venv`).
 
 ## Relatório obrigatório após tarefa
 

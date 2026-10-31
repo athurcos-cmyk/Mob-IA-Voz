@@ -1,0 +1,144 @@
+"""STT (faster-whisper) e TTS: Kokoro (principal, mais natural) ou Piper (modo leve). Carregamento preguicoso; tudo local e na CPU.
+
+Formato de audio do jogo (Simple Voice Chat): PCM 16-bit little-endian, mono, 48 kHz.
+Audio de entrada nunca e gravado em disco nem logado.
+"""
+import logging
+import threading
+from pathlib import Path
+
+import numpy as np
+
+from . import config
+
+SVC_RATE = 48000
+WHISPER_RATE = 16000
+
+_lock = threading.Lock()
+_whisper = None
+_voices: dict = {}
+_kokoro = None
+_warned = False
+log = logging.getLogger("mobvoz.tts")
+
+KOKORO_FILES = ("kokoro-v1.0.int8.onnx", "voices-v1.0.bin")
+# tom natural de cada voz do Kokoro; o que sobra do tom do perfil vira um deslocamento leve (individualidade), sem estragar a voz
+KOKORO_CENTER = {"pm_santa": 0.7, "pm_alex": 0.95, "pf_dora": 1.2}
+
+
+def pcm48_to_16k(pcm: bytes) -> np.ndarray:
+    """int16 48 kHz -> float32 16 kHz com filtro anti-aliasing (polifasico)."""
+    from scipy.signal import resample_poly
+    a = np.frombuffer(pcm[: len(pcm) // 2 * 2], dtype="<i2").astype(np.float32) / 32768.0
+    return resample_poly(a, 1, 3).astype(np.float32)
+
+
+def transcribe(pcm48: bytes) -> dict:
+    global _whisper
+    with _lock:  # um modelo, uma transcricao por vez (CPU)
+        if _whisper is None:
+            from faster_whisper import WhisperModel
+            _whisper = WhisperModel(config.STT_MODEL, device=config.STT_DEVICE, compute_type=config.STT_COMPUTE)
+        audio = pcm48_to_16k(pcm48)
+        segments, info = _whisper.transcribe(audio, language="pt", beam_size=1, vad_filter=True,
+                                             condition_on_previous_text=False)
+        text = " ".join(s.text.strip() for s in segments).strip()
+    return {"text": text, "duration_s": round(len(audio) / WHISPER_RATE, 2), "language": info.language}
+
+
+def _voice(name: str):
+    if name not in _voices:
+        from piper import PiperVoice
+        path = Path(config.MODELS_DIR) / f"{name}.onnx"
+        if not path.exists():
+            raise FileNotFoundError(f"voz nao instalada: {name}")
+        _voices[name] = PiperVoice.load(path)
+    return _voices[name]
+
+
+def resample(a: np.ndarray, src: int, dst: int) -> np.ndarray:
+    if src == dst:
+        return a
+    from scipy.signal import resample_poly
+    from math import gcd
+    g = gcd(src, dst)
+    return resample_poly(a, dst // g, src // g)
+
+
+def kokoro_voice(piper_voice: str, pitch: float) -> tuple:
+    """Voz do Kokoro + deslocamento de tom (0,92 a 1,08) para o perfil: grave -> santa, agudo -> dora, o resto por homem/mulher da voz Piper."""
+    if pitch <= 0.8:
+        v = "pm_santa"
+    elif pitch >= 1.12:
+        v = "pf_dora"
+    else:
+        v = "pf_dora" if "faber" in piper_voice else "pm_alex"
+    return v, max(0.92, min(pitch / KOKORO_CENTER[v], 1.08))
+
+
+def kokoro_available() -> bool:
+    d = Path(config.MODELS_DIR)
+    if not all((d / f).exists() for f in KOKORO_FILES):
+        return False
+    try:
+        import kokoro_onnx  # noqa: F401
+    except ImportError:
+        return False
+    return True
+
+
+def active_engine(requested: str | None = None) -> str:
+    """'kokoro' ou 'piper'. Kokoro e o padrao; sem os modelos/pacote instalados, cai para o Piper (modo leve) e avisa uma vez."""
+    global _warned
+    want = (requested or config.TTS_ENGINE or "kokoro").lower()
+    if want == "piper":
+        return "piper"
+    if kokoro_available():
+        return "kokoro"
+    if not _warned:
+        _warned = True
+        log.warning("Kokoro indisponivel (rode baixar_kokoro.py e instale kokoro-onnx); usando o Piper")
+    return "piper"
+
+
+def _kokoro_model():
+    global _kokoro
+    if _kokoro is None:
+        from kokoro_onnx import Kokoro
+        d = Path(config.MODELS_DIR)
+        _kokoro = Kokoro(str(d / KOKORO_FILES[0]), str(d / KOKORO_FILES[1]))
+    return _kokoro
+
+
+def _to_pcm48(audio: np.ndarray, src_rate: int) -> bytes:
+    out = resample(audio, src_rate, SVC_RATE)
+    return np.clip(out, -32768, 32767).astype("<i2").tobytes()
+
+
+def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0, speed: float = 1.0, engine: str | None = None) -> bytes:
+    """Texto pt-BR -> PCM int16 mono 48 kHz. `voice`/`pitch`/`speed` vem do perfil (vozes Piper); o Kokoro as traduz."""
+    if active_engine(engine) == "kokoro":
+        try:
+            return _synthesize_kokoro(text, voice, pitch, speed)
+        except Exception as e:  # noqa: BLE001 - uma fala nunca fica muda por falha do motor principal
+            log.warning("Kokoro falhou (%s); esta fala usa o Piper", e)
+    return _synthesize_piper(text, voice, pitch, speed)
+
+
+def _synthesize_kokoro(text: str, voice: str, pitch: float, speed: float) -> bytes:
+    v, shift = kokoro_voice(voice, pitch)
+    with _lock:
+        samples, rate = _kokoro_model().create(text, voice=v, speed=max(0.7, min(speed, 1.3)) / shift, lang="pt-br")
+    # o deslocamento de tom reinterpreta a taxa (muda tom e duracao); a velocidade ja foi dividida por ele, entao a duracao final nao muda
+    return _to_pcm48(samples.astype(np.float32) * 32767.0, int(rate * shift))
+
+
+def _synthesize_piper(text: str, voice: str, pitch: float, speed: float) -> bytes:
+    from piper import SynthesisConfig
+    p = max(0.6, min(pitch, 1.6))
+    with _lock:
+        v = _voice(voice)
+        # reinterpretar a taxa muda tom e duracao juntos: o length_scale compensa, e a duracao passa a depender so de `speed`
+        chunks = list(v.synthesize(text, SynthesisConfig(length_scale=p / max(speed, 0.5))))
+    audio = np.concatenate([c.audio_int16_array for c in chunks]).astype(np.float32)
+    return _to_pcm48(audio, int(v.config.sample_rate * p))

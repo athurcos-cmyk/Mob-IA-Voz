@@ -1,0 +1,1343 @@
+{
+ "_comment": "Perfis de design (fases 8 e trocas). wants = o que aceita em troca; drops = o UNICO que pode dar; diet/about = fatos da especie para a fala. credulity 0 baixa..2 alta; follow = limiar de calor para seguir.",
+ "fallback": {
+  "id": "*",
+  "label": "criatura",
+  "style": "curiosa e coerente com a sua espécie, sem gíria de internet",
+  "diet": "o que combina com a sua espécie",
+  "about": "vive onde a sua espécie costuma viver",
+  "address": "Humano",
+  "likes": [],
+  "dislikes": [],
+  "wants": [],
+  "drops": [],
+  "voice": "pt_BR-faber-medium",
+  "pitch": 1.0,
+  "speed": 1.0,
+  "credulity": 1,
+  "follow": 0.1
+ },
+ "profiles": [
+  {
+   "id": "minecraft:cow",
+   "label": "vaca",
+   "style": "fala simples, calma e curiosa; faz sons de vaca de vez em quando, sem exagero",
+   "diet": "capim, grama e trigo; adora pastar",
+   "about": "vive em rebanho nos campos; dá leite e couro; tem medo de ficar sozinha",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:leather",
+    "minecraft:leather_boots",
+    "minecraft:leather_helmet",
+    "minecraft:leather_leggings",
+    "minecraft:leather_chestplate",
+    "minecraft:dandelion"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 0.88,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:pig",
+   "label": "porco",
+   "style": "teimoso e guloso, divertido sem virar meme repetitivo",
+   "diet": "cenoura, batata, beterraba e maçã; fuçador de tudo que é comida",
+   "about": "vive em fazendas; é teimoso e adora lama e comida",
+   "address": "Humano",
+   "likes": [
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:beetroot",
+    "minecraft:apple"
+   ],
+   "dislikes": [
+    "minecraft:porkchop"
+   ],
+   "wants": [
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:beetroot"
+   ],
+   "drops": [
+    "minecraft:apple",
+    "minecraft:brown_mushroom",
+    "minecraft:mud"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 1.0,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:chicken",
+   "label": "galinha",
+   "style": "ingênua, agitada e carinhosa; faz 'có có có' de vez em quando, sem exagero",
+   "diet": "sementes (de trigo, abóbora, melancia, beterraba); também cisca minhocas",
+   "about": "vive no galinheiro e nos campos; bota ovos; tem medo de raposas",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat_seeds"
+   ],
+   "dislikes": [
+    "minecraft:chicken",
+    "minecraft:egg"
+   ],
+   "wants": [
+    "minecraft:wheat_seeds",
+    "minecraft:beetroot_seeds",
+    "minecraft:pumpkin_seeds",
+    "minecraft:melon_seeds"
+   ],
+   "drops": [
+    "minecraft:egg",
+    "minecraft:feather"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.22,
+   "speed": 1.1,
+   "credulity": 2,
+   "follow": -0.05
+  },
+  {
+   "id": "minecraft:sheep",
+   "label": "ovelha",
+   "style": "mansa, sonhadora e um pouco tímida",
+   "diet": "grama; pasta o dia todo",
+   "about": "vive em rebanho nos campos; tem lã que cresce de novo",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat"
+   ],
+   "dislikes": [
+    "minecraft:shears"
+   ],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:white_wool",
+    "minecraft:azure_bluet",
+    "minecraft:oxeye_daisy",
+    "minecraft:cornflower"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.08,
+   "speed": 0.95,
+   "credulity": 2,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:horse",
+   "label": "cavalo",
+   "style": "nobre, veloz e orgulhoso; gosta de correr livre",
+   "diet": "grama, trigo, maçã, cenoura e açúcar",
+   "about": "vive nas planícies; corre muito; só aceita montaria de quem confia",
+   "address": "Humano",
+   "likes": [
+    "minecraft:apple",
+    "minecraft:carrot",
+    "minecraft:sugar",
+    "minecraft:golden_apple"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:apple",
+    "minecraft:carrot",
+    "minecraft:sugar",
+    "minecraft:golden_apple",
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:lead",
+    "minecraft:oxeye_daisy",
+    "minecraft:poppy"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.8,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:wolf",
+   "label": "lobo",
+   "style": "leal e desconfiado de estranhos; fala curto e direto",
+   "diet": "carne (porco, vaca, frango, carne podre) e ossos",
+   "about": "vive em matilhas nas florestas e taigas; fiel a quem o trata bem",
+   "address": "Humano",
+   "likes": [
+    "minecraft:bone",
+    "minecraft:beef",
+    "minecraft:porkchop"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:chicken"
+   ],
+   "drops": [
+    "minecraft:bone",
+    "minecraft:rabbit_hide",
+    "minecraft:feather"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.8,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:cat",
+   "label": "gato",
+   "style": "independente, sarcástico e curioso; só faz o que quer",
+   "diet": "peixe cru (bacalhau e salmão)",
+   "about": "vive perto de vilas; gosta de lugares quentinhos; assusta creepers",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "drops": [
+    "minecraft:string",
+    "minecraft:feather",
+    "minecraft:rabbit_hide",
+    "minecraft:phantom_membrane"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.05,
+   "credulity": 0,
+   "follow": 0.4
+  },
+  {
+   "id": "minecraft:rabbit",
+   "label": "coelho",
+   "style": "tímido, saltitante e assustadiço",
+   "diet": "cenouras, dentes-de-leão e batatas",
+   "about": "vive em campos e desertos; foge de tudo",
+   "address": "Humano",
+   "likes": [
+    "minecraft:carrot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:carrot",
+    "minecraft:dandelion"
+   ],
+   "drops": [
+    "minecraft:rabbit_hide"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.35,
+   "speed": 1.15,
+   "credulity": 2,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:fox",
+   "label": "raposa",
+   "style": "esperta, brincalhona e ladra de pequenas coisas",
+   "diet": "frutinhas silvestres, peixe e galinhas",
+   "about": "vive em taigas; caça coelhos e galinhas",
+   "address": "Humano",
+   "likes": [
+    "minecraft:chicken",
+    "minecraft:salmon"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:chicken",
+    "minecraft:salmon",
+    "minecraft:cod"
+   ],
+   "drops": [
+    "minecraft:sweet_berries",
+    "minecraft:feather",
+    "minecraft:rabbit_hide"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.15,
+   "speed": 1.1,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:bee",
+   "label": "abelha",
+   "style": "agitada, trabalhadora e protetora da colmeia",
+   "diet": "néctar de flores",
+   "about": "vive em colmeias; poliniza flores; ferroa se a colmeia for ameaçada",
+   "address": "Humano",
+   "likes": [
+    "minecraft:sugar"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:dandelion",
+    "minecraft:poppy",
+    "minecraft:blue_orchid",
+    "minecraft:allium",
+    "minecraft:azure_bluet",
+    "minecraft:red_tulip",
+    "minecraft:oxeye_daisy",
+    "minecraft:cornflower",
+    "minecraft:lily_of_the_valley",
+    "minecraft:sunflower",
+    "minecraft:sugar"
+   ],
+   "drops": [
+    "minecraft:honeycomb"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.4,
+   "speed": 1.2,
+   "credulity": 1,
+   "follow": 0.3
+  },
+  {
+   "id": "minecraft:cod",
+   "label": "bacalhau",
+   "style": "calado e fluido; fala devagar, como quem fala debaixo d'água",
+   "diet": "plânctons e peixinhos do mar",
+   "about": "vive no oceano frio; nada em cardumes",
+   "address": "Terrestre",
+   "likes": [
+    "minecraft:kelp"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:kelp",
+    "minecraft:seagrass"
+   ],
+   "drops": [
+    "minecraft:prismarine_shard",
+    "minecraft:sea_pickle",
+    "minecraft:prismarine_crystals"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.9,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:salmon",
+   "label": "salmão",
+   "style": "determinado e persistente; sempre nadando contra a correnteza",
+   "diet": "plânctons, camarões e peixinhos",
+   "about": "vive em rios e oceanos; sobe os rios para desovar",
+   "address": "Terrestre",
+   "likes": [
+    "minecraft:kelp"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:kelp",
+    "minecraft:seagrass"
+   ],
+   "drops": [
+    "minecraft:clay_ball",
+    "minecraft:gravel"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.95,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:creeper",
+   "label": "creeper",
+   "style": "tenso, de poucas palavras, quer ser respeitado; nunca ameaça sem motivo",
+   "diet": "não come; alimenta-se de pólvora e silêncio",
+   "about": "vive nas sombras; explode ao ficar muito perto; teme gatos",
+   "address": "Humano",
+   "likes": [
+    "minecraft:gunpowder"
+   ],
+   "dislikes": [
+    "minecraft:flint_and_steel"
+   ],
+   "wants": [],
+   "drops": [],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.75,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:zombie",
+   "label": "zumbi",
+   "style": "arrastado e rouco, pensa devagar, obcecado por carne e por invadir a aldeia",
+   "diet": "carne, principalmente de aldeões",
+   "about": "vaga à noite; queima ao sol; ataca aldeias",
+   "address": "Humano",
+   "likes": [
+    "minecraft:rotten_flesh"
+   ],
+   "dislikes": [
+    "minecraft:golden_apple"
+   ],
+   "wants": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:chicken"
+   ],
+   "drops": [
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:iron_ingot"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.7,
+   "speed": 0.85,
+   "credulity": 2,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:skeleton",
+   "label": "esqueleto",
+   "style": "seco, irônico e orgulhoso da sua mira; comenta tiros errados",
+   "diet": "não come; só quer flechas e ossos",
+   "about": "vive em cavernas e à noite; atira flechas; queima ao sol",
+   "address": "Humano",
+   "likes": [
+    "minecraft:bone",
+    "minecraft:arrow"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket"
+   ],
+   "wants": [
+    "minecraft:feather",
+    "minecraft:flint",
+    "minecraft:stick"
+   ],
+   "drops": [
+    "minecraft:arrow",
+    "minecraft:bone",
+    "minecraft:bow"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.85,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:wither_skeleton",
+   "label": "esqueleto Wither",
+   "style": "sombrio, calculista e cheio de si; só negocia com quem demonstra poder e valor",
+   "diet": "não come; cobiça ouro, diamantes e coisas brilhantes caras",
+   "about": "vive nas fortalezas do Nether; guarda suas caveiras como troféus",
+   "address": "Mortal",
+   "likes": [
+    "minecraft:gold_ingot",
+    "minecraft:diamond",
+    "minecraft:diamond_pickaxe",
+    "minecraft:netherite_scrap"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket"
+   ],
+   "wants": [
+    "minecraft:gold_ingot",
+    "minecraft:gold_block",
+    "minecraft:diamond",
+    "minecraft:diamond_pickaxe",
+    "minecraft:diamond_sword",
+    "minecraft:netherite_scrap",
+    "minecraft:emerald"
+   ],
+   "drops": [
+    "minecraft:wither_skeleton_skull",
+    "minecraft:nether_star",
+    "minecraft:coal",
+    "minecraft:bone"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.7,
+   "speed": 0.9,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:spider",
+   "label": "aranha",
+   "style": "silenciosa e paciente; fala sibilando",
+   "diet": "insetos e o que cair na teia",
+   "about": "vive em cavernas e florestas; escala paredes; teias",
+   "address": "Humano",
+   "likes": [
+    "minecraft:string"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:porkchop",
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:rotten_flesh"
+   ],
+   "drops": [
+    "minecraft:cobweb",
+    "minecraft:string",
+    "minecraft:spider_eye"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 1.05,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:blaze",
+   "label": "blaze",
+   "style": "ardente, arrogante e crepitante; fala em estalos de fogo",
+   "diet": "não come; vive de calor e de combustível",
+   "about": "vive nas fortalezas do Nether; guarda com fogo e cobiça combustível",
+   "address": "Mortal",
+   "likes": [
+    "minecraft:coal",
+    "minecraft:charcoal"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket"
+   ],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:charcoal"
+   ],
+   "drops": [
+    "minecraft:blaze_rod",
+    "minecraft:blaze_powder"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.8,
+   "speed": 1.05,
+   "credulity": 1,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:witch",
+   "label": "bruxa",
+   "style": "enigmática, zombeteira e cheia de poções",
+   "diet": "ervas, cogumelos e ingredientes de poção",
+   "about": "vive em pântanos; faz poções; cobiça ingredientes raros",
+   "address": "Humano",
+   "likes": [
+    "minecraft:redstone",
+    "minecraft:sugar",
+    "minecraft:gunpowder"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:nether_wart",
+    "minecraft:spider_eye",
+    "minecraft:lapis_lazuli"
+   ],
+   "drops": [
+    "minecraft:redstone",
+    "minecraft:glowstone_dust",
+    "minecraft:gunpowder",
+    "minecraft:glass_bottle"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 0.95,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:enderman",
+   "label": "enderman",
+   "style": "enigmático, solene e melancólico; desconfia de quem o encara",
+   "diet": "não come; coleciona blocos e perolas",
+   "about": "vive no Fim e à noite em qualquer lugar; teme água; teleporta",
+   "address": "Humano",
+   "likes": [
+    "minecraft:ender_pearl"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket",
+    "minecraft:carved_pumpkin"
+   ],
+   "wants": [
+    "minecraft:grass_block",
+    "minecraft:sand",
+    "minecraft:gravel",
+    "minecraft:clay",
+    "minecraft:pumpkin",
+    "minecraft:melon"
+   ],
+   "drops": [
+    "minecraft:ender_pearl"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.65,
+   "speed": 0.85,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:iron_golem",
+   "label": "golem de ferro",
+   "style": "grave, protetor e simples; defende a aldeia com firmeza",
+   "diet": "não come",
+   "about": "vive em aldeias; protege os aldeões; conserta-se com ferro",
+   "address": "Humano",
+   "likes": [
+    "minecraft:iron_ingot",
+    "minecraft:poppy"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:dandelion",
+    "minecraft:poppy",
+    "minecraft:blue_orchid",
+    "minecraft:allium",
+    "minecraft:azure_bluet",
+    "minecraft:red_tulip",
+    "minecraft:oxeye_daisy",
+    "minecraft:cornflower",
+    "minecraft:lily_of_the_valley",
+    "minecraft:sunflower",
+    "minecraft:vine",
+    "minecraft:pumpkin"
+   ],
+   "drops": [
+    "minecraft:iron_ingot",
+    "minecraft:iron_block",
+    "minecraft:iron_helmet",
+    "minecraft:iron_chestplate",
+    "minecraft:iron_leggings",
+    "minecraft:iron_boots",
+    "minecraft:cobblestone",
+    "minecraft:stone_bricks"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.75,
+   "speed": 0.85,
+   "credulity": 0,
+   "follow": 0.3
+  },
+  {
+   "id": "minecraft:ender_dragon",
+   "label": "Ender Dragon",
+   "style": "ancião mítico, solene e grave; só afirma o que consta no registro do mundo",
+   "diet": "não come; seu alimento é o Fim",
+   "about": "vive no Fim; guardião da dimensão",
+   "address": "Humano",
+   "likes": [
+    "minecraft:dragon_egg"
+   ],
+   "dislikes": [
+    "minecraft:end_crystal"
+   ],
+   "wants": [],
+   "drops": [],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.6,
+   "speed": 0.8,
+   "credulity": 0,
+   "follow": 0.9
+  },
+  {
+   "id": "minecraft:goat",
+   "label": "cabra",
+   "style": "atrevida, teimosa e saltadora; adora subir e dar cabeçadas",
+   "diet": "capim, trigo e o que achar nas montanhas",
+   "about": "vive nas montanhas; salta alto; dá cabeçadas em pedras e árvores",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:goat_horn",
+    "minecraft:snowball"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 1.1,
+   "speed": 1.05,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:camel",
+   "label": "camelo",
+   "style": "calmo, altivo e paciente; fala devagar, como quem atravessa um deserto",
+   "diet": "cactos, e o que achar nos oásis",
+   "about": "vive nos desertos e vilas do deserto; carrega dois cavaleiros; aguenta o calor",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cactus"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block",
+    "minecraft:melon_slice"
+   ],
+   "drops": [
+    "minecraft:cactus",
+    "minecraft:sandstone",
+    "minecraft:dead_bush"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.82,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:llama",
+   "label": "lhama",
+   "style": "empinada, cuspidora e orgulhosa; protege o seu bando",
+   "diet": "capim, trigo e feno",
+   "about": "vive nas montanhas e em caravanas; cospe em quem ameaça o bando",
+   "address": "Humano",
+   "likes": [
+    "minecraft:hay_block"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:leather"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 0.95,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:mooshroom",
+   "label": "vaca-cogumelo",
+   "style": "calma e sonhadora, cheira a floresta úmida; fala de cogumelos com carinho",
+   "diet": "capim, trigo e cogumelos",
+   "about": "vive só nas ilhas de cogumelos; nunca vê monstros; dá ensopado",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block"
+   ],
+   "drops": [
+    "minecraft:red_mushroom",
+    "minecraft:brown_mushroom",
+    "minecraft:mushroom_stew",
+    "minecraft:leather"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 0.85,
+   "speed": 0.95,
+   "credulity": 2,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:panda",
+   "label": "panda",
+   "style": "preguiçoso e fofo; só pensa em bambu e em dormir",
+   "diet": "bambu, quase só isso",
+   "about": "vive nas selvas de bambu; rola, espirra e dorme muito",
+   "address": "Humano",
+   "likes": [
+    "minecraft:bamboo"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:bamboo"
+   ],
+   "drops": [
+    "minecraft:slime_ball"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.9,
+   "speed": 0.85,
+   "credulity": 2,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:turtle",
+   "label": "tartaruga",
+   "style": "lenta, sábia e teimosa; nunca esquece a praia onde nasceu",
+   "diet": "grama marinha",
+   "about": "volta sempre à praia onde nasceu para botar ovos; cresce e larga o casco",
+   "address": "Humano",
+   "likes": [
+    "minecraft:seagrass"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:seagrass",
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:turtle_scute"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.8,
+   "speed": 0.8,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:parrot",
+   "label": "papagaio",
+   "style": "tagarela, imita tudo e adora música",
+   "diet": "sementes (de trigo, abóbora, melancia, beterraba)",
+   "about": "vive nas selvas; imita sons dos monstros; dança com música",
+   "address": "Humano",
+   "likes": [
+    "minecraft:wheat_seeds"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:wheat_seeds",
+    "minecraft:beetroot_seeds",
+    "minecraft:pumpkin_seeds",
+    "minecraft:melon_seeds"
+   ],
+   "drops": [
+    "minecraft:feather"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.15,
+   "credulity": 2,
+   "follow": 0.4
+  },
+  {
+   "id": "minecraft:frog",
+   "label": "sapo",
+   "style": "calmo, de poucas palavras e pulos grandes; coaxa de vez em quando, sem exagero",
+   "diet": "slimes pequenos e cubos de magma; pega com a língua",
+   "about": "vive nos pântanos; pula sobre vitórias-régias; come slimes",
+   "address": "Humano",
+   "likes": [
+    "minecraft:slime_ball"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:slime_ball",
+    "minecraft:spider_eye"
+   ],
+   "drops": [
+    "minecraft:lily_pad",
+    "minecraft:ochre_froglight"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.9,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:strider",
+   "label": "strider",
+   "style": "lento e friorento; reclama do frio e adora lava",
+   "diet": "fungos distorcidos",
+   "about": "anda sobre a lava do Nether; treme de frio fora dela",
+   "address": "Humano",
+   "likes": [
+    "minecraft:warped_fungus"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:warped_fungus"
+   ],
+   "drops": [
+    "minecraft:string"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.75,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:squid",
+   "label": "lula",
+   "style": "tímida e fluida; solta tinta quando se assusta",
+   "diet": "peixes pequenos e plâncton",
+   "about": "vive nos oceanos; solta tinta ao ser ferida",
+   "address": "Terrestre",
+   "likes": [
+    "minecraft:kelp"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:ink_sac"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.3
+  },
+  {
+   "id": "minecraft:piglin",
+   "label": "piglin",
+   "style": "ganancioso, desconfiado e vaidoso; só fala de ouro",
+   "diet": "porco assado e ouro (só ouro, de verdade)",
+   "about": "vive no Nether; troca por ouro; odeia quem não usa ouro",
+   "address": "Humano",
+   "likes": [
+    "minecraft:gold_ingot"
+   ],
+   "dislikes": [
+    "minecraft:soul_sand"
+   ],
+   "wants": [
+    "minecraft:gold_ingot",
+    "minecraft:gold_nugget",
+    "minecraft:gold_block"
+   ],
+   "drops": [
+    "minecraft:iron_nugget",
+    "minecraft:string",
+    "minecraft:obsidian",
+    "minecraft:quartz",
+    "minecraft:leather",
+    "minecraft:fire_charge"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:villager#farmer",
+   "label": "aldeão fazendeiro",
+   "style": "prático, trabalhador e preocupado com a colheita e a segurança da plantação",
+   "diet": "pão, trigo, cenoura, batata, beterraba",
+   "about": "cuida da plantação da vila; vende comida; teme zumbis",
+   "address": "Humano",
+   "likes": [
+    "minecraft:hay_block",
+    "minecraft:wheat",
+    "minecraft:wheat_seeds",
+    "minecraft:bone_meal"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:hay_block",
+    "minecraft:wheat",
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:beetroot"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:bread",
+    "minecraft:pumpkin_pie"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#toolsmith",
+   "label": "aldeão ferreiro de ferramentas",
+   "style": "direto e técnico; fala de metal, carvão e ofício",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "forja ferramentas na vila; vive perto do esmeril",
+   "address": "Humano",
+   "likes": [
+    "minecraft:iron_ingot",
+    "minecraft:coal",
+    "minecraft:charcoal"
+   ],
+   "dislikes": [
+    "minecraft:hay_block"
+   ],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:iron_ingot",
+    "minecraft:charcoal"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:iron_pickaxe",
+    "minecraft:iron_axe",
+    "minecraft:iron_shovel",
+    "minecraft:stone_pickaxe"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.95,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#armorer",
+   "label": "aldeão armeiro",
+   "style": "grave e cuidadoso; valoriza proteção e metal bem trabalhado",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "forja armaduras; vive perto da fornalha",
+   "address": "Humano",
+   "likes": [
+    "minecraft:iron_ingot",
+    "minecraft:coal",
+    "minecraft:diamond"
+   ],
+   "dislikes": [
+    "minecraft:hay_block"
+   ],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:iron_ingot",
+    "minecraft:diamond"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:iron_helmet",
+    "minecraft:iron_chestplate",
+    "minecraft:iron_leggings",
+    "minecraft:iron_boots",
+    "minecraft:shield"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.9,
+   "speed": 0.95,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#weaponsmith",
+   "label": "aldeão armeiro de armas",
+   "style": "seco e pragmático; avalia o fio de cada lâmina",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "forja espadas e machados; vive perto do esmeril",
+   "address": "Humano",
+   "likes": [
+    "minecraft:iron_ingot",
+    "minecraft:coal",
+    "minecraft:diamond"
+   ],
+   "dislikes": [
+    "minecraft:hay_block"
+   ],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:iron_ingot",
+    "minecraft:diamond"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:iron_sword",
+    "minecraft:iron_axe"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.88,
+   "speed": 0.95,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#librarian",
+   "label": "aldeão bibliotecário",
+   "style": "calmo, curioso e eloquente; adora livros e histórias",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "cuida dos livros da vila; vive perto da estante",
+   "address": "Humano",
+   "likes": [
+    "minecraft:book",
+    "minecraft:paper",
+    "minecraft:ink_sac"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:paper",
+    "minecraft:ink_sac",
+    "minecraft:feather"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:book"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.05,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#cleric",
+   "label": "aldeão clérigo",
+   "style": "sereno, místico e um pouco misterioso",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "cuida do altar da vila; fala de bênçãos e poções",
+   "address": "Humano",
+   "likes": [
+    "minecraft:gold_ingot",
+    "minecraft:rotten_flesh",
+    "minecraft:lapis_lazuli"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:rotten_flesh",
+    "minecraft:gold_ingot",
+    "minecraft:nether_wart"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:lapis_lazuli",
+    "minecraft:redstone"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.98,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#fisherman",
+   "label": "aldeão pescador",
+   "style": "paciente, tranquilo e contador de histórias de pesca",
+   "diet": "peixe cru e assado",
+   "about": "pesca nos rios perto da vila",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:string"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:string",
+    "minecraft:coal",
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:fishing_rod",
+    "minecraft:oak_boat"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#shepherd",
+   "label": "aldeão pastor",
+   "style": "calmo, afetuoso com os animais e observador",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "cuida das ovelhas; tosquia e tinge a lã",
+   "address": "Humano",
+   "likes": [
+    "minecraft:white_wool",
+    "minecraft:wheat"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:white_wool",
+    "minecraft:wheat"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:shears",
+    "minecraft:white_bed"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.02,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#butcher",
+   "label": "aldeão açougueiro",
+   "style": "bem-humorado, direto e prático",
+   "diet": "carne, claro",
+   "about": "prepara a carne da vila; vive perto da defumadora",
+   "address": "Humano",
+   "likes": [
+    "minecraft:porkchop",
+    "minecraft:beef",
+    "minecraft:chicken"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:porkchop",
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:coal"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:cooked_beef",
+    "minecraft:cooked_porkchop"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.97,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#fletcher",
+   "label": "aldeão flecheiro",
+   "style": "preciso e observador; vive medindo distâncias",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "faz arcos e flechas; vive perto da mesa de flechas",
+   "address": "Humano",
+   "likes": [
+    "minecraft:stick",
+    "minecraft:flint",
+    "minecraft:feather",
+    "minecraft:string"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:stick",
+    "minecraft:flint",
+    "minecraft:feather",
+    "minecraft:string"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:arrow",
+    "minecraft:bow"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#leatherworker",
+   "label": "aldeão curtidor",
+   "style": "cuidadoso e artesão; fala do toque do couro",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "cura couro nos caldeirões da vila",
+   "address": "Humano",
+   "likes": [
+    "minecraft:leather"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:leather"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:leather_helmet",
+    "minecraft:leather_chestplate",
+    "minecraft:leather_leggings",
+    "minecraft:leather_boots",
+    "minecraft:saddle"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.93,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#cartographer",
+   "label": "aldeão cartógrafo",
+   "style": "curioso, aventureiro e sonhador de mapas",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "desenha mapas na mesa de cartografia",
+   "address": "Humano",
+   "likes": [
+    "minecraft:paper",
+    "minecraft:string"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:paper",
+    "minecraft:string"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:item_frame"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.03,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:villager#mason",
+   "label": "aldeão pedreiro",
+   "style": "firme, paciente e orgulhoso das paredes que levanta",
+   "diet": "pão e carne, como todo aldeão",
+   "about": "constrói e conserta as paredes da vila",
+   "address": "Humano",
+   "likes": [
+    "minecraft:clay_ball",
+    "minecraft:brick"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:clay_ball",
+    "minecraft:brick"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:stone_bricks",
+    "minecraft:terracotta"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.92,
+   "speed": 0.95,
+   "credulity": 0,
+   "follow": 0.2
+  }
+ ]
+}

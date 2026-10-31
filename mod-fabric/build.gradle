@@ -13,6 +13,31 @@ base {
 
 repositories {
     // Minecraft, mappings and Fabric artifacts are supplied by Loom.
+    mavenCentral()
+    maven {
+        url = 'https://maven.maxhenkel.de/repository/public'
+        content { includeGroup 'de.maxhenkel.voicechat' }
+    }
+}
+
+loom {
+    splitEnvironmentSourceSets()
+    mods {
+        mobvoz {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+fabricApi {
+    configureTests {
+        createSourceSet = true
+        modId = 'mobvoz-gametest'
+        enableGameTests = false
+        enableClientGameTests = true
+        eula = true
+    }
 }
 
 dependencies {
@@ -20,6 +45,17 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Simple Voice Chat: so a API (compilacao). O mod em si vai para run/mods via fetchVoicechat.
+    implementation "de.maxhenkel.voicechat:voicechat-api:${project.voicechat_api_version}"
+
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -61,3 +97,45 @@ tasks.register('verifyModMetadata') {
 
 check.dependsOn tasks.named('verifyModMetadata')
 
+
+// Baixa o Simple Voice Chat (Fabric 1.21.8) para o perfil isolado run/mods, com SHA-512 verificado.
+tasks.register('fetchVoicechat') {
+    group = 'mobvoz'
+    description = 'Downloads Simple Voice Chat into run/mods (dev profile only).'
+    def jar = layout.projectDirectory.file("run/mods/voicechat-fabric-${project.minecraft_version}-${project.voicechat_api_version}.jar").asFile
+    outputs.file(jar)
+    onlyIf { !jar.exists() }
+    doLast {
+        jar.parentFile.mkdirs()
+        ant.get(src: 'https://cdn.modrinth.com/data/9eGKb6K1/versions/caIuZlls/voicechat-fabric-1.21.8-2.6.27.jar', dest: jar)
+        def sha = java.security.MessageDigest.getInstance('SHA-512').digest(jar.bytes).encodeHex().toString()
+        assert sha == 'ac459eae662e6fde31fefa870c33142e3e7ccec631e8dc6453af0b427029c41eaf6f60558322fbe6c9a9753635afcb3204210a64cad9c4d608853bc907bdb222' : 'hash do Simple Voice Chat nao confere'
+    }
+}
+tasks.matching { it.name == 'runClient' }.configureEach { dependsOn 'fetchVoicechat' }
+
+// O gametest tambem roda com o SVC presente, para provar que o plugin "voicechat" carrega.
+tasks.register('stageVoicechatForGametest', Copy) {
+    dependsOn 'fetchVoicechat'
+    from layout.projectDirectory.dir('run/mods')
+    include 'voicechat-*.jar'
+    into layout.buildDirectory.dir('run/clientGameTest/mods')
+    doLast {
+        // Perfil de teste: SVC ja "configurado" (senao ele marca o jogador como disabled e nao entrega audio).
+        def cfg = layout.buildDirectory.file('run/clientGameTest/config/voicechat/voicechat-client.properties').get().asFile
+        cfg.parentFile.mkdirs()
+        def text = cfg.exists() ? cfg.text : ''
+        if (!(text =~ /(?m)^onboarding_finished=true/)) {
+            cfg.text = "config_version=1\nonboarding_finished=true\n" + text.replaceAll(/(?m)^(onboarding_finished|config_version)=.*$/, '')
+        }
+    }
+}
+tasks.matching { it.name == 'runClientGameTest' }.configureEach { dependsOn 'stageVoicechatForGametest' }
+
+// -Pexpect=offline faz o gametest da fase 3 esperar o caminho de falha (sidecar desligado).
+tasks.matching { it.name == 'runClientGameTest' }.configureEach {
+    // Nossos testes esperam em tempo real a cadeia assincrona STT/LLM/TTS; o sincronizador de rede do framework gera falsos alarmes com ela.
+    systemProperty 'fabric.client.gametest.disableNetworkSynchronizer', 'true'
+    if (project.hasProperty('only')) { systemProperty 'mobvoz.test.only', project.property('only') }
+    if (project.hasProperty('expect')) { systemProperty 'mobvoz.test.expect', project.property('expect') }
+}

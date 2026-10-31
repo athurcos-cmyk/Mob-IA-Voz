@@ -3,16 +3,22 @@
   "id": "mobvoz",
   "version": "${version}",
   "name": "MobVoz IA",
-  "description": "Fundacao do mod MobVoz IA para Minecraft Java 1.21.8.",
+  "description": "Mobs sociais com voz, memoria e acoes reais para Minecraft Java 1.21.8.",
   "environment": "*",
+  "mixins": ["mobvoz.mixins.json"],
   "entrypoints": {
-    "main": ["br.com.mobvoz.MobVozMod"]
+    "main": ["br.com.mobvoz.MobVozMod"],
+    "client": ["br.com.mobvoz.client.MobVozClient"],
+    "voicechat": ["br.com.mobvoz.voice.MobVozVoicechatPlugin"]
   },
   "depends": {
     "fabricloader": ">=0.17.3",
     "minecraft": "~1.21.8",
     "java": ">=21",
     "fabric-api": "*"
+  },
+  "recommends": {
+    "voicechat": "*"
   }
 }
 

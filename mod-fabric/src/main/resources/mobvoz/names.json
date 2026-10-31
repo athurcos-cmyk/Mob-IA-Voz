@@ -1,0 +1,279 @@
+{
+ "_comment": "Nomes pt-BR (sem acento, minusculas) para reconhecer outra criatura citada na fala do jogador; usados so para dar fatos de lore ao mob.",
+ "names": {
+  "minecraft:cow": [
+   "vaca",
+   "vacas"
+  ],
+  "minecraft:pig": [
+   "porco",
+   "porcos",
+   "porquinho",
+   "porquinhos"
+  ],
+  "minecraft:chicken": [
+   "galinha",
+   "galinhas",
+   "frango",
+   "frangos"
+  ],
+  "minecraft:sheep": [
+   "ovelha",
+   "ovelhas"
+  ],
+  "minecraft:horse": [
+   "cavalo",
+   "cavalos"
+  ],
+  "minecraft:llama": [
+   "lhama",
+   "lhamas"
+  ],
+  "minecraft:rabbit": [
+   "coelho",
+   "coelhos"
+  ],
+  "minecraft:fox": [
+   "raposa",
+   "raposas"
+  ],
+  "minecraft:wolf": [
+   "lobo",
+   "lobos"
+  ],
+  "minecraft:cat": [
+   "gato",
+   "gatos"
+  ],
+  "minecraft:ocelot": [
+   "jaguatirica",
+   "jaguatiricas"
+  ],
+  "minecraft:bee": [
+   "abelha",
+   "abelhas"
+  ],
+  "minecraft:panda": [
+   "panda",
+   "pandas"
+  ],
+  "minecraft:polar_bear": [
+   "urso polar",
+   "ursos polares"
+  ],
+  "minecraft:goat": [
+   "cabra",
+   "cabras"
+  ],
+  "minecraft:camel": [
+   "camelo",
+   "camelos"
+  ],
+  "minecraft:sniffer": [
+   "farejador",
+   "farejadores"
+  ],
+  "minecraft:frog": [
+   "sapo",
+   "sapos"
+  ],
+  "minecraft:axolotl": [
+   "axolote",
+   "axolotes"
+  ],
+  "minecraft:turtle": [
+   "tartaruga",
+   "tartarugas"
+  ],
+  "minecraft:parrot": [
+   "papagaio",
+   "papagaios"
+  ],
+  "minecraft:bat": [
+   "morcego",
+   "morcegos"
+  ],
+  "minecraft:squid": [
+   "lula",
+   "lulas"
+  ],
+  "minecraft:dolphin": [
+   "golfinho",
+   "golfinhos"
+  ],
+  "minecraft:cod": [
+   "bacalhau",
+   "bacalhaus",
+   "peixe",
+   "peixes"
+  ],
+  "minecraft:salmon": [
+   "salmao",
+   "salmoes"
+  ],
+  "minecraft:villager": [
+   "aldeao",
+   "aldeoes",
+   "aldea",
+   "aldeas"
+  ],
+  "minecraft:wandering_trader": [
+   "mercador",
+   "mercadores"
+  ],
+  "minecraft:iron_golem": [
+   "golem de ferro",
+   "golens de ferro",
+   "golem",
+   "golens"
+  ],
+  "minecraft:snow_golem": [
+   "golem de neve",
+   "golens de neve"
+  ],
+  "minecraft:zombie": [
+   "zumbi",
+   "zumbis"
+  ],
+  "minecraft:husk": [
+   "husk",
+   "husks"
+  ],
+  "minecraft:drowned": [
+   "afogado",
+   "afogados"
+  ],
+  "minecraft:zombie_villager": [
+   "zumbi aldeao",
+   "zumbis aldeoes"
+  ],
+  "minecraft:skeleton": [
+   "esqueleto",
+   "esqueletos"
+  ],
+  "minecraft:stray": [
+   "errante",
+   "errantes"
+  ],
+  "minecraft:wither_skeleton": [
+   "esqueleto wither",
+   "esqueletos wither"
+  ],
+  "minecraft:creeper": [
+   "creeper",
+   "creepers"
+  ],
+  "minecraft:spider": [
+   "aranha",
+   "aranhas"
+  ],
+  "minecraft:cave_spider": [
+   "aranha da caverna",
+   "aranhas da caverna"
+  ],
+  "minecraft:silverfish": [
+   "traca",
+   "tracas"
+  ],
+  "minecraft:endermite": [
+   "endermite",
+   "endermites"
+  ],
+  "minecraft:phantom": [
+   "phantom",
+   "phantoms",
+   "fantasma",
+   "fantasmas"
+  ],
+  "minecraft:witch": [
+   "bruxa",
+   "bruxas"
+  ],
+  "minecraft:slime": [
+   "slime",
+   "slimes"
+  ],
+  "minecraft:magma_cube": [
+   "cubo de magma",
+   "cubos de magma"
+  ],
+  "minecraft:guardian": [
+   "guardiao",
+   "guardioes"
+  ],
+  "minecraft:elder_guardian": [
+   "grande guardiao",
+   "grandes guardioes"
+  ],
+  "minecraft:shulker": [
+   "shulker",
+   "shulkers"
+  ],
+  "minecraft:pillager": [
+   "saqueador",
+   "saqueadores"
+  ],
+  "minecraft:vindicator": [
+   "vingador",
+   "vingadores"
+  ],
+  "minecraft:evoker": [
+   "evocador",
+   "evocadores"
+  ],
+  "minecraft:vex": [
+   "vex"
+  ],
+  "minecraft:ravager": [
+   "devastador",
+   "devastadores"
+  ],
+  "minecraft:piglin": [
+   "piglin",
+   "piglins"
+  ],
+  "minecraft:piglin_brute": [
+   "piglin brutamontes",
+   "piglins brutamontes"
+  ],
+  "minecraft:zombified_piglin": [
+   "piglin zumbi",
+   "piglins zumbis"
+  ],
+  "minecraft:hoglin": [
+   "hoglin",
+   "hoglins"
+  ],
+  "minecraft:ghast": [
+   "ghast",
+   "ghasts"
+  ],
+  "minecraft:blaze": [
+   "blaze",
+   "blazes"
+  ],
+  "minecraft:strider": [
+   "strider",
+   "striders"
+  ],
+  "minecraft:enderman": [
+   "enderman",
+   "endermen"
+  ],
+  "minecraft:ender_dragon": [
+   "dragao do fim",
+   "ender dragon",
+   "dragao"
+  ],
+  "minecraft:wither": [
+   "wither"
+  ],
+  "minecraft:warden": [
+   "warden"
+  ],
+  "minecraft:allay": [
+   "allay",
+   "allays"
+  ]
+ }
+}
