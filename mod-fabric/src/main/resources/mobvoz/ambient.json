@@ -2184,6 +2184,208 @@
     "Cada um com o seu gosto.",
     "Eu só queria sombra."
    ]
+  },
+  {
+   "id": "monstros_noite",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "night"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "A noite é nossa.",
+    "Hoje a caça vai ser boa.",
+    "Sinto cheiro de humano por perto.",
+    "Escuridão boa, essa."
+   ],
+   "b": [
+    "Eu também senti.",
+    "Vamos juntos, então.",
+    "Cada um por um lado.",
+    "Que ninguém atrapalhe."
+   ],
+   "bg": [],
+   "c": [
+    "Quieto, vem vindo alguém.",
+    "Que a noite comece."
+   ]
+  },
+  {
+   "id": "monstros_dia",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "day",
+    "clear"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Esse sol é um castigo.",
+    "Odeio o dia.",
+    "Dia é hora de se esconder."
+   ],
+   "b": [
+    "Procura uma sombra.",
+    "Esperar a noite é o jeito.",
+    "Também não gosto."
+   ],
+   "bg": [],
+   "c": [
+    "Falta pouco para escurecer.",
+    "Paciência."
+   ]
+  },
+  {
+   "id": "monstros_chuva",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "rain"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Essa chuva estraga tudo.",
+    "Chuva de novo, que droga."
+   ],
+   "b": [
+    "Pelo menos os humanos ficam em casa.",
+    "Eu só quero que passe.",
+    "Procura um abrigo."
+   ],
+   "bg": [],
+   "c": [
+    "Vai passar.",
+    "Eu espero aqui."
+   ]
+  },
+  {
+   "id": "jogador_monstros_visto",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [],
+   "weight": 2,
+   "player": true,
+   "a": [
+    "Tem um humano ali.",
+    "Aquele humano não está nos vendo.",
+    "Humano à vista."
+   ],
+   "b": [
+    "Cuidado com o que ele carrega.",
+    "Eu chego pela esquerda.",
+    "Silêncio, chega mais perto."
+   ],
+   "bg": [],
+   "c": [
+    "Agora não. Espera o momento certo.",
+    "Eu avisei."
+   ]
+  },
+  {
+   "id": "zumbi_esqueleto",
+   "who": [
+    "zombie",
+    "skeleton"
+   ],
+   "need": [],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Seus ossos fazem barulho demais.",
+    "Você só sabe atirar de longe.",
+    "Dá para parar de me acertar com flecha?"
+   ],
+   "b": [
+    "Seus gemidos avisam a presa.",
+    "De perto você só arrasta o pé.",
+    "Foi sem querer. Quase."
+   ],
+   "bg": [],
+   "c": [
+    "Grrr... vamos caçar juntos.",
+    "Hmm... tá bom."
+   ]
+  },
+  {
+   "id": "esqueleto_creeper",
+   "who": [
+    "skeleton",
+    "creeper"
+   ],
+   "need": [],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Fica longe da minha flecha, hein?",
+    "Você explode e eu atiro. Dá um bom time."
+   ],
+   "b": [
+    "Ssss... só não me acerta.",
+    "Ssss... eu chego perto, você mira de longe."
+   ],
+   "bg": [],
+   "c": [
+    "Combinado.",
+    "Então vamos."
+   ]
+  },
+  {
+   "id": "aranha_zumbi",
+   "who": [
+    "spider",
+    "zombie"
+   ],
+   "need": [],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Sss... a sua fome é barulhenta.",
+    "Sss... eu fico no teto, você no chão."
+   ],
+   "b": [
+    "Grrr... teia gruda.",
+    "Grrr... quem pegar o humano primeiro."
+   ],
+   "bg": [],
+   "c": [
+    "Sss... uma corrida, então.",
+    "Sss... paciência."
+   ]
+  },
+  {
+   "id": "creeper_zumbi",
+   "who": [
+    "creeper",
+    "zombie"
+   ],
+   "need": [],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Ssss... não chegue perto de gato.",
+    "Ssss... hoje eu exploro."
+   ],
+   "b": [
+    "Grrr... explode longe de mim.",
+    "Grrr... gato é bicho ruim."
+   ],
+   "bg": [],
+   "c": [
+    "Ssss...",
+    "Ssss... silêncio."
+   ]
   }
  ]
 }

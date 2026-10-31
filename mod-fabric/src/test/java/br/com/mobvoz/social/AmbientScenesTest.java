@@ -81,7 +81,8 @@ class AmbientScenesTest {
         Set<String> tags = Set.of("day", "clear"); // sem jogador ferido/com fome/segurando nada, ninguem o conhece
         for (int n = 0; n < 400; n++) {
             var s = AmbientScenes.pick(sit(tags, ANY, ANY, "", ""), rnd, k -> false).orElseThrow();
-            assertFalse(s.family().startsWith("jogador_") && !s.family().equals("jogador_passando"), "assunto sobre o jogador sem base: " + s.family());
+            assertFalse(s.family().startsWith("jogador_") && !Set.of("jogador_passando", "jogador_monstros_visto").contains(s.family()),
+                    "assunto sobre o jogador sem base: " + s.family());
             assertFalse(s.family().equals("noite") || s.family().equals("chuva"), s.family());
             assertEquals("", s.name());
         }

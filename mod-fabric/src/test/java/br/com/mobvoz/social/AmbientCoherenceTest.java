@@ -71,7 +71,9 @@ class AmbientCoherenceTest {
         assertFalse(Ambient.canChat(cow(), farmer(), false), "aldeao nao conversa com vaca");
         assertFalse(Ambient.canChat(cat(), farmer(), false));
         assertFalse(Ambient.canChat(mon("zombie"), farmer(), false), "zumbi e aldeao nao tem conversa agradavel");
-        assertFalse(Ambient.canChat(mon("zombie"), mon("skeleton"), false), "monstro so com a mesma especie");
+        assertTrue(Ambient.canChat(mon("zombie"), mon("skeleton"), false), "monstros conversam entre si, de especies diferentes");
+        assertTrue(Ambient.canChat(mon("creeper"), mon("zombie"), false));
+        assertFalse(Ambient.canChat(mon("skeleton"), farmer(), false), "monstro nunca com aldeao");
         assertFalse(Ambient.canChat(mon("zombie"), cow(), false));
     }
 
@@ -159,6 +161,11 @@ class AmbientCoherenceTest {
                 {"aldeão + golem, dia, o jogador segura uma papoula (o golem gosta)", farmer(), golem(), Set.of("day", "clear", "holds", "want0"), "papoula", ""},
                 {"aldeão + aldeão, chuva, um deles tem fato de troca com o jogador", farmer(), librarian(), Set.of("rain", "k0", "f0:TRADE"), "", ""},
                 {"zumbi + zumbi, noite", mon("zombie"), mon("zombie"), Set.of("night"), "", ""},
+                {"zumbi + esqueleto, noite", mon("zombie"), mon("skeleton"), Set.of("night"), "", ""},
+                {"creeper + zumbi, dia", mon("creeper"), mon("zombie"), Set.of("day", "clear"), "", ""},
+                {"aranha + zumbi, noite, jogador segura espada", mon("spider"), mon("zombie"), Set.of("night", "holds"), "espada de ferro", ""},
+                {"esqueleto + creeper, chuva", mon("skeleton"), mon("creeper"), Set.of("rain"), "", ""},
+                {"enderman + bruxa, noite", mon("enderman"), mon("witch"), Set.of("night"), "", ""},
                 {"zumbi + zumbi, jogador com armadura de ferro", mon("zombie"), mon("zombie"), Set.of("night", "armor"), "", "uma armadura de ferro"},
                 {"esqueleto + esqueleto, jogador com armadura de diamante", mon("skeleton"), mon("skeleton"), Set.of("night", "armor"), "", "uma armadura de diamante"},
                 {"aranha + aranha, noite", mon("spider"), mon("spider"), Set.of("night"), "", ""},

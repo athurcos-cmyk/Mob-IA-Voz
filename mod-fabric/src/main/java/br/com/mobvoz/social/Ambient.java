@@ -216,7 +216,7 @@ public final class Ambient {
         return new Situation(tags, classesOf(a), classesOf(b), ma.nameOf(pid), mb.nameOf(pid), item, armor);
     }
 
-    /** Monstros que conversam entre si (so com outro da MESMA especie); os demais hostis nunca puxam assunto. */
+    /** Monstros que conversam entre si (zumbi com esqueleto, creeper, aranha...; nunca com aldeao nem animal); os demais hostis nunca puxam assunto. */
     static final Set<String> MONSTERS = Set.of("zombie", "skeleton", "spider", "creeper", "enderman", "witch", "warden");
 
     private static String typeName(Mob m) {
@@ -227,12 +227,12 @@ public final class Ambient {
 
     /**
      * Duas criaturas so conversam se faz sentido: aldeoes entre si (e o golem da vila), animais de fazenda entre si (o "rebanho": vaca, porco,
-     * ovelha, galinha, cavalo), os demais animais (lobo, gato...) e os monstros so com a MESMA especie.
+     * ovelha, galinha, cavalo), os demais animais (lobo, gato...) so com a MESMA especie, e os monstros entre si (qualquer especie).
      */
     static boolean canChat(Set<String> a, Set<String> b, boolean sameType) {
         return a.contains("villagers") && b.contains("villagers")
                 || a.contains("animals") && b.contains("animals") && (a.contains("herd") && b.contains("herd") || sameType)
-                || a.contains("monsters") && b.contains("monsters") && sameType;
+                || a.contains("monsters") && b.contains("monsters");
     }
 
     /** Classes de assunto da criatura (ver genambient.py): tipo ("villagers", "animals", "monsters"), "calm" (aldeao ou animal) e a especie. */

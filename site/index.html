@@ -48,7 +48,8 @@
         <span class="badge">Roda no seu PC</span>
       </div>
       <div class="btns">
-        <a class="btn green" href="#instalar">Instalar passo a passo</a>
+        <a class="btn green" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar o mod (Alpha 0.1)</a>
+        <a class="btn" href="#instalar">Instalar passo a passo</a>
         <a class="btn" href="#acao">Ver em ação</a>
       </div>
     </div>
@@ -271,8 +272,9 @@
 
       <li class="step" data-step="4"><div class="gui">
         <h3>Baixar o MobVoz</h3>
-        <p>Abra <a href="https://github.com/athurcos-cmyk/Mob-IA-Voz/blob/main/dist/MobVozIA-0.1.0.zip" target="_blank" rel="noopener">github.com/athurcos-cmyk/Mob-IA-Voz/blob/main/dist/MobVozIA-0.1.0.zip</a> e clique no ícone de <b>download</b> (“Download raw file”, no alto à direita). Depois extraia o arquivo em <code>C:\MobVozIA</code> (clique direito &gt; Extrair tudo).</p>
-        <p class="note">O repositório é <b>privado</b>: peça acesso ao autor e entre no GitHub antes de baixar.</p>
+        <p>Clique no botão e salve o arquivo (cerca de 0,5 MB). Depois extraia em <code>C:\MobVozIA</code> (clique direito &gt; Extrair tudo).</p>
+        <p><a class="btn green" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></p>
+        <p class="note">O pacote traz o mod, o serviço de IA e a documentação. O Simple Voice Chat, o Fabric API e os modelos de voz e de IA são baixados por você nos passos seguintes (as licenças deles não deixam redistribuir).</p>
         <p class="expect">Dentro de <code>C:\MobVozIA</code> existem as pastas <code>mod</code> (com <code>mobvoz-0.1.0.jar</code>), <code>ai-service</code> e <code>docs</code>.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
@@ -487,7 +489,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
           <li>Todas as fases do roadmap implementadas (só as missões de chefes ficaram de fora).</li>
           <li>Mais de 110 testes de unidade e dezenas de testes automáticos dentro do Minecraft real (conversa por voz sintética, ordens, trocas, alianças, chefes, mundo vivo, salvar e carregar).</li>
           <li>Bateria de conversação com a DeepSeek: 48 de 48 frases entendidas, nenhuma obedeceu injeção de comando, nenhuma contradisse o servidor.</li>
-          <li>Conversas ambiente: nota 3,98 de 5 de um juiz de IA exigente (monstros ~4,6; animais ainda são o ponto mais fraco).</li>
+          <li>Conversas ambiente: nota 3,85 de 5 de um juiz de IA exigente, em 250 cenas de 25 tipos de par de mobs (zumbi com esqueleto ~4,2; animais de fazenda e lobo são o ponto mais fraco).</li>
         </ul></div>
       <div class="dark"><h3>O que ninguém testou ainda</h3>
         <ul>
@@ -511,7 +513,7 @@ powershell -ExecutionPolicy Bypass -File .\configurar-api.ps1</pre><button class
 
 <footer id="creditos">
   <div class="wrap">
-    <p><b>MobVoz IA</b> — Alpha 0.1 · Código em <code>github.com/athurcos-cmyk/Mob-IA-Voz</code> (repositório privado por enquanto). Código próprio sob licença MIT.</p>
+    <p><b>MobVoz IA</b> — Alpha 0.1 · Código aberto em <a href="https://github.com/athurcos-cmyk/Mob-IA-Voz" target="_blank" rel="noopener">github.com/athurcos-cmyk/Mob-IA-Voz</a>. Código próprio sob licença MIT.</p>
     <p><b>Feito com:</b> Fabric e Fabric API (Apache-2.0) · Simple Voice Chat (necessário; baixado do site dele) · Whisper via faster-whisper (MIT) · Kokoro-82M (pesos Apache-2.0) e Piper (vozes CC0) para a voz · Ollama (MIT) e Qwen3 (Apache-2.0) para a IA local · DeepSeek, se você usar a API. O Piper e o espeak-ng que o Kokoro usa são GPL-3.0: ficam só no seu PC, num processo separado, e não vão dentro do mod.</p>
     <p>As texturas e ícones desta página são arte própria. <b>Este é um projeto de fã e não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</b> “Minecraft” é marca da Mojang Studios.</p>
   </div>

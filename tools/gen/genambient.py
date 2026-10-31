@@ -364,6 +364,40 @@ fam("bicho_jogador_chuva", ["animals", "animals"], ["rain"],
     ["Ele não se importa?", "Eu prefiro um canto seco.", "Fica molhado, coitado."],
     ["Cada um com o seu gosto.", "Eu só queria sombra."], weight=2)
 
+# ----------------------------------------------------------------------------------------------- monstros de especies DIFERENTES (entre si, nunca com aldeao ou animal)
+fam("monstros_noite", ["monsters", "monsters"], ["night"],
+    ["A noite é nossa.", "Hoje a caça vai ser boa.", "Sinto cheiro de humano por perto.", "Escuridão boa, essa."],
+    ["Eu também senti.", "Vamos juntos, então.", "Cada um por um lado.", "Que ninguém atrapalhe."],
+    ["Quieto, vem vindo alguém.", "Que a noite comece."], weight=2)
+fam("monstros_dia", ["monsters", "monsters"], ["day", "clear"],
+    ["Esse sol é um castigo.", "Odeio o dia.", "Dia é hora de se esconder."],
+    ["Procura uma sombra.", "Esperar a noite é o jeito.", "Também não gosto."],
+    ["Falta pouco para escurecer.", "Paciência."], weight=2)
+fam("monstros_chuva", ["monsters", "monsters"], ["rain"],
+    ["Essa chuva estraga tudo.", "Chuva de novo, que droga."],
+    ["Pelo menos os humanos ficam em casa.", "Eu só quero que passe.", "Procura um abrigo."],
+    ["Vai passar.", "Eu espero aqui."], weight=2)
+fam("jogador_monstros_visto", ["monsters", "monsters"], [],
+    ["Tem um humano ali.", "Aquele humano não está nos vendo.", "Humano à vista."],
+    ["Cuidado com o que ele carrega.", "Eu chego pela esquerda.", "Silêncio, chega mais perto."],
+    ["Agora não. Espera o momento certo.", "Eu avisei."], weight=2)
+fam("zumbi_esqueleto", ["zombie", "skeleton"], [],
+    ["Seus ossos fazem barulho demais.", "Você só sabe atirar de longe.", "Dá para parar de me acertar com flecha?"],
+    ["Seus gemidos avisam a presa.", "De perto você só arrasta o pé.", "Foi sem querer. Quase."],
+    ["Grrr... vamos caçar juntos.", "Hmm... tá bom."], weight=3)
+fam("esqueleto_creeper", ["skeleton", "creeper"], [],
+    ["Fica longe da minha flecha, hein?", "Você explode e eu atiro. Dá um bom time."],
+    ["Ssss... só não me acerta.", "Ssss... eu chego perto, você mira de longe."],
+    ["Combinado.", "Então vamos."], weight=3)
+fam("aranha_zumbi", ["spider", "zombie"], [],
+    ["Sss... a sua fome é barulhenta.", "Sss... eu fico no teto, você no chão."],
+    ["Grrr... teia gruda.", "Grrr... quem pegar o humano primeiro."],
+    ["Sss... uma corrida, então.", "Sss... paciência."], weight=3)
+fam("creeper_zumbi", ["creeper", "zombie"], [],
+    ["Ssss... não chegue perto de gato.", "Ssss... hoje eu exploro."],
+    ["Grrr... explode longe de mim.", "Grrr... gato é bicho ruim."],
+    ["Ssss...", "Ssss... silêncio."], weight=3)
+
 
 GENERIC_B = ["Pois é.", "É verdade.", "Também acho.", "Nem me fale."]
 for _f in FAMILIES:

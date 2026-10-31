@@ -2,7 +2,7 @@
 
 ## Repositório
 
-`github.com/athurcos-cmyk/Mob-IA-Voz` (**privado**, autorizado pelo dono em 2026-10-31). Nunca vão para ele: chaves de API (a do dono fica em `%USERPROFILE%\.mobvoz\api.json`, fora do projeto), o jar do Simple Voice Chat (licença não permite redistribuir), modelos de voz/fala/LLM, `.venv`, JDK e pastas de build (ver `.gitignore`). O pacote para instalar é `dist/MobVozIA-<versão>.zip` (`empacotar.ps1`), que leva o jar do mod, o `ai-service` (sem venv e sem modelos), docs e licenças.
+`github.com/athurcos-cmyk/Mob-IA-Voz` (privado a princípio; o dono o torna **público**; autorizado em 2026-10-31). Nunca vão para ele: chaves de API (a do dono fica em `%USERPROFILE%\.mobvoz\api.json`, fora do projeto), o jar do Simple Voice Chat (licença não permite redistribuir), modelos de voz/fala/LLM, `.venv`, JDK e pastas de build (ver `.gitignore`). O pacote para instalar é `dist/MobVozIA-<versão>.zip` (`empacotar.ps1`), que leva o jar do mod, o `ai-service` (sem venv e sem modelos), docs e licenças.
 
 ## A página (`site/`)
 
@@ -24,7 +24,7 @@ Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), o l
 |---|---|
 | Funções "testado em jogo" | testes `*GameTest` (`docs/06`, `STATUS.md`) |
 | 48/48 frases entendidas, 0 injeção | `docs/18_BATERIA_DE_CONVERSACAO.md` |
-| Conversas ambiente 3,98/5 | `docs/relatorios/bateria_ambiente.md` (juiz de IA exigente) |
+| Conversas ambiente 3,85/5 | `docs/relatorios/bateria_ambiente.md` (juiz de IA exigente) |
 | Medidas de peso, voz | `docs/relatorios/audicao_vozes/LEIAME.md` |
 | Instalação do zero | `ai-service/instalar-sidecar.ps1` testado numa cópia limpa (89 s, com cache); serviço sobe e fala |
 

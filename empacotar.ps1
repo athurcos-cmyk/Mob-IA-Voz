@@ -20,5 +20,8 @@ $zip = "$root\dist\MobVozIA-$version.zip"
 Remove-Item $zip -ErrorAction SilentlyContinue
 Compress-Archive -Path "$stage\*" -DestinationPath $zip
 Remove-Item -Recurse -Force "$root\dist\stage"
+# o botao "Baixar" da pagina serve este arquivo direto do proprio site (sem passar pelo GitHub)
+New-Item -ItemType Directory -Force "$root\site\downloads" | Out-Null
+Copy-Item $zip "$root\site\downloads\" -Force
 $size = [math]::Round((Get-Item $zip).Length / 1MB, 2)
 Write-Host "OK: $zip ($size MB)"
