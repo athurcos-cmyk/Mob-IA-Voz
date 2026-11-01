@@ -38,8 +38,8 @@ import net.minecraft.world.phys.Vec3;
  */
 public final class Trades {
     private static final int TICK_EVERY = 10;
-    private static final double SCAN_RADIUS = 6.0;
-    private static final double PICKUP_REACH = 1.8;
+    static final double SCAN_RADIUS = 6.0;
+    static final double PICKUP_REACH = 1.8;
     private static final long DWELL_TICKS = 20;
     private static final int SETTLE_TICKS = 60;
 
@@ -173,7 +173,7 @@ public final class Trades {
         String key = Profiles.keyOf(mob);
         var recipes = TradeCatalog.recipesFor(key);
         if (recipes.isEmpty() && askedItem.isEmpty()) {
-            return new OpenResult("IMPOSSIVEL", "essa criatura não tem nada para trocar; nada do que ela é ou faz rende um item para dar");
+            return new OpenResult("IMPOSSIVEL", "essa criatura não tem nada seu para vender; nada do que ela é ou faz rende um item para dar, mas ela ainda aceita presentes e pode fazer favores (seguir, ficar, defender) se for paga");
         }
         String note = "";
         Recipe r = askedItem.isEmpty() ? recipes.get(0) : TradeCatalog.forItem(key, askedItem).orElse(null);
@@ -454,7 +454,7 @@ public final class Trades {
             set(mob, t.closeOffer());
             announceTo(mob, level, t.offerPlayer(),
                     "o prazo da troca acabou e o jogador não entregou o combinado, então você desfez o negócio (nada foi tomado)",
-                    prof.address() + ", você não cumpriu o combinado, então o negócio está desfeito.");
+                    "O prazo acabou e nada chegou, então esquece o trato.");
             return;
         }
         UUID player = UUID.fromString(t.offerPlayer());
@@ -485,7 +485,7 @@ public final class Trades {
                 String missing = missingText(prof, totalPrice - sel.available());
                 announceTo(mob, level, t.offerPlayer(), "o jogador largou itens que pagam só " + pct + "% do que combinaram; para fechar falta "
                         + missing + "; sem isso o negócio não está fechado e você não pegou nada",
-                        prof.address() + ", isso paga só uns " + pct + "% do que combinamos; falta " + missing + ". Sem isso o negócio não está fechado.");
+                        "Ainda falta " + missing + " pra fechar; por enquanto só deu uns " + pct + "%.");
             }
             attend(mob, level, player);
             return;
@@ -532,7 +532,7 @@ public final class Trades {
             String needed = taken.entrySet().stream().map(e -> e.getValue() + " " + Values.name(e.getKey(), e.getValue() != 1))
                     .collect(Collectors.joining(" e "));
             excessNote.put(mob.getUUID(), new String[] {"você só pegou " + needed + " do chão (era o que bastava) e devolveu o resto ao jogador, que deu mais que o combinado",
-                    prof.address() + ", eu só pedi " + needed + ". Peguei o que precisava e devolvi o que sobrou."});
+                    "Só precisava de " + needed + ", o resto tá de volta com você."});
         }
         set(mob, t.reserve(UUID.randomUUID().toString(), r.id(), t.offerPlayer(), now, taken, t.offerUnits()));
     }
@@ -556,7 +556,7 @@ public final class Trades {
     }
 
     /** Mantem a criatura perto de quem negocia (senao ela vagueia para fora do alcance de coleta). */
-    private static void attend(Mob mob, ServerLevel level, UUID player) {
+    static void attend(Mob mob, ServerLevel level, UUID player) {
         ServerPlayer p = level.getServer().getPlayerList().getPlayer(player);
         if (p == null || p.level() != level || mob.isNoAi() || !Orders.canWalkFollow(mob)) {
             return;
@@ -586,7 +586,7 @@ public final class Trades {
         String delivered = "FATO PRINCIPAL (diga isso): você acabou de entregar ao jogador " + total + " " + Values.name(r.outputItem(), total != 1) + ", como combinado";
         String fact = delivered + (note != null ? ". Detalhe: " + note[0] : "")
                 + (r.flavor().isEmpty() ? "" : "; se quiser, diga de onde veio (dica, com suas palavras: " + r.flavor() + ")");
-        String line = (note != null ? note[1] + " " : "Combinado! ") + "Toma o que eu prometi." + (r.flavor().isEmpty() ? "" : " " + r.flavor());
+        String line = (note != null ? note[1] + " " : "") + "Pronto, tá aqui, como eu falei." + (r.flavor().isEmpty() ? "" : " " + r.flavor());
         announceTo(mob, level, t.txPlayer(), fact, line);
     }
 
@@ -601,7 +601,7 @@ public final class Trades {
         set(mob, t.refunded());
     }
 
-    private static void spawn(ServerLevel level, String itemId, int count, Vec3 pos, Mob from, UUID target) {
+    static void spawn(ServerLevel level, String itemId, int count, Vec3 pos, Mob from, UUID target) {
         Item item = BuiltInRegistries.ITEM.getValue(ResourceLocation.parse(itemId));
         ItemEntity drop = new ItemEntity(level, pos.x, pos.y, pos.z, new ItemStack(item, count));
         drop.setThrower(from);
@@ -613,14 +613,14 @@ public final class Trades {
     }
 
     /** A criatura comenta o que ACONTECEU na troca: fala gerada pela IA a partir do fato verificado; {@code fallback} so se a IA estiver fora. */
-    private static void announceTo(Mob mob, ServerLevel level, String player, String fact, String fallback) {
+    static void announceTo(Mob mob, ServerLevel level, String player, String fact, String fallback) {
         ServerPlayer sp = level.getServer().getPlayerList().getPlayer(UUID.fromString(player));
         if (sp != null) {
             ConversationService.tradeLine(mob, sp, fact, fallback);
         }
     }
 
-    private static String idOf(ItemStack s) {
+    static String idOf(ItemStack s) {
         return BuiltInRegistries.ITEM.getKey(s.getItem()).toString();
     }
 }

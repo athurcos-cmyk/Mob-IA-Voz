@@ -19,7 +19,8 @@ public final class ServerConfig {
     public boolean requireVoiceConsent = true;
     public boolean chatterEnabled = true;
     public int maxActiveFollowersPerPlayer = 15;
-    public boolean bossContractsEnabled = false;
+    /** Chefes (Warden, Wither, Dragao) podem firmar pacto com o jogador: seguir, guardar, defender, tregua. Ligado por padrao; false = todos os chefes recusam. */
+    public boolean bossContractsEnabled = true;
     /** Preco da troca varia (confianca, humor do dia, barganha) dentro de uma faixa segura; false = sempre o preco-base da receita. */
     public boolean dynamicPrices = true;
     /** Falas espontaneas (aviso de perigo dos aliados, cumprimento, reacao a honestidade/ovo). false = a criatura so fala quando falam com ela. */
@@ -39,6 +40,8 @@ public final class ServerConfig {
     public boolean thinkingSounds = true;
     /** Criaturas pacificas puxam assunto com o jogador de vez em quando (falas prontas, sem IA; a resposta do jogador e conversa normal com a IA). */
     public boolean mobsInitiate = true;
+    /** A criatura que recusa um pedido (seguir, ficar, lutar...) so por falta de confianca aceita ser PAGA com itens que ela gosta; o pagamento pode ser aos poucos. */
+    public boolean favorPayments = true;
     /** Intervalo medio entre uma abertura de conversa e a proxima, por jogador (30 a 3600 s). */
     public int initiativeSeconds = 240;
 

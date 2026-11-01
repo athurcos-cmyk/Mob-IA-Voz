@@ -32,7 +32,7 @@ public final class VoiceInput {
     private static volatile UUID target;
     private static final AtomicInteger detected = new AtomicInteger();
     private static final AtomicInteger sent = new AtomicInteger();
-    private static final VoiceSegmenter SEGMENTER = VoiceSegmenter.withDefaults(VoiceInput::onUtterance);
+    private static final VoiceSegmenter SEGMENTER = VoiceSegmenter.withDefaults(VoiceInput::onUtterance, br.com.mobvoz.voice.MobVozVoicechatPlugin::pushToTalkHeld);
 
     private static volatile int status = StatusPayload.IDLE;
     private static volatile long statusSinceMs;

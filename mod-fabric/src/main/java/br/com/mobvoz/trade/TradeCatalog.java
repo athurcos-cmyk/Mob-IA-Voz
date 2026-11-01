@@ -105,7 +105,12 @@ public final class TradeCatalog {
 
     /** Tudo o que a criatura/profissao pode dar (a 1a receita e a padrao). */
     public static List<Recipe> recipesFor(String profileKey) {
-        return ALL.stream().filter(r -> r.profile().equals(profileKey)).toList();
+        List<Recipe> own = ALL.stream().filter(r -> r.profile().equals(profileKey)).toList();
+        if (own.isEmpty() && profileKey.contains("#")) { // profissao sem receita propria (aldeao sem oficio, bobo...): cai nas da especie
+            String base = profileKey.substring(0, profileKey.indexOf('#'));
+            return ALL.stream().filter(r -> r.profile().equals(base)).toList();
+        }
+        return own;
     }
 
     /** Receita padrao da criatura/profissao ("quer trocar?" sem pedir nada). */

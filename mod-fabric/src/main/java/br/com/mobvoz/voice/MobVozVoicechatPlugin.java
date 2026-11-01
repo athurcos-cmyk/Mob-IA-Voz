@@ -27,6 +27,18 @@ public final class MobVozVoicechatPlugin implements VoicechatPlugin {
     public static volatile Consumer<short[]> micFrameHook = f -> { };
     public static volatile BiConsumer<UUID, short[]> entityAudioHook = (id, f) -> { };
 
+    private static volatile VoicechatClientApi clientApi;
+
+    /** A tecla de apertar-para-falar do Simple Voice Chat esta apertada agora? Falso em servidor dedicado, sem a API ou na ativacao por voz. */
+    public static boolean pushToTalkHeld() {
+        VoicechatClientApi api = clientApi;
+        try {
+            return api != null && api.isPushToTalkKeyPressed();
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     @Override
     public String getPluginId() {
         return "mobvoz";
@@ -35,6 +47,7 @@ public final class MobVozVoicechatPlugin implements VoicechatPlugin {
     @Override
     public void initialize(VoicechatApi api) {
         if (api instanceof VoicechatClientApi client) {
+            clientApi = client;
             try {
                 client.registerClientVolumeCategory(client.volumeCategoryBuilder()
                         .setId(VOLUME_CATEGORY).setName("MobVoz Mobs")

@@ -97,28 +97,28 @@ public class NegotiationGameTest implements FabricClientGameTest {
             System.out.println("[gametest] fazendeiro: " + open.reason());
             check(open.verdict().equals("ACEITO") && open.reason().contains("feno"), "fazendeiro deveria aceitar feno: " + open);
             drop(world, "minecraft:hay_block", 4);
-            waitFor(context, 400, () -> onGround(world, "minecraft:emerald") > 0 && said("Toma o que eu prometi"));
+            waitFor(context, 400, () -> onGround(world, "minecraft:emerald") > 0 && said("como eu falei"));
             context.waitTicks(20);
             System.out.println("[gametest] fala: " + ConversationService.announced());
             check(onGround(world, "minecraft:emerald") == 1, "esmeralda nao entregue");
             int hayBack = onGround(world, "minecraft:hay_block") + world.getServer().computeOnServer(s -> player(s).getInventory().countItem(net.minecraft.world.item.Items.HAY_BLOCK));
             check(hayBack == 1, "o 4o feno deveria voltar ao jogador/chao (ha " + hayBack + ")");
-            check(said("só pedi 3") && said("devolvi o que sobrou"), "falta a fala sobre a sobra: " + ConversationService.announced());
+            check(said("Só precisava de 3") && said("de volta com você"), "falta a fala sobre a sobra: " + ConversationService.announced());
 
             // ---- B) nao cumpriu: valor insuficiente e prazo vencido ----
             cmd.runCommand("kill @e[type=item]");
             check(world.getServer().computeOnServer(s -> Trades.open(mob(s, farmer), player(s), 0, "", 0)).verdict().equals("ACEITO"), "reabrir");
             drop(world, "minecraft:hay_block", 1);
-            waitFor(context, 400, () -> said("paga só uns"));
-            check(said("não está fechado"), "falta a fala de valor insuficiente");
+            waitFor(context, 400, () -> said("por enquanto só deu"));
+            check(said("Ainda falta"), "falta a fala de valor insuficiente");
             check(onGround(world, "minecraft:emerald") == 0 && onGround(world, "minecraft:hay_block") == 1, "nada deveria ser tomado/pago");
             world.getServer().runOnServer(s -> { // forca o prazo curto para provar o "negocio desfeito"
                 Mob m = mob(s, farmer);
                 MobTrades t = Trades.get(m);
                 m.setAttached(MobTrades.TYPE, t.open(t.offerRecipe(), t.offerPlayer(), s.overworld().getGameTime() + 15));
             });
-            waitFor(context, 300, () -> said("negócio está desfeito"));
-            check(said("não cumpriu o combinado"), "falta a fala de negocio desfeito: " + ConversationService.announced());
+            waitFor(context, 300, () -> said("esquece o trato"));
+            check(said("esquece o trato"), "falta a fala de negocio desfeito: " + ConversationService.announced());
             System.out.println("[gametest] B ok: valor insuficiente e negocio desfeito foram falados; nada foi tomado");
 
             // ---- C) esqueleto Wither: ferro nao interessa, picareta sim, convencer com limite ----

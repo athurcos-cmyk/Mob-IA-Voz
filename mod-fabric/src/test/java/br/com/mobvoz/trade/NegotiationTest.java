@@ -112,7 +112,9 @@ class NegotiationTest {
             assertEquals(outs, Profiles.of(p).drops(), p);
         }
         assertTrue(TradeCatalog.forProfile("minecraft:cow").isPresent());
-        assertTrue(TradeCatalog.forProfile("minecraft:creeper").isEmpty(), "quem nao tem o que dar nao negocia");
+        assertTrue(TradeCatalog.forProfile("minecraft:creeper").isPresent(), "todo mob tem algo a oferecer: o creeper vende polvora");
+        assertTrue(TradeCatalog.forProfile("othermod:blob").isEmpty(), "so um mob de outro mod, sem perfil, fica sem nada para vender");
+        assertEquals(TradeCatalog.recipesFor("minecraft:villager"), TradeCatalog.recipesFor("minecraft:villager#nitwit"), "profissao sem receita propria usa a do aldeao");
     }
 
     /** O que a criatura da combina com a natureza dela (pedidos do jogador no wiki: peixe so do mar, camelo cacto, vaca couro...). */
@@ -195,7 +197,7 @@ class NegotiationTest {
         assertTrue(TradeCatalog.byId("dyn|lixo").isEmpty());
         assertFalse(r.conditions(1).isEmpty());
         // criatura sem gosto fixo: o preco sai em esmeraldas, nunca vazio
-        var odd = TradeCatalog.dynamic("minecraft:creeper", "minecraft:gunpowder", 1.5, 3).orElseThrow();
+        var odd = TradeCatalog.dynamic("othermod:blob", "minecraft:gunpowder", 1.5, 3).orElseThrow();
         assertTrue(odd.paymentExamples(1).get(0).contains("esmeralda"), odd.paymentExamples(1).toString());
     }
 

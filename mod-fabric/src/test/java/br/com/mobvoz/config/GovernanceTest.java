@@ -70,7 +70,7 @@ class GovernanceTest {
     @Test
     void configDefaultsAreConservativeAndBrokenJsonIsSafe() {
         ServerConfig d = new ServerConfig();
-        assertFalse(d.bossContractsEnabled);
+        assertTrue(d.bossContractsEnabled, "chefes podem firmar pacto por padrao");
         assertTrue(d.requireVoiceConsent);
         assertEquals(0, ServerConfig.parse("{\"maxActiveFollowersPerPlayer\":-5}").maxActiveFollowersPerPlayer);
         assertEquals(32, ServerConfig.parse("{\"maxActiveFollowersPerPlayer\":999}").maxActiveFollowersPerPlayer);

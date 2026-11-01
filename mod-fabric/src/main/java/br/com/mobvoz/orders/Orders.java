@@ -121,6 +121,11 @@ public final class Orders {
 
     /** {@code appealBonus}: calor extra vindo de um bom argumento do jogador (ver {@link OrderPolicy#appealBonus}). */
     public static List<Decision> handle(Mob mob, ServerPlayer player, List<String> requested, boolean kinshipBelieved, double appealBonus) {
+        return handle(mob, player, requested, kinshipBelieved, appealBonus, false);
+    }
+
+    /** {@code paid}: o pedagio do favor foi pago, entao a falta de confianca nao impede o pedido (ver {@link OrderPolicy#decide}). */
+    public static List<Decision> handle(Mob mob, ServerPlayer player, List<String> requested, boolean kinshipBelieved, double appealBonus, boolean paid) {
         long tick = player.level().getGameTime();
         MobMemory mem = MemoryStore.get(mob);
         Subject subject = subjectOf(mob);
@@ -138,7 +143,7 @@ public final class Orders {
             var rel0 = mem.relationOf(player.getUUID());
             var rel = appealBonus > 0 ? new br.com.mobvoz.memory.MobMemory.Relationship(rel0.trust() + (float) (2 * appealBonus), rel0.affinity(), rel0.fear()) : rel0;
             Decision d = OrderPolicy.decide(action, subject, rel, kinshipBelieved, cur, pid, otherOnline, tick,
-                    new OrderPolicy.Rules(cfg.bossContractsEnabled, cfg.maxActiveFollowersPerPlayer, followersOf(player)));
+                    new OrderPolicy.Rules(cfg.bossContractsEnabled, cfg.maxActiveFollowersPerPlayer, followersOf(player)), paid);
             if (d.accepted() && action.equals("TAME_ME")) {
                 tame(mob, player);
                 MemoryStore.update(mob, m -> MemoryRules.tamed(m, player.getUUID(), tick));
@@ -146,6 +151,9 @@ public final class Orders {
             if (d.accepted()) {
                 String dim = mob.level().dimension().location().toString();
                 set(mob, OrderPolicy.apply(d, cur, pid, dim, mob.getX(), mob.getY(), mob.getZ(), tick));
+                if (mob instanceof Warden w && !action.equals("DISMISS_ALLY")) {
+                    BossAdapter.keepAboveGround(w); // nao escava e some: a cooldown vale desde o instante do pacto
+                }
                 if (action.equals("DISMISS_ALLY")) {
                     mob.getNavigation().stop();
                 }
@@ -252,9 +260,11 @@ public final class Orders {
 
     /** Chefe sob contrato (aliado ou em tregua) nao destroi blocos, salvo se o admin ligou {@code bossDestructionOnAlliance}. */
     public static boolean restrictsGriefing(Mob m) {
-        if (ServerConfig.current().bossDestructionOnAlliance) {
-            return false;
-        }
+        return !ServerConfig.current().bossDestructionOnAlliance && underPact(m);
+    }
+
+    /** Aliado (seguindo, de guarda ou defendendo) ou em tregua com alguem. */
+    public static boolean underPact(Mob m) {
         MobOrders o = m.getAttached(MobOrders.TYPE);
         return o != null && (o.mode() != MobOrders.Mode.NONE || o.defend() || o.truceUntil() > m.level().getGameTime());
     }
@@ -265,6 +275,43 @@ public final class Orders {
         } catch (IllegalArgumentException e) {
             return null;
         }
+    }
+
+    /**
+     * Warden e Wither aliados (de um dono que e jogador) so atacam quem e hostil a esse dono: monstros, quem mira nele ou nos aliados dele, e quem o feriu
+     * ha pouco. Porco, vaca, aldeao, lobo, gato... ficam em paz, embora o Warden e o Wither ataquem tudo por natureza. Chamado pelos mixins de mira
+     * ({@code canTargetEntity} do Warden e {@code canAttack} de qualquer criatura, que so age sobre esses dois).
+     */
+    public static boolean holdsFireAt(Mob boss, net.minecraft.world.entity.Entity target) {
+        if (!(boss instanceof Warden || boss instanceof WitherBoss) || !(target instanceof LivingEntity t)) {
+            return false;
+        }
+        MobOrders o = boss.getAttached(MobOrders.TYPE);
+        if (o == null || o.owner().isEmpty() || o.mode() == MobOrders.Mode.NONE && !o.defend() || !(boss.level() instanceof ServerLevel level)) {
+            return false; // sem pacto: continua sendo o chefe de sempre
+        }
+        ServerPlayer owner = playerOrNull(level.getServer(), o.owner());
+        return !hostileToOwner(owner, t);
+    }
+
+    /** {@code owner} pode ser null (dono desconectado): so se ataca monstro. */
+    static boolean hostileToOwner(ServerPlayer owner, LivingEntity t) {
+        if (owner != null && t == owner) {
+            return false;
+        }
+        if (owner != null && t instanceof Mob ally && isAlly(ally, owner)) {
+            return false; // nunca o proprio aliado
+        }
+        if (t instanceof net.minecraft.world.entity.monster.Enemy) {
+            return true;
+        }
+        if (owner == null) {
+            return false;
+        }
+        if (t instanceof Mob m && m.getTarget() != null && (m.getTarget() == owner || m.getTarget() instanceof Mob victim && isAlly(victim, owner))) {
+            return true; // quem esta atacando o dono ou um aliado dele
+        }
+        return owner.getLastHurtByMob() == t && owner.tickCount - owner.getLastHurtByMobTimestamp() < 600; // quem o feriu ha pouco (30 s)
     }
 
     public static boolean isAlly(Mob m, ServerPlayer owner) {
@@ -286,6 +333,7 @@ public final class Orders {
             // 2) quebra de pacto: o jogador fere quem tem tregua com ele
             if (entity instanceof Mob m && source.getEntity() instanceof ServerPlayer p) {
                 br.com.mobvoz.trade.Trades.onAttacked(m, p);
+                br.com.mobvoz.trade.Favors.onAttacked(m, p);
                 br.com.mobvoz.social.Parley.end(m); // ferir quem conversa acaba com a conversa
                 MobOrders o = get(m);
                 if (o.truceUntil() > m.level().getGameTime() && o.truceFor().equals(p.getUUID().toString())) {

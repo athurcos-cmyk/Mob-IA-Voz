@@ -79,6 +79,18 @@ public final class OrderPolicy {
         return need * br.com.mobvoz.config.ServerConfig.current().trustFactor();
     }
 
+    /** Calor minimo que a criatura exige para aceitar cada pedido (0 = nao depende de confianca). Mesma regra de {@link #decide}; o pagamento por favor mede a distancia ate aqui. */
+    public static double trustNeeded(String action, Subject s) {
+        return switch (action) {
+            case "FOLLOW_PLAYER" -> followThreshold(s);
+            case "STAY_AT" -> followThreshold(s) - 0.15;
+            case "DEFEND_PLAYER" -> followThreshold(s) + 0.1;
+            case "TAME_ME" -> followThreshold(s) + 0.10;
+            case "CEASE_HOSTILITY" -> s.boss() ? 0.5 : 0.3;
+            default -> 0;
+        };
+    }
+
     public static Decision decide(String action, Subject s, Relationship rel, boolean kinshipBelieved, MobOrders cur,
                                   String player, boolean otherOwnerOnline, long tick) {
         return decide(action, s, rel, kinshipBelieved, cur, player, otherOwnerOnline, tick, Rules.NONE);
@@ -86,6 +98,12 @@ public final class OrderPolicy {
 
     public static Decision decide(String action, Subject s, Relationship rel, boolean kinshipBelieved, MobOrders cur,
                                   String player, boolean otherOwnerOnline, long tick, Rules rules) {
+        return decide(action, s, rel, kinshipBelieved, cur, player, otherOwnerOnline, tick, rules, false);
+    }
+
+    /** {@code paid}: o jogador pagou o pedagio do favor (ver Favors): a falta de confianca nao conta; o resto das regras continua valendo. */
+    public static Decision decide(String action, Subject s, Relationship rel, boolean kinshipBelieved, MobOrders cur,
+                                  String player, boolean otherOwnerOnline, long tick, Rules rules, boolean paid) {
         if (s.boss() && !rules.bossContracts() && Set.of("FOLLOW_PLAYER", "STAY_AT", "DEFEND_PLAYER", "CEASE_HOSTILITY").contains(action)) {
             // Chefes: contratos desligados por padrao no mundo. Ligados, valem as regras normais com confianca minima mais alta
             // (BOSS_MIN_TRUST) e so o que o adaptador do chefe consegue (Dragao: sem seguir/ficar, so lutar e tregua).
@@ -95,7 +113,7 @@ public final class OrderPolicy {
                 && !(cur.owner().equals(player) && (cur.mode() == MobOrders.Mode.FOLLOW || cur.defend()))) {
             return new Decision(action, Verdict.REFUSED, "quem pede ja tem aliados demais com ele");
         }
-        double warmth = warmth(rel, kinshipBelieved);
+        double warmth = paid ? Double.POSITIVE_INFINITY : warmth(rel, kinshipBelieved);
         boolean mine = cur.mode() != MobOrders.Mode.NONE && cur.owner().equals(player);
         switch (action) {
             case "FOLLOW_PLAYER" -> {
@@ -109,7 +127,7 @@ public final class OrderPolicy {
                 if (cur.mode() != MobOrders.Mode.NONE && !mine && otherOwnerOnline) {
                     return new Decision(action, Verdict.REFUSED, "ja obedece a outro jogador");
                 }
-                if (warmth < followThreshold(s)) {
+                if (warmth < trustNeeded(action, s)) {
                     return new Decision(action, Verdict.REFUSED, "ainda nao confia o bastante em quem pede");
                 }
                 return new Decision(action, Verdict.ACCEPTED, "");
@@ -125,7 +143,7 @@ public final class OrderPolicy {
                 if (cur.mode() != MobOrders.Mode.NONE && !mine && otherOwnerOnline) {
                     return new Decision(action, Verdict.REFUSED, "ja obedece a outro jogador");
                 }
-                if (!mine && warmth < followThreshold(s) - 0.15) {
+                if (!mine && warmth < trustNeeded(action, s)) {
                     return new Decision(action, Verdict.REFUSED, "nao confia o bastante para obedecer");
                 }
                 return new Decision(action, Verdict.ACCEPTED, "");
@@ -153,7 +171,7 @@ public final class OrderPolicy {
                 if (!cur.owner().isEmpty() && !mine && otherOwnerOnline) {
                     return new Decision(action, Verdict.REFUSED, "ja obedece a outro jogador");
                 }
-                if (warmth < followThreshold(s) + 0.1) {
+                if (warmth < trustNeeded(action, s)) {
                     return new Decision(action, Verdict.REFUSED, "nao confia o bastante para lutar por quem pede");
                 }
                 return new Decision(action, Verdict.ACCEPTED, "");
@@ -162,7 +180,7 @@ public final class OrderPolicy {
                 if (!s.tameable()) {
                     return new Decision(action, Verdict.UNSUPPORTED, "nao e uma criatura que se deixe domar");
                 }
-                if (warmth < followThreshold(s) + 0.10) {
+                if (warmth < trustNeeded(action, s)) {
                     return new Decision(action, Verdict.REFUSED, "ainda nao confia o bastante para aceitar ser de quem pede");
                 }
                 return new Decision(action, Verdict.ACCEPTED, "decidiu e aceitou ser do jogador AGORA: ele passa a ser seu dono e pode montar e cuidar de voce; confirme isso na sua voz, sem duvida");
@@ -183,7 +201,7 @@ public final class OrderPolicy {
                 if (tick < cur.truceCooldownUntil()) {
                     return new Decision(action, Verdict.REFUSED, "tregua recente; precisa esperar");
                 }
-                if (warmth < (s.boss() ? 0.5 : 0.3)) {
+                if (warmth < trustNeeded(action, s)) {
                     return new Decision(action, Verdict.REFUSED, "nao confia o bastante para baixar a guarda");
                 }
                 return new Decision(action, Verdict.ACCEPTED, "");

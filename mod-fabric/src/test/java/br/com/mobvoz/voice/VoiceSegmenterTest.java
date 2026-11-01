@@ -88,8 +88,43 @@ class VoiceSegmenterTest {
 
     @Test
     void maxDurationCutsLongSpeech() {
-        play(20_000, 8000, UUID.randomUUID());
+        play(40_000, 8000, UUID.randomUUID());
         assertTrue(out.size() >= 1);
-        assertTrue(out.get(0).durationMs() <= 15_100);
+        assertTrue(out.get(0).durationMs() <= 30_100);
+    }
+
+    /** Push-to-talk: com a tecla apertada uma pausa longa NAO fecha o enunciado; as duas partes vao juntas, e fecha logo depois de soltar. */
+    @Test
+    void pauseWhileKeyHeldKeepsOneUtterance() {
+        boolean[] held = {true};
+        List<VoiceSegmenter.Utterance> got = new ArrayList<>();
+        VoiceSegmenter ptt = VoiceSegmenter.withDefaults(got::add, () -> held[0]);
+        UUID cow = UUID.randomUUID();
+        long t = 0;
+        for (int i = 0; i < 50; i++, t += 20) { // fala 1 s
+            ptt.onFrame(frame(8000), t, cow);
+        }
+        for (int i = 0; i < 150; i++, t += 20) { // pausa de 3 s com a tecla apertada (o SVC manda frames de silencio)
+            ptt.onFrame(frame(0), t, cow);
+            ptt.poll(t);
+        }
+        assertEquals(0, got.size(), "a pausa com a tecla apertada nao pode enviar a fala");
+        for (int i = 0; i < 50; i++, t += 20) { // continua falando 1 s
+            ptt.onFrame(frame(8000), t, cow);
+        }
+        held[0] = false; // soltou
+        ptt.poll(t + 100);
+        assertEquals(0, got.size(), "ainda dentro da folga logo apos soltar");
+        ptt.poll(t + 300);
+        assertEquals(1, got.size());
+        assertTrue(got.get(0).durationMs() >= 4900, "as duas partes e a pausa vao no mesmo enunciado");
+    }
+
+    /** Sem a tecla (ativacao por voz) continua valendo o silencio de 700 ms. */
+    @Test
+    void withoutKeySilenceStillCloses() {
+        play(1000, 8000, UUID.randomUUID());
+        play(1000, 0, UUID.randomUUID());
+        assertEquals(1, out.size());
     }
 }

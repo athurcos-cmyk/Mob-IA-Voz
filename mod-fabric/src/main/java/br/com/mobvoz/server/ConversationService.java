@@ -16,6 +16,7 @@ import br.com.mobvoz.orders.OrderPolicy;
 import br.com.mobvoz.profile.Profiles;
 import br.com.mobvoz.trade.TradeCatalog;
 import br.com.mobvoz.orders.Orders;
+import br.com.mobvoz.trade.Favors;
 import br.com.mobvoz.trade.Trades;
 import br.com.mobvoz.trade.Values;
 import br.com.mobvoz.target.TargetPicker;
@@ -501,6 +502,9 @@ public final class ConversationService {
 
     /** Falou de um item sem pedir nem propor troca (ex.: "eu te dou um bloco de ouro", "voce me daria ouro?" a quem gosta de ouro). */
     static boolean mentionOnly(Mob mob, UUID pid, SidecarClient.Analysis an) {
+        if (an.orders().stream().anyMatch(OrderPolicy.ACTIONS::contains)) {
+            return false; // "me segue, te dou ossos": e parte do pedido, nao uma simples citacao
+        }
         return !isTradeTalk(mob, pid, an) && (!an.offers().isEmpty() || !an.ask().name().isBlank());
     }
 
@@ -610,14 +614,36 @@ public final class ConversationService {
         if (!orderReqs.isEmpty()) {
             var rel1 = mem.relationOf(pid);
             double bonus = OrderPolicy.appealBonus(an.appeal(), Traits.credulity(Profiles.keyOf(mob), mem.identityId()), rel1.fear());
-            for (OrderPolicy.Decision d : Orders.handle(mob, player, orderReqs, Orders.kinshipBelieved(mem, pid), bonus)) {
-                results.add(Map.of("pedido", d.action(), "resultado", switch (d.verdict()) {
+            boolean kin = Orders.kinshipBelieved(mem, pid);
+            for (OrderPolicy.Decision d : Orders.handle(mob, player, orderReqs, kin, bonus)) {
+                String res = switch (d.verdict()) {
                     case ACCEPTED -> "ACEITO";
                     case REFUSED -> "RECUSADO";
                     case UNSUPPORTED -> "IMPOSSIVEL";
                     case ALREADY -> "JA_ATIVO";
                     case NOT_APPLICABLE -> "NAO_SE_APLICA";
-                }, "motivo", d.reason()));
+                };
+                String why = d.reason();
+                if (d.accepted()) {
+                    Favors.cancel(mob); // aceitou de graca (a confianca ja bastava): devolve o que tinha sido pago por outro pedido
+                } else if (Favors.trustRefusal(d)) { // recusou so por falta de confianca: cobra um preco de verdade, em itens que ela aceita
+                    var fo = Favors.open(mob, player, d.action(), OrderPolicy.warmth(rel1, kin) + bonus);
+                    if (fo != null) {
+                        res = "CONDICIONAL";
+                        why = fo.reason();
+                    }
+                }
+                results.add(Map.of("pedido", d.action(), "resultado", res, "motivo", why));
+            }
+            if (!an.offers().isEmpty()) { // "te dou X se me seguir": avalia o que ele disse que pagaria contra o preco combinado
+                Map<String, Integer> said = new java.util.LinkedHashMap<>();
+                for (SidecarClient.Item it : an.offers()) {
+                    Values.lookup(it.name()).ifPresent(id -> said.merge(id, it.count(), Integer::sum));
+                }
+                String ev = Favors.evaluate(mob, pid, said);
+                if (ev != null) {
+                    results.add(Map.of("pedido", "AVALIAR_OFERTA", "resultado", "RESUMO", "motivo", ev));
+                }
             }
         }
         String pkey = Profiles.keyOf(mob);

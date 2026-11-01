@@ -26,6 +26,7 @@ public final class MobVozMod implements ModInitializer {
         MemoryEvents.register();
         Orders.register();
         Trades.register();
+        br.com.mobvoz.trade.Favors.register();
         Chatter.register();
         br.com.mobvoz.social.Ambient.register();
         KnowledgeStore.register();

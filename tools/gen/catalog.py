@@ -216,6 +216,13 @@ CATALOG = {
 }
 
 
+# criaturas que ainda nao negociavam (ver mais_perfis.py): importado aqui no fim, quando r(), w() e CATALOG ja existem
+import mais_perfis  # noqa: E402
+
+CATALOG.update(mais_perfis.CATALOG_EXTRA)
+NEW_VALUES.update(mais_perfis.NEW_VALUES_EXTRA)
+
+
 def recipe_id(profile, item):
     short = profile.split(":")[1].replace("#", "_")
     return f"{short}_{item.split(':')[1]}_v2"

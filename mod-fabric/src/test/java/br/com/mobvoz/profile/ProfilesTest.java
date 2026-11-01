@@ -34,7 +34,7 @@ class ProfilesTest {
     /** T18: mob sem perfil especializado fala por fallback universal (sem acoes inventadas). */
     @Test
     void unknownMobGetsUniversalFallback() {
-        assertEquals("*", Profiles.of("minecraft:axolotl").id());
+        assertEquals("*", Profiles.of("minecraft:tadpole").id());
         assertEquals("*", Profiles.of("othermod:dragonling#boss").id());
         assertEquals("minecraft:villager#farmer", Profiles.of("minecraft:villager#farmer").id());
         assertEquals("*", Profiles.of("minecraft:villager#nitwit").id().equals("minecraft:villager") ? "*" : "*");

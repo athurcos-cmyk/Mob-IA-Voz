@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "br.com.mobvoz.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": ["EntityPortalMixin", "BossGriefingMixins$Wither", "BossGriefingMixins$Skull", "BossGriefingMixins$Dragon"],
+  "mixins": ["EntityPortalMixin", "BossGriefingMixins$Wither", "BossGriefingMixins$Skull", "BossGriefingMixins$Dragon", "BossTargetMixins$Warden_", "BossTargetMixins$Living_", "BossTargetMixins$Digging_"],
   "injectors": {
     "defaultRequire": 1
   }

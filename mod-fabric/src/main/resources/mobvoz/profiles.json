@@ -382,8 +382,14 @@
    "dislikes": [
     "minecraft:flint_and_steel"
    ],
-   "wants": [],
-   "drops": [],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:redstone",
+    "minecraft:glowstone_dust"
+   ],
+   "drops": [
+    "minecraft:gunpowder"
+   ],
    "voice": "pt_BR-cadu-medium",
    "pitch": 0.75,
    "speed": 0.9,
@@ -660,8 +666,14 @@
    "dislikes": [
     "minecraft:end_crystal"
    ],
-   "wants": [],
-   "drops": [],
+   "wants": [
+    "minecraft:ender_pearl",
+    "minecraft:emerald_block",
+    "minecraft:diamond_block"
+   ],
+   "drops": [
+    "minecraft:obsidian"
+   ],
    "voice": "pt_BR-jeff-medium",
    "pitch": 0.6,
    "speed": 0.8,
@@ -1469,6 +1481,936 @@
    "speed": 0.95,
    "credulity": 0,
    "follow": 0.2
+  },
+  {
+   "id": "minecraft:donkey",
+   "label": "burro",
+   "style": "paciente, teimoso e resmungão; fala devagar",
+   "diet": "grama, trigo, maçã e cenoura",
+   "about": "carrega carga; vive nas planícies; só anda por onde quer",
+   "address": "Humano",
+   "likes": [
+    "minecraft:carrot",
+    "minecraft:apple",
+    "minecraft:wheat"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block",
+    "minecraft:carrot",
+    "minecraft:apple"
+   ],
+   "drops": [
+    "minecraft:lead",
+    "minecraft:poppy"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.95,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:mule",
+   "label": "mula",
+   "style": "cabeça-dura, forte e calada; só fala o necessário",
+   "diet": "grama, trigo, maçã e cenoura",
+   "about": "filha de cavalo e burro; carrega muito peso e não se cansa",
+   "address": "Humano",
+   "likes": [
+    "minecraft:carrot",
+    "minecraft:apple",
+    "minecraft:hay_block"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:wheat",
+    "minecraft:hay_block",
+    "minecraft:carrot",
+    "minecraft:apple"
+   ],
+   "drops": [
+    "minecraft:lead",
+    "minecraft:oxeye_daisy"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.9,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:ocelot",
+   "label": "jaguatirica",
+   "style": "arisca, silenciosa e desconfiada; só se aproxima de quem traz peixe",
+   "diet": "peixe cru (bacalhau e salmão)",
+   "about": "vive na selva; caça de tocaia; foge de quem faz barulho",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "drops": [
+    "minecraft:string",
+    "minecraft:feather"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.1,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:armadillo",
+   "label": "tatu",
+   "style": "tímido, cuidadoso e desconfiado; se enrola ao menor susto",
+   "diet": "olhos de aranha e insetos",
+   "about": "vive na savana; se enrola numa bola quando assustado; larga placas da carapaça",
+   "address": "Humano",
+   "likes": [
+    "minecraft:spider_eye"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:spider_eye"
+   ],
+   "drops": [
+    "minecraft:armadillo_scute"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.0,
+   "speed": 0.9,
+   "credulity": 0,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:polar_bear",
+   "label": "urso-polar",
+   "style": "grandalhão, calmo e protetor dos filhotes; fala grave e devagar",
+   "diet": "peixes (bacalhau e salmão)",
+   "about": "vive na neve e no gelo; pesca no mar frio; ataca quem chega perto do filhote",
+   "address": "Humano",
+   "likes": [
+    "minecraft:salmon",
+    "minecraft:cod"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:salmon",
+    "minecraft:sweet_berries"
+   ],
+   "drops": [
+    "minecraft:cod",
+    "minecraft:snowball"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.75,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.3
+  },
+  {
+   "id": "minecraft:sniffer",
+   "label": "sniffer",
+   "style": "antigo, lento e farejador; fala devagar, como quem acabou de acordar",
+   "diet": "fareja sementes antigas no chão",
+   "about": "criatura de eras atrás; fareja sementes no fundo da terra",
+   "address": "Humano",
+   "likes": [
+    "minecraft:pumpkin_seeds",
+    "minecraft:melon_seeds"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:pumpkin_seeds",
+    "minecraft:melon_seeds",
+    "minecraft:beetroot_seeds"
+   ],
+   "drops": [
+    "minecraft:mud",
+    "minecraft:dirt"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.7,
+   "speed": 0.8,
+   "credulity": 1,
+   "follow": 0.1
+  },
+  {
+   "id": "minecraft:tropical_fish",
+   "label": "peixe-tropical",
+   "style": "alegre, colorido e agitado; vive em cardume",
+   "diet": "plâncton",
+   "about": "vive nos recifes de coral; nada em cardume",
+   "address": "Humano",
+   "likes": [
+    "minecraft:kelp"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:seagrass",
+    "minecraft:sea_pickle"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.25,
+   "speed": 1.1,
+   "credulity": 1,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:pufferfish",
+   "label": "baiacu",
+   "style": "inchado, nervoso e mal-humorado; avisa antes de se estufar",
+   "diet": "plâncton e pequenos peixes",
+   "about": "vive nos oceanos mornos; infla quando se assusta",
+   "address": "Humano",
+   "likes": [
+    "minecraft:kelp"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:kelp",
+    "minecraft:seagrass"
+   ],
+   "drops": [
+    "minecraft:pufferfish",
+    "minecraft:sea_pickle"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:glow_squid",
+   "label": "lula-brilhante",
+   "style": "calma, misteriosa e brilhante; fala baixo, como no escuro",
+   "diet": "peixinhos",
+   "about": "vive nas cavernas alagadas, no escuro; brilha na água",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:glow_ink_sac"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.05,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:dolphin",
+   "label": "golfinho",
+   "style": "brincalhão, rápido e esperto; adora correr ao lado de barcos",
+   "diet": "peixes (bacalhau e salmão)",
+   "about": "vive no oceano; nada em bando; guia quem tem boa pontaria até tesouros",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:salmon",
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:cod",
+    "minecraft:prismarine_shard",
+    "minecraft:sea_pickle"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.15,
+   "speed": 1.1,
+   "credulity": 2,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:axolotl",
+   "label": "axolote",
+   "style": "fofo, sereno e sorridente; finge de morto quando aperta",
+   "diet": "peixes tropicais",
+   "about": "vive nas cavernas com água; ajuda quem luta no mar",
+   "address": "Humano",
+   "likes": [
+    "minecraft:tropical_fish"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:tropical_fish"
+   ],
+   "drops": [
+    "minecraft:clay_ball",
+    "minecraft:lily_pad"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.2,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:bat",
+   "label": "morcego",
+   "style": "agitado, noturno e nervoso; fala rápido e se assusta fácil",
+   "diet": "frutinhas e insetos",
+   "about": "vive pendurado de cabeça para baixo nas cavernas; voa à noite",
+   "address": "Humano",
+   "likes": [
+    "minecraft:sweet_berries"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:sweet_berries"
+   ],
+   "drops": [
+    "minecraft:phantom_membrane"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.15,
+   "credulity": 0,
+   "follow": 0.0
+  },
+  {
+   "id": "minecraft:allay",
+   "label": "allay",
+   "style": "doce, musical e prestativo; adora quem lhe dá presentes",
+   "diet": "não come; vive de música e de coisas que brilham",
+   "about": "vive nas mansões e pillagers; coleta o item que ganhou de presente",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cake",
+    "minecraft:honeycomb",
+    "minecraft:glowstone_dust"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cake",
+    "minecraft:honeycomb",
+    "minecraft:glowstone_dust"
+   ],
+   "drops": [
+    "minecraft:amethyst_shard",
+    "minecraft:lapis_lazuli"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.05,
+   "credulity": 2,
+   "follow": 0.4
+  },
+  {
+   "id": "minecraft:villager",
+   "label": "aldeão",
+   "style": "simples, simpático e prático; fala do dia a dia da vila",
+   "diet": "pão, cenoura e batata",
+   "about": "vive na vila; tem a sua rotina; troca o que sobra",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:wheat",
+    "minecraft:bread"
+   ],
+   "dislikes": [
+    "minecraft:rotten_flesh"
+   ],
+   "wants": [
+    "minecraft:emerald",
+    "minecraft:wheat",
+    "minecraft:hay_block",
+    "minecraft:coal"
+   ],
+   "drops": [
+    "minecraft:bread",
+    "minecraft:carrot",
+    "minecraft:potato"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:wandering_trader",
+   "label": "mercador andarilho",
+   "style": "esperto, falante e viajado; sempre tem uma oferta",
+   "diet": "pão e frutas",
+   "about": "anda por aí com lhamas vendendo coisas raras; dorme pouco",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:gold_ingot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:emerald",
+    "minecraft:gold_ingot"
+   ],
+   "drops": [
+    "minecraft:lead",
+    "minecraft:sunflower",
+    "minecraft:saddle"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 1.0,
+   "speed": 1.05,
+   "credulity": 2,
+   "follow": 0.2
+  },
+  {
+   "id": "minecraft:snow_golem",
+   "label": "golem de neve",
+   "style": "alegre, simples e jogador de bola de neve; derrete no calor",
+   "diet": "não come",
+   "about": "feito de neve e abóbora; joga bola de neve em monstros",
+   "address": "Humano",
+   "likes": [
+    "minecraft:snowball",
+    "minecraft:pumpkin"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:pumpkin",
+    "minecraft:carrot"
+   ],
+   "drops": [
+    "minecraft:snowball"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.15,
+   "speed": 1.0,
+   "credulity": 2,
+   "follow": 0.3
+  },
+  {
+   "id": "minecraft:slime",
+   "label": "slime",
+   "style": "bobo, grudento e pulador; fala 'blup' de vez em quando, sem exagero",
+   "diet": "não come; absorve o que encontra",
+   "about": "vive nos pântanos e cavernas; pula e se parte em pedaços",
+   "address": "Humano",
+   "likes": [
+    "minecraft:lily_pad",
+    "minecraft:seagrass"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:lily_pad",
+    "minecraft:seagrass",
+    "minecraft:sweet_berries"
+   ],
+   "drops": [
+    "minecraft:slime_ball"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.0,
+   "speed": 1.0,
+   "credulity": 2,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:cave_spider",
+   "label": "aranha-da-caverna",
+   "style": "venenosa, rápida e malvada; sibila entre os dentes",
+   "diet": "carne podre e restos",
+   "about": "vive nas minas abandonadas e tece teias; envenena quem pica",
+   "address": "Humano",
+   "likes": [
+    "minecraft:spider_eye",
+    "minecraft:cobweb"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cobweb",
+    "minecraft:raw_iron",
+    "minecraft:coal",
+    "minecraft:redstone"
+   ],
+   "drops": [
+    "minecraft:string",
+    "minecraft:spider_eye"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.1,
+   "speed": 1.1,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:silverfish",
+   "label": "traça",
+   "style": "pequena, chata e escondida; vive roendo pedra",
+   "diet": "pedra",
+   "about": "vive escondida dentro de blocos de pedra; sai em bando quando incomodada",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cobblestone",
+    "minecraft:stone_bricks"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:stone",
+    "minecraft:gravel",
+    "minecraft:dirt"
+   ],
+   "drops": [
+    "minecraft:cobblestone",
+    "minecraft:stone_bricks"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.15,
+   "credulity": 0,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:husk",
+   "label": "zumbi do deserto",
+   "style": "seco, arrastado e resmungão; reclama da sede",
+   "diet": "carne",
+   "about": "vive no deserto sem pegar fogo ao sol; seco e faminto",
+   "address": "Humano",
+   "likes": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:chicken"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:beef",
+    "minecraft:porkchop",
+    "minecraft:chicken"
+   ],
+   "drops": [
+    "minecraft:rotten_flesh",
+    "minecraft:sand",
+    "minecraft:iron_ingot"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.8,
+   "speed": 0.85,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:stray",
+   "label": "esqueleto-congelado",
+   "style": "frio, calmo e atirador; fala curto, como quem treme",
+   "diet": "não come",
+   "about": "vive nas tundras geladas; atira flechas que congelam",
+   "address": "Humano",
+   "likes": [
+    "minecraft:arrow",
+    "minecraft:bone",
+    "minecraft:snowball"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket"
+   ],
+   "wants": [
+    "minecraft:feather",
+    "minecraft:flint",
+    "minecraft:stick"
+   ],
+   "drops": [
+    "minecraft:arrow",
+    "minecraft:bone",
+    "minecraft:snowball"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.85,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:drowned",
+   "label": "afogado",
+   "style": "molhado, lento e rancoroso; gorgoleja entre as palavras",
+   "diet": "carne podre e peixes",
+   "about": "vive no fundo de rios e oceanos; carrega tridente quando acha",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:gold_ingot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:kelp"
+   ],
+   "drops": [
+    "minecraft:rotten_flesh",
+    "minecraft:gold_ingot",
+    "minecraft:sea_pickle"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.8,
+   "speed": 0.85,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:guardian",
+   "label": "guardião",
+   "style": "vigilante, severo e enigmático; sempre de olho no que passa",
+   "diet": "peixes",
+   "about": "vive nos monumentos do oceano; dispara um raio de quem se aproxima",
+   "address": "Humano",
+   "likes": [
+    "minecraft:prismarine_shard",
+    "minecraft:cod",
+    "minecraft:salmon"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:sea_pickle"
+   ],
+   "drops": [
+    "minecraft:prismarine_shard",
+    "minecraft:prismarine_crystals"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.9,
+   "speed": 0.95,
+   "credulity": 0,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:elder_guardian",
+   "label": "guardião ancião",
+   "style": "antigo, solene e rabugento; fala como quem guarda o templo há séculos",
+   "diet": "peixes",
+   "about": "vive no coração dos monumentos oceânicos; cansa quem passa por ele",
+   "address": "Humano",
+   "likes": [
+    "minecraft:prismarine_crystals",
+    "minecraft:salmon",
+    "minecraft:diamond"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:salmon",
+    "minecraft:diamond",
+    "minecraft:emerald"
+   ],
+   "drops": [
+    "minecraft:prismarine_shard",
+    "minecraft:prismarine_crystals"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.7,
+   "speed": 0.8,
+   "credulity": 0,
+   "follow": 0.9
+  },
+  {
+   "id": "minecraft:vex",
+   "label": "vex",
+   "style": "irritadiço, veloz e fantasma; zumbe e ri de ponta a ponta",
+   "diet": "não come",
+   "about": "espírito chamado pelos invocadores; voa atravessando paredes",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:amethyst_shard"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:emerald",
+    "minecraft:amethyst_shard",
+    "minecraft:gold_ingot"
+   ],
+   "drops": [
+    "minecraft:iron_sword"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.4,
+   "speed": 1.2,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:phantom",
+   "label": "phantom",
+   "style": "faminto de sono alheio, sombrio e voraz; fala como quem espreita",
+   "diet": "não come; ataca quem não dorme",
+   "about": "voa à noite atrás de quem passou três noites sem dormir",
+   "address": "Humano",
+   "likes": [
+    "minecraft:ink_sac",
+    "minecraft:bone"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:ink_sac",
+    "minecraft:coal",
+    "minecraft:bone"
+   ],
+   "drops": [
+    "minecraft:phantom_membrane"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.9,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:pillager",
+   "label": "saqueador",
+   "style": "bruto, ambicioso e oportunista; fala como quem faz bando",
+   "diet": "pão e carne roubados",
+   "about": "ataca vilas em bando; carrega besta; deseja esmeraldas",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:gold_ingot",
+    "minecraft:iron_ingot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:emerald",
+    "minecraft:gold_ingot",
+    "minecraft:iron_ingot"
+   ],
+   "drops": [
+    "minecraft:arrow",
+    "minecraft:bow"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.95,
+   "speed": 1.0,
+   "credulity": 1,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:vindicator",
+   "label": "vingador",
+   "style": "furioso, rancoroso e de machado na mão; fala com raiva fria",
+   "diet": "carne",
+   "about": "serve de guarda dos saqueadores e das mansões; ataca com machado",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ingot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:emerald",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ingot"
+   ],
+   "drops": [
+    "minecraft:iron_axe",
+    "minecraft:stone_axe"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.85,
+   "speed": 1.0,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:evoker",
+   "label": "invocador",
+   "style": "arrogante, sinistro e místico; fala como quem conjura",
+   "diet": "pão e carne",
+   "about": "vive nas mansões; invoca presas e vexes; guarda totens",
+   "address": "Humano",
+   "likes": [
+    "minecraft:emerald",
+    "minecraft:lapis_lazuli",
+    "minecraft:diamond",
+    "minecraft:book"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:lapis_lazuli",
+    "minecraft:diamond",
+    "minecraft:gold_ingot",
+    "minecraft:amethyst_shard"
+   ],
+   "drops": [
+    "minecraft:emerald",
+    "minecraft:book"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.9,
+   "speed": 0.95,
+   "credulity": 1,
+   "follow": 0.8
+  },
+  {
+   "id": "minecraft:ravager",
+   "label": "devastador",
+   "style": "brutamontes, furioso e de poucas palavras; fala grunhindo",
+   "diet": "feno e trigo",
+   "about": "monta de saqueadores; derruba paredes com chifre",
+   "address": "Humano",
+   "likes": [
+    "minecraft:hay_block",
+    "minecraft:wheat",
+    "minecraft:carrot"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:hay_block",
+    "minecraft:wheat",
+    "minecraft:carrot"
+   ],
+   "drops": [
+    "minecraft:saddle",
+    "minecraft:leather"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.7,
+   "speed": 0.9,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:shulker",
+   "label": "shulker",
+   "style": "reservado, defensivo e calmo; fala curto, escondido na concha",
+   "diet": "não come",
+   "about": "vive nas cidades do Fim; se tranca na concha e dispara projéteis",
+   "address": "Humano",
+   "likes": [
+    "minecraft:ender_pearl",
+    "minecraft:amethyst_shard",
+    "minecraft:quartz"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:ender_pearl",
+    "minecraft:amethyst_shard",
+    "minecraft:quartz"
+   ],
+   "drops": [
+    "minecraft:shulker_shell"
+   ],
+   "voice": "pt_BR-jeff-medium",
+   "pitch": 0.95,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:endermite",
+   "label": "endermite",
+   "style": "inquieto, minúsculo e nervoso; fala aos pulinhos",
+   "diet": "come pérolas do Fim",
+   "about": "nasce das pérolas do Fim; atrai olhares dos endermen",
+   "address": "Humano",
+   "likes": [
+    "minecraft:ender_pearl"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:ender_pearl"
+   ],
+   "drops": [
+    "minecraft:gravel",
+    "minecraft:clay_ball"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.3,
+   "speed": 1.15,
+   "credulity": 0,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:warden",
+   "label": "warden",
+   "style": "antigo, cego e profundo; fala devagar, como quem escuta através do chão",
+   "diet": "não come",
+   "about": "vive nas cidades antigas; enxerga por vibrações e cheiro; não suporta barulho",
+   "address": "Humano",
+   "likes": [
+    "minecraft:amethyst_shard",
+    "minecraft:glowstone_dust",
+    "minecraft:emerald"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:glowstone_dust",
+    "minecraft:emerald",
+    "minecraft:diamond"
+   ],
+   "drops": [
+    "minecraft:amethyst_shard",
+    "minecraft:obsidian"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.6,
+   "speed": 0.75,
+   "credulity": 0,
+   "follow": 0.9
+  },
+  {
+   "id": "minecraft:wither",
+   "label": "wither",
+   "style": "furioso, destruidor e de três cabeças; fala por todas ao mesmo tempo",
+   "diet": "não come",
+   "about": "criação de quem invocou com areia de almas e caveiras; destrói tudo ao redor",
+   "address": "Humano",
+   "likes": [
+    "minecraft:coal",
+    "minecraft:bone",
+    "minecraft:diamond_block"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:diamond_block",
+    "minecraft:gold_block",
+    "minecraft:emerald_block"
+   ],
+   "drops": [
+    "minecraft:coal",
+    "minecraft:bone"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.6,
+   "speed": 0.85,
+   "credulity": 0,
+   "follow": 0.9
   }
  ]
 }

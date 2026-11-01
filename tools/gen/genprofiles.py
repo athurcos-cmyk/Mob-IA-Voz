@@ -182,6 +182,10 @@ profiles = [
       [M + "clay_ball", M + "brick"], [], [M + "clay_ball", M + "brick"], [M + "emerald"]),
 ]
 import catalog
+import mais_perfis
+
+existing = {x["id"] for x in profiles}
+profiles += [x for x in mais_perfis.PROFILES if x["id"] not in existing]  # as que ja tem perfil proprio (creeper, dragao...) ficam como estao
 catalog.apply_to_profiles(profiles)
 vals = catalog.merged_values()
 catalog.write_values(vals)
