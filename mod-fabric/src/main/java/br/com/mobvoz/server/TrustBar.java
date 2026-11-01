@@ -29,7 +29,7 @@ public final class TrustBar {
         double p = progress(warmth, OrderPolicy.followThreshold(Orders.subjectOf(mob)));
         int on = (int) Math.round(p * CELLS);
         String state = warmth < -0.05 ? " desconfiada" : p >= 1.0 ? " já aceita te seguir" : "";
-        return Component.literal("Confiança de " + Profiles.ofMob(mob).label() + ": ")
+        return Component.literal("Confiança de " + Profiles.displayName(mob) + ": ")
                 .append(Component.literal("|".repeat(on)).withStyle(ChatFormatting.GREEN))
                 .append(Component.literal("|".repeat(CELLS - on)).withStyle(ChatFormatting.DARK_GRAY))
                 .append(Component.literal(" " + Math.round(p * 100) + "%" + state).withStyle(ChatFormatting.WHITE));

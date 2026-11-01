@@ -32,9 +32,9 @@ class AmbientScenesTest {
         for (Family f : fams) { // renderiza TODAS as combinacoes: sem espaco aberto, sem travessao, sem fala longa
             int kMax = f.c().isEmpty() ? 1 : f.c().size();
             for (int i = 0; i < f.a().size(); i++) {
-                for (int j = 0; j < AmbientScenes.bPool(f, i).size(); j++) {
+                for (int j = 0; j < (f.solo() ? 1 : AmbientScenes.bPool(f, i).size()); j++) {
                     for (int k = 0; k < kMax; k++) {
-                        var s = AmbientScenes.render(f, i, j, f.c().isEmpty() ? -1 : k, "x", sit(Set.of(), ANY, ANY, "Arthur", ""), rnd);
+                        var s = AmbientScenes.render(f, i, j, f.c().isEmpty() ? -1 : k, "x", new Situation(Set.of(), ANY, ANY, "Arthur", "", "uma espada de diamante", "uma armadura de ferro", "um zumbi"), rnd);
                         for (var l : s.lines()) {
                             assertFalse(l.text().contains("{") || l.text().contains("}"), f.id() + ": " + l.text());
                             assertFalse(l.text().contains("—") || l.text().contains("–"), f.id() + ": " + l.text());
@@ -119,6 +119,22 @@ class AmbientScenesTest {
             saw = s.family().equals("jogador_item") && s.lines().get(0).text().contains("uma espada de diamante");
         }
         assertTrue(saw);
+    }
+
+    /** Atras de uma parede ("unseen") ninguem comenta o que o jogador segura, veste ou faz: so clima, hora e o que lembram dele. */
+    @Test
+    void behindAWallNobodyDescribesWhatThePlayerIsDoing() {
+        Set<String> sight = Set.of("jogador_passando", "jogador_voltou", "jogador_noite", "jogador_chuva", "jogador_item", "jogador_ferido", "jogador_fome",
+                "vila_armadura", "monstros_item", "monstros_armadura", "monstros_ferido", "jogador_monstros_visto", "bruxa_pocao");
+        Set<String> tags = Set.of("night", "rain", "holds", "armor", "hurt", "hungry", "k0", "k1", "unseen");
+        Random rnd = new Random(4);
+        Set<String> seen = new HashSet<>();
+        for (int n = 0; n < 1500; n++) {
+            seen.add(AmbientScenes.pick(sit(tags, ANY, ANY, "", ""), rnd, k -> false).orElseThrow().family());
+        }
+        seen.retainAll(sight);
+        assertTrue(seen.isEmpty(), "falou do que ve sem enxergar: " + seen);
+        assertTrue(AmbientScenes.families().stream().anyMatch(f -> f.id().equals("jogador_conhecido")), "memoria continua valendo");
     }
 
     @Test

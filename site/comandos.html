@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Comandos e controles — MobVoz IA</title>
+  <meta name="description" content="Todos os comandos /mobvoz, os controles dentro do jogo e exemplos do que dizer para as criaturas: conversar, mandar, trocar e testar.">
+  <meta name="theme-color" content="#0d110f">
+  <meta property="og:title" content="Comandos e controles — MobVoz IA">
+  <meta property="og:description" content="Comandos /mobvoz, controles e frases que funcionam.">
+  <meta property="og:image" content="assets/img/conversa-vaca.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=13">
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><i aria-hidden="true"></i>MobVoz <b>IA</b></a>
+  <nav class="nav" aria-label="Principal"><ul>
+    <li><a href="index.html"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""><span class="long">Início</span><span class="short">Início</span></a></li>
+    <li><a href="funcionalidades.html"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><span class="long">Funcionalidades</span><span class="short">Recursos</span></a></li>
+    <li><a href="como-funciona.html"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><span class="long">Como funciona</span><span class="short">Como</span></a></li>
+    <li><a href="instalar.html"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><span class="long">Instalar</span><span class="short">Instalar</span></a></li>
+    <li><a href="comandos.html" aria-current="page"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><span class="long">Comandos</span><span class="short">Comandos</span></a></li>
+    <li><a href="ajuda.html"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><span class="long">Ajuda</span><span class="short">Ajuda</span></a></li>
+  </ul></nav>
+  <a class="btn sm head-cta" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+</div></header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Dentro do Minecraft</p>
+    <h1>Comandos e <em>controles</em></h1>
+    <p class="lead">Tudo o que você usa no jogo. Esqueceu algum? Digite <code>/mobvoz ajuda</code> e a lista aparece no chat.</p>
+    <div class="jump">
+      <a href="#comandos">Comandos</a>
+      <a href="#controles">Controles</a>
+      <a href="#dizer">O que dizer</a>
+      <a href="#servidor">Para quem hospeda</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= COMANDOS -->
+<section class="section" id="comandos">
+  <div class="wrap">
+    <h2>Comandos <em>/mobvoz</em></h2>
+    <div class="scroll-x mt">
+      <table class="tbl cmd stack">
+        <thead><tr><th>Comando</th><th>O que faz</th></tr></thead>
+        <tbody>
+          <tr><td><code>/mobvoz voz sim</code></td><td>Dá o consentimento para usar o microfone (<code>nao</code> desliga; <code>status</code> mostra o estado).</td></tr>
+          <tr><td><code>/mobvoz chat sim</code></td><td>Modo chat: o que você escreve vai só para a criatura na mira, ou para a que você chamar pelo nome (<code>nao</code> desliga).</td></tr>
+          <tr><td><code>/mobvoz falar &lt;texto&gt;</code></td><td>Manda uma mensagem à criatura na mira, em qualquer modo.</td></tr>
+          <tr><td><code>/mobvoz legenda sim</code></td><td>Mostra legendas também para quem usa voz.</td></tr>
+          <tr><td><code>/mobvoz memoria</code></td><td>Mostra o que a criatura da mira sabe de você: nome, confiança, quanto falta para te seguir, fatos, alegações e a fama da aldeia.</td></tr>
+          <tr><td><code>/mobvoz dificuldade facil</code></td><td>Muda quanta confiança as criaturas exigem: <code>facil</code>, <code>normal</code> ou <code>dificil</code>. Em servidor, só o admin troca.</td></tr>
+          <tr><td><code>/mobvoz status</code></td><td>Estado do serviço de IA e tempos de resposta.</td></tr>
+          <tr><td><code>/mobvoz ajuda</code></td><td>Lista todos os comandos e explica como falar, ganhar confiança e dar apelido.</td></tr>
+          <tr><td><code>/mobvoz diag falar &lt;texto&gt;</code></td><td>Testa a IA por texto (diagnóstico).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= CONTROLES -->
+<section class="section alt" id="controles">
+  <div class="wrap">
+    <h2>Controles <em>no jogo</em></h2>
+    <div class="grid mt">
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""></div><h3>Mirar</h3><p>Olhe para uma criatura a até 6 blocos, sem nada no meio. A <b>estrela</b> mostra quem vai ouvir.</p></div>
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-mic.png" alt=""></div><h3>Falar</h3><p>Com a ativação por voz ligada, é só falar. Uma criatura de cada vez.</p></div>
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""></div><h3>Chamar pelo nome</h3><p>Dê um apelido (“vou te chamar de Mimosa”) e depois chame sem mirar: “Mimosa, vem aqui!”, até 32 blocos.</p></div>
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-heart.png" alt=""></div><h3>Presente</h3><p>Segure um item e use <kbd>SHIFT</kbd> + botão direito na criatura. Uma <b>barrinha de confiança</b> aparece na barra de ação, junto de “gostou”, “indiferente” ou “não gostou”. Vaca e ovelha aceitam logo; porco, aldeão e golem pedem alguns presentes de que gostem.</p></div>
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""></div><h3>Trocar</h3><p>Jogue os itens no chão, perto dela.</p></div>
+      <div class="card flat"><div class="slot"><img class="pixel" src="assets/img/ui/icon-bubble.png" alt=""></div><h3>Voz do Simple Voice Chat</h3><p><kbd>V</kbd> abre as configurações do microfone.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= O QUE DIZER -->
+<section class="section" id="dizer">
+  <div class="wrap">
+    <p class="eyebrow">Fale livre, como com uma pessoa</p>
+    <h2>O que <em>dizer</em></h2>
+    <p class="lead">Alguns exemplos que funcionam:</p>
+    <div class="grid g4 mt">
+      <div class="card flat"><h3>Conversar</h3><ul class="say"><li>O que você mais gosta de fazer?</li><li>Meu nome é Bia.</li><li>Você consegue me ver? (pergunte ao Warden)</li><li>O que você acha dos lobos?</li></ul></div>
+      <div class="card flat"><h3>Mandar</h3><ul class="say"><li>Me segue!</li><li>Fica aqui e não entra no portal.</li><li>Me ajuda contra esse zumbi!</li><li>Não preciso mais da sua ajuda, pode ir.</li><li>Não explode perto de mim, vamos fazer as pazes?</li></ul></div>
+      <div class="card flat"><h3>Trocar</h3><ul class="say"><li>Quer trocar cenouras comigo?</li><li>Quanto custa? Faz mais barato, sou seu amigo!</li><li>Esse ferro serve para você forjar espadas.</li><li>Preciso de 3 cabeças e te dou 3 ferros e 1 picareta.</li></ul></div>
+      <div class="card flat"><h3>Brincar e testar</h3><ul class="say"><li>Vou te chamar de Mimosa.</li><li>Aceita ser meu cavalo? Prometo cuidar de você.</li><li>Eu sou seu pai! (ela pode acreditar ou duvidar)</li><li>Vou te transformar em comida! (um porco foge)</li><li>Calma, não vou te machucar. (consolo acalma)</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= SERVIDOR -->
+<section class="section alt" id="servidor">
+  <div class="wrap">
+    <p class="eyebrow">Para quem hospeda o mundo</p>
+    <h2>O arquivo <em>server.json</em></h2>
+    <p class="lead">Fica em <code>config/mobvoz/server.json</code>. Só mexa se quiser ajustar o mundo.</p>
+    <div class="scroll-x mt">
+      <table class="tbl cmd stack">
+        <thead><tr><th>Chave</th><th>O que faz (padrão)</th></tr></thead>
+        <tbody>
+          <tr><td><code>preset</code></td><td><code>low</code> | <code>balanced</code> | <code>high</code>: mexe só na carga (o <code>low</code> desliga as conversas ambiente).</td></tr>
+          <tr><td><code>voiceEngine</code></td><td><code>auto</code> (padrão), <code>kokoro</code> ou <code>piper</code> (modo leve).</td></tr>
+          <tr><td><code>ambientChatter</code></td><td>Conversas entre criaturas (ligado). <code>ambientCooldownSeconds</code>: intervalo na mesma região (60).</td></tr>
+          <tr><td><code>maxActiveFollowersPerPlayer</code></td><td>Aliados por jogador (15; máximo 32).</td></tr>
+          <tr><td><code>trustDifficulty</code></td><td><code>facil</code> | <code>normal</code> | <code>dificil</code>: quanta confiança as criaturas exigem (normal). Também muda por <code>/mobvoz dificuldade</code>.</td></tr>
+          <tr><td><code>bossContractsEnabled</code></td><td>Liga pactos com Warden, Wither e Dragão (<b>desligado</b>).</td></tr>
+          <tr><td><code>bossDestructionOnAlliance</code></td><td>Se <code>false</code> (padrão), chefe sob contrato não quebra blocos.</td></tr>
+          <tr><td><code>requireVoiceConsent</code></td><td>Exige <code>/mobvoz voz sim</code> (ligado).</td></tr>
+          <tr><td><code>dynamicPrices</code>, <code>naturalEvents</code></td><td>Preço variável nas trocas e falas espontâneas / reações ao mundo (ligados).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="cols">
+    <div><h4>MobVoz IA</h4><p>Alpha 0.1 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
+    <div><h4>Páginas</h4><ul>
+      <li><a href="funcionalidades.html">Funcionalidades</a></li><li><a href="como-funciona.html">Como funciona</a></li><li><a href="instalar.html">Instalar</a></li><li><a href="comandos.html">Comandos</a></li></ul></div>
+    <div><h4>Ajuda</h4><ul>
+      <li><a href="ajuda.html">Problemas comuns</a></li><li><a href="ajuda.html#estado">Estado do projeto</a></li><li><a href="ajuda.html#creditos">Créditos e licenças</a></li></ul></div>
+  </div>
+  <p class="legal">“Minecraft” é marca da Mojang Studios. As texturas e ícones desta página são arte própria.</p>
+</div></footer>
+
+<script src="assets/js/app.js?v=13" defer></script>
+</body>
+</html>

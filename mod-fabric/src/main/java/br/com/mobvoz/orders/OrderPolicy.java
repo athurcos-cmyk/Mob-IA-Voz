@@ -73,9 +73,10 @@ public final class OrderPolicy {
     public static double followThreshold(Subject s) {
         double t = br.com.mobvoz.profile.Profiles.of(s.entityType()).follow();
         if (s.boss()) {
-            return Math.max(t, BOSS_MIN_TRUST);
+            return Math.max(t, BOSS_MIN_TRUST); // chefes nao mudam com a dificuldade
         }
-        return s.hostile() ? Math.max(t, 0.6) : t; // porco teimoso precisa de incentivo; hostis, de muita confianca
+        double need = s.hostile() ? Math.max(t, 0.6) : t; // porco teimoso precisa de incentivo; hostis, de muita confianca
+        return need * br.com.mobvoz.config.ServerConfig.current().trustFactor();
     }
 
     public static Decision decide(String action, Subject s, Relationship rel, boolean kinshipBelieved, MobOrders cur,

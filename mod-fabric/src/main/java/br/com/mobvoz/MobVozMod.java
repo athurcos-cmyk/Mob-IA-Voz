@@ -32,6 +32,8 @@ public final class MobVozMod implements ModInitializer {
         br.com.mobvoz.social.Reactions.register();
         br.com.mobvoz.social.Parley.register();
         br.com.mobvoz.social.Events.register();
+        br.com.mobvoz.social.WorldReactions.register();
+        br.com.mobvoz.server.MobVozCommands.register();
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             ConversationService.reset();
             br.com.mobvoz.server.ConsentRegistry.clear();

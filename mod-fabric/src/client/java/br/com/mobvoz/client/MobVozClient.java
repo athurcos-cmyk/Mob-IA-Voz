@@ -42,16 +42,41 @@ public final class MobVozClient implements ClientModInitializer {
         return target;
     }
 
+    private static volatile List<br.com.mobvoz.target.NameCall.Candidate> named = List.of();
+
+    /** Criaturas com apelido ao alcance da voz (para chama-las pelo nome sem mirar). Atualizado a cada 10 ticks. */
+    public static List<br.com.mobvoz.target.NameCall.Candidate> namedNearby() {
+        return named;
+    }
+
+    private static void scanNamed(Minecraft mc) {
+        if (mc.level == null || mc.player == null || mc.player.tickCount % 10 != 0) {
+            return;
+        }
+        double r = br.com.mobvoz.target.NameCall.RANGE;
+        named = mc.level.getEntitiesOfClass(Mob.class, mc.player.getBoundingBox().inflate(r), m -> m.isAlive() && m.hasCustomName()).stream()
+                .map(m -> new br.com.mobvoz.target.NameCall.Candidate(m.getUUID(), m.getCustomName().getString(), m.distanceTo(mc.player)))
+                .toList();
+    }
+
     @Override
     public void onInitializeClient() {
         MobVozVoicechatPlugin.micFrameHook = VoiceInput::onFrame;
         MobVozVoicechatPlugin.entityAudioHook = VoiceInput::onEntityAudio;
         ClientPlayNetworking.registerGlobalReceiver(StatusPayload.TYPE,
                 (payload, ctx) -> VoiceInput.setStatus(payload.state()));
-        net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents.JOIN.register((h, s, mc) -> br.com.mobvoz.client.voice.VoiceConsent.sendToServer());
+        net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents.JOIN.register((h, s, mc) -> {
+            br.com.mobvoz.client.voice.VoiceConsent.sendToServer();
+            if (!ClientPrefs.helpHintShown()) { // so na primeira vez
+                ClientPrefs.setHelpHintShown();
+                mc.execute(() -> mc.gui.getChat().addMessage(net.minecraft.network.chat.Component.literal(
+                        "§6MobVoz IA:§r digite §e/mobvoz ajuda§r para ver como falar com as criaturas.")));
+            }
+        });
         br.com.mobvoz.client.ChatMode.register();
         VoiceUi.register();
         ClientTickEvents.END_CLIENT_TICK.register(MobVozClient::pickTarget);
+        ClientTickEvents.END_CLIENT_TICK.register(MobVozClient::scanNamed);
         ClientTickEvents.END_CLIENT_TICK.register(mc -> VoiceInput.tick());
         WorldRenderEvents.AFTER_ENTITIES.register(MobVozClient::renderStar);
     }

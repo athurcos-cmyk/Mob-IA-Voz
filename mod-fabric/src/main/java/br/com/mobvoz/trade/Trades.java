@@ -88,13 +88,12 @@ public final class Trades {
             String faction = br.com.mobvoz.knowledge.KnowledgeStore.factionOf(Profiles.keyOf(m));
             UUID pid = p.getUUID();
             br.com.mobvoz.knowledge.KnowledgeStore.update(level.getServer(), k -> {
-                var k2 = faction.isEmpty() ? k : k.withFaction(faction, new br.com.mobvoz.knowledge.Knowledge.Event("HONEST_RETURN", pid, detail, now));
+                var k2 = faction.isEmpty() ? k : k.withFaction(faction, new br.com.mobvoz.knowledge.Knowledge.Event("HONEST_RETURN", pid, detail, now, m.getBlockX(), m.getBlockZ()));
                 return k2.withHistory(new br.com.mobvoz.knowledge.Knowledge.Event("HONEST_RETURN", pid, label == null ? "uma criatura" : "um(a) " + label, now));
             });
             MobVozMod.LOGGER.info("devolucao honesta registrada ({} -> {})", id, label);
             if (br.com.mobvoz.config.ServerConfig.current().naturalEvents) {
-                ConversationService.speakEvent(m, p, "o jogador acabou de te devolver " + detail + " que você tinha entregado a ele, sem você pedir. "
-                        + "A maioria ficaria com o item; reaja a essa honestidade e diga que vai se lembrar disso");
+                br.com.mobvoz.social.WorldReactions.speakAs(p, m, "ev:honest", detail, 0);
             }
             return;
         }

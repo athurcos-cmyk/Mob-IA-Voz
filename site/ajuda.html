@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ajuda e estado do projeto — MobVoz IA</title>
+  <meta name="description" content="Solução de problemas do MobVoz IA, o que está testado e o que ninguém testou ainda na versão Alpha 0.1, créditos e licenças.">
+  <meta name="theme-color" content="#0d110f">
+  <meta property="og:title" content="Ajuda e estado do projeto — MobVoz IA">
+  <meta property="og:description" content="Problemas comuns, estado honesto do Alpha 0.1 e créditos.">
+  <meta property="og:image" content="assets/img/conversa-vaca.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=13">
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><i aria-hidden="true"></i>MobVoz <b>IA</b></a>
+  <nav class="nav" aria-label="Principal"><ul>
+    <li><a href="index.html"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""><span class="long">Início</span><span class="short">Início</span></a></li>
+    <li><a href="funcionalidades.html"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><span class="long">Funcionalidades</span><span class="short">Recursos</span></a></li>
+    <li><a href="como-funciona.html"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><span class="long">Como funciona</span><span class="short">Como</span></a></li>
+    <li><a href="instalar.html"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><span class="long">Instalar</span><span class="short">Instalar</span></a></li>
+    <li><a href="comandos.html"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><span class="long">Comandos</span><span class="short">Comandos</span></a></li>
+    <li><a href="ajuda.html" aria-current="page"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><span class="long">Ajuda</span><span class="short">Ajuda</span></a></li>
+  </ul></nav>
+  <a class="btn sm head-cta" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+</div></header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Se algo der errado</p>
+    <h1>Ajuda e <em>estado do projeto</em></h1>
+    <p class="lead">Soluções para os problemas mais comuns, o que está verificado e o que ninguém testou ainda.</p>
+    <div class="jump">
+      <a href="#problemas">Problemas comuns</a>
+      <a href="#estado">Estado do projeto</a>
+      <a href="#creditos">Créditos e licenças</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= PROBLEMAS -->
+<section class="section" id="problemas">
+  <div class="wrap" style="max-width:900px">
+    <h2>Solução de <em>problemas</em></h2>
+    <details><summary>O HUD mostra “Sem resposta (IA offline?)”</summary><div>O serviço de IA não está ligado. Dê dois cliques em <code>3-LIGAR-SERVICO.bat</code> e deixe a janela aberta. Confira em <code>/mobvoz status</code> e em <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>. O jogo continua normal sem ele.</div></details>
+    <details><summary>A criatura só diz que não entendeu</summary><div>Isso é a fala de reserva: a IA falhou naquele momento. Olhe a janela preta do serviço de IA (<code>3-LIGAR-SERVICO.bat</code>): ela explica o motivo em português (chave errada, sem saldo, Ollama desligado) e o que fazer.</div></details>
+    <details><summary>A estrela não aparece</summary><div>Chegue mais perto (até 6 blocos), sem bloco no caminho (até uma cerca atrapalha), e feche qualquer tela aberta. Só aparece em uma criatura de cada vez.</div></details>
+    <details><summary>Eu falo e nada acontece</summary><div>No Simple Voice Chat (<kbd>V</kbd>), use <b>ativação por voz</b> e confira o microfone. Digite <code>/mobvoz voz sim</code> uma vez. Se ainda assim nada, use o modo chat (<code>/mobvoz chat sim</code>) para ver se o problema é só o microfone.</div></details>
+    <details><summary>Chamei a criatura pelo nome e ela não respondeu</summary><div>Confira se ela tem o apelido (a etiqueta de nome aparece sobre a cabeça), se está a até 32 blocos e se o nome está no começo ou no fim da frase: “Mimosa, vem aqui!”. Falar <i>de</i> alguém no meio da frase não chama. Se você usa a voz, o reconhecimento precisa entender o nome; um nome comum ajuda.</div></details>
+    <details><summary>“Não entendi a fala”</summary><div>Fale mais perto do microfone e sem ruído. O reconhecimento padrão é o Whisper <code>small</code> (no processador). Se tiver um PC forte, <code>MOBVOZ_STT_MODEL=medium</code> acerta mais.</div></details>
+    <details><summary>A resposta demora muito</summary><div>A primeira fala leva 10 a 15 s (carrega modelos). Se continuar lenta: use a API em vez do modelo local, troque a voz para Piper (<code>voiceEngine: "piper"</code>) ou feche outros programas que usem a placa de vídeo.</div></details>
+    <details><summary>A criatura não obedece</summary><div>É de propósito: confiança, espécie e personalidade decidem. Converse mais, dê presentes (<kbd>SHIFT</kbd> + botão direito), seja gentil. Mobs hostis e chefes pedem muito mais confiança. Use <code>/mobvoz memoria</code> para ver quanto falta, ou <code>/mobvoz dificuldade facil</code> para exigir menos.</div></details>
+    <details><summary>O <code>1-INSTALAR.bat</code> falhou no meio</summary><div>Leia a última mensagem na janela preta, resolva o que ela diz e dê dois cliques de novo: ele confere o que já está pronto e continua. Se não resolver, use o “plano B” (instalação manual) do <a href="instalar.html">passo 3</a>.</div></details>
+    <details><summary>O jogo fecha ao abrir ou não mostra <code>/mobvoz</code></summary><div>Confira se a pasta <code>MobVozJogo\mods</code> (dentro da sua pasta de usuário, por exemplo <code>C:\Users\seu-nome\MobVozJogo\mods</code>) tem os 3 arquivos <code>.jar</code> e se você abriu a instalação <b>MobVoz IA</b> no launcher. A versão do Fabric API precisa ser a da 1.21.8.</div></details>
+    <details><summary>Ainda não resolveu?</summary><div>Mande para o autor: o que você fez, o que apareceu e o arquivo <code>logs\latest.log</code> da pasta <code>MobVozJogo</code> (ele não guarda áudio nem o que você falou).</div></details>
+  </div>
+</section>
+
+<!-- ======================================================= ESTADO -->
+<section class="section alt" id="estado">
+  <div class="wrap">
+    <p class="eyebrow">Sem enrolação</p>
+    <h2>Estado do projeto: <em>Alpha <span class="num">0.1</span></em></h2>
+    <div class="grid g3 mt">
+      <div class="card flat"><h3>O que está verificado</h3>
+        <ul>
+          <li>Todas as fases do roadmap implementadas (só as missões de chefes ficaram de fora).</li>
+          <li>Mais de 150 testes de unidade e dezenas de testes automáticos dentro do Minecraft real (conversa por voz sintética, ordens, trocas, alianças, chefes, mundo vivo, apelidos, salvar e carregar).</li>
+          <li>Bateria de conversação com a DeepSeek: 48 de 48 frases entendidas, nenhuma obedeceu injeção de comando, nenhuma contradisse o servidor.</li>
+          <li>Conversas ambiente: 221 famílias de assunto e mais de 1.600 falas prontas (sem gastar IA), com média 4,3 de 5 de um juiz de IA exigente; 88 respostas de conversa livre sem nenhuma falha de coerência.</li>
+        </ul></div>
+      <div class="card flat"><h3>O que ninguém testou ainda</h3>
+        <ul>
+          <li><b>Microfone real e ouvido humano</b>: tudo foi validado com voz sintética no lugar do microfone.</li>
+          <li>Duas pessoas ao mesmo tempo no mesmo servidor.</li>
+          <li>O Dragão do Fim dentro do Fim; missões (quests) de chefes.</li>
+          <li>Se o ritmo das conversas ambiente, os preços e os limiares de confiança são bons: são palpites a ajustar jogando.</li>
+          <li>Linux e macOS (só Windows testado) e PCs mais fracos que uma GTX 1660 SUPER.</li>
+        </ul></div>
+      <div class="card flat"><h3>Limites conhecidos</h3>
+        <ul>
+          <li>O modelo local é bem menos esperto que uma API.</li>
+          <li>A voz tem só 3 vozes em pt-BR; o tom de cada criatura é ajustado por cima.</li>
+          <li>A primeira resposta é lenta (carrega modelos); a voz Kokoro leva ~1,5 s por fala.</li>
+          <li>Ordens de movimento só valem para mobs que andam por “goals” (animais e monstros comuns): aldeões, voadores e aquáticos recusam com honestidade.</li>
+        </ul></div>
+    </div>
+    <p class="rule">Encontrou um bug ou uma resposta esquisita? É exatamente o que esta fase Alpha quer descobrir. Conte ao autor o que você disse, qual criatura era e o que aconteceu.</p>
+  </div>
+</section>
+
+<!-- ======================================================= CRÉDITOS -->
+<section class="section" id="creditos">
+  <div class="wrap" style="max-width:900px">
+    <p class="eyebrow">Quem fez isso possível</p>
+    <h2>Créditos e <em>licenças</em></h2>
+    <p><b>MobVoz IA</b> — Alpha 0.1 · Código próprio sob licença MIT.</p>
+    <p><b>Feito com:</b> Fabric e Fabric API (Apache-2.0) · Simple Voice Chat (necessário; baixado do site dele) · Whisper via faster-whisper (MIT) · Kokoro-82M (pesos Apache-2.0) e Piper (vozes CC0) para a voz · Ollama (MIT) e Qwen3 (Apache-2.0) para a IA local · DeepSeek, se você usar a API. O Piper e o espeak-ng que o Kokoro usa são GPL-3.0: ficam só no seu PC, num processo separado, e não vão dentro do mod.</p>
+    <p class="muted">As texturas e ícones desta página são arte própria. <b>Este é um projeto de fã e não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</b> “Minecraft” é marca da Mojang Studios.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="cols">
+    <div><h4>MobVoz IA</h4><p>Alpha 0.1 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
+    <div><h4>Páginas</h4><ul>
+      <li><a href="funcionalidades.html">Funcionalidades</a></li><li><a href="como-funciona.html">Como funciona</a></li><li><a href="instalar.html">Instalar</a></li><li><a href="comandos.html">Comandos</a></li></ul></div>
+    <div><h4>Ajuda</h4><ul>
+      <li><a href="ajuda.html">Problemas comuns</a></li><li><a href="ajuda.html#estado">Estado do projeto</a></li><li><a href="ajuda.html#creditos">Créditos e licenças</a></li></ul></div>
+  </div>
+  <p class="legal">“Minecraft” é marca da Mojang Studios. As texturas e ícones desta página são arte própria.</p>
+</div></footer>
+
+<script src="assets/js/app.js?v=13" defer></script>
+</body>
+</html>

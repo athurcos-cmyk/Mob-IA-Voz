@@ -57,7 +57,9 @@ public final class KnowledgeStore extends SavedData {
                 String f = factionOf(Profiles.keyOf(m));
                 if (!f.isEmpty()) {
                     long t = p.level().getGameTime();
-                    update(p.getServer(), k -> k.withFaction(f, new Event("ATTACKED_MEMBER", p.getUUID(), "", t)));
+                    int x = m.getBlockX();
+                    int z = m.getBlockZ();
+                    update(p.getServer(), k -> k.withFaction(f, new Event("ATTACKED_MEMBER", p.getUUID(), "", t, x, z)));
                 }
             }
         });

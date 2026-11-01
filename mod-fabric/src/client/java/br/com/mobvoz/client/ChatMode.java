@@ -27,6 +27,10 @@ public final class ChatMode {
             if (!ClientPrefs.chatMode()) {
                 return true;
             }
+            var call = br.com.mobvoz.target.NameCall.pick(message, MobVozClient.namedNearby());
+            if (call.isPresent()) { // "Mimosa, vem aqui!": chamou uma criatura de apelido, mesmo sem mirar nela
+                return !send(call.get().id(), message, true);
+            }
             Mob target = MobVozClient.target();
             if (target == null) {
                 return true; // ninguem na mira: chat normal
@@ -43,6 +47,11 @@ public final class ChatMode {
 
     /** Envia um texto digitado ao alvo. @return true se foi enviado (false: servidor sem MobVoz, texto vazio/grande). */
     public static boolean send(Mob target, String text) {
+        return send(target.getUUID(), text, false);
+    }
+
+    /** @param byName a criatura foi CHAMADA pelo apelido (nao esta na mira): o servidor confere o nome e a distancia. */
+    public static boolean send(java.util.UUID target, String text, boolean byName) {
         String t = text.strip();
         var mc = Minecraft.getInstance();
         if (t.isEmpty()) {
@@ -57,7 +66,7 @@ public final class ChatMode {
             mc.gui.getChat().addMessage(Component.literal("MobVoz: mensagem cortada em " + UtterancePayload.MAX_TEXT + " caracteres."));
         }
         VoiceInput.setStatus(StatusPayload.THINKING);
-        ClientPlayNetworking.send(new UtterancePayload(target.getUUID(), t, true));
+        ClientPlayNetworking.send(new UtterancePayload(target, t, true, byName));
         return true;
     }
 }

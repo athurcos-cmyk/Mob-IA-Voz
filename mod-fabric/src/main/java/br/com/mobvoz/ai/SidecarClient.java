@@ -271,6 +271,23 @@ public final class SidecarClient {
                 .exceptionally(t -> Optional.empty());
     }
 
+    /** Audio das falas FIXAS ja sintetizadas (48 MB no maximo): a mesma frase com a mesma voz sai na hora, sem chamar o TTS de novo. */
+    public static final AudioCache AUDIO = new AudioCache(48L * 1024 * 1024);
+
+    /** Como {@link #synthesize}, mas com cache: so para falas fixas (as da IA sao unicas). O tom individual e arredondado em degraus de 2%. */
+    public CompletableFuture<Optional<short[]>> synthesizeCached(String text, String voice, double pitch, double speed) {
+        double p = AudioCache.quantizePitch(pitch);
+        String key = AudioCache.key(text, voice, p, speed, br.com.mobvoz.config.ServerConfig.current().voiceEngine);
+        short[] hit = AUDIO.get(key);
+        if (hit != null) {
+            return CompletableFuture.completedFuture(Optional.of(hit));
+        }
+        return synthesize(text, voice, p, speed).thenApply(o -> {
+            o.ifPresent(pcm -> AUDIO.put(key, pcm));
+            return o;
+        });
+    }
+
     /** Texto pt-BR -> PCM int16 48 kHz mono (como short[]). Vazio se o TTS estiver indisponivel. */
     public CompletableFuture<Optional<short[]>> synthesize(String text, String voice, double pitch, double speed) {
         JsonObject body = new JsonObject();

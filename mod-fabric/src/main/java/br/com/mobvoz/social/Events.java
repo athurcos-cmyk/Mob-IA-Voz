@@ -21,7 +21,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Coisas que ACONTECEM e a criatura comenta sozinha (a fala e gerada pela IA, ver {@code ConversationService.speakEvent}).
+ * Coisas que ACONTECEM e a criatura comenta sozinha (falas fixas e variadas, sem IA: ver {@link WorldReactions}).
  * Hoje: o jogador pega o ovo que a galinha acabou de botar. Detecta pelo ovo (sem dono) que nasce ao lado de uma galinha e some
  * com um jogador junto; ovos largados pelo jogador ou que ja existiam ao carregar o chunk nao contam.
  */
@@ -75,8 +75,7 @@ public final class Events {
                 return;
             }
             lastWarn.put(p.getUUID(), now);
-            ConversationService.speakEvent(ally, p, "um inimigo (" + label + ") está se aproximando do jogador, a uns " + Math.round(h.distanceTo(p))
-                    + " blocos; avise-o do perigo com as suas palavras");
+            WorldReactions.speakAs(p, ally, "ev:danger", label, 0);
             return;
         }
     }
@@ -96,8 +95,7 @@ public final class Events {
             greeted.put(key, now); // avaliada uma vez por dia de jogo, conheca ou nao
             if (knows(facts)) {
                 lastGreetOfPlayer.put(p.getUUID(), now);
-                ConversationService.speakEvent(m, p, "o jogador voltou a ficar perto de você e você se lembra dele pelos fatos que conhece; "
-                        + "cumprimente de forma curta e natural, citando uma lembrança só se fizer sentido");
+                WorldReactions.speakAs(p, m, "ev:greet", "", 0);
                 return;
             }
         }
@@ -143,7 +141,7 @@ public final class Events {
                 br.com.mobvoz.MobVozMod.LOGGER.info("ovo sumiu: jogador por perto={} galinha viva={}", taker != null, egg.level().getEntity(egg.chicken()) != null);
                 if (taker != null && br.com.mobvoz.config.ServerConfig.current().naturalEvents
                         && egg.level().getEntity(egg.chicken()) instanceof Chicken c && c.isAlive()) {
-                    ConversationService.speakEvent(c, taker, "o jogador acabou de pegar o ovo que você tinha acabado de botar");
+                    WorldReactions.speakAs(taker, c, "ev:egg", "", 0);
                 }
             }
         });

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Instalar — MobVoz IA</title>
+  <meta name="description" content="Instalação do MobVoz IA passo a passo, num PC do zero: 3 cliques, escolha da IA, microfone e primeira conversa.">
+  <meta name="theme-color" content="#0d110f">
+  <meta property="og:title" content="Instalar — MobVoz IA">
+  <meta property="og:description" content="Do zero até a primeira conversa com uma vaca, em 9 passos com checklist.">
+  <meta property="og:image" content="assets/img/conversa-vaca.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=13">
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><i aria-hidden="true"></i>MobVoz <b>IA</b></a>
+  <nav class="nav" aria-label="Principal"><ul>
+    <li><a href="index.html"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""><span class="long">Início</span><span class="short">Início</span></a></li>
+    <li><a href="funcionalidades.html"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><span class="long">Funcionalidades</span><span class="short">Recursos</span></a></li>
+    <li><a href="como-funciona.html"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><span class="long">Como funciona</span><span class="short">Como</span></a></li>
+    <li><a href="instalar.html" aria-current="page"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><span class="long">Instalar</span><span class="short">Instalar</span></a></li>
+    <li><a href="comandos.html"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><span class="long">Comandos</span><span class="short">Comandos</span></a></li>
+    <li><a href="ajuda.html"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><span class="long">Ajuda</span><span class="short">Ajuda</span></a></li>
+  </ul></nav>
+  <a class="btn sm head-cta" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+</div></header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Do zero, num PC limpo</p>
+    <h1>Instalação <em>passo a passo</em></h1>
+    <p class="lead">Feito para um computador onde nada está instalado. Marque cada passo como feito (fica salvo no seu navegador). Cada passo diz o que você deve ver quando deu certo.</p>
+    <div class="btn-row mt"><a class="btn big" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:30px">
+  <div class="wrap">
+    <h2 style="font-size:1.6rem">Antes de começar</h2>
+    <div class="grid g4 mt">
+      <div class="card flat"><h3>Sistema</h3><p>Windows 10 ou 11. Só foi testado no Windows.</p></div>
+      <div class="card flat"><h3>Memória e disco</h3><p>16 GB de RAM recomendados. Uns 6 GB livres (e mais 2,6 GB se usar IA local).</p></div>
+      <div class="card flat"><h3>Conta e internet</h3><p>Conta do Minecraft Java Edition e internet. O resto o <code>1-INSTALAR.bat</code> instala sozinho.</p></div>
+      <div class="card flat"><h3>Microfone</h3><p>Ou use o modo chat, que não precisa de microfone.</p></div>
+    </div>
+    <p class="rule"><b>Escolha a IA:</b> a sua própria API (como a DeepSeek: bem melhor e não pesa no PC) ou o modelo local grátis (Ollama: pesa mais e é menos esperto). Você decide no passo 4.</p>
+    <details class="mt">
+      <summary>Versões usadas nos testes</summary>
+      <div class="scroll-x">
+        <table class="tbl stack">
+          <thead><tr><th>O quê</th><th>Versão</th></tr></thead>
+          <tbody>
+            <tr><td>Minecraft Java</td><td>1.21.8</td></tr>
+            <tr><td>Fabric Loader</td><td>0.17.3 ou mais novo</td></tr>
+            <tr><td>Fabric API</td><td>0.136.1+1.21.8</td></tr>
+            <tr><td>Simple Voice Chat</td><td>2.6.27 (Fabric 1.21.8; está como beta no Modrinth, e funcionou)</td></tr>
+            <tr><td>MobVoz IA</td><td>0.1.0 (Alpha)</td></tr>
+            <tr><td>Python</td><td>3.10 a 3.14 (testado com 3.14). <b>O 3.15 ainda não serve</b>: faltam pacotes prontos das bibliotecas de voz. Se o seu PC tem o 3.15, o instalador põe o 3.12 ao lado.</td></tr>
+            <tr><td>Ollama (só se usar IA local)</td><td>modelo <code>qwen3:4b</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<div class="progress-bar"><div class="wrap">
+  <div class="progress" role="progressbar" aria-label="Progresso da instalação"><i id="prog-bar"></i></div>
+  <span id="prog-txt">0 de 9 passos</span>
+</div></div>
+
+<section class="section" style="padding-top:36px">
+  <div class="wrap" style="max-width:860px">
+    <ol class="steps" id="steps">
+
+      <li class="step"><div class="card flat">
+        <h3>Instalar o Minecraft Launcher</h3>
+        <p>Instale o launcher oficial em <a href="https://www.minecraft.net/download" target="_blank" rel="noopener">minecraft.net/download</a>, <b>abra</b>, entre com a sua conta e depois <b>feche</b>. Só isso: o Fabric e o jogo 1.21.8 são preparados pelo próximo passo.</p>
+        <span class="expect">O launcher abriu e mostrou a sua conta.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Baixar o MobVoz</h3>
+        <p>Clique no botão e salve o arquivo (cerca de 0,4 MB). Ele costuma ir para a pasta <b>Downloads</b>. Clique com o botão direito nele &gt; <b>Extrair tudo</b> &gt; <b>Extrair</b>. <b>Pode deixar onde o Windows sugerir</b>; não precisa mudar de lugar.</p>
+        <p><a class="btn" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></p>
+        <p class="note">Se o Windows ou o navegador avisar que o arquivo “não é comumente baixado”, é só porque é um projeto novo: escolha <b>Manter</b>.</p>
+        <span class="expect">Na pasta extraída aparecem <code>1-INSTALAR.bat</code>, <code>2-CONFIGURAR-API.bat</code>, <code>3-LIGAR-SERVICO.bat</code> e <code>LEIA-ME.txt</code>.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Dar dois cliques em <code>1-INSTALAR.bat</code></h3>
+        <p>Ele faz sozinho o que o resto das instruções faria na mão: instala o <b>Python 3.12</b> (se o seu PC não tiver um Python compatível, baixa do site oficial e instala só para o seu usuário, sem mexer nos outros), o <b>Fabric</b> no seu launcher (se faltar o Java, baixa um portátil só para essa etapa), cria uma pasta de jogo só do MobVoz (<code>MobVozJogo</code>, na sua pasta de usuário), coloca os <b>3 mods</b> nela (MobVoz, Fabric API e Simple Voice Chat, baixados dos sites oficiais) e baixa as vozes e o reconhecimento de fala (uns 1,2 GB). Leva alguns minutos: <b>deixe terminar</b>.</p>
+        <p class="note">Se o Windows mostrar “O Windows protegeu o seu PC”, clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>. Se o Windows pedir permissão em alguma etapa, aceite.</p>
+        <span class="expect">A janela preta termina com “TUDO PRONTO!”. No launcher aparece a instalação <b>MobVoz IA</b>.</span>
+        <details class="inline"><summary>Deu erro? Instalação manual (plano B)</summary><div>
+          <ol>
+            <li><b>Python 3.12</b> (não use o 3.15) em <a href="https://www.python.org/downloads/release/python-3120/" target="_blank" rel="noopener">python.org</a>; pode ficar junto com outro Python. Marque “Add python.exe to PATH”.</li>
+            <li><b>Fabric:</b> instalador em <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net/use/installer</a> (aba Client, versão 1.21.8, Install).</li>
+            <li><b>Mods</b> numa pasta <code>mods</code> da sua pasta de jogo: o <code>mobvoz-0.1.0.jar</code> (pasta <code>mod</code> do pacote), o <a href="https://modrinth.com/mod/fabric-api/version/0.136.1+1.21.8" target="_blank" rel="noopener">Fabric API 0.136.1+1.21.8</a> e o <a href="https://modrinth.com/plugin/simple-voice-chat/version/fabric-1.21.8-2.6.27" target="_blank" rel="noopener">Simple Voice Chat 2.6.27 (Fabric 1.21.8)</a>. No launcher, edite a instalação do Fabric e ponha essa pasta em <b>Diretório do jogo</b>.</li>
+            <li><b>Serviço de IA:</b> no PowerShell, dentro da pasta <code>ai-service</code> do pacote: <code>powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</code> (use aspas no caminho se ele tiver espaço).</li>
+          </ol>
+        </div></details>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Escolher a IA que conversa</h3>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-tab="api" type="button">A) Minha API (recomendado)</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="local" type="button">B) Modelo local (Ollama)</button>
+        </div>
+        <div class="tabpanel active" data-panel="api">
+          <p><b>Melhor qualidade e não pesa no PC.</b> Crie uma chave de API na DeepSeek (<a href="https://platform.deepseek.com/" target="_blank" rel="noopener">platform.deepseek.com</a>, menu “API keys”; precisa de crédito na conta). Cada teste completo que fizemos com centenas de chamadas custou uma fração de dólar. A chave é sua: <b>nunca a compartilhe</b>.</p>
+          <p>Dê dois cliques em <code>2-CONFIGURAR-API.bat</code> e cole a chave quando pedir (o texto não aparece enquanto você cola; é normal).</p>
+          <p class="note">Só o texto das conversas vai à API. A voz e o seu áudio ficam no PC. Outras APIs compatíveis com a da OpenAI também funcionam (variáveis <code>MOBVOZ_API_URL</code> e <code>MOBVOZ_API_MODEL</code>).</p>
+        </div>
+        <div class="tabpanel" data-panel="local">
+          <p><b>De graça e offline, mas mais pesado e menos esperto.</b> Instale o <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a> e, no PowerShell, baixe o modelo (cerca de 2,6 GB):</p>
+          <div class="code"><pre>ollama pull qwen3:4b</pre><button class="btn sm copy" type="button">Copiar</button></div>
+          <p>Não precisa do <code>2-CONFIGURAR-API.bat</code>. Numa placa de vídeo pequena ou sem placa, a resposta demora mais (use <code>llama3.2</code> se quiser algo mais leve: variável <code>MOBVOZ_MODEL</code>).</p>
+          <p class="note">O modelo local erra mais o português e às vezes se contradiz. Para a melhor experiência, use a opção A.</p>
+        </div>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Dar dois cliques em <code>3-LIGAR-SERVICO.bat</code></h3>
+        <p>Ele liga o serviço de IA (usa a sua API se você guardou a chave; senão, o modelo local). Abre uma janela preta: <b>deixe-a aberta</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
+        <p class="note">Se o Firewall perguntar, pode permitir só em “redes privadas” (o serviço só escuta no seu próprio PC).</p>
+        <span class="expect">A janela mostra “MobVoz sidecar em http://127.0.0.1:8765” e, depois de alguns segundos, “aquecimento concluido”. Para conferir, abra <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>: aparece <code>"status": "ok"</code>.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Abrir o jogo</h3>
+        <p>No Minecraft Launcher, escolha a instalação <b>MobVoz IA</b> e clique Jogar (a primeira vez baixa o jogo e demora). Crie um mundo <b>Criativo</b> para testar (assim você pode usar comandos e invocar mobs).</p>
+        <span class="expect">O mundo abre sem erro. No chat, ao digitar <code>/mobvoz</code>, o jogo sugere os comandos.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Configurar o microfone</h3>
+        <p>Dentro do mundo, aperte <kbd>V</kbd> (Simple Voice Chat). Escolha o <b>microfone</b> e use <b>ativação por voz</b> (se deixar “aperte para falar”, o mod só ouve enquanto você segura a tecla). Faça o teste de microfone da própria tela.</p>
+        <span class="expect">A barra de volume do microfone mexe quando você fala.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Dar o consentimento (uma vez)</h3>
+        <p>No chat do jogo:</p>
+        <div class="code"><pre>/mobvoz voz sim
+/mobvoz status</pre><button class="btn sm copy" type="button">Copiar</button></div>
+        <p>Sem isso nada do seu microfone é usado. <code>/mobvoz status</code> mostra se o serviço de IA está ligado.</p>
+        <span class="expect">O status mostra o serviço de IA <b>online</b>.</span>
+        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
+
+      <li class="step"><div class="card flat">
+        <h3>Primeira conversa</h3>
+        <p>Invoque uma vaca na sua frente e mire nela:</p>
+        <div class="code"><pre>/summon cow ~ ~ ~3</pre><button class="btn sm copy" type="button">Copiar</button></div>
+        <p>Uma <b>estrela amarela</b> aparece sobre ela. Fale: <i>“Oi, vaca! Tudo bem por aqui?”</i> e espere a resposta (voz + legenda). Sem microfone? Digite <code>/mobvoz chat sim</code> e escreva no chat. Dica: <code>/mobvoz ajuda</code> mostra tudo o que dá para fazer.</p>
+        <span class="expect">A vaca responde em voz alta e a legenda aparece no chat, em amarelo.</span>
+        <label class="did"><input type="checkbox"> Funcionou! 🎉</label></div></li>
+    </ol>
+
+    <p class="rule">Algo deu errado? Veja as <a href="ajuda.html">soluções de problemas</a>. Para saber o que dizer e quais comandos existem, abra <a href="comandos.html">Comandos</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="cols">
+    <div><h4>MobVoz IA</h4><p>Alpha 0.1 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
+    <div><h4>Páginas</h4><ul>
+      <li><a href="funcionalidades.html">Funcionalidades</a></li><li><a href="como-funciona.html">Como funciona</a></li><li><a href="instalar.html">Instalar</a></li><li><a href="comandos.html">Comandos</a></li></ul></div>
+    <div><h4>Ajuda</h4><ul>
+      <li><a href="ajuda.html">Problemas comuns</a></li><li><a href="ajuda.html#estado">Estado do projeto</a></li><li><a href="ajuda.html#creditos">Créditos e licenças</a></li></ul></div>
+  </div>
+  <p class="legal">“Minecraft” é marca da Mojang Studios. As texturas e ícones desta página são arte própria.</p>
+</div></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><div><b>CONQUISTA DESBLOQUEADA</b><span id="toast-txt"></span></div></div>
+<script src="assets/js/app.js?v=13" defer></script>
+</body>
+</html>

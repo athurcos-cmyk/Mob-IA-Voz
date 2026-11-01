@@ -26,6 +26,8 @@ SCHEMA = {"type": "object", "required": ["nota", "problemas"],
 SYSTEM = (
     "Você avalia pequenas conversas AMBIENTE de um jogo de Minecraft: duas criaturas conversam entre si perto do jogador e ele as ouve. "
     "Recebe: 'quem' (as duas criaturas), 'situacao' e 'falas' (0 = quem abre, 1 = quem responde, 0 de novo = fecho). "
+    "Se houver UMA fala só, é uma criatura reagindo sozinha, em voz alta, a algo que acabou de acontecer: julgue se essa reação soa natural e variada. "
+    "Quando a situação é um ACONTECIMENTO (explosão, raio, presente, pancada...), a fala tem de combinar com ele e com o mundo de quem a diz. "
     "Dê 'nota' de 1 a 5: faz sentido para ESSAS criaturas nessa situação? Critérios: (a) cada fala combina com o mundo de quem a diz "
     "(vaca não fala de trocas ou casas; aldeão não muge; zumbi não é simpático; bicho não filosofa); (b) a resposta combina com o que foi dito "
     "e o fecho fecha a conversa; (c) bate com a situação; (d) soa natural em português falado, curto. "
@@ -49,7 +51,21 @@ TAGS = {"day": "é de dia", "night": "é noite", "dusk": "é fim de tarde", "daw
         "f0:HONEST_RETURN": "o jogador já devolveu a quem abre algo que ele tinha entregado, sem ser pedido (fato verificado)",
         "f0:DAMAGED_BY_PLAYER": "o jogador já machucou quem abre (fato verificado)", "f0:PACT_BROKEN": "o jogador já quebrou um acordo com quem abre (fato verificado)",
         "f0:THREAT_SPOKEN": "o jogador já ameaçou quem abre com palavras (fato verificado)", "f0:COMFORTED": "o jogador já acalmou quem abre quando estava com medo (fato verificado)",
-        "f0:TAMED": "quem abre foi domado e agora pertence ao jogador (fato verificado)"}
+        "f0:TAMED": "quem abre foi domado e agora pertence ao jogador (fato verificado)",
+        "ev:boom": "ACABOU DE EXPLODIR um creeper bem perto", "ev:thunder": "ACABOU DE CAIR UM RAIO bem perto", "ev:wake": "o jogador ACABOU DE ACORDAR de manhã",
+        "ev:revive": "o jogador ACABOU DE VOLTAR de uma morte (a criatura já o conhece)", "ev:thanks": "o jogador ACABOU DE MATAR um monstro perto da vila",
+        "ev:raiders": "SAQUEADORES hostis estão chegando perto da vila", "ev:fall": "o jogador ACABOU DE CAIR de muito alto e se machucou",
+        "ev:hit": "o jogador ACABOU DE BATER nessa criatura (ela reage sozinha)", "ev:gift_like": "o jogador ACABOU DE DAR um presente que a criatura ADORA",
+        "ev:gift_meh": "o jogador ACABOU DE DAR um presente que não diz nada à criatura", "ev:gift_dislike": "o jogador ACABOU DE DAR um presente que a criatura DETESTA",
+        "ev:danger": "um inimigo se aproxima do jogador e a criatura, que o acompanha, o avisa", "ev:greet": "a criatura reencontra o jogador, que ela já conhece",
+        "ev:egg": "o jogador ACABOU DE PEGAR o ovo que a galinha tinha botado", "ev:honest": "o jogador ACABOU DE DEVOLVER, sem ser pedido, algo que a criatura lhe entregara",
+        "snow": "o bioma é de neve e frio", "desert": "o bioma é um deserto", "jungle": "o bioma é uma selva", "swamp": "o bioma é um pântano",
+        "forest": "o bioma é uma floresta", "mountain": "o bioma é de montanha, alto e ventoso", "beach": "estão numa praia", "savanna": "o bioma é uma savana",
+        "fullmoon": "é noite de lua cheia", "newmoon": "é noite de lua nova, sem lua", "deep": "estão bem fundo, em cavernas", "high": "estão num lugar muito alto",
+        "sneak": "o jogador anda agachado, na pontinha dos pés", "run": "o jogador está correndo", "ride": "o jogador está montado em algo (cavalo, barco...)",
+        "swim": "o jogador está nadando na água", "burning": "o jogador está pegando fogo", "fly": "o jogador está voando (asas de elytra)",
+        "emeralds": "o jogador carrega esmeraldas", "diamonds": "o jogador carrega diamantes", "followers": "vários seres seguem o jogador como companheiros",
+        "ally": "um ser segue o jogador como companheiro"}
 
 
 def who_text(who):
@@ -71,11 +87,16 @@ def item_for(f):
     return "uma espada de ferro"
 
 
+def thing_for(f):
+    ev = next((n for n in f["need"] if n.startswith("ev:")), "")
+    return {"ev:danger": "zumbi", "ev:honest": "trigo" if "animals" in f["who"] else "3 esmeraldas", "ev:gift_like": "papoula" if "golem" in f["who"] else "cenoura", "ev:gift_meh": "pedra", "ev:gift_dislike": "carne podre"}.get(ev, "")
+
+
 def render(f, rnd, pools):
     i = rnd.randrange(len(f["a"]))
     a = f["a"][i]
     bpool = f["b"] if (not f.get("bg") or a.strip().endswith("?")) else f["b"] + f["bg"]
-    texts = [a, rnd.choice(bpool)] + ([rnd.choice(f["c"])] if f["c"] else [])
+    texts = [a] if f.get("solo") else [a, rnd.choice(bpool)] + ([rnd.choice(f["c"])] if f["c"] else [])
     chosen = {}
     item = item_for(f)
     out = []
@@ -88,6 +109,10 @@ def render(f, rnd, pools):
                 return "O humano"
             if s in ("nome", "Nome"):
                 return "Bia"
+            if s == "coisa":
+                return thing_for(f)
+            if s == "Coisa":
+                return thing_for(f).capitalize()
             if s == "item":
                 return item
             if s == "Item":
@@ -97,7 +122,7 @@ def render(f, rnd, pools):
             if s.startswith("@"):
                 return chosen.setdefault(s, rnd.choice(pools[s[1:]]))
             return s
-        out.append(re.sub(r"\{([^}]*)\}", sub, t).replace("de o humano", "do humano").replace("em o humano", "no humano"))
+        out.append(re.sub(r"\{([^}]*)\}", sub, t).replace("de o humano", "do humano").replace("em o humano", "no humano").replace(" a o humano", " ao humano"))
     return [f"{k}: {t}" for k, t in zip([0, 1, 0], out)]
 
 

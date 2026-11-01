@@ -116,6 +116,25 @@ public class AmbientChatterGameTest implements FabricClientGameTest {
             check("Bia".equals(nameOf(world, "vaca")), "a vaca deveria guardar o nome dito pelo jogador");
             check("Arthur".equals(nameOf(world, "v1")), "o nome que v1 sabia nao deveria mudar");
             Thread.sleep(8000); // deixa a conversa terminar
+
+            // 4) atras de uma parede ninguem ve o jogador: nao comentam o que ele segura. Tirada a parede, comentam.
+            cmd.runCommand("fill 4 -61 4 11 -57 9 stone hollow");
+            cmd.runCommand("item replace entity @p weapon.mainhand with minecraft:diamond");
+            Ambient.reset();
+            Ambient.setOnlyFamily("jogador_item");
+            int s1 = Ambient.scenesPlayed();
+            long quiet = System.currentTimeMillis() + 40_000; // ~8 sorteios (40% a cada 5 s): sem a regra, quase certo que falariam
+            while (System.currentTimeMillis() < quiet) {
+                context.waitTicks(20);
+                Thread.sleep(100);
+            }
+            System.out.println("[gametest] AMB4 atras da parede: cenas sobre o item=" + (Ambient.scenesPlayed() - s1));
+            check(Ambient.scenesPlayed() == s1, "falaram do item do jogador atras de uma parede");
+            cmd.runCommand("fill 4 -60 4 11 -57 9 air");
+            int l1 = Ambient.linesSpoken();
+            waitScene(context, s1, l1);
+            System.out.println("[gametest] AMB4 sem a parede: cenas=" + (Ambient.scenesPlayed() - s1));
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             throw new AssertionError(e);
         } finally {

@@ -87,6 +87,31 @@ public final class VoiceUi {
                                             }
                                             return br.com.mobvoz.client.ChatMode.send(mob, StringArgumentType.getString(ctx, "texto")) ? 1 : 0;
                                         })))
+                        .then(ClientCommandManager.literal("ajuda").executes(ctx -> {
+                            br.com.mobvoz.client.HelpText.lines().forEach(l -> ctx.getSource().sendFeedback(Component.literal(l)));
+                            return 1;
+                        }))
+                        // precisam do SERVIDOR (memoria da criatura, configuracao): o cliente repassa o comando
+                        .then(ClientCommandManager.literal("memoria").executes(ctx -> {
+                            Minecraft.getInstance().player.connection.sendCommand("mobvozinfo memoria");
+                            return 1;
+                        }))
+                        .then(ClientCommandManager.literal("dificuldade")
+                                .executes(ctx -> {
+                                    Minecraft.getInstance().player.connection.sendCommand("mobvozinfo dificuldade");
+                                    return 1;
+                                })
+                                .then(ClientCommandManager.argument("nivel", StringArgumentType.word())
+                                        .suggests((c, b) -> {
+                                            b.suggest("facil");
+                                            b.suggest("normal");
+                                            b.suggest("dificil");
+                                            return b.buildFuture();
+                                        })
+                                        .executes(ctx -> {
+                                            Minecraft.getInstance().player.connection.sendCommand("mobvozinfo dificuldade " + StringArgumentType.getString(ctx, "nivel"));
+                                            return 1;
+                                        })))
                         .then(ClientCommandManager.literal("status").executes(ctx -> {
                             var src = ctx.getSource();
                             var mc = Minecraft.getInstance();

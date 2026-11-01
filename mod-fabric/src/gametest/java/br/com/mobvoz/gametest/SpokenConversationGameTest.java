@@ -67,6 +67,9 @@ public class SpokenConversationGameTest implements FabricClientGameTest {
         if (Only.skip(getClass())) {
             return;
         }
+        var cfg = new br.com.mobvoz.config.ServerConfig();
+        cfg.ambientChatter = false; // as vacas vizinhas conversariam entre si e o teste acharia que "outra vaca falou"
+        br.com.mobvoz.config.ServerConfig.set(cfg);
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {
             world.getClientWorld().waitForChunksRender();
             var server = world.getServer();
@@ -127,6 +130,8 @@ public class SpokenConversationGameTest implements FabricClientGameTest {
             context.runOnClient(mc -> VoiceConsent.set(false));
         } catch (InterruptedException | IOException e) {
             throw new AssertionError(e);
+        } finally {
+            br.com.mobvoz.config.ServerConfig.set(new br.com.mobvoz.config.ServerConfig());
         }
     }
 }

@@ -78,4 +78,38 @@ class KnowledgeTest {
         assertEquals(1, lines.size());
         assertTrue(lines.get(0).contains("uma vez") && lines.get(0).contains("sem querer"), lines.get(0));
     }
+
+    /** A fama na aldeia e local: quem esta a mais de 64 blocos de onde bateram nao sabe de nada. */
+    @Test
+    void villageGrudgeStaysNearWhereItHappened() {
+        Knowledge k = Knowledge.EMPTY.withFaction("aldeia", new Event("ATTACKED_MEMBER", me, "", 0, 100, 100));
+        assertEquals(0.15f, k.trustPenalty("aldeia", me, 0, 130, 100), 1e-6, "mesma vila");
+        assertEquals(0f, k.trustPenalty("aldeia", me, 0, 400, 100), "outra vila");
+        assertEquals(1, k.factionLines("aldeia", me, 10, 130, 100).size());
+        assertTrue(k.factionLines("aldeia", me, 10, 400, 100).isEmpty(), "outra vila nem comenta");
+        assertEquals(0.15f, k.trustPenalty("aldeia", me, 0), 1e-6, "sem posicao de quem fala = sem filtro");
+    }
+
+    /** Endermen nao tem "vila": sabem em qualquer lugar. Registros sem posicao (saves antigos) valem em todo lugar. */
+    @Test
+    void endermenAndOldRecordsKnowEverywhere() {
+        Knowledge e = Knowledge.EMPTY.withFaction("enderman", new Event("ATTACKED_MEMBER", me, "", 0, 100, 100));
+        assertEquals(0.15f, e.trustPenalty("enderman", me, 0, 9000, 9000), 1e-6);
+        Knowledge old = Knowledge.EMPTY.withFaction("aldeia", new Event("ATTACKED_MEMBER", me, "", 0));
+        assertEquals(0.15f, old.trustPenalty("aldeia", me, 0, 9000, 9000), 1e-6);
+    }
+
+    @Test
+    void positionSurvivesSaveAndOldSavesStillLoad() {
+        Knowledge k = Knowledge.EMPTY.withFaction("aldeia", new Event("ATTACKED_MEMBER", me, "", 5, -30, 77));
+        var json = Knowledge.CODEC.encodeStart(JsonOps.INSTANCE, k).getOrThrow();
+        Event back = Knowledge.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow().factions().get("aldeia").get(0);
+        assertEquals(-30, back.x());
+        assertEquals(77, back.z());
+        var ev = json.getAsJsonObject().getAsJsonObject("factions").getAsJsonArray("aldeia").get(0).getAsJsonObject();
+        ev.remove("x"); // save antigo: sem posicao
+        ev.remove("z");
+        var old = json;
+        assertEquals(Knowledge.NOWHERE, Knowledge.CODEC.parse(JsonOps.INSTANCE, old).getOrThrow().factions().get("aldeia").get(0).x());
+    }
 }

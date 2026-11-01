@@ -9,7 +9,7 @@ Campos: who = [classe de quem abre, classe de quem responde]; need = condicoes (
 Classes (quem pode abrir/responder): calm (aldeao ou animal), villagers (aldeoes e golem), animals, monsters (so da MESMA especie: zombie
            skeleton spider creeper enderman witch warden), e as especies: farm cow pig sheep chicken pet wolf cat horse golem villager villager:<profissao>.
            Duas criaturas so conversam se compartilham o tipo (aldeao com aldeao, animal com animal, monstro com a mesma especie).
-Condicoes: day dusk night dawn clear rain thunder hurt hungry holds want0 (quem abre GOSTA do que o jogador segura) armor k0 k1 (criatura 0/1 ja conhece o jogador) n0 n1 (sabe o NOME)
+Condicoes: ev:... (acontecimento do WorldReactions; familias ev_*, ver genambient_ev.py) snow desert jungle swamp forest mountain beach savanna fullmoon newmoon deep high sneak run ride swim burning fly emeralds diamonds followers ally unseen (nenhuma das duas ve o jogador: familias sobre o que ele segura/veste/faz levam "!unseen" sozinhas) day dusk night dawn clear rain thunder hurt hungry holds want0 (quem abre GOSTA do que o jogador segura) armor k0 k1 (criatura 0/1 ja conhece o jogador) n0 n1 (sabe o NOME)
            f0:TIPO (a criatura 0 tem este fato verificado sobre o jogador: TRADE GIFT HONEST_RETURN DAMAGED_BY_PLAYER PACT_BROKEN
            THREAT_SPOKEN COMFORTED TAMED).
 Espacos: {jogador} ("o humano" ou o nome que a criatura sabe), {Jogador} (inicio de frase), {nome} (so com n0 ou n1), {item} (so com holds), {armadura} (so com armor: "uma armadura de ferro"),
@@ -32,9 +32,19 @@ POOLS = {
 FAMILIES = []
 
 
-def fam(id, who, need, a, b, c=None, weight=1):
+# Assuntos que so fazem sentido se uma das duas criaturas ENXERGA o jogador agora (o servidor poe a tag "unseen" quando nenhuma o ve).
+SEES_IDS = {"jogador_passando", "jogador_voltou", "jogador_apresenta", "jogador_nome_ambos", "jogador_noite", "jogador_chuva", "vila_passando_troca",
+            "bicho_jogador_noite", "bicho_jogador_chuva", "jogador_monstros_visto", "esqueleto_mira", "bruxa_pocao", "enderman_olhar"}
+
+
+SEES_TAGS = {"holds", "armor", "hurt", "hungry", "sneak", "run", "ride", "swim", "burning", "fly", "emeralds", "diamonds"}
+
+
+def fam(id, who, need, a, b, c=None, weight=1, solo=False):
     about = id.startswith("jogador_") or "holds" in need or "armor" in need
-    FAMILIES.append({"id": id, "who": who, "need": need, "weight": weight, "player": about, "a": a, "b": b, "bg": [], "c": c or []})
+    if id in SEES_IDS or SEES_TAGS & set(need):
+        need = need + ["!unseen"]
+    FAMILIES.append({"id": id, "who": who, "need": need, "weight": weight, "player": about, "a": a, "b": b, "bg": [], "c": c or [], "solo": solo})
 
 
 # ----------------------------------------------------------------------------------------------- tempo
@@ -117,14 +127,14 @@ fam("clerigo", ["villager:cleric", "villager"], [],
     ["Poção boa tem de tudo um pouco.", "É tudo ciência, juro."])
 fam("pastor", ["villager:shepherd", "villager"], ["day"],
     ["As ovelhas hoje estão agitadas.", "Lã não falta nesta estação.", "Passei o dia atrás de uma ovelha fujona."],
-    ["Elas são teimosas mesmo.", "Quando precisar de ajuda, chama.", "Cuidar de rebanho dá trabalho."],
+    ["Elas são teimosas mesmo.", "Elas dão trabalho, mas eu gosto delas.", "Cuidar de rebanho dá trabalho."],
     ["No fim, elas voltam sempre.", "Eu gosto delas."])
 
 # ----------------------------------------------------------------------------------------------- bichos
 fam("pasto", ["farm", "farm"], ["day"],
     ["Esse capim está uma delícia.", "Passei a manhã pastando, que paz.", "Viu aquela touceira de grama ali?", "O pasto hoje está macio."],
     ["Só não gosto quando o vento levanta poeira.", "Já comi tanto que nem me mexo.", "Dá para viver só disso."],
-    ["A vida é simples, e isso me basta.", "Aqui a gente está seguro."])
+    ["Hoje o dia está bom para pastar.", "Aqui a gente está seguro."])
 fam("cercado", ["farm", "farm"], [],
     ["O cercado está apertado hoje.", "Tem espaço de sobra para todo mundo aqui.", "Será que um dia essa cerca abre?"],
     ["Antes aqui do que solto à noite.", "Cerca é sinal de que alguém cuida da gente.", "Gosto de saber onde fica o meu cantinho."],
@@ -815,6 +825,11 @@ fam("jogador_dono", ["calm", "calm"], ["f0:TAMED"],
     ["Ele me trata bem, estou feliz.", "Estou feliz, sim, de verdade."], weight=4)
 
 
+from genambient_ev import add as _add_ev  # noqa: E402
+
+_add_ev(fam)  # reacoes ao mundo (ev_*) e assuntos novos de ambiente
+drop("curiosidade_quadrado")  # o juiz a achou filosofica demais para aldeoes, nas tres reescritas
+
 GENERIC_B = ["Pois é.", "É verdade.", "Também acho.", "Nem me fale."]
 for _f in FAMILIES:
     if _f["id"] in {"pasto", "colheita", "curiosidade_fundo", "curiosidade_portal", "curiosidade_creeper", "sol", "chuva", "bicho_sombra"}:
@@ -826,7 +841,9 @@ def check():
     slot = re.compile(r"\{([^}]*)\}")
     combos = 0
     for f in FAMILIES:
-        lists = [f["a"], f["b"]] + ([f["c"]] if f["c"] else [])
+        lists = [f["a"]] if f.get("solo") else [f["a"], f["b"]] + ([f["c"]] if f["c"] else [])
+        assert not f.get("solo") or not (f["b"] or f["c"]), f["id"]
+        assert f["id"].startswith("ev_") == any(n.startswith("ev:") for n in f["need"]), f["id"]
         n = 1
         for lst in lists:
             n *= len(lst)
@@ -834,9 +851,11 @@ def check():
                 assert "—" not in t and "–" not in t, t
                 assert len(t) <= 110, t
                 for s in slot.findall(t):
-                    assert s in ("jogador", "Jogador", "nome", "Nome", "item", "Item", "armadura") or (s.startswith("@") and s[1:] in POOLS), (f["id"], s)
+                    assert s in ("jogador", "Jogador", "nome", "Nome", "item", "Item", "armadura", "coisa", "Coisa") or (s.startswith("@") and s[1:] in POOLS), (f["id"], s)
                     if s in ("item", "Item"):
                         assert "holds" in f["need"], f["id"]
+                    if s in ("coisa", "Coisa"):
+                        assert any(n.startswith("ev:") for n in f["need"]), f["id"]
                     if s == "armadura":
                         assert "armor" in f["need"], f["id"]
                     if s in ("nome", "Nome"):

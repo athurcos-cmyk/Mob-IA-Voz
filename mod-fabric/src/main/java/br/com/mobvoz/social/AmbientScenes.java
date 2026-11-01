@@ -27,9 +27,10 @@ import java.util.regex.Pattern;
 public final class AmbientScenes {
     /** {@code bg}: reacoes genericas ("Pois e."), usadas so depois de uma AFIRMACAO; uma pergunta so recebe resposta de {@code b}. */
     public record Family(String id, String whoA, String whoB, List<String> need, int weight, boolean aboutPlayer, List<String> a, List<String> b,
-                         List<String> bg, List<String> c) {
+                         List<String> bg, List<String> c, boolean solo) {
+        /** {@code solo}: reacao de UMA criatura (so a abertura {@code a}; sem resposta nem fecho). */
         public int combos() {
-            return a.size() * (b.size() + bg.size()) * Math.max(1, c.size());
+            return solo ? a.size() : a.size() * (b.size() + bg.size()) * Math.max(1, c.size());
         }
     }
 
@@ -54,11 +55,15 @@ public final class AmbientScenes {
     /**
      * O momento: {@code tags} (condicoes verdadeiras agora) e as classes de cada criatura. {@code nameA}/{@code nameB}: nome do jogador que
      * cada uma ja sabe ("" = nao sabe). {@code item}: nome do que o jogador segura ("" = nada conhecido); {@code armor}: o que ele veste
-     * ("uma armadura de ferro"; "" = nada).
+     * ("uma armadura de ferro"; "" = nada). {@code thing}: o "{coisa}" de uma reacao a um acontecimento (o inimigo que se aproxima, o que foi devolvido...).
      */
-    public record Situation(Set<String> tags, Set<String> classesA, Set<String> classesB, String nameA, String nameB, String item, String armor) {
+    public record Situation(Set<String> tags, Set<String> classesA, Set<String> classesB, String nameA, String nameB, String item, String armor, String thing) {
+        public Situation(Set<String> tags, Set<String> classesA, Set<String> classesB, String nameA, String nameB, String item, String armor) {
+            this(tags, classesA, classesB, nameA, nameB, item, armor, "");
+        }
+
         public Situation(Set<String> tags, Set<String> classesA, Set<String> classesB, String nameA, String nameB, String item) {
-            this(tags, classesA, classesB, nameA, nameB, item, "");
+            this(tags, classesA, classesB, nameA, nameB, item, "", "");
         }
     }
 
@@ -77,7 +82,8 @@ public final class AmbientScenes {
                 JsonArray who = o.getAsJsonArray("who");
                 FAMILIES.add(new Family(o.get("id").getAsString(), who.get(0).getAsString(), who.get(1).getAsString(), strings(o.getAsJsonArray("need")),
                         o.get("weight").getAsInt(), o.has("player") && o.get("player").getAsBoolean(), strings(o.getAsJsonArray("a")),
-                        strings(o.getAsJsonArray("b")), o.has("bg") ? strings(o.getAsJsonArray("bg")) : List.of(), strings(o.getAsJsonArray("c"))));
+                        strings(o.getAsJsonArray("b")), o.has("bg") ? strings(o.getAsJsonArray("bg")) : List.of(), strings(o.getAsJsonArray("c")),
+                        o.has("solo") && o.get("solo").getAsBoolean()));
             }
         } catch (IOException | RuntimeException e) {
             throw new IllegalStateException("ambient.json invalido", e);
@@ -147,7 +153,7 @@ public final class AmbientScenes {
                 r -= f.weight();
             }
             i = rnd.nextInt(fam.a().size());
-            j = rnd.nextInt(bPool(fam, i).size());
+            j = fam.solo() ? 0 : rnd.nextInt(bPool(fam, i).size());
             k = fam.c().isEmpty() ? -1 : rnd.nextInt(fam.c().size());
             key = fam.id() + ":" + i + ":" + j + ":" + k;
             if (!recentlyUsed.test(key)) {
@@ -161,9 +167,9 @@ public final class AmbientScenes {
         Map<String, String> chosen = new HashMap<>();
         List<Line> lines = new ArrayList<>();
         String heard = ""; // nome que ja foi dito em voz alta nesta cena
-        int[] speakers = k >= 0 ? new int[] {0, 1, 0} : new int[] {0, 1};
-        String b = bPool(f, i).get(j);
-        String[] texts = k >= 0 ? new String[] {f.a().get(i), b, f.c().get(k)} : new String[] {f.a().get(i), b};
+        int[] speakers = f.solo() ? new int[] {0} : k >= 0 ? new int[] {0, 1, 0} : new int[] {0, 1};
+        String[] texts = f.solo() ? new String[] {f.a().get(i)} : k >= 0 ? new String[] {f.a().get(i), bPool(f, i).get(j), f.c().get(k)}
+                : new String[] {f.a().get(i), bPool(f, i).get(j)};
         for (int n = 0; n < texts.length; n++) {
             String own = speakers[n] == 0 ? s.nameA() : s.nameB();
             String name = !own.isEmpty() ? own : heard;
@@ -189,6 +195,8 @@ public final class AmbientScenes {
                     case "item" -> val = s.item();
                     case "Item" -> val = s.item().isEmpty() ? "" : s.item().substring(0, 1).toUpperCase() + s.item().substring(1);
                     case "armadura" -> val = s.armor();
+                    case "coisa" -> val = s.thing();
+                    case "Coisa" -> val = s.thing().isEmpty() ? "" : s.thing().substring(0, 1).toUpperCase() + s.thing().substring(1);
                     default -> {
                         String pool = slot.startsWith("@") ? slot.substring(1) : slot;
                         List<String> options = POOLS.getOrDefault(pool, List.of(pool));
@@ -201,7 +209,7 @@ public final class AmbientScenes {
             if (usedName) {
                 heard = name;
             }
-            lines.add(new Line(speakers[n], out.toString().replace("de o humano", "do humano").replace("em o humano", "no humano")));
+            lines.add(new Line(speakers[n], out.toString().replace("de o humano", "do humano").replace("em o humano", "no humano").replace(" a o humano", " ao humano").replace("por o humano", "pelo humano")));
         }
         return new Scene(f.id(), key, List.copyOf(lines), heard, f.aboutPlayer());
     }

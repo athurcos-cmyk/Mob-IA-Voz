@@ -22,6 +22,9 @@ COMO JOGAR
      Quer que ela te siga? Dê presentes que ela gosta (segure o item e SHIFT + botao direito).
      Uma barrinha de confianca aparece na barra de acao e mostra quanto falta.
      Sem microfone? Digite  /mobvoz chat sim  e escreva no chat.
+  6. De um apelido: diga "vou te chamar de Mimosa". Depois e so chamar, sem mirar: "Mimosa, vem aqui!"
+  7. Duvidas? Digite  /mobvoz ajuda  no chat. Para ver o que uma criatura sabe de voce: /mobvoz memoria
+     Acha dificil (ou facil) demais ganhar confianca? /mobvoz dificuldade facil|normal|dificil
 
 SE ALGO DER ERRADO
   - Se o Windows mostrar "O Windows protegeu o seu PC": clique em "Mais informacoes" e "Executar assim mesmo".

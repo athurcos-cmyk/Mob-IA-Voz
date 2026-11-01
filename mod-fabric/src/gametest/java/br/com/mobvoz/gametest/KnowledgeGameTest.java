@@ -79,6 +79,25 @@ public class KnowledgeGameTest implements FabricClientGameTest {
         check(hist >= 1 && world.getServer().computeOnServer(s -> KnowledgeStore.get(s).history().stream().allMatch(e -> e.type().equals("PLAYER_DEATH"))),
                 "registro historico com eventos nao verificados");
 
+        // ---- T26: a fama na aldeia e LOCAL: bater num aldeao marca a vila dele, nao uma a 200 blocos ----
+        cmd.runCommand("forceload add 200 10");
+        cmd.runCommand("summon villager 4.5 -60 10.5 {NoAI:1b,Silent:1b,PersistenceRequired:1b,Tags:[\"va\"]}");
+        cmd.runCommand("summon villager 200.5 -60 10.5 {NoAI:1b,Silent:1b,PersistenceRequired:1b,Tags:[\"vb\"]}");
+        context.waitTicks(20);
+        cmd.runCommand("execute as @p run damage @e[tag=va,limit=1] 1 minecraft:player_attack by @p");
+        context.waitTicks(40);
+        float[] vp = world.getServer().computeOnServer(s -> {
+            long now = s.overworld().getGameTime();
+            Mob a = s.overworld().getEntitiesOfClass(Mob.class, new net.minecraft.world.phys.AABB(-10, -70, -10, 20, 40, 30), m -> m.getTags().contains("va")).get(0);
+            Mob b = s.overworld().getEntitiesOfClass(Mob.class, new net.minecraft.world.phys.AABB(190, -70, -10, 220, 40, 30), m -> m.getTags().contains("vb")).get(0);
+            var k = KnowledgeStore.get(s);
+            return new float[] {k.trustPenalty("aldeia", me, now, a.getX(), a.getZ()), k.trustPenalty("aldeia", me, now, b.getX(), b.getZ()),
+                    k.factionLines("aldeia", me, now, b.getX(), b.getZ()).size()};
+        });
+        System.out.println("[gametest] T26: vila atingida penalidade=" + vp[0] + "; vila a 200 blocos penalidade=" + vp[1] + " falas=" + vp[2]);
+        check(vp[0] > 0.1f, "a vila do aldeao atingido deveria desconfiar (" + vp[0] + ")");
+        check(vp[1] == 0f && vp[2] == 0f, "a vila distante nao deveria saber (" + vp[1] + ", falas " + vp[2] + ")");
+
         // ---- T33: salvar/carregar preserva ----
         var kBefore = world.getServer().computeOnServer(s -> KnowledgeStore.get(s));
         var save = world.getWorldSave();

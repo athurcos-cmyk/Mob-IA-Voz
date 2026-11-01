@@ -71,7 +71,8 @@
     "Bom, fazer o quê.",
     "Se trovejar eu me escondo.",
     "Que dure só o suficiente."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "trovoada",
@@ -101,7 +102,8 @@
     "Chega mais perto, é mais seguro.",
     "Se cair um raio aqui perto, é um susto danado.",
     "Vamos aguentar juntos."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "sol",
@@ -138,7 +140,8 @@
     "Então vamos aproveitar.",
     "Pena que a noite chega logo.",
     "Hoje está tudo no lugar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "entardecer",
@@ -168,7 +171,8 @@
     "É verdade, vamos com cuidado.",
     "Pelo menos o céu está lindo.",
     "Cada dia termina assim."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "noite",
@@ -199,7 +203,8 @@
     "Aguenta firme, o dia já vem.",
     "Vamos ficar juntos, então.",
     "Qualquer barulho eu aviso."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "amanhecer",
@@ -226,7 +231,8 @@
    "c": [
     "Vamos ver o que o dia traz.",
     "Bom dia, então."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "colheita",
@@ -262,7 +268,8 @@
     "Se sobrar, a gente troca.",
     "Boa colheita para nós dois.",
     "A terra daqui é generosa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "trocas_vila",
@@ -290,7 +297,8 @@
    "c": [
     "Tomara. Preciso arrumar a banca.",
     "É assim mesmo, tem dia de sobra e dia de falta."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "camas",
@@ -317,7 +325,8 @@
    "c": [
     "Boa noite. Tranca a porta.",
     "Até amanhã."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbis_na_vila",
@@ -344,7 +353,8 @@
    "c": [
     "Vou ficar em silêncio até o dia chegar.",
     "Que a noite passe logo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "afazeres",
@@ -371,7 +381,8 @@
    "c": [
     "Valeu, ajuda é sempre bem-vinda.",
     "Assim a gente termina logo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "fofoca_vila",
@@ -398,7 +409,8 @@
    "c": [
     "Se souber de algo, me conta.",
     "Vou ficar de olho."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "golem_guarda",
@@ -425,7 +437,8 @@
    "c": [
     "Por isso a vila ainda existe.",
     "Qualquer coisa, grito por você."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "fazendeiro",
@@ -452,7 +465,8 @@
    "c": [
     "Fico feliz em ajudar.",
     "A terra devolve o que a gente dá."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bibliotecario",
@@ -477,7 +491,8 @@
    "c": [
     "Ler é uma forma de viajar.",
     "Quando quiser, eu leio uma página para você."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "ferreiro",
@@ -502,7 +517,8 @@
    "c": [
     "Metal bom pede paciência.",
     "Passa lá depois, tenho coisa nova."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "pastor",
@@ -522,14 +538,15 @@
    ],
    "b": [
     "Elas são teimosas mesmo.",
-    "Quando precisar de ajuda, chama.",
+    "Elas dão trabalho, mas eu gosto delas.",
     "Cuidar de rebanho dá trabalho."
    ],
    "bg": [],
    "c": [
     "No fim, elas voltam sempre.",
     "Eu gosto delas."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "pasto",
@@ -560,9 +577,10 @@
     "Nem me fale."
    ],
    "c": [
-    "A vida é simples, e isso me basta.",
+    "Hoje o dia está bom para pastar.",
     "Aqui a gente está seguro."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "medo_lobo",
@@ -589,7 +607,8 @@
    "c": [
     "Vamos ficar de olho.",
     "Se vier, a gente corre."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curiosidade_fundo",
@@ -619,7 +638,8 @@
    "c": [
     "Melhor deixar o fundo em paz.",
     "Que ninguém desça sem tocha."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curiosidade_portal",
@@ -649,7 +669,8 @@
    "c": [
     "Vai saber o que é verdade.",
     "Eu fico por aqui mesmo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curiosidade_creeper",
@@ -679,7 +700,8 @@
    "c": [
     "Por isso fico de olho em tudo.",
     "Que ele passe longe daqui."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curiosidade_abelha",
@@ -706,7 +728,8 @@
    "c": [
     "Elas sabem o que fazem.",
     "Respeito muito esse esforço."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_noite",
@@ -715,7 +738,8 @@
     "villager"
    ],
    "need": [
-    "night"
+    "night",
+    "!unseen"
    ],
    "weight": 2,
    "player": true,
@@ -733,7 +757,8 @@
    "c": [
     "A noite não perdoa ninguém.",
     "Que a noite seja gentil com essa pessoa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_chuva",
@@ -742,7 +767,8 @@
     "villager"
    ],
    "need": [
-    "rain"
+    "rain",
+    "!unseen"
    ],
    "weight": 2,
    "player": true,
@@ -759,7 +785,8 @@
    "c": [
     "Ao menos a chuva lava a poeira.",
     "Se vier até aqui, eu deixo ficar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_item",
@@ -768,7 +795,8 @@
     "villager"
    ],
    "need": [
-    "holds"
+    "holds",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -787,7 +815,8 @@
    "c": [
     "Vou perguntar, quem sabe.",
     "Cada um carrega o que precisa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_troca",
@@ -814,7 +843,8 @@
    "c": [
     "Paga, sim.",
     "Dá para confiar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_presente",
@@ -841,7 +871,8 @@
    "c": [
     "Nunca esqueci.",
     "Foi um dia especial."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_honesto",
@@ -867,7 +898,8 @@
    "c": [
     "Pois é, eu confio.",
     "Fez toda a diferença para mim."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_bateu",
@@ -894,7 +926,8 @@
    "c": [
     "É o que eu penso.",
     "Já aprendi a lição."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_traiu",
@@ -920,7 +953,8 @@
    "c": [
     "Pois é, dói.",
     "Quem sabe um dia melhore."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_acalmou",
@@ -946,7 +980,8 @@
    "c": [
     "Não esqueci essa gentileza.",
     "Fez bem, de verdade."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_passando_troca",
@@ -955,7 +990,8 @@
     "villager"
    ],
    "need": [
-    "day"
+    "day",
+    "!unseen"
    ],
    "weight": 2,
    "player": false,
@@ -972,7 +1008,8 @@
    "c": [
     "Vou arrumar a banca, por via das dúvidas.",
     "Que venha negociar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_fome",
@@ -981,7 +1018,8 @@
     "villager"
    ],
    "need": [
-    "hungry"
+    "hungry",
+    "!unseen"
    ],
    "weight": 3,
    "player": false,
@@ -998,7 +1036,8 @@
    "c": [
     "Se ele pedir, eu dou um jeito.",
     "Comida é o que não falta por aqui."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_armadura",
@@ -1007,7 +1046,8 @@
     "villager"
    ],
    "need": [
-    "armor"
+    "armor",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1026,7 +1066,8 @@
    "c": [
     "Pelo menos protege a vila também.",
     "Eu só queria saber onde fez."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "golem_quer_flor",
@@ -1036,7 +1077,8 @@
    ],
    "need": [
     "holds",
-    "want0"
+    "want0",
+    "!unseen"
    ],
    "weight": 4,
    "player": true,
@@ -1053,7 +1095,8 @@
    "c": [
     "Uma flor assim alegra qualquer dia.",
     "Eu cuido da vila, e ele cuida das flores."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_quer_comida",
@@ -1063,7 +1106,8 @@
    ],
    "need": [
     "holds",
-    "want0"
+    "want0",
+    "!unseen"
    ],
    "weight": 5,
    "player": true,
@@ -1084,7 +1128,8 @@
     "Eu espero aqui, bem quieto.",
     "Vou chegar de mansinho.",
     "Quem sabe ele se compadece."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_item",
@@ -1094,7 +1139,8 @@
    ],
    "need": [
     "holds",
-    "!want0"
+    "!want0",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1113,7 +1159,8 @@
    "c": [
     "Cada um com o seu gosto.",
     "Por mim, pode ficar com ele."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_armadura",
@@ -1122,7 +1169,8 @@
     "animals"
    ],
    "need": [
-    "armor"
+    "armor",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1140,7 +1188,8 @@
    "bg": [],
    "c": [
     "Pelo visto ele sabe se cuidar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_carne",
@@ -1167,7 +1216,8 @@
    "c": [
     "Hmmm...",
     "Quase... quase..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_jogador",
@@ -1176,7 +1226,8 @@
     "zombie"
    ],
    "need": [
-    "holds"
+    "holds",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1193,7 +1244,8 @@
    "c": [
     "Grrr...",
     "Fome..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_armadura",
@@ -1202,7 +1254,8 @@
     "zombie"
    ],
    "need": [
-    "armor"
+    "armor",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1219,7 +1272,8 @@
    "c": [
     "Grrr...",
     "Hmmm..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "esqueleto_mira",
@@ -1227,7 +1281,9 @@
     "skeleton",
     "skeleton"
    ],
-   "need": [],
+   "need": [
+    "!unseen"
+   ],
    "weight": 2,
    "player": false,
    "a": [
@@ -1243,7 +1299,8 @@
    "c": [
     "Já estou com a flecha encaixada.",
     "Vamos esperar o momento certo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "esqueleto_armadura",
@@ -1252,7 +1309,8 @@
     "skeleton"
    ],
    "need": [
-    "armor"
+    "armor",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1269,7 +1327,8 @@
    "c": [
     "Vamos tentar mesmo assim.",
     "Paciência é a nossa arma."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "aranha_teia",
@@ -1294,7 +1353,8 @@
    "c": [
     "Sss... paciência.",
     "Sss..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "creeper_chiado",
@@ -1319,7 +1379,8 @@
    "c": [
     "Ssss...",
     "Ssss... paciência."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "enderman_olhar",
@@ -1327,7 +1388,9 @@
     "enderman",
     "enderman"
    ],
-   "need": [],
+   "need": [
+    "!unseen"
+   ],
    "weight": 2,
    "player": false,
    "a": [
@@ -1343,7 +1406,8 @@
    "c": [
     "Melhor sumir antes que ele olhe.",
     "Vamos para outro lugar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bruxa_pocao",
@@ -1351,7 +1415,9 @@
     "witch",
     "witch"
    ],
-   "need": [],
+   "need": [
+    "!unseen"
+   ],
    "weight": 2,
    "player": false,
    "a": [
@@ -1367,7 +1433,8 @@
    "c": [
     "Hehe, a noite vai ser divertida.",
     "Já sei qual receita usar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "warden_vibracao",
@@ -1392,7 +1459,8 @@
    "c": [
     "Escuta.",
     "Quieto."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_barulho",
@@ -1419,7 +1487,8 @@
    "c": [
     "Se vier, a gente foge junto.",
     "Vou ficar de olho."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_sombra",
@@ -1452,7 +1521,8 @@
    "c": [
     "Fica à vontade.",
     "Aqui a gente descansa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_noite",
@@ -1481,7 +1551,8 @@
    "c": [
     "Quieto, vem vindo alguém.",
     "Que a noite comece."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_dia",
@@ -1509,7 +1580,8 @@
    "c": [
     "Falta pouco para escurecer.",
     "Paciência."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_monstros_visto",
@@ -1517,7 +1589,9 @@
     "monsters",
     "monsters"
    ],
-   "need": [],
+   "need": [
+    "!unseen"
+   ],
    "weight": 2,
    "player": true,
    "a": [
@@ -1534,7 +1608,8 @@
    "c": [
     "Agora não. Espera o momento certo.",
     "Eu avisei."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_esqueleto",
@@ -1559,7 +1634,8 @@
    "c": [
     "Grrr... vamos caçar juntos.",
     "Hmm... tá bom."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "esqueleto_creeper",
@@ -1582,7 +1658,8 @@
    "c": [
     "Combinado.",
     "Então vamos."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "aranha_zumbi",
@@ -1605,7 +1682,8 @@
    "c": [
     "Sss... uma corrida, então.",
     "Sss... paciência."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vaca",
@@ -1632,7 +1710,8 @@
    "c": [
     "Quando escurecer, a gente se junta.",
     "Fica por perto, que é mais seguro."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "porco",
@@ -1657,7 +1736,8 @@
    "c": [
     "Depois a gente se encontra no barro.",
     "Oink, a vida é boa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "galinha",
@@ -1682,7 +1762,8 @@
    "c": [
     "Có có, a vida é boa.",
     "Então vou ciscar mais um pouco."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "ovelha",
@@ -1707,7 +1788,8 @@
    "c": [
     "Mééé, que dia bom.",
     "A gente se junta quando escurecer."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "lobo",
@@ -1732,7 +1814,8 @@
    "c": [
     "Auuu, fico de olho nos meus.",
     "Vamos patrulhar juntos."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "cavalo",
@@ -1759,7 +1842,8 @@
    "c": [
     "Mais tarde a gente corre junto.",
     "Relincho de alegria."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_cheiro",
@@ -1786,7 +1870,8 @@
    "c": [
     "Vou seguir o cheiro depois.",
     "Gosto quando o dia cheira assim."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "fome_bicho",
@@ -1813,7 +1898,8 @@
    "c": [
     "Quem chegar primeiro na comida, come.",
     "Vamos esperar mais um pouco."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_passando",
@@ -1822,7 +1908,8 @@
     "calm"
    ],
    "need": [
-    "day"
+    "day",
+    "!unseen"
    ],
    "weight": 2,
    "player": true,
@@ -1841,7 +1928,8 @@
    "c": [
     "Vamos ver o que ele faz.",
     "Que siga o caminho dele."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_sem_nome",
@@ -1870,7 +1958,8 @@
    "c": [
     "Quem sabe um dia ele conta.",
     "Eu pergunto da próxima vez."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_ferido",
@@ -1879,7 +1968,8 @@
     "villager"
    ],
    "need": [
-    "hurt"
+    "hurt",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1897,7 +1987,8 @@
    "c": [
     "Que se recupere logo.",
     "Tomara que passe depressa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_fome",
@@ -1906,7 +1997,8 @@
     "villager"
    ],
    "need": [
-    "hungry"
+    "hungry",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -1923,7 +2015,8 @@
    "c": [
     "Se ele pedir, eu dou um jeito.",
     "Que ache o que comer."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_jogador_ferido",
@@ -1932,7 +2025,8 @@
     "animals"
    ],
    "need": [
-    "hurt"
+    "hurt",
+    "!unseen"
    ],
    "weight": 3,
    "player": false,
@@ -1950,7 +2044,8 @@
    "c": [
     "Que melhore logo.",
     "Fico de olho nele."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_jogador_conhecido",
@@ -1977,7 +2072,8 @@
    "c": [
     "Boa gente.",
     "Vamos ver o que ele quer hoje."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_chuva",
@@ -2004,7 +2100,8 @@
    "c": [
     "Depois a caça recomeça.",
     "Eu espero aqui no escuro."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_lama",
@@ -2029,7 +2126,8 @@
    "c": [
     "Amanhã a lama ainda estará lá.",
     "Que dia bom para quem gosta de lama."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_agua",
@@ -2056,7 +2154,8 @@
    "c": [
     "Depois a gente vai juntos.",
     "Que a água nunca falte."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_abelha",
@@ -2084,7 +2183,8 @@
    "c": [
     "Melhor deixar elas em paz.",
     "Que continuem trabalhando."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_cochilo",
@@ -2111,7 +2211,8 @@
    "c": [
     "Me acorda quando o sol baixar.",
     "Boa soneca."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_vento",
@@ -2138,7 +2239,8 @@
    "c": [
     "Vento bom é vento fraco.",
     "Que continue assim."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_barulho_estranho",
@@ -2165,7 +2267,8 @@
    "c": [
     "Se chegar perto, a gente foge junto.",
     "Eu fico atento."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_noite_lua",
@@ -2193,7 +2296,8 @@
    "c": [
     "Fica por perto.",
     "Que a noite passe tranquila."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_manha",
@@ -2220,7 +2324,8 @@
    "c": [
     "Que o dia seja bom.",
     "Vamos aproveitar a luz."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_hora_comer",
@@ -2247,7 +2352,8 @@
    "c": [
     "Vamos juntos.",
     "Guarda um lugar para mim."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_sino",
@@ -2272,7 +2378,8 @@
    "c": [
     "O golem fica de olho em tudo.",
     "A vila sempre se junta."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_pilhadores",
@@ -2297,7 +2404,8 @@
    "c": [
     "Melhor estar sempre preparado.",
     "A vila é forte quando está unida."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_comerciante",
@@ -2324,7 +2432,8 @@
    "c": [
     "Cada visita rende uma boa história.",
     "Quem sabe ele volte."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_gato",
@@ -2349,7 +2458,8 @@
    "c": [
     "Cada um com o seu trabalho.",
     "Gato é bem-vindo em qualquer casa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_esmeralda",
@@ -2376,7 +2486,8 @@
    "c": [
     "Negócio honesto é o melhor negócio.",
     "Cada esmeralda conta."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_tempestade",
@@ -2403,7 +2514,8 @@
    "c": [
     "Amanhã o céu limpa.",
     "A vila aguenta qualquer tempo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_pao",
@@ -2430,7 +2542,8 @@
    "c": [
     "O melhor perfume é o do forno.",
     "Pão e conversa fazem a vila."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_porta_noite",
@@ -2457,7 +2570,8 @@
    "c": [
     "Dorme bem.",
     "Amanhã tudo estará no lugar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "vila_manha",
@@ -2484,7 +2598,8 @@
    "c": [
     "Que o dia seja bom.",
     "Vamos aproveitar a luz."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "golem_orgulho",
@@ -2509,7 +2624,8 @@
    "c": [
     "Por isso a vila ainda existe.",
     "A vila agradece."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "golem_ronda",
@@ -2534,7 +2650,8 @@
    "c": [
     "Fico de pé até amanhecer.",
     "É o que sei fazer."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "acougueiro",
@@ -2559,7 +2676,8 @@
    "c": [
     "Passa aqui quando quiser levar um pedaço.",
     "O fogo do defumador nunca apaga."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "pescador",
@@ -2584,7 +2702,8 @@
    "c": [
     "Amanhã volto cedo ao rio.",
     "Quem pesca aprende a esperar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "flecheiro",
@@ -2609,7 +2728,8 @@
    "c": [
     "Cada flecha tem seu destino.",
     "Mira firme e coração calmo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "pedreiro",
@@ -2634,7 +2754,8 @@
    "c": [
     "Pedra sobre pedra, a vila cresce.",
     "Tem muito o que construir ainda."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "armeiro",
@@ -2659,7 +2780,8 @@
    "c": [
     "Metal bom vira proteção boa.",
     "O fogo da forja não pode apagar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "ferreiro_armas",
@@ -2684,7 +2806,8 @@
    "c": [
     "Arma boa é a que não precisa sair da bainha.",
     "Mais um dia, mais uma lâmina."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curtidor",
@@ -2709,7 +2832,8 @@
    "c": [
     "Couro bem curtido não rasga.",
     "Cada peça sai única."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "cartografo",
@@ -2734,7 +2858,8 @@
    "c": [
     "Um dia alguém percorre o que eu desenhei.",
     "O mapa guarda o que ninguém viu."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "ceu_nuvens",
@@ -2762,7 +2887,8 @@
    "c": [
     "Que ele fique assim o dia todo.",
     "Hoje está tudo calmo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "ceu_estrelas",
@@ -2790,7 +2916,8 @@
    "c": [
     "Boa noite para olhar para cima.",
     "Mas fica por perto."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "madrugada",
@@ -2817,7 +2944,8 @@
    "c": [
     "Vai ser um bom dia.",
     "Que ele seja tranquilo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "noite_frio",
@@ -2844,7 +2972,8 @@
    "c": [
     "Amanhã o sol esquenta de novo.",
     "Ainda bem que o dia volta."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_voltou",
@@ -2853,7 +2982,8 @@
     "calm"
    ],
    "need": [
-    "k0"
+    "k0",
+    "!unseen"
    ],
    "weight": 2,
    "player": true,
@@ -2871,7 +3001,8 @@
    "c": [
     "Que fique à vontade.",
     "Vamos ver o que ele quer."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_sol",
@@ -2898,7 +3029,8 @@
    "c": [
     "Grrr... paciência.",
     "Grrr... falta pouco."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "zumbi_porta",
@@ -2923,7 +3055,8 @@
    "c": [
     "Grrr... insiste.",
     "Grrr..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "esqueleto_sombra",
@@ -2950,7 +3083,8 @@
    "c": [
     "Quando escurecer, eu atiro.",
     "Falta pouco para a minha hora."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "esqueleto_flechas",
@@ -2975,7 +3109,8 @@
    "c": [
     "Mais uma tentativa.",
     "Vou acertar da próxima."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "aranha_caverna",
@@ -3000,7 +3135,8 @@
    "c": [
     "Sss... a noite é nossa.",
     "Sss..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "aranha_presa",
@@ -3025,7 +3161,8 @@
    "c": [
     "Sss... silêncio agora.",
     "Sss... quase."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "creeper_gato",
@@ -3050,7 +3187,8 @@
    "c": [
     "Ssss... fica longe deles.",
     "Ssss..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "creeper_silencio",
@@ -3075,7 +3213,8 @@
    "c": [
     "Ssss... silêncio.",
     "Ssss..."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "enderman_bloco",
@@ -3100,7 +3239,8 @@
    "c": [
     "Ninguém precisa saber.",
     "Cada um com o seu tesouro."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "enderman_agua",
@@ -3125,7 +3265,8 @@
    "c": [
     "Que a chuva fique longe.",
     "Eu sumo antes que me molhe."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bruxa_cogumelo",
@@ -3150,7 +3291,8 @@
    "c": [
     "Hehe, a receita é segredo.",
     "Já sei qual testar primeiro."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bruxa_pocao2",
@@ -3175,7 +3317,8 @@
    "c": [
     "Hehe, a prática leva à perfeição.",
     "Hehe, depois a gente compara."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_lua",
@@ -3202,7 +3345,8 @@
    "c": [
     "Que a noite seja longa.",
     "Vamos começar."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_armadura",
@@ -3211,7 +3355,8 @@
     "monsters"
    ],
    "need": [
-    "armor"
+    "armor",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -3229,7 +3374,8 @@
    "c": [
     "Paciência vence qualquer armadura.",
     "Cada brecha serve."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_item",
@@ -3238,7 +3384,8 @@
     "monsters"
    ],
    "need": [
-    "holds"
+    "holds",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -3256,7 +3403,8 @@
    "c": [
     "Espera ele abaixar a guarda.",
     "Agora não."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "monstros_ferido",
@@ -3265,7 +3413,8 @@
     "monsters"
    ],
    "need": [
-    "hurt"
+    "hurt",
+    "!unseen"
    ],
    "weight": 3,
    "player": false,
@@ -3283,7 +3432,8 @@
    "c": [
     "Sem pressa.",
     "Deixa ele vir."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_nome_conta",
@@ -3311,7 +3461,8 @@
    "c": [
     "Quando ele voltar, eu chamo pelo nome.",
     "Nome ajuda a lembrar de quem é."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_nome_ambos",
@@ -3321,7 +3472,8 @@
    ],
    "need": [
     "n0",
-    "n1"
+    "n1",
+    "!unseen"
    ],
    "weight": 4,
    "player": true,
@@ -3339,7 +3491,8 @@
    "c": [
     "Vou dar um oi.",
     "Bom ter gente conhecida."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "gato",
@@ -3364,7 +3517,8 @@
    "c": [
     "Miau, agora vou dormir de novo.",
     "Ninguém me acorda hoje."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "golem_flor",
@@ -3390,7 +3544,8 @@
    "c": [
     "É o meu jeito de agradecer.",
     "Cuidar também é isso."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_filhotes_cuidado",
@@ -3414,7 +3569,8 @@
    "c": [
     "Tomara que cresçam fortes.",
     "Daqui a pouco eles se viram sozinhos."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "clerigo",
@@ -3439,7 +3595,8 @@
    "c": [
     "Poção boa não precisa de cheiro bom.",
     "No fim, sempre funciona."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "warden_sculk",
@@ -3464,30 +3621,8 @@
    "c": [
     "O sculk nunca se engana.",
     "Quieto, alguém se aproxima."
-   ]
-  },
-  {
-   "id": "curiosidade_quadrado",
-   "who": [
-    "villager",
-    "villager"
    ],
-   "need": [],
-   "weight": 1,
-   "player": false,
-   "a": [
-    "Tudo aqui é quadrado, já reparou?",
-    "O sol nasce sempre do mesmo lado, já reparou?"
-   ],
-   "b": [
-    "Já reparei, e nunca entendi por quê.",
-    "Reparei, mas nunca perguntei a ninguém."
-   ],
-   "bg": [],
-   "c": [
-    "Quem sabe um dia alguém explica.",
-    "Deixa para lá, a vila é boa assim."
-   ]
+   "solo": false
   },
   {
    "id": "cercado",
@@ -3510,7 +3645,8 @@
    "c": [
     "Aqui dentro a gente se sente em casa.",
     "Que o dia seja calmo."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "creeper_zumbi",
@@ -3533,7 +3669,8 @@
    "c": [
     "Ssss... é melhor ficar longe deles.",
     "Ssss... assunto encerrado."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "creeper_zumbi_explode",
@@ -3556,7 +3693,8 @@
    "c": [
     "Ssss... fico de longe, prometo.",
     "Ssss... sem promessas."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_jogador_chuva",
@@ -3565,7 +3703,8 @@
     "animals"
    ],
    "need": [
-    "rain"
+    "rain",
+    "!unseen"
    ],
    "weight": 2,
    "player": false,
@@ -3581,7 +3720,8 @@
    "c": [
     "Eu fico aqui, abrigado.",
     "Cada um com o seu jeito de passar a chuva."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_jogador_fome",
@@ -3590,7 +3730,8 @@
     "animals"
    ],
    "need": [
-    "hungry"
+    "hungry",
+    "!unseen"
    ],
    "weight": 3,
    "player": false,
@@ -3607,7 +3748,8 @@
    "c": [
     "Tomara que ele ache comida logo.",
     "Eu entendo bem essa fome."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "bicho_jogador_noite",
@@ -3616,7 +3758,8 @@
     "animals"
    ],
    "need": [
-    "night"
+    "night",
+    "!unseen"
    ],
    "weight": 2,
    "player": false,
@@ -3633,7 +3776,8 @@
    "c": [
     "Tomara que passe sem nos incomodar.",
     "Daqui a pouco o silêncio volta."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "curiosidade_enderman",
@@ -3660,7 +3804,8 @@
    "c": [
     "Deve ser uma vida estranha.",
     "Melhor ficar longe deles."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_ameacou",
@@ -3686,7 +3831,8 @@
    "c": [
     "Vou dar uma chance a ele.",
     "Vou ficar de olho, por via das dúvidas."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_apresenta",
@@ -3696,7 +3842,8 @@
    ],
    "need": [
     "k0",
-    "!k1"
+    "!k1",
+    "!unseen"
    ],
    "weight": 3,
    "player": true,
@@ -3712,7 +3859,8 @@
    "c": [
     "Ele é tranquilo, pode confiar.",
     "Quem sabe vocês se dão bem."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_conhecido",
@@ -3738,7 +3886,8 @@
    "c": [
     "Foi tranquilo, achei simpático.",
     "Dá para conversar numa boa."
-   ]
+   ],
+   "solo": false
   },
   {
    "id": "jogador_dono",
@@ -3764,7 +3913,2169 @@
    "c": [
     "Ele me trata bem, estou feliz.",
     "Estou feliz, sim, de verdade."
-   ]
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_boom_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:boom"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Que explosão! Foi um creeper?",
+    "Meu Deus, que estrondo!",
+    "Isso foi um creeper, tenho certeza!",
+    "Ouviu isso? O chão inteiro tremeu!",
+    "Alguém acabou de encontrar um creeper...",
+    "Lá se foi mais um pedaço do mundo.",
+    "Que barulho horrível!",
+    "Socorro! Explodiu algo aqui perto!",
+    "Esse cheiro de pólvora não deixa dúvida: foi um creeper.",
+    "Por pouco não foi dentro da vila!"
+   ],
+   "b": [
+    "Ouvi, quase caí de susto.",
+    "Foi perto demais para o meu gosto.",
+    "Esses bichos verdes vão acabar com a vila.",
+    "Vamos olhar com cuidado, pode ter mais.",
+    "Tomara que ninguém tenha se machucado.",
+    "Meu coração ainda está batendo forte."
+   ],
+   "bg": [],
+   "c": [
+    "Melhor ficar longe de buraco novo.",
+    "Vou conferir se a minha casa está de pé.",
+    "Respira fundo, já passou.",
+    "Com creeper não se brinca."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_boom_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:boom"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Que susto! O que foi isso?",
+    "Aquele estrondo me deu um arrepio!",
+    "Fugir! Explodiu alguma coisa!",
+    "Meu coração disparou com esse barulho.",
+    "Eu pulei três vezes de susto!",
+    "Que barulhão foi esse?",
+    "O chão tremeu embaixo de mim!",
+    "Aquilo foi um trovão? Não, foi pior."
+   ],
+   "b": [
+    "Foi lá perto, senti o chão tremer.",
+    "Cheiro de pólvora no ar.",
+    "Fica junto de mim, vai que tem mais.",
+    "Eu não saio daqui por nada.",
+    "Será que o humano viu?"
+   ],
+   "bg": [],
+   "c": [
+    "Vamos ficar longe daquele lado.",
+    "Melhor esperar tudo se acalmar.",
+    "Passou o susto, passou."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_boom_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:boom"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Explosão! Atrás de mim!",
+    "Creeper. Eu cuido disso.",
+    "Pode haver mais. Cuidado!",
+    "Explodiu perto da vila! Fiquem comigo.",
+    "Foi um creeper. Eu fico de guarda."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_raio_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:thunder"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Esse raio caiu pertinho!",
+    "Que clarão! Quase perdi a vista.",
+    "Ouviu o trovão? Tremeu a vila toda.",
+    "Raio atrás de raio, hoje o céu está bravo.",
+    "Foi ali perto que caiu, eu vi!",
+    "Estalou tão forte que meus ouvidos zumbem."
+   ],
+   "b": [
+    "Fica longe de árvore e de metal.",
+    "Dizem que raio não cai duas vezes no mesmo lugar.",
+    "Meu cabelo ficou arrepiado!",
+    "Vamos para dentro, é mais seguro.",
+    "Só queria que passasse logo."
+   ],
+   "bg": [],
+   "c": [
+    "Respira, já foi.",
+    "Se cair outro, eu me escondo.",
+    "Pelo menos limpou o ar."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_raio_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:thunder"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Que clarão! Fiquei sem enxergar por um instante.",
+    "O céu desabou em cima de mim!",
+    "Esse trovão me fez pular!",
+    "Caiu um raio ali, eu vi tudo!",
+    "Quero me esconder em algum lugar."
+   ],
+   "b": [
+    "Fica pertinho de mim.",
+    "Cheiro de queimado no ar.",
+    "Eu não gosto de tempestade.",
+    "Será que cai de novo?"
+   ],
+   "bg": [],
+   "c": [
+    "Vamos ficar juntos até passar.",
+    "Passou, mas o susto ficou."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_raio_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:thunder"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Raio registrado. A vila está bem.",
+    "Um raio e tanto. Ferro aguenta, mas não vou ficar debaixo de árvore.",
+    "Trovão forte. Fiquem juntos.",
+    "O ferro atrai raio, dizem. Vou ficar longe dos topos."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_acordou_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:wake"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "{Jogador} acordou! Bom dia!",
+    "Olha só quem levantou. Bom dia para {jogador}!",
+    "O sol já está alto, e {jogador} acabou de acordar.",
+    "Bom dia! A cama foi gentil com {jogador}?",
+    "Já é de manhã, e a vila está em pé desde cedo."
+   ],
+   "b": [
+    "Espero que os pesadelos tenham ficado lá.",
+    "Um dia novo começa, quem sabe o que vem.",
+    "Eu já tomei meu café, e vocês?",
+    "Dormir faz bem para qualquer um."
+   ],
+   "bg": [],
+   "c": [
+    "Vai ser um bom dia.",
+    "Cuidem-se por aí."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_acordou_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:wake"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "O humano acordou, finalmente.",
+    "Bom dia! O sol já subiu.",
+    "Dia novo, capim novo.",
+    "O humano dormiu até agora?"
+   ],
+   "b": [
+    "Pelo menos descansou.",
+    "Eu acordo com o sol, sem despertador nenhum.",
+    "Será que vem ver a gente?"
+   ],
+   "bg": [],
+   "c": [
+    "Bom dia para todo mundo.",
+    "Vamos ver o que o dia traz."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_revive_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:revive"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "{Jogador} voltou! Achei que tinha acontecido o pior.",
+    "Olha só, {jogador} está de pé de novo!",
+    "Eu não esperava ver {jogador} tão cedo.",
+    "Que bom ver {jogador} de volta."
+   ],
+   "b": [
+    "Deve ter sido uma queda feia.",
+    "Esse mundo não perdoa ninguém.",
+    "Fica mais atento da próxima vez.",
+    "O importante é que voltou."
+   ],
+   "bg": [],
+   "c": [
+    "Bem-vindo de volta.",
+    "Vamos fingir que nada aconteceu."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_revive_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:revive"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "O humano voltou! Achei que tinha sumido.",
+    "Olha ele aí de novo, de pé.",
+    "Que bom, o humano está de volta."
+   ],
+   "b": [
+    "Eu sabia que ele não ia sumir.",
+    "Parecia mal da última vez.",
+    "Quem é que cai tanto assim?"
+   ],
+   "bg": [],
+   "c": [
+    "Bom ter ele por aqui.",
+    "Que não se repita."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_obrigado_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:thanks"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Valeu por nos proteger!",
+    "Mais um perigo a menos, graças a {jogador}.",
+    "Salvou a vila de novo!",
+    "Eu vi tudo, que coragem!",
+    "Sem {jogador}, esse monstro teria entrado na vila."
+   ],
+   "b": [
+    "A vila inteira deve isso a ele.",
+    "Nem sei como agradecer.",
+    "Dorme-se melhor com alguém assim por perto.",
+    "Eu tremi só de olhar."
+   ],
+   "bg": [],
+   "c": [
+    "Bom que alguém corajoso apareceu.",
+    "Vamos preparar um agradecimento."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_obrigado_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:thanks"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Ameaça neutralizada. Respeito.",
+    "Bom trabalho. A vila agradece.",
+    "Você luta bem. Fico menos sozinho nessa guarda.",
+    "Um a menos para eu cuidar. Valeu."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_saque_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:raiders"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Saqueadores! Corram para as casas!",
+    "São os saqueadores, eu reconheço o capacete!",
+    "Perigo! Tem gente armada ali!",
+    "Alguém chame o golem!",
+    "Ai, não, saqueadores de novo!"
+   ],
+   "b": [
+    "Escondam as esmeraldas!",
+    "Tranquem a porta, já!",
+    "Onde está o golem quando precisa?",
+    "Eu fico atrás de você, combinado?",
+    "Que a vila aguente mais uma vez."
+   ],
+   "bg": [],
+   "c": [
+    "Todo mundo para dentro!",
+    "Que ninguém saia agora."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_saque_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:raiders"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Saqueadores à vista. Todos atrás de mim.",
+    "Hoje ninguém passa por mim.",
+    "Eu seguro a linha, ninguém corre perigo.",
+    "Alerta: invasores. Eu cuido deles."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_queda_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:fall"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Ui, essa queda deve ter doído!",
+    "Caiu feio, hein? Está bem?",
+    "{Jogador} despencou lá de cima!",
+    "Que tombo! Ouvi o barulho daqui."
+   ],
+   "b": [
+    "Parece que sobreviveu.",
+    "Eu teria chorado.",
+    "Não pula de novo, por favor.",
+    "Alguém dê um pouco de comida a ele."
+   ],
+   "bg": [],
+   "c": [
+    "Se cuide.",
+    "Chão é duro, melhor lembrar."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_queda_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:fall"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Ui! O humano despencou de lá!",
+    "Que tombo feio!",
+    "Nossa, o humano caiu do alto!"
+   ],
+   "b": [
+    "Aposto que doeu.",
+    "Humanos não sabem cair.",
+    "Pelo menos ele levantou."
+   ],
+   "bg": [],
+   "c": [
+    "Aqui o chão é firme, ninguém precisa voar.",
+    "Que tome cuidado com os ossos.",
+    "Melhor ficar com os pés no chão."
+   ],
+   "solo": false
+  },
+  {
+   "id": "ev_ai_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Ai! Por que fez isso?",
+    "Ei! Isso doeu!",
+    "Está louco? Para com isso!",
+    "Não precisa bater!",
+    "Ai, meu braço! Foi de propósito?",
+    "Ei! Eu estava só de passagem!",
+    "Isso não se faz, ouviu?",
+    "Ui! Pode parar?",
+    "Ai! Eu não fiz nada!",
+    "Isso foi sem querer, ou foi de propósito?"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Isso não vai me machucar, mas não faça.",
+    "Tente de novo e vai ver o que acontece.",
+    "Aviso uma vez: pare.",
+    "Você acabou de arranjar um problema.",
+    "Bateu em mim? Cuidado, humano."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Ai! Isso doeu!",
+    "Ei! Que susto!",
+    "Para! Eu não fiz nada!",
+    "Ui! Por que bateu em mim?",
+    "Ai ai ai! Isso dói!",
+    "Assim eu fujo, hein!",
+    "Eu só estava aqui em sossego!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_vaca",
+   "who": [
+    "cow",
+    "cow"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Muuu! Isso doeu!",
+    "Muu! Por que isso?",
+    "Ai, muu! Eu estava pastando!",
+    "Muuuu! Para com isso!",
+    "Ui! Assim não dá leite!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_porco",
+   "who": [
+    "pig",
+    "pig"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Oinc! Ai!",
+    "Oinc oinc! Isso doeu!",
+    "Ei! Eu não sou bacon!",
+    "Oinc! Para com isso!",
+    "Ui! Assim eu fujo!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_ovelha",
+   "who": [
+    "sheep",
+    "sheep"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Méé! Ai!",
+    "Méé! Isso doeu na lã!",
+    "Beee! Para!",
+    "Ei! Eu estava só pastando!",
+    "Méé! Que falta de educação!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_galinha",
+   "who": [
+    "chicken",
+    "chicken"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Có có có! Ai!",
+    "Cocoricó! Socorro!",
+    "Có! Isso dói!",
+    "Ai! Minhas penas!",
+    "Có có! Para com isso!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_lobo",
+   "who": [
+    "wolf",
+    "wolf"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Grrr! Isso doeu!",
+    "Au! Por que fez isso?",
+    "Cuidado, eu mordo!",
+    "Au! Eu confiava em você!",
+    "Grrr... não faça de novo."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_gato",
+   "who": [
+    "cat",
+    "cat"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Miau! Ai!",
+    "Miau! Isso doeu!",
+    "Psss! Não faça isso!",
+    "Mrrr... isso foi desnecessário.",
+    "Miau! Eu arranho, hein!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ai_cavalo",
+   "who": [
+    "horse",
+    "horse"
+   ],
+   "need": [
+    "ev:hit"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Iiirrr! Ai!",
+    "Ei! Quase te dei um coice!",
+    "Isso doeu, sabia?",
+    "Calma aí, não precisa bater!",
+    "Iirrr! Para com isso!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_gosta_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:gift_like"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Que alegria! {Coisa} é do que eu mais gosto!",
+    "{Coisa}! Valeu, de verdade.",
+    "Nossa, {coisa}! Que gesto bonito.",
+    "Gostei muito, agradeço de coração!",
+    "Você acertou em cheio: {coisa}!",
+    "Receber {coisa} alegrou o meu dia.",
+    "Presente assim eu guardo com carinho."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_gosta_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:gift_like"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Hmm, {coisa}! Que delícia!",
+    "Oba, {coisa}! É o meu favorito!",
+    "Nhac, nhac... que bom!",
+    "Valeu! Eu estava com fome disso.",
+    "Mais, mais, quero mais!",
+    "Isso é tudo o que eu queria hoje!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_gosta_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:gift_like"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Hm! {Coisa}! Eu gosto disso.",
+    "Para mim? Gostei, humano.",
+    "{Coisa}... Fiquei feliz.",
+    "Gostei do presente. Vou proteger você melhor."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_indiferente_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:gift_meh"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Hmm, {coisa}. Não é bem o que eu uso, mas agradeço.",
+    "{Coisa}? Pensei que fosse outra coisa, mas tudo bem.",
+    "Aceito, mas não sei o que fazer com {coisa}.",
+    "Você lembrou de mim, e isso já é bom.",
+    "Não é o que eu pediria, mas a intenção conta."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_indiferente_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:gift_meh"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Hmm, {coisa}. Cheirei, mas não é o meu favorito.",
+    "{Coisa}? Não é o que eu como, mas agradeço a intenção.",
+    "Isso eu não como, mas gostei do carinho.",
+    "Hmm, {coisa}... Eu esperava algo mais gostoso.",
+    "Não é ruim, {coisa}. Só não é o meu tipo de comida."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_indiferente_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:gift_meh"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "{Coisa}? Não preciso disso, mas agradeço.",
+    "Hm. Não sei para que serve, mas aceito.",
+    "{Coisa}. Tudo bem, fico com ele."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_odeia_vila",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:gift_dislike"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "{Coisa}? Que ideia é essa! Eu detesto isso.",
+    "Eca! Leve {coisa} de volta, por favor.",
+    "Prefiro que fique com {coisa}.",
+    "Isso eu não aceito, me dá nojo.",
+    "Está brincando? {Coisa} não presta."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_odeia_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:gift_dislike"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Eca! {Coisa}? Eu não como isso!",
+    "Blergh! Tira {coisa} daqui, o cheiro é horrível!",
+    "Nem de graça eu aceito {coisa}.",
+    "Que mal eu te fiz para ganhar {coisa}?",
+    "Leva {coisa} embora, eu não quero nem sentir o cheiro!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_presente_odeia_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:gift_dislike"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "{Coisa}? Não gosto. Leve embora.",
+    "Isso me incomoda. Fique com {coisa}.",
+    "Não quero {coisa}, humano."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_perigo",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:danger"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Cuidado! Perigo à vista: {coisa}!",
+    "Atenção! {Coisa} se aproximando!",
+    "Olha lá! {Coisa} vem vindo!",
+    "Fica atento! Tem {coisa} por perto!",
+    "Perigo! {Coisa} está muito perto!",
+    "Psiu! {Coisa} se aproximando, muito cuidado!",
+    "Quieto aí... {coisa} bem na nossa frente!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_perigo_pet",
+   "who": [
+    "pet",
+    "pet"
+   ],
+   "need": [
+    "ev:danger"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Grrr! {Coisa} por perto, fica atrás de mim!",
+    "Cuidado, {coisa} vem aí! Eu te protejo!",
+    "Estou sentindo {coisa}. Fica comigo!",
+    "Atenção! {Coisa} se aproxima, eu fico de guarda!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_perigo_monstro",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "ev:danger"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Atenção! {Coisa} se aproxima, eu cubro você!",
+    "Fica atrás de mim, {coisa} vem aí!",
+    "Grrr! {Coisa} por perto, eu cuido disso!",
+    "Um intruso: {coisa}. Ninguém toca em você."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_perigo_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:danger"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Hostil detectado: {coisa}. Fique atrás de mim.",
+    "{Coisa} se aproxima. Eu cuido disso.",
+    "Alerta: {coisa} no raio de visão. Fique perto.",
+    "Ameaça: {coisa}. Deixe comigo."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Olha só, {jogador} por aqui.",
+    "Nos vemos de novo!",
+    "Ainda lembro de {jogador}.",
+    "{Jogador} voltou! Por onde andou?",
+    "Bom ver {jogador} outra vez.",
+    "Você de novo por perto, que bom.",
+    "Faz tempo que não vejo {jogador} por aqui."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_presente",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:GIFT"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Olha quem voltou! Ainda lembro do presente.",
+    "{Jogador} por aqui de novo! Valeu pelo presente de antes.",
+    "Que bom ver {jogador}. Não esqueci a gentileza.",
+    "O dono daquele presente! Como vai?",
+    "Aquele presente ainda me deixa contente, viu?"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_troca",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:TRADE"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Ora, {jogador}! Nossa última troca foi boa.",
+    "Volte sempre, negociar com você é fácil.",
+    "Quer fazer outro negócio, como da outra vez?",
+    "Lembro bem da nossa troca. Foi justa."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_honesto",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:HONEST_RETURN"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "{Jogador}! O mais honesto que eu já conheci.",
+    "Nunca esqueci que você devolveu o que não era seu.",
+    "Gente honesta assim é rara. Bem-vindo de volta!",
+    "Sua honestidade ficou na minha memória."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_bateu",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:DAMAGED_BY_PLAYER"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Ah, {jogador}. Ainda lembro daquela pancada.",
+    "Olha quem voltou... Vê se fica de mãos quietas.",
+    "Mantenha distância. Não esqueci o que fez.",
+    "Você de novo? Meu corpo ainda lembra.",
+    "Vai bater de novo? Prefiro que não."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_traiu",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:PACT_BROKEN"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Você de novo. Não esqueci o acordo que quebrou.",
+    "Voltou para quebrar mais algum acordo?",
+    "Prometeu e não cumpriu, e eu lembro.",
+    "Cuidado comigo: palavra quebrada não se esquece."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_ameacou",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:THREAT_SPOKEN"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "Já se acalmou? Ainda lembro das suas ameaças.",
+    "Lembro das palavras duras que ouvi de {jogador}.",
+    "Tomara que não venha ameaçar de novo.",
+    "Suas ameaças ainda ecoam na minha cabeça."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_acalmou",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:COMFORTED"
+   ],
+   "weight": 4,
+   "player": false,
+   "a": [
+    "{Jogador}! Foi quem me acalmou naquele dia.",
+    "Lembro de como me ajudou. Valeu.",
+    "Gente que acalma os outros é rara, e você é uma delas.",
+    "Fico em paz só de ver {jogador}."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet"
+   ],
+   "weight": 8,
+   "player": false,
+   "a": [
+    "Bem-vindo de volta. A vila precisa de gente como você.",
+    "Você voltou. Bom, a guarda precisa de reforço.",
+    "Ei, humano! Me ajuda a proteger a vila hoje?",
+    "Eu fico de olho nos monstros; você fica de olho em mim, combinado?",
+    "Já te conheço. Pode andar à vontade, a vila é sua amiga.",
+    "Humano! Se vir um monstro perto, me avise que eu cuido dele.",
+    "Que bom te ver. Juntos, protegemos a vila melhor.",
+    "Voltou! Se quiser ajudar a vigiar a vila, estou à disposição."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_presente",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:GIFT"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "O humano do presente! Eu não esqueci. Conte comigo na guarda.",
+    "Você me deu um presente. Eu protejo quem é gentil comigo.",
+    "Bom te ver de novo. Guardo a vila, e você, por causa daquele presente.",
+    "Aquele presente ainda me deixa feliz. A vila e você estão seguros comigo."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_bateu",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:DAMAGED_BY_PLAYER"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "Você bateu em mim. Eu lembro. Fique quieto e a gente se entende.",
+    "Você de novo. Se machucar alguém da vila, eu paro você.",
+    "Não esqueci a pancada. Mantenha as mãos quietas na minha vila.",
+    "Estou de olho em você, humano. Quem bate num guarda pensa duas vezes."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_honesto",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:HONEST_RETURN"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "Você é honesto. Gente assim ajuda a proteger a vila.",
+    "Lembro da sua honestidade. Pode contar comigo.",
+    "Honesto de volta à vila. Bom."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_acalmou",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:COMFORTED"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "Você me acalmou uma vez. Eu guardo isso com respeito.",
+    "Foi você que me trouxe calma. A vila e eu agradecemos."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_traiu",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:PACT_BROKEN"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "Você quebrou a palavra. A vila ainda vigia você.",
+    "Palavra quebrada eu não esqueço. Cuidado por aqui."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_golem_ameacou",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:THREAT_SPOKEN"
+   ],
+   "weight": 12,
+   "player": false,
+   "a": [
+    "Você me ameaçou com palavras. Cuidado com o que diz perto da vila.",
+    "Ainda lembro das suas ameaças. Aqui, é melhor ser gentil."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_volta_dono",
+   "who": [
+    "pet",
+    "pet"
+   ],
+   "need": [
+    "ev:greet",
+    "f0:TAMED"
+   ],
+   "weight": 5,
+   "player": false,
+   "a": [
+    "Meu dono voltou!",
+    "Que bom que está aqui, fiquei esperando.",
+    "Senti sua falta! Vamos brincar?",
+    "Eu sabia que ia voltar para mim.",
+    "Agora o dia ficou melhor!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_ovo",
+   "who": [
+    "chicken",
+    "chicken"
+   ],
+   "need": [
+    "ev:egg"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Có có! Você pegou o meu ovo!",
+    "Ei, esse ovo era meu!",
+    "Có! Devolve, eu acabei de botar!",
+    "Cocoricó! Roubo de ovo!",
+    "Meu ovo! Meu ovo sumiu!",
+    "Có, có, có! Isso é abuso!",
+    "Eu choco, você pega? Assim não vale!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_devolveu",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "ev:honest"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Você devolveu {coisa}? Isso é raro!",
+    "Devolveu {coisa} sem eu pedir! Que honestidade.",
+    "Gente honesta assim eu não esqueço.",
+    "Eu nem ia notar, mas você devolveu {coisa}. Valeu!",
+    "Muita gente teria ficado com {coisa}. Você não."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_devolveu_bicho",
+   "who": [
+    "animals",
+    "animals"
+   ],
+   "need": [
+    "ev:honest"
+   ],
+   "weight": 1,
+   "player": false,
+   "a": [
+    "Você devolveu {coisa}! Agora eu gosto mais de você.",
+    "Devolveu {coisa} sem eu pedir. Muito bem!",
+    "Que bom! Você é de confiança, humano.",
+    "Eu nem esperava. Você devolveu {coisa} de volta para mim!"
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "ev_devolveu_golem",
+   "who": [
+    "golem",
+    "golem"
+   ],
+   "need": [
+    "ev:honest"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Você devolveu {coisa}. Isso é raro.",
+    "Honestidade. Gosto disso.",
+    "Devolveu sem eu pedir. Eu vi.",
+    "A vila precisa de gente assim."
+   ],
+   "b": [],
+   "bg": [],
+   "c": [],
+   "solo": true
+  },
+  {
+   "id": "bioma_neve",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "snow"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Esse frio entra até nos ossos.",
+    "A neve não para de cair, não é?",
+    "Branco para todo lado, só vejo neve.",
+    "Quem inventou tanto gelo?",
+    "Pelo menos a neve deixa tudo quietinho."
+   ],
+   "b": [
+    "Eu preciso me mexer para esquentar.",
+    "Cuidado para não escorregar no gelo.",
+    "Fico aqui me encolhendo até passar.",
+    "Bonito de ver, difícil de aguentar."
+   ],
+   "bg": [],
+   "c": [
+    "Quem tem abrigo quente é feliz.",
+    "Vamos nos juntar para esquentar.",
+    "O inverno aqui é assim mesmo."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_deserto",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "desert"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Esse sol seca até o pensamento.",
+    "Tanta areia e nenhuma sombra.",
+    "Está um calor de derreter.",
+    "Aqui até o vento queima.",
+    "Água, preciso de água."
+   ],
+   "b": [
+    "Não vejo nem um poço por aqui.",
+    "A areia entra em tudo.",
+    "Quem escolheu viver num lugar assim?",
+    "Por favor, uma sombra."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos achar uma sombra.",
+    "Quando escurece fica mais fresco.",
+    "Aguenta firme."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_selva",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "jungle"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "O ar aqui é pesado de tão úmido.",
+    "Cada folha aqui é do tamanho de uma porta.",
+    "Essa selva não acaba nunca.",
+    "Tanto bicho barulhento por aqui!"
+   ],
+   "b": [
+    "Cuidado com o que se esconde nos cipós.",
+    "Eu sempre me perco por aqui.",
+    "Os papagaios não calam a boca.",
+    "Tem cheiro de chuva em todo canto."
+   ],
+   "bg": [],
+   "c": [
+    "Fica perto para não se perder.",
+    "A selva cuida de quem a respeita."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_pantano",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "swamp"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Esse pântano cheira a lodo.",
+    "Tanta lama que o pé afunda.",
+    "Os sapos aqui não dão sossego.",
+    "Neblina e lodo, que lugar!",
+    "Cuidado onde pisa, a água esconde buracos."
+   ],
+   "b": [
+    "Eu detesto lama.",
+    "À noite aparece cada coisa estranha.",
+    "As bruxas gostam daqui, dizem.",
+    "Mas o coaxar até acalma."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos para um terreno firme.",
+    "Pântano é pântano, né?"
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_floresta",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "forest"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Gosto do cheiro de madeira por aqui.",
+    "Essas árvores são antigas, dá para sentir.",
+    "A floresta está tão calma hoje.",
+    "Quanta sombra boa para descansar.",
+    "Ouviu os passarinhos?"
+   ],
+   "b": [
+    "A sombra daqui é a melhor.",
+    "Cuidado para não se perder entre as árvores.",
+    "Cogumelo nasce em todo canto.",
+    "É um lugar bom de se viver."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos aproveitar a paz.",
+    "Floresta cuida de quem fica."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_montanha",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "mountain"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "O vento aqui no alto é de arrancar.",
+    "Esse ar é fino, até cansa de respirar.",
+    "Lá de cima se vê o mundo inteiro.",
+    "Esses penhascos dão tontura.",
+    "As montanhas parecem tocar o céu."
+   ],
+   "b": [
+    "Cuidado para não escorregar.",
+    "Aqui o frio vem sem aviso.",
+    "A vista compensa o cansaço.",
+    "Cabras gostam disso; eu, nem tanto."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos andar devagar.",
+    "Cada passo aqui conta."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_praia",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "beach"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Escuta o barulho das ondas.",
+    "A areia está quentinha hoje.",
+    "Que cheiro bom de maré!",
+    "O mar nunca fica parado, né?",
+    "Dá vontade de ficar olhando o horizonte."
+   ],
+   "b": [
+    "Cuidado com as ondas, elas puxam.",
+    "Já achou alguma concha?",
+    "O vento daqui é salgado.",
+    "Pena que não sei nadar bem."
+   ],
+   "bg": [],
+   "c": [
+    "Eu ficaria aqui o dia todo.",
+    "O mar acalma qualquer um."
+   ],
+   "solo": false
+  },
+  {
+   "id": "bioma_savana",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "savanna"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Que relva alta e dourada!",
+    "O sol é forte, mas a sombra das acácias salva.",
+    "Aqui a terra parece não ter fim.",
+    "Faz tempo que não chove, a terra está seca."
+   ],
+   "b": [
+    "É mesmo, dá gosto de olhar.",
+    "Pelo menos o vento refresca.",
+    "Eu só queria um pouco de chuva.",
+    "Aqui o céu parece enorme."
+   ],
+   "bg": [],
+   "c": [
+    "Logo a chuva vem.",
+    "Vamos aproveitar a sombra.",
+    "Fim de tarde aqui é lindo."
+   ],
+   "solo": false
+  },
+  {
+   "id": "lua_cheia",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "fullmoon"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Que lua cheia linda hoje!",
+    "A lua está enorme, dá para ver tudo.",
+    "Noite clara, lua cheia, nada a temer... talvez.",
+    "Lua cheia deixa a noite menos escura."
+   ],
+   "b": [
+    "Dizem que ela mexe com o humor de muita gente.",
+    "É bonito, mas os monstros também gostam.",
+    "Dá para enxergar até longe.",
+    "Hoje eu quase não sinto medo."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos aproveitar a claridade.",
+    "Só não vamos longe de casa."
+   ],
+   "solo": false
+  },
+  {
+   "id": "lua_nova",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "newmoon"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "A lua sumiu, hoje está escuro demais.",
+    "Noite sem lua, não enxergo um palmo.",
+    "Nem a lua apareceu hoje."
+   ],
+   "b": [
+    "Melhor ficar perto de tocha.",
+    "Esse breu me dá arrepios.",
+    "Qualquer barulho me assusta."
+   ],
+   "bg": [],
+   "c": [
+    "Fiquem perto da luz.",
+    "Amanhã a lua volta."
+   ],
+   "solo": false
+  },
+  {
+   "id": "lua_cheia_monstros",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "fullmoon"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "A lua cheia chama a gente para a caça.",
+    "Noite perfeita para uma boa caçada.",
+    "Com essa lua, ninguém escapa da nossa vista."
+   ],
+   "b": [
+    "Hoje vamos longe.",
+    "Eu enxergo tudo com essa claridade.",
+    "Os humanos que se cuidem."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos nos espalhar.",
+    "Que a lua nos guie."
+   ],
+   "solo": false
+  },
+  {
+   "id": "fundo_monstros",
+   "who": [
+    "monsters",
+    "monsters"
+   ],
+   "need": [
+    "deep"
+   ],
+   "weight": 3,
+   "player": false,
+   "a": [
+    "Aqui embaixo o escuro é todo nosso.",
+    "Quanto mais fundo, mais quieto.",
+    "Nenhum sol chega até aqui."
+   ],
+   "b": [
+    "Eu gosto desse eco de pedra.",
+    "Humanos raramente descem tanto.",
+    "Tem cheiro de minério."
+   ],
+   "bg": [],
+   "c": [
+    "Fica de olho em quem desce.",
+    "Aqui a gente manda."
+   ],
+   "solo": false
+  },
+  {
+   "id": "altura_calm",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "high"
+   ],
+   "weight": 2,
+   "player": false,
+   "a": [
+    "Que altura! Dá tontura só de olhar.",
+    "O ar aqui em cima é rarefeito.",
+    "Estamos mais perto das nuvens que do chão."
+   ],
+   "b": [
+    "Cuidado para não cair.",
+    "A vista é bonita, mas o frio incomoda."
+   ],
+   "bg": [],
+   "c": [
+    "Vamos descer logo.",
+    "Aqui só se fica com cuidado."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_agachado",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "sneak",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} está andando na pontinha dos pés.",
+    "Olha como {jogador} se esconde pelos cantos.",
+    "{Jogador} anda de mansinho, o que será?",
+    "Por que {jogador} está tão quieto?"
+   ],
+   "b": [
+    "Deve estar com medo de acordar alguém.",
+    "Talvez esteja planejando alguma coisa.",
+    "Gente cuidadosa vive mais.",
+    "Ou só está brincando."
+   ],
+   "bg": [],
+   "c": [
+    "Eu fico de olho.",
+    "Cada um com o seu jeito de andar."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_correndo",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "run",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} passou correndo!",
+    "Que pressa tem {jogador}?",
+    "Olha {jogador} disparando por aí.",
+    "Aonde {jogador} vai com tanta pressa?"
+   ],
+   "b": [
+    "Quem corre assim está fugindo de algo.",
+    "Ou atrasado para algum compromisso.",
+    "Deve ter visto um creeper!",
+    "Nunca vi alguém tão agitado."
+   ],
+   "bg": [],
+   "c": [
+    "Tomara que esteja tudo bem.",
+    "Vamos ver se volta."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_montado",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ride",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} anda montado, que chique!",
+    "Olha só, {jogador} vai de carona por aí.",
+    "Quem dera eu andar assim sem esforço.",
+    "{Jogador} está bem acomodado nesse transporte."
+   ],
+   "b": [
+    "Isso é que é viajar bem.",
+    "Dá para ir bem mais longe assim.",
+    "Cuidado para não cair.",
+    "Eu preferia andar com meus próprios pés."
+   ],
+   "bg": [],
+   "c": [
+    "Boa viagem.",
+    "Quem anda assim chega rápido."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_nadando",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "swim",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} está na água!",
+    "Olha só, {jogador} dando um mergulho.",
+    "Será que {jogador} sabe nadar mesmo?",
+    "A água deve estar gelada hoje."
+   ],
+   "b": [
+    "Espero que sim, a água é perigosa.",
+    "Eu nem chego perto de rio.",
+    "Deve ser refrescante.",
+    "Afogamento é coisa séria."
+   ],
+   "bg": [],
+   "c": [
+    "Que saia logo da água.",
+    "Tomara que não se afogue.",
+    "Vamos ficar de olho."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_pegando_fogo",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "burning",
+    "!unseen"
+   ],
+   "weight": 5,
+   "player": true,
+   "a": [
+    "{Jogador} está pegando fogo!",
+    "Fogo! {Jogador} está em chamas!",
+    "Socorro, {jogador} está queimando!",
+    "Alguém ajuda! Tem fogo em {jogador}!"
+   ],
+   "b": [
+    "Corre para a água!",
+    "Rolar no chão não adianta nada!",
+    "Tem balde de água por aqui?",
+    "Meu Deus, que cheiro de queimado!"
+   ],
+   "bg": [],
+   "c": [
+    "Água, água, rápido!",
+    "Tomara que apague a tempo."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_voando",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "fly",
+    "!unseen"
+   ],
+   "weight": 4,
+   "player": true,
+   "a": [
+    "Olha! {Jogador} está voando!",
+    "{Jogador} cruzou o céu como um pássaro!",
+    "Viram {jogador} planando?",
+    "Que coisa mais estranha, {jogador} no ar!"
+   ],
+   "b": [
+    "Como será que ele faz isso?",
+    "Parece liberdade, deve ser bom.",
+    "Me dá tontura só de olhar.",
+    "Cuidado com a aterrissagem!"
+   ],
+   "bg": [],
+   "c": [
+    "Eu ficaria no chão mesmo.",
+    "Quem dera voar assim."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_esmeraldas",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "emeralds",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "{Jogador} anda com esmeraldas, vi o brilho verde.",
+    "Ouvi dizer que {jogador} carrega esmeraldas.",
+    "Esmeraldas! {Jogador} deve ser um bom freguês.",
+    "Dizem que {jogador} paga bem."
+   ],
+   "b": [
+    "Então vale a pena atender com carinho.",
+    "Vou guardar meu melhor preço.",
+    "Será que quer trocar?",
+    "Eu tenho muita coisa para vender."
+   ],
+   "bg": [],
+   "c": [
+    "Quem sabe passa por aqui.",
+    "Negócio bom é negócio honesto."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_diamantes",
+   "who": [
+    "villager",
+    "villager"
+   ],
+   "need": [
+    "diamonds",
+    "!unseen"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "Vi brilho azul na bolsa de {jogador}: diamantes!",
+    "{Jogador} carrega diamantes, que sorte!",
+    "Aqueles diamantes de {jogador} brilham de longe!"
+   ],
+   "b": [
+    "Deve ter cavado muito para juntar.",
+    "Eu só queria ver um de perto.",
+    "Quanto valor naquela bolsa!",
+    "Cuidado para ninguém roubar."
+   ],
+   "bg": [],
+   "c": [
+    "Que guarde bem.",
+    "Boa sorte para ele."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_seguidores",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "followers"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "Quanta gente anda atrás de {jogador}!",
+    "{Jogador} nunca anda sozinho, reparou?",
+    "Olha só o bando que segue {jogador}!"
+   ],
+   "b": [
+    "Parece um passeio em grupo.",
+    "Deve ser gente de confiança.",
+    "Eu queria entrar nesse grupo.",
+    "Será que tem lugar para mais um?"
+   ],
+   "bg": [],
+   "c": [
+    "Boa companhia vale muito.",
+    "Quem sabe eu me junto também."
+   ],
+   "solo": false
+  },
+  {
+   "id": "jogador_companheiro",
+   "who": [
+    "calm",
+    "calm"
+   ],
+   "need": [
+    "ally"
+   ],
+   "weight": 3,
+   "player": true,
+   "a": [
+    "Olha, aquele que segue {jogador} parece contente.",
+    "Aquele ali anda sempre com {jogador}, reparou?",
+    "{Jogador} tem companhia, olha só."
+   ],
+   "b": [
+    "Gosto de ver os dois juntos.",
+    "Deve ser uma boa companhia.",
+    "Eu também queria alguém assim por perto.",
+    "Os dois combinam."
+   ],
+   "bg": [],
+   "c": [
+    "Que continuem assim.",
+    "É bonito ver amizade.",
+    "Fico contente por eles."
+   ],
+   "solo": false
   }
  ]
 }

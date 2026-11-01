@@ -119,6 +119,11 @@ public final class Profiles {
                 fallback.credulity(), mob instanceof net.minecraft.world.entity.monster.Enemy ? 0.6 : 0.1);
     }
 
+    /** Como a criatura aparece para o jogador (legenda, barra de confianca): o apelido, se tiver, senao a especie. */
+    public static String displayName(net.minecraft.world.entity.Mob mob) {
+        return mob.hasCustomName() ? mob.getCustomName().getString() : ofMob(mob).label();
+    }
+
     /** "minecraft:villager#farmer" para aldeoes com profissao; senao o id da especie. */
     public static String keyOf(net.minecraft.world.entity.Mob mob) {
         String type = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString();

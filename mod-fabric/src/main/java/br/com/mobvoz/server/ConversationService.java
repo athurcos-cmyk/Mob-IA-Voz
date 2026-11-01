@@ -188,7 +188,7 @@ public final class ConversationService {
                         return;
                     }
                     remember(mid, pid, "(aconteceu: " + event + ")", said.get());
-                    ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.ofMob(mob).label(), said.get()));
+                    ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.displayName(mob), said.get()));
                     Speaker sp = speaker;
                     if (pcm == null || sp == null) {
                         done.run();
@@ -226,7 +226,7 @@ public final class ConversationService {
             return;
         }
         Entity e = player.level().getEntity(p.target());
-        if (!(e instanceof Mob mob) || !mob.isAlive() || !lookingAt(player, mob)) {
+        if (!(e instanceof Mob mob) || !mob.isAlive() || !(lookingAt(player, mob) || calledByName(player, mob, p.byName(), text))) {
             send(player, p.target(), StatusPayload.IDLE); // alvo sumiu/saiu da mira: descarta, mas o HUD nao fica preso
             return;
         }
@@ -277,7 +277,7 @@ public final class ConversationService {
                 .thenCompose(an -> onServerThread(server, () -> planJudge(mob, pid, an))
                         .thenCompose(job -> job == null ? CompletableFuture.completedFuture(SidecarClient.Judgment.NONE)
                                 : sidecar.judge(profileMap(mob, pid), job.accept(), job.giveName()))
-                        .thenCompose(j -> onServerThread(server, () -> decideAndApply(mob, player, an, j))))
+                        .thenCompose(j -> onServerThread(server, () -> withNickname(mob, pid, text, decideAndApply(mob, player, an, j)))))
                 .thenCompose(ctx -> sidecar.reply(type, text, MemoryRules.CAPABILITIES, withMentions(ctx.facts(), type, text), ctx.claims(), ctx.relation(),
                         ctx.claim(), ctx.orderResults(), profileMap(mob, pid), historyFor(mid, pid)))
                 .thenCompose(r -> r.offline() ? CompletableFuture.completedFuture((short[]) null)
@@ -301,7 +301,7 @@ public final class ConversationService {
                     Metrics.conversations.incrementAndGet();
                     MobVozMod.LOGGER.info("{} respondeu: {}", type, Metrics.summary(activeSessions(), br.com.mobvoz.social.Chatter.linesSpoken()));
                     remember(mid, pid, text, said.get());
-                    ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.ofMob(mob).label(), said.get()));
+                    ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.displayName(mob), said.get()));
                     if (pcm == null || sp == null) {
                         release.run(); // so legenda
                         return;
@@ -332,7 +332,7 @@ public final class ConversationService {
         String type = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString();
         Voices v = Voices.forProfile(Profiles.keyOf(mob), MemoryStore.get(mob).identityId());
         MinecraftServer server = player.getServer();
-        sidecar.synthesize(text, v.voice(), v.pitch(), v.speed()).thenAccept(o -> server.execute(() -> {
+        sidecar.synthesizeCached(text, v.voice(), v.pitch(), v.speed()).thenAccept(o -> server.execute(() -> {
             if (o.isPresent() && mob.isAlive() && !mobToPlayer.containsKey(mob.getUUID())) {
                 sp.speak(mob, o.get(), () -> server.execute(next));
             }
@@ -342,6 +342,23 @@ public final class ConversationService {
     /** Contexto verificado para a fala: memoria ja atualizada + resultado das ordens ja decididas. */
     record SpeechContext(List<String> facts, List<String> claims, Map<String, Double> relation, String claim,
                          List<Map<String, String>> orderResults) {
+    }
+
+    /** Chamou a criatura pelo apelido (sem mirar)? Vale se ela tem o nome dito, esta ao alcance da voz e a fala se dirige a ele. */
+    static boolean calledByName(ServerPlayer player, Mob mob, boolean claimed, String text) {
+        return claimed && mob.hasCustomName() && player.distanceTo(mob) <= br.com.mobvoz.target.NameCall.RANGE
+                && br.com.mobvoz.target.NameCall.addresses(text, mob.getCustomName().getString());
+    }
+
+    /** O jogador deu um apelido a criatura? O servidor decide e aplica o nome; o resultado entra em "resultado_das_ordens" para ela comentar. */
+    static SpeechContext withNickname(Mob mob, UUID pid, String text, SpeechContext ctx) {
+        var nick = br.com.mobvoz.memory.MobNicknames.extract(text);
+        if (nick.isEmpty()) {
+            return ctx;
+        }
+        List<Map<String, String>> results = new ArrayList<>(ctx.orderResults());
+        results.add(Nicknames.apply(mob, pid, nick.get()));
+        return new SpeechContext(ctx.facts(), ctx.claims(), ctx.relation(), ctx.claim(), results);
     }
 
     /** O jogador disse o proprio nome (ou respondeu a pergunta de nome da criatura)? So ESTA criatura aprende; cada uma tem a sua consciencia. */
@@ -565,8 +582,8 @@ public final class ConversationService {
         List<String> facts = new ArrayList<>(MemoryRules.factLines(mem, pid, tick));
         facts.addAll(0, br.com.mobvoz.social.SceneFacts.lines(mob, player)); // hora, clima, vida, o que o jogador segura, quem esta perto
         if (!faction.isEmpty()) { // memoria coletiva: a faccao desconfia de quem atacou um dos seus
-            facts.addAll(know.factionLines(faction, pid, tick));
-            float pen = know.trustPenalty(faction, pid, tick);
+            facts.addAll(know.factionLines(faction, pid, tick, mob.getX(), mob.getZ()));
+            float pen = know.trustPenalty(faction, pid, tick, mob.getX(), mob.getZ());
             rel = new MobMemory.Relationship(rel.trust() - pen, rel.affinity(), rel.fear());
         }
         if (pkey.equals("minecraft:ender_dragon")) { // o Dragao so "narra" o que esta no registro verificado

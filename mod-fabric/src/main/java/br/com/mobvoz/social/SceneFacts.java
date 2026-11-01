@@ -116,8 +116,12 @@ public final class SceneFacts {
                 near.merge(label, 1, Integer::sum);
             }
         }
-        return format(new Inputs(level.getDayTime(), level.isRaining(), level.isThundering(), level.dimension().location().getPath(),
-                player.getHealth(), player.getFoodData().getFoodLevel(), heldName, near, mob.getHealth(), mob.getMaxHealth(), armorName(player)));
+        List<String> out = new ArrayList<>(format(new Inputs(level.getDayTime(), level.isRaining(), level.isThundering(), level.dimension().location().getPath(),
+                player.getHealth(), player.getFoodData().getFoodLevel(), heldName, near, mob.getHealth(), mob.getMaxHealth(), armorName(player))));
+        if (mob.hasCustomName()) { // apelido dado por voz ou etiqueta de nome
+            out.add(0, "Seu nome é " + mob.getCustomName().getString() + " (foi o jogador, ou alguém, que lhe deu esse nome).");
+        }
+        return out;
     }
 
 }

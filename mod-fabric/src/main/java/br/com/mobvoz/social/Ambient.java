@@ -150,7 +150,7 @@ public final class Ambient {
     }
 
     /** Fala as linhas em sequencia (uma por vez); legenda para quem usa so texto. */
-    private static void play(List<Mob> actors, ServerPlayer player, List<Line> ls, int i, boolean aboutPlayer) {
+    static void play(List<Mob> actors, ServerPlayer player, List<Line> ls, int i, boolean aboutPlayer) {
         if (i >= ls.size()) {
             return;
         }
@@ -163,12 +163,12 @@ public final class Ambient {
         speaker.getLookControl().setLookAt(aboutPlayer && i == 0 ? player : listener, 30f, 30f); // falando DELE, olha para ele
         lines.incrementAndGet();
         if (ServerPlayNetworking.canSend(player, SubtitlePayload.TYPE)) {
-            ServerPlayNetworking.send(player, new SubtitlePayload(speaker.getUUID(), Profiles.ofMob(speaker).label(), l.text()));
+            ServerPlayNetworking.send(player, new SubtitlePayload(speaker.getUUID(), Profiles.displayName(speaker), l.text()));
         }
         ConversationService.announce(speaker, player, l.text(), () -> play(actors, player, ls, i + 1, aboutPlayer));
     }
 
-    private static Situation situation(ServerLevel level, ServerPlayer player, Mob a, Mob b) {
+    static Situation situation(ServerLevel level, ServerPlayer player, Mob a, Mob b) {
         Set<String> tags = new HashSet<>();
         long t = ((level.getDayTime() % 24000) + 24000) % 24000;
         tags.add(t < 12000 ? "day" : t < 13000 ? "dusk" : t < 23000 ? "night" : "dawn");
@@ -178,6 +178,9 @@ public final class Ambient {
             tags.add("rain");
         } else {
             tags.add("clear");
+        }
+        if (!a.hasLineOfSight(player) && !b.hasLineOfSight(player)) {
+            tags.add("unseen"); // atras de uma parede: nao comentam o que ele segura, veste ou faz (so clima, hora e o que lembram dele)
         }
         if (player.getHealth() <= 12) {
             tags.add("hurt");
@@ -197,6 +200,7 @@ public final class Ambient {
         if (!armor.isEmpty()) {
             tags.add("armor");
         }
+        addWorldAndPlayerTags(tags, level, player, a, t);
         MobMemory ma = MemoryStore.get(a);
         MobMemory mb = MemoryStore.get(b);
         var pid = player.getUUID();
@@ -214,6 +218,71 @@ public final class Ambient {
         }
         ma.facts().stream().filter(f -> f.player().equals(pid)).forEach(f -> tags.add("f0:" + f.type()));
         return new Situation(tags, classesOf(a), classesOf(b), ma.nameOf(pid), mb.nameOf(pid), item, armor);
+    }
+
+    /** Bioma, lua, altura e o que o jogador esta fazendo agora (agachado, correndo, montado, nadando, pegando fogo, voando) ou carregando. */
+    private static void addWorldAndPlayerTags(Set<String> tags, ServerLevel level, ServerPlayer player, Mob at, long dayTime) {
+        String biome = level.getBiome(at.blockPosition()).unwrapKey().map(k -> k.location().getPath()).orElse("");
+        if (biome.contains("snow") || biome.contains("frozen") || biome.contains("ice") || biome.contains("grove")) {
+            tags.add("snow");
+        } else if (biome.contains("desert") || biome.contains("badlands")) {
+            tags.add("desert");
+        } else if (biome.contains("jungle") || biome.contains("bamboo")) {
+            tags.add("jungle");
+        } else if (biome.contains("swamp")) {
+            tags.add("swamp");
+        } else if (biome.contains("forest") || biome.contains("taiga")) {
+            tags.add("forest");
+        } else if (biome.contains("windswept") || biome.contains("peaks") || biome.contains("slopes") || biome.contains("meadow")) {
+            tags.add("mountain");
+        } else if (biome.contains("beach") || biome.contains("shore")) {
+            tags.add("beach");
+        } else if (biome.contains("savanna")) {
+            tags.add("savanna");
+        }
+        if (dayTime >= 13000 && dayTime < 23000) { // fase da lua: so se fala dela de noite
+            int phase = level.getMoonPhase();
+            if (phase == 0) {
+                tags.add("fullmoon");
+            } else if (phase == 4) {
+                tags.add("newmoon");
+            }
+        }
+        if (at.getY() < 0) {
+            tags.add("deep");
+        } else if (at.getY() > 100) {
+            tags.add("high");
+        }
+        if (player.isShiftKeyDown()) {
+            tags.add("sneak");
+        }
+        if (player.isSprinting()) {
+            tags.add("run");
+        }
+        if (player.getVehicle() != null) {
+            tags.add("ride");
+        }
+        if (player.isInWater()) {
+            tags.add("swim");
+        }
+        if (player.isOnFire()) {
+            tags.add("burning");
+        }
+        if (player.isFallFlying()) {
+            tags.add("fly");
+        }
+        if (player.getInventory().hasAnyMatching(st -> st.is(net.minecraft.world.item.Items.EMERALD) || st.is(net.minecraft.world.item.Items.EMERALD_BLOCK))) {
+            tags.add("emeralds");
+        }
+        if (player.getInventory().hasAnyMatching(st -> st.is(net.minecraft.world.item.Items.DIAMOND) || st.is(net.minecraft.world.item.Items.DIAMOND_BLOCK))) {
+            tags.add("diamonds");
+        }
+        int allies = br.com.mobvoz.orders.Orders.alliesOf(player).size();
+        if (allies >= 2) {
+            tags.add("followers");
+        } else if (allies == 1) {
+            tags.add("ally");
+        }
     }
 
     /** Monstros que conversam entre si (zumbi com esqueleto, creeper, aranha...; nunca com aldeao nem animal); os demais hostis nunca puxam assunto. */

@@ -1,6 +1,7 @@
 package br.com.mobvoz.client.voice;
 
 import br.com.mobvoz.ai.SidecarClient;
+import br.com.mobvoz.client.MobVozClient;
 import br.com.mobvoz.net.StatusPayload;
 import br.com.mobvoz.net.UtterancePayload;
 import br.com.mobvoz.voice.VoiceSegmenter;
@@ -50,7 +51,9 @@ public final class VoiceInput {
         if (!VoiceConsent.granted()) {
             return;
         }
-        SEGMENTER.onFrame(pcm.clone(), System.currentTimeMillis(), target);
+        // sem ninguem na mira, mas com criatura de apelido por perto: grava assim mesmo (so segue se a fala CHAMAR alguem pelo nome)
+        UUID t = target != null ? target : (MobVozClient.namedNearby().isEmpty() ? null : br.com.mobvoz.target.NameCall.NAMED_SENTINEL);
+        SEGMENTER.onFrame(pcm.clone(), System.currentTimeMillis(), t);
     }
 
     /** Chamado no tick do cliente. */
@@ -121,8 +124,14 @@ public final class VoiceInput {
                 setStatus(NOT_UNDERSTOOD);
                 return;
             }
+            var call = br.com.mobvoz.target.NameCall.pick(text.get(), MobVozClient.namedNearby());
+            if (call.isEmpty() && br.com.mobvoz.target.NameCall.NAMED_SENTINEL.equals(u.target())) {
+                setStatus(StatusPayload.IDLE); // falou perto de um bicho com apelido, sem chamar ninguem: descarta
+                return;
+            }
             sent.incrementAndGet();
-            ClientPlayNetworking.send(new UtterancePayload(u.target(), text.get(), false));
+            ClientPlayNetworking.send(call.isPresent() ? new UtterancePayload(call.get().id(), text.get(), false, true)
+                    : new UtterancePayload(u.target(), text.get(), false));
         }));
     }
 }

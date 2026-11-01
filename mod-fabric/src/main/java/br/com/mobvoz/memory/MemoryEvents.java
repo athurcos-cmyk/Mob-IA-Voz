@@ -38,6 +38,9 @@ public final class MemoryEvents {
                 String reaction = prof.reaction(id);
                 sp.displayClientMessage(Component.literal("Você deu 1x " + stack.getHoverName().getString() + ": " + reaction + ". ")
                         .append(br.com.mobvoz.server.TrustBar.text(mob, sp.getUUID())), true);
+                String thing = br.com.mobvoz.trade.Values.known(id) ? br.com.mobvoz.trade.Values.name(id, false) : "isso";
+                br.com.mobvoz.social.WorldReactions.speakAs(sp, mob, reaction.equals("gostou") ? "ev:gift_like" : reaction.equals("indiferente") ? "ev:gift_meh"
+                        : "ev:gift_dislike", thing, 0); // a criatura fala do presente (fixa, sem IA)
             }
             return InteractionResult.SUCCESS;
         });

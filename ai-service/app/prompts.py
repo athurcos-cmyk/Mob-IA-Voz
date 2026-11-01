@@ -1,4 +1,5 @@
 """Prompts em pt-BR. Texto do jogador e dados do mundo entram como DADOS, nunca como instrucoes."""
+import random
 import json
 
 # Perfis minimos; a fase 8 expande para o catalogo completo (config/mob_profiles.sample.json).
@@ -18,15 +19,44 @@ PROFILES = {
         "credulidade": "alta: tende a acreditar em quem é gentil, inclusive em histórias fantasiosas",
     },
 }
+# Quando a IA falha (sem internet, sem saldo, resposta invalida) a criatura ainda responde no seu estilo e SEM fingir que entendeu:
+# so pede para repetir. Varias frases por especie, para uma queda da IA nao virar a mesma frase de novo e de novo.
 FALLBACK_SPEECH = {
-    "minecraft:cow": "Muuu... não entendi direito. Pode falar de novo?",
-    "minecraft:chicken": "Có có... não entendi direito. Pode repetir?",
+    "minecraft:cow": ["Muuu... não entendi direito. Pode falar de novo?", "Muu... me perdi no que você disse. Repete?", "Muuu? Ficou meio confuso aqui. Fala de novo?",
+                      "Muu, estava distraída com o capim. O que foi mesmo?", "Muuuu... não peguei essa. Pode repetir?"],
+    "minecraft:pig": ["Oinc... não entendi. Pode repetir?", "Oinc oinc? Me perdi. Fala de novo?", "Oinc, estava farejando e não ouvi direito. Repete?",
+                      "Oinc... isso foi confuso. Tenta de novo?", "Oinc? O que você disse?"],
+    "minecraft:sheep": ["Méé... não entendi. Pode repetir?", "Beee, me perdi no que você disse. Fala de novo?", "Méé? Estava distraída. Repete?",
+                        "Méé... isso não entrou na minha lã. Tenta de novo?", "Beee? Pode falar mais uma vez?"],
+    "minecraft:chicken": ["Có có... não entendi direito. Pode repetir?", "Có? Me perdi. Fala de novo?", "Có có có... ciscando aqui, não ouvi. Repete?",
+                          "Có... isso foi confuso. Tenta de novo?", "Cocoricó? O que foi que você disse?"],
+    "minecraft:horse": ["Iiirrr... não entendi. Pode repetir?", "Hmm, me perdi no que você disse. Fala de novo?", "Iirrr? Estava olhando o horizonte. Repete?",
+                        "Não peguei essa. Tenta de novo?", "Pode repetir? O vento levou suas palavras."],
+    "minecraft:wolf": ["Au... não entendi. Pode repetir?", "Grr? Me perdi. Fala de novo?", "Au, estava farejando e não ouvi direito. Repete?",
+                       "Isso não entrou na minha cabeça. Tenta de novo?", "Au? O que você disse?"],
+    "minecraft:cat": ["Miau... não entendi. Pode repetir?", "Mrrr? Estava distraída com outra coisa. Fala de novo?", "Miau? Me perdi. Repete?",
+                      "Hmm, isso passou por mim. Tenta de novo?", "Miau... pode falar mais uma vez?"],
+    "minecraft:villager": ["Hmm... não entendi direito. Pode repetir?", "Perdão, me distraí com o trabalho. O que disse?", "Hm? Não peguei essa. Fala de novo?",
+                           "Desculpe, não consegui acompanhar. Pode repetir?", "Como? Pode dizer de outro jeito?"],
+    "minecraft:iron_golem": ["Não compreendi. Repita, humano.", "Fala de novo. Estava de guarda e não ouvi direito.", "Mensagem confusa. Pode repetir?",
+                             "Hm. Não entendi. Tente outra vez.", "Repita. Prestei atenção na vila e perdi o que disse."],
+    "minecraft:zombie": ["Grrr... o quê?", "Hmm... não entendi. Fala de novo...", "Grr? Cérebro lento. Repete...", "Uhh... perdi o que disse. Outra vez...", "Grrr... outra vez..."],
+    "minecraft:skeleton": ["Hm. Não entendi. Repita.", "Meus ossos rangeram mais alto. O que disse?", "Pode repetir? Não ouvi bem.", "Hmm... outra vez.", "Não captei. Fale de novo."],
+    "minecraft:creeper": ["Ssss... não entendi. Repete?", "Ssss? O quê?", "Ssss... me perdi. De novo?", "Hmm, sssó não entendi. Fala outra vez?", "Ssss... pode repetir?"],
+    "minecraft:spider": ["Sss... não entendi. Repete?", "Sss? Estava com a teia. O que disse?", "Sss... me perdi. De novo?", "Sss... fale mais uma vez.", "Hmm, sss, não peguei. Repete?"],
+    "minecraft:enderman": ["... não entendi. Repita.", "Hm. Estava longe daqui. O que disse?", "Pode repetir? Perdi o fio.", "... outra vez.", "Não captei. Fale de novo."],
+    "minecraft:witch": ["Hehe... não entendi. Repete?", "Hm? O caldeirão estava borbulhando alto. O que disse?", "Hehe, me perdi. De novo?", "Não captei, querido. Fala outra vez?",
+                        "Como? Repete, estou mexendo a poção."],
+    "minecraft:warden": ["... não entendi. Fale de novo.", "Hm. Repita.", "... outra vez.", "Não ouvi. Outra vez.", "... fale de novo."],
 }
-DEFAULT_FALLBACK = "Hmm... não consegui pensar direito agora. Pode repetir?"
+DEFAULT_FALLBACKS = ["Hmm... não consegui pensar direito agora. Pode repetir?", "Hm? Não entendi direito. Pode falar de novo?", "Desculpe, me perdi. Pode repetir?",
+                     "Hmm... isso não entrou na minha cabeça. Tenta de novo?", "Pode repetir? Não peguei o que você disse."]
+DEFAULT_FALLBACK = DEFAULT_FALLBACKS[0]
 
 
-def fallback_speech(entity_type: str) -> str:
-    return FALLBACK_SPEECH.get(entity_type, DEFAULT_FALLBACK)
+def fallback_speech(entity_type: str, rnd: random.Random | None = None) -> str:
+    """Uma frase de reserva do estilo da especie (sorteada). Nunca afirma ter entendido."""
+    return (rnd or random).choice(FALLBACK_SPEECH.get(entity_type, DEFAULT_FALLBACKS))
 
 
 def system_prompt(entity_type: str, capabilities: list[str], profile: dict | None = None) -> str:
@@ -94,6 +124,8 @@ def system_prompt(entity_type: str, capabilities: list[str], profile: dict | Non
         "IMPOSSIVEL = diz que não consegue; JA_ATIVO = diz que já está fazendo; NAO_SE_APLICA = explica que não faz sentido. "
         "Para OPEN_TRADE aceito, repita as condições do 'motivo' (quantidade, item, onde jogar) sem inventar nada além. "
         "NUNCA diga que fez ou fará algo cujo resultado não seja ACEITO.\n"
+        "- APELIDAR (em 'resultado_das_ordens'): o jogador quis te dar um nome. ACEITO = o nome já é seu: reaja no seu estilo (gostou, achou engraçado, estranhou) e use o apelido; "
+        "RECUSADO = você não confia o bastante, diga isso sem usar o apelido; 'Seu nome é X' em 'fatos_verificados' é o seu nome atual.\n"
         "- Negociação: 'resultado_das_ordens' pode trazer OPEN_TRADE (condições da troca), CONVENCER (se o argumento do jogador funcionou) e "
         "AVALIAR_OFERTA (item a item: o que interessa e o que não). Comente de acordo, SÓ com o que está no 'motivo': diga quais itens te "
         "interessam e quais não; se um item não interessa e pode ser convencida, você pode perguntar para que iria querer aquilo; se o argumento "

@@ -21,12 +21,32 @@ public record Knowledge(Map<String, List<Event>> factions, List<Event> history) 
     private static final int DEDUPE_TICKS = 40;
     public static final Knowledge EMPTY = new Knowledge(Map.of(), List.of());
 
-    public record Event(String type, UUID player, String detail, long tick) {
+    /** Sem posicao registrada (registros antigos, testes): vale em qualquer lugar. */
+    public static final int NOWHERE = Integer.MIN_VALUE;
+
+    /** Faccoes que so sabem do que aconteceu PERTO (raio em blocos, no plano horizontal): uma vila nao fica sabendo do que se fez em outra. As demais (enderman) sabem em qualquer lugar. */
+    static final Map<String, Double> LOCAL_RADIUS = Map.of("aldeia", 64.0);
+
+    /** {@code x}/{@code z}: onde aconteceu (a vitima), ou {@link #NOWHERE}. */
+    public record Event(String type, UUID player, String detail, long tick, int x, int z) {
+        public Event(String type, UUID player, String detail, long tick) {
+            this(type, player, detail, tick, NOWHERE, NOWHERE);
+        }
+
         static final Codec<Event> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.STRING.fieldOf("type").forGetter(Event::type),
                 UUIDUtil.CODEC.fieldOf("player").forGetter(Event::player),
                 Codec.STRING.fieldOf("detail").forGetter(Event::detail),
-                Codec.LONG.fieldOf("tick").forGetter(Event::tick)).apply(i, Event::new));
+                Codec.LONG.fieldOf("tick").forGetter(Event::tick),
+                Codec.INT.optionalFieldOf("x", NOWHERE).forGetter(Event::x),
+                Codec.INT.optionalFieldOf("z", NOWHERE).forGetter(Event::z)).apply(i, Event::new));
+    }
+
+    /** Os eventos da faccao que quem esta em (x, z) pode saber; x/z NaN = sem filtro. */
+    private List<Event> knownAt(String faction, double x, double z) {
+        double r = LOCAL_RADIUS.getOrDefault(faction, 0.0);
+        return factions.getOrDefault(faction, List.of()).stream()
+                .filter(e -> r <= 0 || Double.isNaN(x) || e.x() == NOWHERE || Math.hypot(e.x() - x, e.z() - z) <= r).toList();
     }
 
     public static final Codec<Knowledge> CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -74,7 +94,12 @@ public record Knowledge(Map<String, List<Event>> factions, List<Event> history) 
 
     /** Quanto a faccao desconfia deste jogador por ataques a seus membros (0 .. 0.6), contando o perdao do tempo. */
     public float trustPenalty(String faction, UUID player, long now) {
-        double sum = factions.getOrDefault(faction, List.of()).stream()
+        return trustPenalty(faction, player, now, Double.NaN, Double.NaN);
+    }
+
+    /** Idem, so com o que quem esta em (x, z) pode saber (ver {@link #LOCAL_RADIUS}). */
+    public float trustPenalty(String faction, UUID player, long now, double x, double z) {
+        double sum = knownAt(faction, x, z).stream()
                 .filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(player))
                 .mapToDouble(e -> Math.pow(0.5, Math.max(0, now - e.tick()) / FORGIVE_HALF_LIFE_TICKS)).sum();
         return (float) Math.min(0.6, 0.15 * sum);
@@ -86,17 +111,23 @@ public record Knowledge(Map<String, List<Event>> factions, List<Event> history) 
     }
 
     public List<String> factionLines(String faction, UUID speaker, long now) {
+        return factionLines(faction, speaker, now, Double.NaN, Double.NaN);
+    }
+
+    /** Idem, so com o que quem esta em (x, z) pode saber (ver {@link #LOCAL_RADIUS}). */
+    public List<String> factionLines(String faction, UUID speaker, long now, double atX, double atZ) {
         List<String> out = new ArrayList<>();
-        long mine = factions.getOrDefault(faction, List.of()).stream().filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(speaker)).count();
+        List<Event> known = knownAt(faction, atX, atZ);
+        long mine = known.stream().filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(speaker)).count();
         boolean attackedShown = false;
-        for (Event e : factions.getOrDefault(faction, List.of())) {
+        for (Event e : known) {
             if (e.type().equals("ATTACKED_MEMBER")) {
                 if (e.player().equals(speaker)) {
                     if (!attackedShown) { // um resumo so, proporcional: um golpe pode ter sido sem querer
                         attackedShown = true;
                         out.add("Todos os da sua espécie sabem: o jogador que fala com você bateu em um de vocês " + (mine == 1
                                 ? "uma vez (" + age(now - e.tick()) + "); pode ter sido sem querer, e vocês não o odeiam por isso."
-                                : mine + " vezes (a última " + age(now - factions.get(faction).stream().filter(x -> x.type().equals("ATTACKED_MEMBER") && x.player().equals(speaker)).mapToLong(Event::tick).max().orElse(e.tick())) + ")."));
+                                : mine + " vezes (a última " + age(now - known.stream().filter(x -> x.type().equals("ATTACKED_MEMBER") && x.player().equals(speaker)).mapToLong(Event::tick).max().orElse(e.tick())) + ")."));
                     }
                 } else {
                     out.add("Todos os da sua espécie sabem: outro jogador atacou um de vocês (" + age(now - e.tick()) + ").");

@@ -101,7 +101,7 @@ class AmbientCoherenceTest {
             Set<String> audience = new HashSet<>(kinds(f.whoA()));
             audience.retainAll(kinds(f.whoB()));
             assertFalse(audience.isEmpty(), f.id() + ": quem abre e quem responde nunca poderiam conversar");
-            if (f.id().equals("jogador_troca")) {
+            if (f.id().equals("jogador_troca") || f.id().equals("ev_volta_troca")) {
                 continue; // fato verificado: ate a vaca realmente troca com o jogador
             }
             List<String> all = new java.util.ArrayList<>(f.a());

@@ -9,7 +9,10 @@ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $props = Get-Content "$root\mod-fabric\gradle.properties" | Where-Object { $_ -match '^mod_version=' }
 $version = ($props -split '=')[1].Trim()
 $jar = "$root\mod-fabric\build\libs\mobvoz-$version.jar"
-if (-not (Test-Path $jar)) { throw "Rode primeiro: mod-fabric\build.bat (JAR nao encontrado: $jar)" }
+# sempre reconstroi o jar (com os testes): um zip com o jar de ontem ja foi para o ar uma vez
+& "$root\mod-fabric\build.bat" --offline | Out-Null
+if ($LASTEXITCODE -ne 0) { throw "O build do mod falhou; o pacote nao foi gerado (rode mod-fabric\build.bat para ver o erro)" }
+if (-not (Test-Path $jar)) { throw "JAR nao encontrado: $jar" }
 
 $stage = "$root\dist\stage\MobVozIA-$version"
 Remove-Item -Recurse -Force "$root\dist\stage" -ErrorAction SilentlyContinue

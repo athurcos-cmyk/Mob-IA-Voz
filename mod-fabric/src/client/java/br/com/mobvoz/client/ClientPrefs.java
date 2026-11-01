@@ -13,6 +13,7 @@ public final class ClientPrefs {
     private static volatile boolean voiceConsent;
     private static volatile boolean chatMode;
     private static volatile boolean captions;
+    private static volatile boolean helpHintShown;
 
     static {
         Properties p = new Properties();
@@ -24,6 +25,7 @@ public final class ClientPrefs {
         voiceConsent = Boolean.parseBoolean(p.getProperty("voice_consent", "false"));
         chatMode = Boolean.parseBoolean(p.getProperty("chat_mode", "false"));
         captions = Boolean.parseBoolean(p.getProperty("captions", "false"));
+        helpHintShown = Boolean.parseBoolean(p.getProperty("help_hint_shown", "false"));
     }
 
     private ClientPrefs() {
@@ -44,6 +46,16 @@ public final class ClientPrefs {
 
     public static boolean captions() {
         return captions;
+    }
+
+    /** A dica "digite /mobvoz ajuda" so aparece na primeira vez que o jogador entra num mundo. */
+    public static boolean helpHintShown() {
+        return helpHintShown;
+    }
+
+    public static void setHelpHintShown() {
+        helpHintShown = true;
+        save();
     }
 
     public static void setVoiceConsent(boolean v) {
@@ -70,6 +82,7 @@ public final class ClientPrefs {
         p.setProperty("voice_consent", Boolean.toString(voiceConsent));
         p.setProperty("chat_mode", Boolean.toString(chatMode));
         p.setProperty("captions", Boolean.toString(captions));
+        p.setProperty("help_hint_shown", Boolean.toString(helpHintShown));
         try (OutputStream out = Files.newOutputStream(file())) {
             p.store(out, "MobVoz IA - voice_consent (microfone), chat_mode (digitar para a criatura na mira), captions (legendas)");
         } catch (IOException e) {

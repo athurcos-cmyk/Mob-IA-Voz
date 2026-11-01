@@ -248,5 +248,32 @@ class ApiKeyFileTest(unittest.TestCase):
                 self.assertEqual("abc123", config.api_key())
 
 
+class FallbackTests(unittest.TestCase):
+    """Quando a IA cai, a criatura ainda responde no estilo da especie, com variacao, sem fingir que entendeu."""
+
+    def test_every_species_has_several_distinct_lines_that_ask_to_repeat(self):
+        from app import prompts
+        for typ, pool in prompts.FALLBACK_SPEECH.items():
+            self.assertGreaterEqual(len(set(pool)), 3, typ)
+            for line in pool:
+                self.assertLessEqual(len(line), 100, line)
+                self.assertTrue(any(w in line.lower() for w in ("?", "repit", "de novo", "outra vez", "tent", "fale", "fala")), line)
+        self.assertGreaterEqual(len(set(prompts.DEFAULT_FALLBACKS)), 4)
+
+    def test_it_varies_and_unknown_species_use_the_default_pool(self):
+        import random
+        from app import prompts
+        seen = {prompts.fallback_speech("minecraft:cow", random.Random(i)) for i in range(40)}
+        self.assertGreaterEqual(len(seen), 4)
+        self.assertIn(prompts.fallback_speech("minecraft:axolotl"), prompts.DEFAULT_FALLBACKS)
+        self.assertIn(prompts.fallback_speech("minecraft:pig"), prompts.FALLBACK_SPEECH["minecraft:pig"])
+
+    def test_the_service_falls_back_with_a_species_line(self):
+        from app import prompts
+        out = service.reply({"entity_type": "minecraft:wolf", "text": "oi", "capabilities": []}, chat=fake(LlmError("fora")))
+        self.assertEqual(out["source"], "fallback")
+        self.assertIn(out["speech_text"], prompts.FALLBACK_SPEECH["minecraft:wolf"])
+
+
 if __name__ == "__main__":
     unittest.main()

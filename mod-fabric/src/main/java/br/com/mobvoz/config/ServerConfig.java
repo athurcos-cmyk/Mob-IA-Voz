@@ -33,6 +33,8 @@ public final class ServerConfig {
     public String voiceEngine = "auto";
     /** Intervalo minimo entre conversas ambiente na mesma regiao (cada criatura espera o triplo). */
     public int ambientCooldownSeconds = 60;
+    /** Quanto custa conquistar a confianca de uma criatura: "facil" (aceita seguir com bem menos), "normal" ou "dificil". */
+    public String trustDifficulty = "normal";
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static volatile ServerConfig current = new ServerConfig();
@@ -55,7 +57,36 @@ public final class ServerConfig {
             voiceEngine = "auto";
         }
         voiceEngine = voiceEngine.toLowerCase();
+        trustDifficulty = isDifficulty(trustDifficulty) ? trustDifficulty.toLowerCase() : "normal";
         return this;
+    }
+
+    public static boolean isDifficulty(String d) {
+        return d != null && java.util.Set.of("facil", "normal", "dificil").contains(d.toLowerCase());
+    }
+
+    /** Multiplica a confianca EXIGIDA para seguir/ficar/defender: facil 0,6 (3 em 5 presentes), normal 1, dificil 1,4. */
+    public static double trustFactor(String difficulty) {
+        return switch (difficulty == null ? "normal" : difficulty.toLowerCase()) {
+            case "facil" -> 0.6;
+            case "dificil" -> 1.4;
+            default -> 1.0;
+        };
+    }
+
+    public double trustFactor() {
+        return trustFactor(trustDifficulty);
+    }
+
+    /** Grava a configuracao atual em config/mobvoz/server.json (usado por /mobvoz dificuldade). */
+    public static void save() {
+        Path file = FabricLoader.getInstance().getConfigDir().resolve("mobvoz").resolve("server.json");
+        try {
+            Files.createDirectories(file.getParent());
+            Files.writeString(file, GSON.toJson(current), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            MobVozMod.LOGGER.warn("nao consegui gravar config/mobvoz/server.json: {}", e.toString());
+        }
     }
 
     public static ServerConfig parse(String json) {

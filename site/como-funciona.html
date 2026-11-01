@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Como funciona — MobVoz IA</title>
+  <meta name="description" content="O caminho de uma fala no MobVoz IA, o que roda no seu PC, e a escolha entre IA local, sua própria API, voz Kokoro ou Piper.">
+  <meta name="theme-color" content="#0d110f">
+  <meta property="og:title" content="Como funciona — MobVoz IA">
+  <meta property="og:description" content="A IA só sugere; quem decide e executa é o servidor do jogo.">
+  <meta property="og:image" content="assets/img/conversa-vaca.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=13">
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><i aria-hidden="true"></i>MobVoz <b>IA</b></a>
+  <nav class="nav" aria-label="Principal"><ul>
+    <li><a href="index.html"><img class="pixel" src="assets/img/ui/icon-star.png" alt=""><span class="long">Início</span><span class="short">Início</span></a></li>
+    <li><a href="funcionalidades.html"><img class="pixel" src="assets/img/ui/icon-bubbles.png" alt=""><span class="long">Funcionalidades</span><span class="short">Recursos</span></a></li>
+    <li><a href="como-funciona.html" aria-current="page"><img class="pixel" src="assets/img/ui/icon-bolt.png" alt=""><span class="long">Como funciona</span><span class="short">Como</span></a></li>
+    <li><a href="instalar.html"><img class="pixel" src="assets/img/ui/icon-arrow.png" alt=""><span class="long">Instalar</span><span class="short">Instalar</span></a></li>
+    <li><a href="comandos.html"><img class="pixel" src="assets/img/ui/icon-tag.png" alt=""><span class="long">Comandos</span><span class="short">Comandos</span></a></li>
+    <li><a href="ajuda.html"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""><span class="long">Ajuda</span><span class="short">Ajuda</span></a></li>
+  </ul></nav>
+  <a class="btn sm head-cta" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+</div></header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Por dentro</p>
+    <h1>Como <em>funciona</em></h1>
+    <p class="lead">A regra de ouro: <b>a IA só sugere; quem decide e executa é o servidor do jogo</b>. Por isso uma criatura nunca “inventa” que te deu um item nem ganha poderes que não tem.</p>
+    <div class="jump">
+      <a href="#fala">O caminho de uma fala</a>
+      <a href="#pc">O que fica no seu PC</a>
+      <a href="#ia">IA própria ou local</a>
+      <a href="#voz">Vozes</a>
+      <a href="#leve">PC fraco</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= CAMINHO -->
+<section class="section" id="fala">
+  <div class="wrap">
+    <p class="eyebrow">Do microfone ao mob</p>
+    <h2>O caminho de <em>uma fala</em></h2>
+    <div class="flow" role="list" aria-label="Caminho de uma fala">
+      <div class="node" role="listitem"><b>1. VOCÊ FALA</b>O microfone do Simple Voice Chat capta; o consentimento é conferido.</div>
+      <div class="node" role="listitem"><b>2. TEXTO</b>O Whisper (no seu PC) transforma em texto. O áudio não sai daí.</div>
+      <div class="node" role="listitem"><b>3. ENTENDER</b>A IA lê a frase e propõe: ordens, oferta, afirmação, tom.</div>
+      <div class="node" role="listitem"><b>4. DECIDIR</b>O servidor do mod valida, aplica e salva (confiança, espécie, regras).</div>
+      <div class="node" role="listitem"><b>5. RESPONDER</b>A IA fala sobre o resultado REAL, nunca sobre o que foi recusado.</div>
+      <div class="node" role="listitem"><b>6. VOZ</b>Kokoro ou Piper geram a voz; ela sai do mob, com som espacial.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="pc">
+  <div class="wrap">
+    <div class="grid g3">
+      <div class="card flat reveal"><div class="slot"><img class="pixel" src="assets/img/ui/icon-lock.png" alt=""></div><h3>O que fica no seu PC</h3><p>O mod (jar) é minúsculo (cerca de 300 KB). O peso está num serviço de IA separado, o “sidecar”, que escuta só em <code>127.0.0.1</code>: reconhecimento de fala, voz e, se você quiser, o modelo de linguagem local.</p></div>
+      <div class="card flat reveal"><div class="slot"><img class="pixel" src="assets/img/ui/icon-book.png" alt=""></div><h3>Fato × alegação × crença</h3><p>O que o servidor viu é fato e não pode ser reescrito. O que você disse é só alegação: a criatura pode acreditar, duvidar ou rir, mas isso nunca vira fato.</p></div>
+      <div class="card flat reveal"><div class="slot"><img class="pixel" src="assets/img/ui/icon-shield.png" alt=""></div><h3>Sem comando do modelo</h3><p>Nada de console, <code>/give</code> ou código vindo da IA. Ela devolve um JSON estrito; o servidor só executa o que está numa lista permitida e passa pelas regras de economia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= IA -->
+<section class="section" id="ia">
+  <div class="wrap">
+    <p class="eyebrow">Escolha o seu caminho</p>
+    <h2>Sua <em>API</em> ou modelo <em>local</em></h2>
+    <p class="lead">O mod funciona com os dois. O que muda é a qualidade da conversa e o peso no seu PC.</p>
+    <div class="scroll-x mt">
+    <table class="tbl stack wide-first">
+      <thead><tr><th></th><th>Sua própria API (ex.: DeepSeek)</th><th>Modelo local (Ollama)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Qualidade da conversa</b></td><td data-label="Sua própria API">Muito melhor: português natural e fiel aos fatos.</td><td data-label="Modelo local">Menor: erra português, às vezes se contradiz e inventa desculpas.</td></tr>
+        <tr><td><b>Custo</b></td><td data-label="Sua própria API">Muito barato, na sua conta: uma bateria inteira de testes nossa, com centenas de chamadas, custou uma fração de dólar.</td><td data-label="Modelo local">Grátis.</td></tr>
+        <tr><td><b>Peso no PC</b></td><td data-label="Sua própria API">Quase nenhum.</td><td data-label="Modelo local">Cerca de 2,6 GB de disco e 3,7 GB de placa de vídeo (testado numa GTX 1660 SUPER).</td></tr>
+        <tr><td><b>Internet</b></td><td data-label="Sua própria API">Precisa.</td><td data-label="Modelo local">Não precisa (depois de baixar).</td></tr>
+        <tr><td><b>O que sai do PC</b></td><td data-label="Sua própria API">O texto das conversas. Nunca o áudio.</td><td data-label="Modelo local">Nada.</td></tr>
+        <tr><td><b>Como ligar</b></td><td data-label="Sua própria API"><code>2-CONFIGURAR-API.bat</code> e <code>3-LIGAR-SERVICO.bat</code></td><td data-label="Modelo local"><code>3-LIGAR-SERVICO.bat</code></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="voz">
+  <div class="wrap">
+    <p class="eyebrow">A voz das criaturas</p>
+    <h2>Kokoro ou <em>Piper</em></h2>
+    <div class="grid g2 mt">
+      <div class="card flat"><h3>Kokoro (padrão)</h3><p>Muito mais natural e nítido; leva cerca de 1,5 s para gerar uma fala no processador. Se o Kokoro faltar, o serviço usa o Piper sozinho.</p></div>
+      <div class="card flat"><h3>Piper (modo leve)</h3><p>Cerca de 0,25 s por fala. Escolha com <code>"voiceEngine"</code> no <code>server.json</code> ou com a variável <code>MOBVOZ_TTS=piper</code>.</p></div>
+    </div>
+    <p class="rule">As falas prontas (conversas entre criaturas e reações) ficam num <b>cache de áudio</b> de 48 MB: depois da primeira vez, a repetição sai na hora.</p>
+  </div>
+</section>
+
+<section class="section" id="leve">
+  <div class="wrap">
+    <p class="eyebrow">Computador modesto?</p>
+    <h2>Para um <em>PC fraco</em></h2>
+    <div class="grid g2 mt">
+      <div class="card flat"><h3>Passo a passo</h3>
+        <ul>
+          <li>Instale só com a voz Piper: no PowerShell, na pasta do pacote, <code>.\1-INSTALAR.bat -Leve</code> (sem o Kokoro).</li>
+          <li>Use a API em vez do modelo local.</li>
+          <li><code>"preset": "low"</code> e <code>"ambientChatter": false</code> no <code>server.json</code>.</li>
+          <li>Reconhecimento de fala menor: <code>MOBVOZ_STT_MODEL=base</code> (ou <code>tiny</code>).</li>
+          <li>Se usar IA local: <code>MOBVOZ_MODEL=llama3.2</code>.</li>
+        </ul></div>
+      <div class="card flat"><h3>Variáveis do serviço</h3>
+        <p><code>MOBVOZ_PROVIDER</code> (<code>ollama</code> ou <code>api</code>), <code>MOBVOZ_MODEL</code>, <code>MOBVOZ_TTS</code>, <code>MOBVOZ_STT_MODEL</code>, <code>MOBVOZ_STT_DEVICE</code>, <code>MOBVOZ_API_URL</code>, <code>MOBVOZ_API_MODEL</code>, <code>MOBVOZ_PORT</code>, <code>MOBVOZ_TOKEN</code>. A chave da API vem de <code>%USERPROFILE%\.mobvoz\api.json</code>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta">
+  <div class="wrap">
+    <h2>Gostou do <em>desenho</em>?</h2>
+    <p class="lead">Instale em poucos cliques e veja a regra de ouro funcionando.</p>
+    <div class="btn-row">
+      <a class="btn big" href="instalar.html">Instalar o mod</a>
+      <a class="btn big ghost" href="funcionalidades.html">Ver funcionalidades</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <div class="cols">
+    <div><h4>MobVoz IA</h4><p>Alpha 0.1 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
+    <div><h4>Páginas</h4><ul>
+      <li><a href="funcionalidades.html">Funcionalidades</a></li><li><a href="como-funciona.html">Como funciona</a></li><li><a href="instalar.html">Instalar</a></li><li><a href="comandos.html">Comandos</a></li></ul></div>
+    <div><h4>Ajuda</h4><ul>
+      <li><a href="ajuda.html">Problemas comuns</a></li><li><a href="ajuda.html#estado">Estado do projeto</a></li><li><a href="ajuda.html#creditos">Créditos e licenças</a></li></ul></div>
+  </div>
+  <p class="legal">“Minecraft” é marca da Mojang Studios. As texturas e ícones desta página são arte própria.</p>
+</div></footer>
+
+<script src="assets/js/app.js?v=13" defer></script>
+</body>
+</html>
