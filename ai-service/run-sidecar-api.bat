@@ -5,11 +5,16 @@ setlocal
 cd /d "%~dp0"
 set MOBVOZ_PROVIDER=api
 if not exist "%USERPROFILE%\.mobvoz\api.json" (
-  echo Falta a chave da API. Rode antes: powershell -ExecutionPolicy Bypass -File configurar-api.ps1
+  echo Falta a chave da API. De dois cliques em configurar-api.bat e cole a chave.
+  pause
   exit /b 1
 )
 if not exist ".venv\Scripts\python.exe" (
-  echo Rode primeiro: powershell -ExecutionPolicy Bypass -File instalar-sidecar.ps1
+  echo Rode primeiro o instalar-sidecar.bat, com dois cliques.
+  pause
   exit /b 1
 )
 ".venv\Scripts\python.exe" -m app.api %*
+echo.
+echo O servico parou. Se foi por erro, leia a mensagem acima.
+pause

@@ -40,5 +40,5 @@ if (-not $Leve) {
 Passo "Baixando o modelo de reconhecimento de fala (~460 MB)"
 Rodar $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('ok')")
 
-Write-Host "`nPronto! Proximo passo: instale o Ollama e rode 'ollama pull qwen3:4b' (IA local), OU configure a sua chave de API com configurar-api.ps1." -ForegroundColor Cyan
+Write-Host "`nPronto! Proximo passo: instale o Ollama e rode 'ollama pull qwen3:4b' (IA local), OU configure a sua chave de API (dois cliques em configurar-api.bat)." -ForegroundColor Cyan
 Write-Host "Para ligar o servico: run-sidecar.bat (IA local) ou run-sidecar-api.bat (sua API)."
