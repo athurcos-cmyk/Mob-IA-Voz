@@ -234,4 +234,12 @@ class NegotiationTest {
         assertTrue(Values.lookup("espada de netherite lendária").isEmpty(), "nome desconhecido nao vira item");
         assertEquals("maçãs", Values.name("minecraft:apple", true));
     }
+
+    @Test
+    void spokenNamesMatchEvenWithoutDe() {
+        assertEquals("minecraft:wither_skeleton_skull", Values.lookup("cabeça Wither").orElse(""));
+        assertEquals("minecraft:wither_skeleton_skull", Values.lookup("3 cabeças wither").orElse(""));
+        assertEquals("minecraft:wither_skeleton_skull", Values.lookup("cabeça de esqueleto wither").orElse(""));
+        assertTrue(Values.lookup("coisa que não existe").isEmpty());
+    }
 }

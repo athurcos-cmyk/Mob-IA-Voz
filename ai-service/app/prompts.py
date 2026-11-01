@@ -181,7 +181,9 @@ ANALYZE_SYSTEM = (
     "offers = o que o jogador diz que DARIA em troca [{item, count}]; persuasion = quando o jogador dá um MOTIVO para a criatura querer um "
     "item {item, strength}: strength 0 = só insiste sem motivo, 1 = motivo fraco ou genérico, 2 = motivo concreto ligado ao que a criatura "
     "valoriza (poder, brilho, utilidade, comida, beleza). Sem negociação: ask = {item:\"\",count:0}, offers = [], persuasion = {item:\"\",strength:0}. "
-    "Troca/oferta/pedido de item também inclui orders [\"OPEN_TRADE\"].\n"
+    "Quem quer TROCAR/COMPRAR/VENDER/NEGOCIAR, ou pede que a criatura DÊ ou VENDA um item dela, inclui orders [\"OPEN_TRADE\"]. "
+    "Apenas CITAR, perguntar sobre ou dar de PRESENTE um item (\"tenho ouro\", \"você gosta de ouro?\", \"aceita ouro de presente?\", "
+    "\"e se eu te desse ouro?\") NÃO é OPEN_TRADE: deixe orders sem OPEN_TRADE (offers pode listar o item citado, ask fica vazio).\n"
     "3b) haggle (opcional, 0 se não houver): o jogador tenta baixar o PREÇO da troca (desconto, mais barato, abatimento): 0 = só pede desconto sem motivo, 1 = motivo plausível (amizade, já ajudou, trouxe muito), 2 = motivo concreto e forte. Sem pedido de desconto: haggle 0.\n"
     "3c) appeal (opcional, 0 se não houver): o jogador dá um MOTIVO para a criatura aceitar o PEDIDO ou ORDEM (seguir, proteger, ser domada, fazer as pazes): 0 = só pede/insiste sem motivo, 1 = motivo plausível (promete cuidar, abrigo, comida), 2 = motivo concreto e forte ligado ao que a criatura valoriza.\n"
     "4) social: o TOM do jogador com a criatura. THREAT = ameaça ou fala de machucar, matar, comer, cozinhar, transformar em comida ou "
@@ -209,6 +211,9 @@ ANALYZE_SYSTEM = (
     '"Tenho trigo para você, faz negócio comigo?" -> {"claim": "", "orders": ["OPEN_TRADE"]}\n'
     '"Preciso de 3 cabeças de esqueleto wither, te dou 3 ferros e 1 picareta de diamante" -> {"claim": "", "orders": ["OPEN_TRADE"], '
     '"ask": {"item": "cabeça de esqueleto wither", "count": 3}, "offers": [{"item": "ferro", "count": 3}, {"item": "picareta de diamante", "count": 1}], '
+    '"persuasion": {"item": "", "strength": 0}}\n'
+    '"Eu tenho um bloco de ouro aqui." -> {"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [], "persuasion": {"item": "", "strength": 0}}\n'
+    '"Aceita um bloco de ouro de presente?" -> {"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [{"item": "bloco de ouro", "count": 1}], '
     '"persuasion": {"item": "", "strength": 0}}\n'
     '"Troco 4 fenos com você?" -> {"claim": "", "orders": ["OPEN_TRADE"], "ask": {"item": "", "count": 0}, "offers": [{"item": "feno", "count": 4}], '
     '"persuasion": {"item": "", "strength": 0}}\n'

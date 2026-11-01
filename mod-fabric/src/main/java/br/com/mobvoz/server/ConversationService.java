@@ -274,7 +274,7 @@ public final class ConversationService {
         analyzeCaps.add("SOCIAL");
         // 1) entender (sem tocar no mundo)  2) servidor decide/aplica/persiste  3) a criatura fala sobre o resultado REAL
         sidecar.analyze(text, analyzeCaps)
-                .thenCompose(an -> onServerThread(server, () -> planJudge(mob, an))
+                .thenCompose(an -> onServerThread(server, () -> planJudge(mob, pid, an))
                         .thenCompose(job -> job == null ? CompletableFuture.completedFuture(SidecarClient.Judgment.NONE)
                                 : sidecar.judge(profileMap(mob, pid), job.accept(), job.giveName()))
                         .thenCompose(j -> onServerThread(server, () -> decideAndApply(mob, player, an, j))))
@@ -413,8 +413,26 @@ public final class ConversationService {
         return new Ask(payment ? "" : asked, payment);
     }
 
-    static boolean isTradeTalk(SidecarClient.Analysis an) {
-        return an.orders().contains("OPEN_TRADE") || !an.offers().isEmpty() || !an.ask().name().isBlank() || !an.persuadeItem().isBlank() || an.haggle() > 0;
+    /**
+     * E negociacao de verdade? Sim se ele quer trocar (OPEN_TRADE), pede algo que a criatura PODE dar, argumenta/pede desconto, ou ja ha oferta
+     * aberta com ele. Apenas citar ou oferecer um item, ou pedir algo que a criatura APRECIA (ela seria quem paga), NAO abre proposta:
+     * ela so reage ao que ouviu (ver {@link #mentionOnly}).
+     */
+    static boolean isTradeTalk(Mob mob, UUID pid, SidecarClient.Analysis an) {
+        if (an.orders().contains("OPEN_TRADE") || !an.persuadeItem().isBlank() || an.haggle() > 0) {
+            return true;
+        }
+        var open = Trades.get(mob);
+        boolean openWithPlayer = open.hasOffer() && open.offerPlayer().equals(pid.toString());
+        if (openWithPlayer && (!an.offers().isEmpty() || !an.ask().name().isBlank())) {
+            return true;
+        }
+        return !an.ask().name().isBlank() && !resolveAsk(mob, an).isPayment();
+    }
+
+    /** Falou de um item sem pedir nem propor troca (ex.: "eu te dou um bloco de ouro", "voce me daria ouro?" a quem gosta de ouro). */
+    static boolean mentionOnly(Mob mob, UUID pid, SidecarClient.Analysis an) {
+        return !isTradeTalk(mob, pid, an) && (!an.offers().isEmpty() || !an.ask().name().isBlank());
     }
 
     /** O que a IA precisa julgar: itens oferecidos fora do gosto fixo (aceitaria?) e o item pedido fora do catalogo (teria?). */
@@ -422,8 +440,8 @@ public final class ConversationService {
     }
 
     /** Server thread. Null = nada a julgar (tudo coberto pelo catalogo e pelos gostos fixos). */
-    static JudgeJob planJudge(Mob mob, SidecarClient.Analysis an) {
-        if (!isTradeTalk(an) || !mob.isAlive()) {
+    static JudgeJob planJudge(Mob mob, UUID pid, SidecarClient.Analysis an) {
+        if (!isTradeTalk(mob, pid, an) || !mob.isAlive()) {
             return null;
         }
         var p = Profiles.ofMob(mob);
@@ -458,7 +476,7 @@ public final class ConversationService {
         }
         List<Map<String, String>> results = new ArrayList<>();
         List<String> orderReqs = new ArrayList<>(an.orders());
-        boolean tradeTalk = isTradeTalk(an);
+        boolean tradeTalk = isTradeTalk(mob, pid, an);
         orderReqs.remove("OPEN_TRADE");
         if (tradeTalk) { // negociacao: oferta aberta SO pelo servidor, so se a receita existe; itens falados sao resolvidos no catalogo
             Ask ak = resolveAsk(mob, an);
@@ -502,6 +520,12 @@ public final class ConversationService {
                     }
                 }
             }
+        }
+        if (mentionOnly(mob, pid, an)) { // citou/ofereceu um item sem pedir nada: nada de proposta; ela so reage com naturalidade
+            String falou = !an.offers().isEmpty() ? an.offers().get(0).name() : an.ask().name();
+            results.add(Map.of("pedido", "OFERTA_ITEM", "resultado", "SEM_PEDIDO", "motivo",
+                    "o jogador falou de \"" + falou + "\" mas não pediu nada seu nem propôs uma troca; NÃO proponha preço, troca nem item seu: "
+                            + "reaja com naturalidade ao que ele disse (pode mostrar interesse ou curiosidade) e, se quiser, pergunte o que ele procura"));
         }
         if (!tradeTalk) { // sem pedido de troca nesta fala, mas ha oferta aberta com este jogador: a criatura ainda sabe os termos
             var open = Trades.get(mob);

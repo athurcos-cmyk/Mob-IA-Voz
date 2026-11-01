@@ -18,6 +18,9 @@ public final class Values {
     private static final Map<String, Double> VALUE = new HashMap<>();
     private static final Map<String, List<String>> NAMES = new HashMap<>();
     private static final Map<String, String> BY_NAME = new HashMap<>();
+    /** Nome sem "de/do/da": "cabeca wither" acha "cabeca de wither". Chave que serve a 2 itens diferentes e descartada (ambigua). */
+    private static final Map<String, String> LOOSE = new HashMap<>();
+    private static final java.util.Set<String> LOOSE_AMBIGUOUS = new java.util.HashSet<>();
 
     static {
         try (InputStream in = Values.class.getResourceAsStream("/mobvoz/values.json")) {
@@ -28,7 +31,14 @@ public final class Values {
                 List<String> pt = new java.util.ArrayList<>();
                 o.getAsJsonArray("pt").forEach(x -> pt.add(x.getAsString()));
                 NAMES.put(e.getKey(), pt);
-                pt.forEach(n -> BY_NAME.put(norm(n), e.getKey()));
+                pt.forEach(n -> {
+                    BY_NAME.put(norm(n), e.getKey());
+                    String lk = loose(norm(n));
+                    String prev = LOOSE.putIfAbsent(lk, e.getKey());
+                    if (prev != null && !prev.equals(e.getKey())) {
+                        LOOSE_AMBIGUOUS.add(lk);
+                    }
+                });
             }
         } catch (IOException | RuntimeException e) {
             throw new IllegalStateException("values.json invalido", e);
@@ -36,6 +46,10 @@ public final class Values {
     }
 
     private Values() {
+    }
+
+    static String loose(String normalized) {
+        return normalized.replaceAll("\\b(de|do|da|dos|das)\\b", " ").replaceAll("\\s+", " ").trim();
     }
 
     public static String norm(String s) {
@@ -77,7 +91,12 @@ public final class Values {
         }
         // plural/artigos simples: "as cenouras", "3 ferros"
         String stripped = n.replaceFirst("^(o|a|os|as|um|uma|uns|umas|\\d+) ", "");
-        return Optional.ofNullable(BY_NAME.get(stripped));
+        String exact = BY_NAME.get(stripped);
+        if (exact != null) {
+            return Optional.of(exact);
+        }
+        String lk = loose(stripped);
+        return LOOSE_AMBIGUOUS.contains(lk) ? Optional.empty() : Optional.ofNullable(LOOSE.get(lk));
     }
 
     /** Nome legivel em pt-BR para a fala. */

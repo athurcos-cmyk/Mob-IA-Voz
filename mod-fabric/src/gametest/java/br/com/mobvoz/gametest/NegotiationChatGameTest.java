@@ -67,7 +67,7 @@ public class NegotiationChatGameTest implements FabricClientGameTest {
             MobTrades t1 = world.getServer().computeOnServer(s -> Trades.get((Mob) s.overworld().getEntity(ws)));
             System.out.println("[gametest] 1) legenda: " + ChatMode.lastSubtitle);
             check(t1.hasOffer() && t1.offerRecipe().equals("wither_skeleton_wither_skeleton_skull_v2"), "a negociacao nao abriu no servidor: " + t1);
-            check(t1.persuaded().isEmpty(), "ninguem convenceu ninguem ainda");
+            check(t1.persuasions() == 0, "ninguem convenceu ninguem ainda"); // persuasions: so argumento do jogador; o mapa persuaded tambem recebe o que o juiz de IA acha que ela aceitaria
 
             say(context, "Com esses ferros você forja espadas e fica muito mais poderoso, aceita!");
             MobTrades t2 = world.getServer().computeOnServer(s -> Trades.get((Mob) s.overworld().getEntity(ws)));
