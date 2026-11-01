@@ -508,3 +508,49 @@ footer .bedrock { font-family: var(--font-pixel); font-size: 0.7rem; line-height
   .hero p.sub { font-size: 1.12rem; }
   .badges { margin: 14px 0 16px; }
 }
+
+
+/* =====================================================================================================
+   v4b: mais luz e cor por camada (o fundo de pedra/deepslate estava escuro demais e tudo parecia igual)
+   ===================================================================================================== */
+.band.dirt { --veil: 0.34; --layer-c: #ffd24a; }
+.band.grass { --veil: 0.40; --layer-c: #36f07a; }
+.band.stone { --veil: 0.38; --layer-c: #59e8ff; }
+.band.planks { --veil: 0.50; --layer-c: #ff9a4d; }
+.band.deep { --veil: 0.40; --layer-c: #c79bff; }
+.band .eyebrow { color: var(--layer-c, var(--emerald)); font-size: 0.74rem; }
+.band h2 { font-size: clamp(1.25rem, 3.4vw, 2rem); }
+.band h2 .tag { color: var(--layer-c, var(--gold)); }
+.band h2::after { background: repeating-linear-gradient(90deg, var(--layer-c, #36f07a) 0 16px, rgba(0, 0, 0, 0.55) 16px 20px); width: 96px; }
+.band .lead { font-size: 1.2rem; max-width: 60ch; text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75); }
+.band .legend { text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7); color: #e6e9ef; }
+.feat { --accent: var(--layer-c, #36f07a); }
+.feat:nth-child(4n+2) { --accent: #ffd24a; }
+.feat:nth-child(4n+3) { --accent: #59e8ff; }
+.feat:nth-child(4n+4) { --accent: #ff8a65; }
+.dark, .feat, details { background: rgba(14, 16, 20, 0.88); }
+.dark p, .dark li, .feat p, details div { font-size: 1.02rem; }
+
+/* barra do PC: marca a esquerda, botao de baixar a direita */
+.hotbar .brand-li, .hotbar .dl-li { display: none; }
+@media (min-width: 901px) {
+  .hotbar ul { align-items: center; }
+  .hotbar .brand-li { display: block; margin-right: 10px; }
+  .hotbar .dl-li { display: block; margin-left: auto; }
+  .hotbar .brand-li a { background: none; border: 0; box-shadow: none; padding: 4px 6px; font: 400 0.78rem var(--font-pixel); text-shadow: 2px 2px 0 #000; }
+  .hotbar .brand-li a:hover { background: none; }
+  .hotbar .brand-li b { color: var(--gold); font-weight: 400; }
+  .hotbar .dl-li a { background: #3fa04f; box-shadow: inset -3px -3px #1f6a2c, inset 3px 3px #7ddb8c; }
+  .hotbar .dl-li a:hover { background: #4fb85f; }
+  .hero .wrap { grid-template-columns: 0.92fr 1.08fr; }
+  .hero .frame { transform: rotate(0.8deg); }
+}
+@media (max-width: 900px) {
+  .band .lead { font-size: 1.05rem; }
+}
+
+@media (min-width: 901px) {
+  .hotbar ul { max-width: 1400px; gap: 5px; }
+  .hotbar li.home-li { display: none; }
+  .hotbar a { padding: 7px 10px; font-size: 0.8rem; }
+}

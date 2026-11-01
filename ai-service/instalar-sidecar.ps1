@@ -1,7 +1,7 @@
 # Instala o servico de IA (sidecar) do MobVoz num Windows limpo: ambiente Python, bibliotecas, vozes e modelo de reconhecimento de fala.
 # Rode (a partir da pasta ai-service):   powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1
 # Modo leve (so a voz Piper, sem o Kokoro):  ... -File .\instalar-sidecar.ps1 -Leve
-# Precisa de: Python 3.10 ou mais novo no PATH (python.org: marque "Add python.exe to PATH") e ~1,5 GB de disco livre.
+# Precisa de: Python 3.10 a 3.14 no PATH (testado com 3.14) (python.org: marque "Add python.exe to PATH") e ~1,5 GB de disco livre.
 param([switch]$Leve)
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
@@ -17,6 +17,7 @@ if (-not $py) { throw "Python nao encontrado. Instale em python.org (marque 'Add
 $ver = (& python -c "import sys; print('%d.%d' % sys.version_info[:2])").Trim()
 if ([version]$ver -lt [version]'3.10') { throw "Python $ver e antigo demais; instale o 3.10 ou mais novo." }
 Write-Host "Python $ver encontrado."
+if ([version]$ver -ge [version]'3.15') { Write-Host "Aviso: o Python $ver e mais novo que o testado (3.14); se a instalacao das bibliotecas falhar, instale o Python 3.12 ou 3.13." -ForegroundColor Yellow }
 
 Passo "Criando o ambiente (.venv)"
 if (-not (Test-Path .venv\Scripts\python.exe)) { Rodar python @('-m', 'venv', '.venv') }

@@ -13,7 +13,7 @@ New-Item -ItemType Directory -Force "$stage\mod" | Out-Null
 Copy-Item $jar "$stage\mod\"
 robocopy "$root\ai-service" "$stage\ai-service" /E /XD .venv models __pycache__ /XF *.pyc /NFL /NDL /NJH /NJS | Out-Null
 robocopy "$root\config" "$stage\config" /E /NFL /NDL /NJH /NJS | Out-Null
-robocopy "$root\docs" "$stage\docs" /E /XD audicao_vozes /NFL /NDL /NJH /NJS | Out-Null  # sem os .wav de teste
+robocopy "$root\docs" "$stage\docs" /E /XD audicao_vozes relatorios /NFL /NDL /NJH /NJS | Out-Null  # sem os .wav de teste
 foreach ($f in 'INSTALL.md','LICENSE','THIRD_PARTY.md','CHANGELOG.md','STATUS.md','README.md') { Copy-Item "$root\$f" $stage }
 
 $zip = "$root\dist\MobVozIA-$version.zip"

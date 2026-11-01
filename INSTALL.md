@@ -9,7 +9,7 @@ Criaturas do Minecraft que **ouvem você pelo microfone e respondem por voz em p
 - Windows 10/11, ~16 GB de RAM (testado com 16 GB e GTX 1660 SUPER 6 GB; o STT roda na CPU, o LLM na GPU).
 - JDK 21 (o repositório traz `.tools/jdk-21...`; ou instale o seu e defina `JAVA_HOME`).
 - [Ollama](https://ollama.com) com o modelo: `ollama pull qwen3:4b` (alternativa mais leve: `llama3.2`).
-- Python 3.10+ (testado com 3.14).
+- Python 3.12 a 3.14 (testado com 3.14).
 - Perfil de jogo **separado** (não use seu `.minecraft` principal).
 
 ## Instalação

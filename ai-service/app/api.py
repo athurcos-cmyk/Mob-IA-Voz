@@ -115,7 +115,7 @@ def warm_up() -> None:
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
     srv = ThreadingHTTPServer((config.HOST, config.PORT), Handler)
-    logging.info("MobVoz sidecar em http://%s:%d (modelo %s)", config.HOST, config.PORT, config.MODEL)
+    logging.info("MobVoz sidecar em http://%s:%d (IA: %s)", config.HOST, config.PORT, "API " + config.API_MODEL if config.PROVIDER == "api" else "local " + config.MODEL)
     threading.Thread(target=warm_up, daemon=True, name="warm-up").start()
     srv.serve_forever()
 
