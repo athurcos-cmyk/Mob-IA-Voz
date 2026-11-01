@@ -15,8 +15,16 @@ function Rodar($exe, [string[]]$argumentos) {
     if ($LASTEXITCODE -ne 0) { throw "Falhou: $exe $($argumentos -join ' ') (codigo $LASTEXITCODE)" }
 }
 function Funciona($exe, [string[]]$argumentos) {  # roda sem barulho e diz se deu certo
-    & $exe @argumentos 2>$null | Out-Null
-    return ($LASTEXITCODE -eq 0)
+    # No PowerShell 5, com $ErrorActionPreference = 'Stop', qualquer linha que o programa escreva em stderr (o traceback do Python quando o modelo ainda
+    # nao foi baixado) vira um erro FATAL, mesmo com 2>$null. Aqui o erro e esperado e so queremos o codigo de saida.
+    $antes = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    try {
+        & $exe @argumentos 2>&1 | Out-Null
+        return ($LASTEXITCODE -eq 0)
+    } finally {
+        $ErrorActionPreference = $antes
+    }
 }
 
 . "$PSScriptRoot\python-compativel.ps1"
