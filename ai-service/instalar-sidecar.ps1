@@ -4,6 +4,7 @@
 # Precisa de: Python 3.10 a 3.14 no PATH (testado com 3.14) (python.org: marque "Add python.exe to PATH") e ~1,5 GB de disco livre.
 param([switch]$Leve)
 $ErrorActionPreference = 'Stop'
+$env:HF_HUB_DISABLE_SYMLINKS_WARNING = '1'  # aviso inofensivo do Hugging Face no Windows sem modo desenvolvedor
 Set-Location $PSScriptRoot
 
 function Passo($t) { Write-Host "`n==> $t" -ForegroundColor Green }
@@ -40,5 +41,5 @@ if (-not $Leve) {
 Passo "Baixando o modelo de reconhecimento de fala (~460 MB)"
 Rodar $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('ok')")
 
-Write-Host "`nPronto! Proximo passo: instale o Ollama e rode 'ollama pull qwen3:4b' (IA local), OU configure a sua chave de API (dois cliques em configurar-api.bat)." -ForegroundColor Cyan
-Write-Host "Para ligar o servico: run-sidecar.bat (IA local) ou run-sidecar-api.bat (sua API)."
+Write-Host "`nPronto! Proximo passo: instale o Ollama e rode 'ollama pull qwen3:4b' (IA local), OU configure a sua chave de API (dois cliques em 2-CONFIGURAR-API.bat)." -ForegroundColor Cyan
+Write-Host "Para ligar o servico: de dois cliques em 3-LIGAR-SERVICO.bat (na pasta do pacote)."

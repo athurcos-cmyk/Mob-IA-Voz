@@ -1,5 +1,9 @@
-# Gera dist\MobVozIA-<versao>.zip com: JAR do mod, ai-service (sem .venv, models, caches), docs e licencas.
-# NAO inclui: Simple Voice Chat (All Rights Reserved), Piper/modelos de voz, Ollama/modelos de LLM, JDK.
+# Gera dist\MobVozIA-<versao>.zip: o pacote de quem so quer baixar e jogar. Leva SO o necessario para funcionar:
+#   - pacote\ (1-INSTALAR.bat, 2-CONFIGURAR-API.bat, 3-LIGAR-SERVICO.bat, LEIA-ME.txt e os scripts de instalacao)
+#   - mod\mobvoz-<versao>.jar
+#   - ai-service\ (so o codigo do servico e os scripts; sem testes, .venv, models, README)
+#   - LICENSE e THIRD_PARTY.md (licencas)
+# NAO leva: docs, CHANGELOG, STATUS, README, config de exemplo, testes, Simple Voice Chat (All Rights Reserved), modelos de voz/IA, JDK.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $props = Get-Content "$root\mod-fabric\gradle.properties" | Where-Object { $_ -match '^mod_version=' }
@@ -11,10 +15,9 @@ $stage = "$root\dist\stage\MobVozIA-$version"
 Remove-Item -Recurse -Force "$root\dist\stage" -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force "$stage\mod" | Out-Null
 Copy-Item $jar "$stage\mod\"
-robocopy "$root\ai-service" "$stage\ai-service" /E /XD .venv models __pycache__ /XF *.pyc /NFL /NDL /NJH /NJS | Out-Null
-robocopy "$root\config" "$stage\config" /E /NFL /NDL /NJH /NJS | Out-Null
-robocopy "$root\docs" "$stage\docs" /E /XD audicao_vozes relatorios /NFL /NDL /NJH /NJS | Out-Null  # sem os .wav de teste
-foreach ($f in 'INSTALL.md','LICENSE','THIRD_PARTY.md','CHANGELOG.md','STATUS.md','README.md') { Copy-Item "$root\$f" $stage }
+Copy-Item "$root\pacote\*" $stage
+robocopy "$root\ai-service" "$stage\ai-service" /E /XD .venv models __pycache__ tests /XF *.pyc README.md requirements.txt /NFL /NDL /NJH /NJS | Out-Null
+foreach ($f in 'LICENSE', 'THIRD_PARTY.md') { Copy-Item "$root\$f" $stage }
 
 $zip = "$root\dist\MobVozIA-$version.zip"
 Remove-Item $zip -ErrorAction SilentlyContinue

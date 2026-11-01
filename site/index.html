@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=5">
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
 
@@ -246,9 +246,9 @@
       <ul>
         <li><b>Sistema:</b> Windows 10 ou 11 (só foi testado no Windows).</li>
         <li><b>Memória:</b> 16 GB de RAM é o recomendado. <b>Disco:</b> uns 6 GB livres (e mais 2,6 GB se for usar IA local).</li>
-        <li><b>Conta do Minecraft Java Edition</b> e internet para baixar os arquivos.</li>
+        <li><b>Conta do Minecraft Java Edition</b> e internet para baixar os arquivos. O resto (Python, Fabric e os mods) o <code>1-INSTALAR.bat</code> instala sozinho.</li>
         <li><b>Microfone</b> (ou use o modo chat, que não precisa).</li>
-        <li><b>Escolha a IA:</b> a sua própria API (como DeepSeek; bem melhor e não pesa no PC) ou o modelo local grátis (Ollama; pesa mais e é menos esperto). Você decide no passo 8.</li>
+        <li><b>Escolha a IA:</b> a sua própria API (como DeepSeek; bem melhor e não pesa no PC) ou o modelo local grátis (Ollama; pesa mais e é menos esperto). Você decide no passo 4.</li>
       </ul>
       <table class="versions">
         <thead><tr><th>O quê</th><th>Versão usada nos testes</th></tr></thead>
@@ -264,104 +264,77 @@
       </table>
     </div>
 
-    <div class="progress" aria-label="Progresso da instalação"><i id="prog-bar"></i><span id="prog-txt">0 de 13 passos</span></div>
+    <div class="progress" aria-label="Progresso da instalação"><i id="prog-bar"></i><span id="prog-txt">0 de 9 passos</span></div>
 
     <ol class="steps" id="steps">
       <li class="step" data-step="1"><div class="gui">
-        <h3>Minecraft Launcher e a versão 1.21.8</h3>
-        <p>Instale o launcher oficial em <a href="https://www.minecraft.net/download" target="_blank" rel="noopener">minecraft.net/download</a> e entre com a sua conta. Crie uma instalação da versão <b>1.21.8</b> (Instalações &gt; Nova instalação &gt; Versão 1.21.8), jogue uma vez até o menu e feche. Isso baixa os arquivos do jogo.</p>
-        <p class="expect">O jogo abre no menu principal da 1.21.8.</p>
-        <p class="note">O launcher já traz o Java 21 dentro dele. Você só precisaria instalar o Java à parte se o instalador do Fabric reclamar (aí use o Temurin 21 em <a href="https://adoptium.net/temurin/releases/?version=21" target="_blank" rel="noopener">adoptium.net</a>).</p>
+        <h3>Instalar o Minecraft Launcher</h3>
+        <p>Instale o launcher oficial em <a href="https://www.minecraft.net/download" target="_blank" rel="noopener">minecraft.net/download</a>, <b>abra</b>, entre com a sua conta e depois <b>feche</b>. Só isso: o Fabric e o jogo 1.21.8 são preparados pelo próximo passo.</p>
+        <p class="expect">O launcher abriu e mostrou a sua conta.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
       <li class="step" data-step="2"><div class="gui">
-        <h3>Instalar o Fabric</h3>
-        <p>Baixe o instalador (arquivo <code>.exe</code>) em <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net/use/installer</a>. Na aba <b>Client</b>, deixe <b>Minecraft version: 1.21.8</b>, o <b>Loader</b> mais novo, e clique <b>Install</b>.</p>
-        <p class="expect">“Fabric successfully installed”. No launcher aparece a instalação <code>fabric-loader-1.21.8</code>.</p>
+        <h3>Baixar o MobVoz</h3>
+        <p>Clique no botão e salve o arquivo (cerca de 0,3 MB). Ele costuma ir para a pasta <b>Downloads</b>. Clique com o botão direito nele &gt; <b>Extrair tudo</b> &gt; <b>Extrair</b>. <b>Pode deixar onde o Windows sugerir</b>; não precisa mudar de lugar.</p>
+        <p><a class="btn green" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></p>
+        <p class="note">Se o Windows ou o navegador avisar que o arquivo “não é comumente baixado”, é só porque é um projeto novo: escolha <b>Manter</b>.</p>
+        <p class="expect">Na pasta extraída aparecem os arquivos <code>1-INSTALAR.bat</code>, <code>2-CONFIGURAR-API.bat</code>, <code>3-LIGAR-SERVICO.bat</code> e <code>LEIA-ME.txt</code>.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
       <li class="step" data-step="3"><div class="gui">
-        <h3>Uma pasta de jogo só para o MobVoz</h3>
-        <p>Assim você não mistura nada com o seu Minecraft normal. Abra o <b>Explorador de Arquivos</b> &gt; <b>Este Computador</b> &gt; <b>Disco Local (C:)</b>, clique com o botão direito num espaço vazio &gt; <b>Novo</b> &gt; <b>Pasta</b> e dê o nome <code>MobVozJogo</code> (fica <code>C:\MobVozJogo</code>). Pode ser outra pasta, se preferir: só use sempre a mesma nos passos seguintes. No launcher: Instalações &gt; <code>fabric-loader-1.21.8</code> &gt; Editar &gt; <b>Mais opções</b> &gt; <b>Diretório do jogo</b> = <code>C:\MobVozJogo</code> &gt; Salvar.</p>
-        <p class="expect">A instalação mostra o caminho <code>C:\MobVozJogo</code>.</p>
+        <h3>Dar dois cliques em <code>1-INSTALAR.bat</code></h3>
+        <p>Ele faz sozinho o que o resto das instruções faria na mão: instala o <b>Python</b> (se faltar), o <b>Fabric</b> no seu launcher, cria uma pasta de jogo só do MobVoz (<code>MobVozJogo</code>, na sua pasta de usuário), coloca os <b>3 mods</b> nela (MobVoz, Fabric API e Simple Voice Chat, baixados dos sites oficiais) e baixa as vozes e o reconhecimento de fala (uns 1,2 GB). Leva alguns minutos: <b>deixe terminar</b>.</p>
+        <p class="note">Se o Windows mostrar “O Windows protegeu o seu PC”, clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>. Se pedir permissão para instalar o Python, aceite.</p>
+        <p class="expect">A janela preta termina com “TUDO PRONTO!”. No launcher aparece a instalação <b>MobVoz IA</b>.</p>
+        <details class="inline"><summary>Deu erro? Instalação manual (plano B)</summary><div>
+          <ol>
+            <li><b>Python</b> 3.12 a 3.14 em <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> (marque “Add python.exe to PATH”).</li>
+            <li><b>Fabric:</b> instalador em <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net/use/installer</a> (aba Client, versão 1.21.8, Install).</li>
+            <li><b>Mods</b> numa pasta <code>mods</code> da sua pasta de jogo: o <code>mobvoz-0.1.0.jar</code> (pasta <code>mod</code> do pacote), o <a href="https://modrinth.com/mod/fabric-api/version/0.136.1+1.21.8" target="_blank" rel="noopener">Fabric API 0.136.1+1.21.8</a> e o <a href="https://modrinth.com/plugin/simple-voice-chat/version/fabric-1.21.8-2.6.27" target="_blank" rel="noopener">Simple Voice Chat 2.6.27 (Fabric 1.21.8)</a>. No launcher, edite a instalação do Fabric e ponha essa pasta em <b>Diretório do jogo</b>.</li>
+            <li><b>Serviço de IA:</b> no PowerShell, dentro da pasta <code>ai-service</code> do pacote: <code>powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</code> (use aspas no caminho se ele tiver espaço).</li>
+          </ol>
+        </div></details>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
       <li class="step" data-step="4"><div class="gui">
-        <h3>Baixar o MobVoz</h3>
-        <p>Clique no botão e salve o arquivo (cerca de 0,5 MB). Ele costuma ir para a pasta <b>Downloads</b>. Clique com o botão direito nele &gt; <b>Extrair tudo</b> &gt; <b>Extrair</b>. <b>Pode deixar onde o Windows sugerir</b> (por exemplo, <code>C:\Users\seu-nome\Downloads\MobVozIA-0.1.0</code>; se você baixou duas vezes, o nome pode ter “(2)”). Daqui para a frente, chamo essa pasta de <b>pasta do MobVoz</b>: não precisa mudar de lugar.</p>
-        <p><a class="btn green" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></p>
-        <p class="note">Se o Windows ou o navegador avisar que o arquivo “não é comumente baixado”, é só porque é um projeto novo: escolha <b>Manter</b>. O pacote traz o mod, o serviço de IA e a documentação. O Simple Voice Chat, o Fabric API e os modelos de voz e de IA são baixados por você nos passos seguintes (as licenças deles não deixam redistribuir).</p>
-        <p class="expect">Dentro da pasta do MobVoz existem as pastas <code>mod</code> (com <code>mobvoz-0.1.0.jar</code>), <code>ai-service</code> e <code>docs</code>.</p>
-        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
-
-      <li class="step" data-step="5"><div class="gui">
-        <h3>Os três mods na pasta <code>mods</code></h3>
-        <p>Dentro da pasta <code>C:\MobVozJogo</code>, crie uma pasta chamada <code>mods</code> (se ela já existir, use a que existe) e coloque lá <b>3 arquivos</b>:</p>
-        <ol>
-          <li><code>mobvoz-0.1.0.jar</code> (está na pasta <code>mod</code>, dentro da pasta do MobVoz);</li>
-          <li><b>Fabric API</b> <code>0.136.1+1.21.8</code>: abra <a href="https://modrinth.com/mod/fabric-api/version/0.136.1+1.21.8" target="_blank" rel="noopener">esta página</a> e clique em <b>Download</b> (arquivo <code>fabric-api-0.136.1+1.21.8.jar</code>);</li>
-          <li><b>Simple Voice Chat</b> para Fabric 1.21.8: abra <a href="https://modrinth.com/plugin/simple-voice-chat/version/fabric-1.21.8-2.6.27" target="_blank" rel="noopener">esta página</a> e clique em <b>Download</b> (arquivo <code>voicechat-fabric-1.21.8-2.6.27.jar</code>). Cuidado para não pegar a versão de <i>Forge</i>, <i>NeoForge</i> ou de outro Minecraft.</li>
-        </ol>
-        <p class="note">O Simple Voice Chat tem licença que não deixa redistribuir o arquivo: por isso você baixa direto do site dele.</p>
-        <p class="expect">Na pasta <code>mods</code>: três arquivos <code>.jar</code>.</p>
-        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
-
-      <li class="step" data-step="6"><div class="gui">
-        <h3>Instalar o Python</h3>
-        <p>Baixe em <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> (a versão 3.12, 3.13 ou 3.14; foi testado com a 3.14). Na primeira tela do instalador, <b>marque “Add python.exe to PATH”</b> e instale. Depois abra o <b>PowerShell</b> (menu Iniciar) e confira:</p>
-        <div class="code"><pre>python --version</pre><button class="btn small copy" type="button">Copiar</button></div>
-        <p class="expect">Algo como <code>Python 3.14.3</code>.</p>
-        <p class="note">Se o PowerShell abrir a Microsoft Store em vez de mostrar a versão, feche a loja, <b>reinicie o PowerShell</b> e tente de novo. Se persistir: Configurações &gt; Aplicativos &gt; Configurações avançadas &gt; Aliases de execução de aplicativo, e desligue “python.exe” e “python3.exe”.</p>
-        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
-
-      <li class="step" data-step="7"><div class="gui">
-        <h3>Instalar o serviço de IA (um comando)</h3>
-        <p>Abra a pasta do MobVoz, entre na pasta <code>ai-service</code> e dê <b>dois cliques</b> em <code>instalar-sidecar.bat</code>. Não precisa digitar caminho nenhum: funciona em qualquer pasta, inclusive em Downloads.</p>
-        <p>Abre uma janela preta que cria o ambiente, instala as bibliotecas e baixa as vozes e o modelo de reconhecimento de fala (uns 1,2 GB; leva alguns minutos). Deixe terminar.</p>
-        <p class="expect">As etapas passam em verde e termina com “Pronto!” e “Pressione qualquer tecla”.</p>
-        <p class="note">Se o <code>.bat</code> não aparecer (versão antiga do pacote), abra a pasta <code>ai-service</code>, clique na barra de endereço do Explorador, apague o texto, digite <code>powershell</code> e aperte Enter. Na janela azul que abrir, rode: <code>powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</code>. Para um PC fraco, coloque <code>-Leve</code> no fim do comando (instala só a voz Piper).</p>
-        <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
-
-      <li class="step" data-step="8"><div class="gui">
         <h3>Escolher a IA que conversa</h3>
         <div class="tabs" role="tablist">
           <button class="tab" role="tab" aria-selected="true" data-tab="api">A) Minha API (recomendado)</button>
           <button class="tab" role="tab" aria-selected="false" data-tab="local">B) Modelo local (Ollama)</button>
         </div>
         <div class="tabpanel active" data-panel="api">
-          <p><b>Melhor qualidade e não pesa no PC.</b> Crie uma chave de API na DeepSeek (<a href="https://platform.deepseek.com/" target="_blank" rel="noopener">platform.deepseek.com</a>, menu “API keys”; precisa de crédito na conta). Cada teste completo que fizemos com centenas de chamadas custou uma fração de dólar. A chave é sua: <b>nunca a compartilhe</b>. Depois:</p>
-          <p>Na pasta <code>ai-service</code>, dê dois cliques em <code>configurar-api.bat</code> e cole a chave quando pedir (o texto não aparece enquanto você cola; é normal). Para ligar o serviço, dê dois cliques em <code>run-sidecar-api.bat</code>.</p>
+          <p><b>Melhor qualidade e não pesa no PC.</b> Crie uma chave de API na DeepSeek (<a href="https://platform.deepseek.com/" target="_blank" rel="noopener">platform.deepseek.com</a>, menu “API keys”; precisa de crédito na conta). Cada teste completo que fizemos com centenas de chamadas custou uma fração de dólar. A chave é sua: <b>nunca a compartilhe</b>.</p>
+          <p>Dê dois cliques em <code>2-CONFIGURAR-API.bat</code> e cole a chave quando pedir (o texto não aparece enquanto você cola; é normal).</p>
           <p class="note">Só o texto das conversas vai à API. A voz e o seu áudio ficam no PC. Outras APIs compatíveis com a da OpenAI também funcionam (variáveis <code>MOBVOZ_API_URL</code> e <code>MOBVOZ_API_MODEL</code>).</p>
         </div>
         <div class="tabpanel" data-panel="local">
-          <p><b>De graça e offline, mas mais pesado e menos esperto.</b> Instale o <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a> e baixe o modelo (cerca de 2,6 GB):</p>
+          <p><b>De graça e offline, mas mais pesado e menos esperto.</b> Instale o <a href="https://ollama.com/download" target="_blank" rel="noopener">Ollama</a> e, no PowerShell, baixe o modelo (cerca de 2,6 GB):</p>
           <div class="code"><pre>ollama pull qwen3:4b</pre><button class="btn small copy" type="button">Copiar</button></div>
-          <p>Para ligar o serviço, dê dois cliques em <code>run-sidecar.bat</code>. Numa placa de vídeo pequena ou sem placa, a resposta demora mais (use <code>llama3.2</code> se quiser algo mais leve: variável <code>MOBVOZ_MODEL</code>).</p>
+          <p>Não precisa do <code>2-CONFIGURAR-API.bat</code>. Numa placa de vídeo pequena ou sem placa, a resposta demora mais (use <code>llama3.2</code> se quiser algo mais leve: variável <code>MOBVOZ_MODEL</code>).</p>
           <p class="note">O modelo local erra mais o português e às vezes se contradiz. Para a melhor experiência, use a opção A.</p>
         </div>
-        <p class="expect">Com o serviço ligado, abra <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">http://127.0.0.1:8765/health</a> no navegador: aparece <code>"status": "ok"</code> e <code>"tts": "kokoro"</code>.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
-      <li class="step" data-step="9"><div class="gui">
-        <h3>Deixar o serviço ligado</h3>
-        <p>Na pasta <code>ai-service</code>, o <code>run-sidecar-api.bat</code> (ou <code>run-sidecar.bat</code>, se escolheu o modelo local) abre uma janela preta: <b>deixe-a aberta</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
-        <p class="note">Se aparecer a tela azul “O Windows protegeu o seu PC”, clique em <b>Mais informações</b> e depois em <b>Executar assim mesmo</b>. Se o Firewall perguntar, pode permitir só em “redes privadas” (o serviço só escuta no seu próprio PC).</p>
-        <p class="expect">A janela mostra “MobVoz sidecar em http://127.0.0.1:8765” e, depois de alguns segundos, “aquecimento concluido”.</p>
+      <li class="step" data-step="5"><div class="gui">
+        <h3>Dar dois cliques em <code>3-LIGAR-SERVICO.bat</code></h3>
+        <p>Ele liga o serviço de IA (usa a sua API se você guardou a chave; senão, o modelo local). Abre uma janela preta: <b>deixe-a aberta</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
+        <p class="note">Se o Firewall perguntar, pode permitir só em “redes privadas” (o serviço só escuta no seu próprio PC).</p>
+        <p class="expect">A janela mostra “MobVoz sidecar em http://127.0.0.1:8765” e, depois de alguns segundos, “aquecimento concluido”. Se quiser conferir, abra <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">http://127.0.0.1:8765/health</a>: aparece <code>"status": "ok"</code>.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
-      <li class="step" data-step="10"><div class="gui">
+      <li class="step" data-step="6"><div class="gui">
         <h3>Abrir o jogo</h3>
-        <p>No launcher, escolha a instalação <code>fabric-loader-1.21.8</code> e clique Jogar. Crie um mundo <b>Criativo</b> para testar (assim você pode usar comandos e invocar mobs).</p>
+        <p>No Minecraft Launcher, escolha a instalação <b>MobVoz IA</b> e clique Jogar (a primeira vez baixa o jogo e demora). Crie um mundo <b>Criativo</b> para testar (assim você pode usar comandos e invocar mobs).</p>
         <p class="expect">O mundo abre sem erro. No chat, ao digitar <code>/mobvoz</code>, o jogo sugere os comandos.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
-      <li class="step" data-step="11"><div class="gui">
+      <li class="step" data-step="7"><div class="gui">
         <h3>Configurar o microfone</h3>
         <p>Dentro do mundo, aperte <kbd>V</kbd> (Simple Voice Chat). Escolha o <b>microfone</b> e use <b>ativação por voz</b> (se deixar “aperte para falar”, o mod só ouve enquanto você segura a tecla). Faça o teste de microfone da própria tela.</p>
         <p class="expect">A barra de volume do microfone mexe quando você fala.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
-      <li class="step" data-step="12"><div class="gui">
+      <li class="step" data-step="8"><div class="gui">
         <h3>Dar o consentimento (uma vez)</h3>
         <p>No chat do jogo:</p>
         <div class="code"><pre>/mobvoz voz sim
@@ -370,7 +343,7 @@
         <p class="expect">O status mostra o serviço de IA <b>online</b>.</p>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
-      <li class="step" data-step="13"><div class="gui">
+      <li class="step" data-step="9"><div class="gui">
         <h3>Primeira conversa</h3>
         <p>Invoque uma vaca na sua frente e mire nela:</p>
         <div class="code"><pre>/summon cow ~ ~ ~3</pre><button class="btn small copy" type="button">Copiar</button></div>
@@ -455,7 +428,7 @@
         <tr><td>Peso no PC</td><td data-label="Sua própria API">Quase nenhum.</td><td data-label="Modelo local (Ollama)">Cerca de 2,6 GB de disco e 3,7 GB de placa de vídeo (testado numa GTX 1660 SUPER).</td></tr>
         <tr><td>Internet</td><td data-label="Sua própria API">Precisa.</td><td data-label="Modelo local (Ollama)">Não precisa (depois de baixar).</td></tr>
         <tr><td>O que sai do PC</td><td data-label="Sua própria API">O texto das conversas. Nunca o áudio.</td><td data-label="Modelo local (Ollama)">Nada.</td></tr>
-        <tr><td>Como ligar</td><td data-label="Sua própria API"><code>configurar-api.ps1</code> e <code>run-sidecar-api.bat</code></td><td data-label="Modelo local (Ollama)"><code>run-sidecar.bat</code></td></tr>
+        <tr><td>Como ligar</td><td data-label="Sua própria API"><code>2-CONFIGURAR-API.bat</code> e <code>3-LIGAR-SERVICO.bat</code></td><td data-label="Modelo local (Ollama)"><code>3-LIGAR-SERVICO.bat</code></td></tr>
       </tbody>
     </table>
 
@@ -464,7 +437,7 @@
         <p><b>Kokoro</b> (padrão) é muito mais natural e nítido; leva cerca de 1,5 s para gerar uma fala no processador. <b>Piper</b> é o modo leve: ~0,25 s por fala. Escolha com <code>"voiceEngine"</code> no <code>server.json</code> ou com a variável <code>MOBVOZ_TTS=piper</code>. Se faltar o Kokoro, o serviço usa o Piper sozinho.</p></div>
       <div class="dark"><h3>Para um PC fraco</h3>
         <ul>
-          <li>Instale com <code>instalar-sidecar.ps1 -Leve</code>.</li>
+          <li>Instale pelo PowerShell, dentro da pasta do pacote, com <code>.-INSTALAR.bat -Leve</code> (só a voz Piper, sem o Kokoro).</li>
           <li>Use a API em vez do modelo local.</li>
           <li><code>"preset": "low"</code> e <code>"ambientChatter": false</code> no <code>server.json</code>.</li>
           <li>Reconhecimento de fala menor: <code>MOBVOZ_STT_MODEL=base</code> (ou <code>tiny</code>).</li>
@@ -481,15 +454,15 @@
   <div class="wrap">
     <p class="eyebrow">SE ALGO DER ERRADO</p>
     <h2>Solução de <span class="tag">problemas</span></h2>
-    <details><summary>O HUD mostra “Sem resposta (IA offline?)”</summary><div>O serviço de IA não está ligado. Dê dois cliques em <code>run-sidecar-api.bat</code> (ou <code>run-sidecar.bat</code>) e deixe a janela aberta. Confira em <code>/mobvoz status</code> e em <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>. O jogo continua normal sem ele.</div></details>
+    <details><summary>O HUD mostra “Sem resposta (IA offline?)”</summary><div>O serviço de IA não está ligado. Dê dois cliques em <code>3-LIGAR-SERVICO.bat</code> e deixe a janela aberta. Confira em <code>/mobvoz status</code> e em <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>. O jogo continua normal sem ele.</div></details>
     <details><summary>A estrela não aparece</summary><div>Chegue mais perto (até 6 blocos), sem bloco no caminho (até uma cerca atrapalha), e feche qualquer tela aberta. Só aparece em uma criatura de cada vez.</div></details>
     <details><summary>Eu falo e nada acontece</summary><div>No Simple Voice Chat (<kbd>V</kbd>), use <b>ativação por voz</b> e confira o microfone. Digite <code>/mobvoz voz sim</code> uma vez. Se ainda assim nada, use o modo chat (<code>/mobvoz chat sim</code>) para ver se o problema é só o microfone.</div></details>
     <details><summary>“Não entendi a fala”</summary><div>Fale mais perto do microfone e sem ruído. O reconhecimento padrão é o Whisper <code>small</code> (no processador). Se tiver um PC forte, <code>MOBVOZ_STT_MODEL=medium</code> acerta mais.</div></details>
     <details><summary>A resposta demora muito</summary><div>A primeira fala leva 10 a 15 s (carrega modelos). Se continuar lenta: use a API em vez do modelo local, troque a voz para Piper (<code>voiceEngine: "piper"</code>) ou feche outros programas que usem a placa de vídeo.</div></details>
     <details><summary>A criatura não obedece</summary><div>É de propósito: confiança, espécie e personalidade decidem. Converse mais, dê presentes (<kbd>SHIFT</kbd> + botão direito), seja gentil. Mobs hostis e chefes pedem muito mais confiança.</div></details>
-    <details><summary>O PowerShell diz que não pode executar scripts</summary><div>Rode sempre com <code>powershell -ExecutionPolicy Bypass -File .\nome-do-script.ps1</code>, como nos passos acima.</div></details>
-    <details><summary>O jogo fecha ao abrir ou não mostra <code>/mobvoz</code></summary><div>Confira se a pasta de jogo (<code>C:\MobVozJogo\mods</code>) tem os 3 arquivos e se você abriu a instalação <code>fabric-loader-1.21.8</code>. A versão do Fabric API precisa ser a da 1.21.8.</div></details>
-    <details><summary>Ainda não resolveu?</summary><div>Mande para o autor: o que você fez, o que apareceu e o arquivo <code>C:\MobVozJogo\logs\latest.log</code> (ele não guarda áudio nem o que você falou).</div></details>
+    <details><summary>O <code>1-INSTALAR.bat</code> falhou no meio</summary><div>Leia a última mensagem na janela preta, resolva o que ela diz e dê dois cliques de novo: ele confere o que já está pronto e continua. Se não resolver, use o “plano B” (instalação manual) do passo 3.</div></details>
+    <details><summary>O jogo fecha ao abrir ou não mostra <code>/mobvoz</code></summary><div>Confira se a pasta <code>MobVozJogo\mods</code> (dentro da sua pasta de usuário, por exemplo <code>C:\Users\seu-nome\MobVozJogo\mods</code>) tem os 3 arquivos <code>.jar</code> e se você abriu a instalação <b>MobVoz IA</b> no launcher. A versão do Fabric API precisa ser a da 1.21.8.</div></details>
+    <details><summary>Ainda não resolveu?</summary><div>Mande para o autor: o que você fez, o que apareceu e o arquivo <code>logs\latest.log</code> da pasta <code>MobVozJogo</code> (ele não guarda áudio nem o que você falou).</div></details>
   </div>
 </section>
 
@@ -538,6 +511,6 @@
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Imagem ampliada"><img alt=""></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><img class="pixel" src="assets/img/ui/icon-emerald.png" alt=""><div><b>CONQUISTA DESBLOQUEADA</b><span id="toast-txt"></span></div></div>
 
-<script src="assets/js/app.js?v=5" defer></script>
+<script src="assets/js/app.js?v=6" defer></script>
 </body>
 </html>

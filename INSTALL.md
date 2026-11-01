@@ -20,7 +20,7 @@ Criaturas do Minecraft que **ouvem você pelo microfone e respondem por voz em p
    powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1          # completo (voz Kokoro + Piper)
    powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1 -Leve    # PC fraco: so a voz Piper
    ```
-   Atalho sem digitar nada: dê dois cliques em `ai-service\instalar-sidecar.bat` (e em `configurar-api.bat`). Funciona em qualquer pasta, inclusive `Downloads\MobVozIA-0.1.0 (2)`.
+   Para quem só baixa o zip (`dist/MobVozIA-0.1.0.zip`, gerado por `empacotar.ps1` a partir de `pacote/`): `1-INSTALAR.bat` faz tudo (Python, Fabric, pasta de jogo, mods, serviço), `2-CONFIGURAR-API.bat` guarda a chave e `3-LIGAR-SERVICO.bat` liga a IA. Funciona em qualquer pasta.
    (`piper-tts` e o espeak-ng do Kokoro são GPL: ficam só no seu computador, rodando como processo separado — veja `THIRD_PARTY.md`.)
    **IA que conversa:** a sua API (`configurar-api.ps1` guarda a chave em `%USERPROFILE%\.mobvoz\api.json`; ligue com `run-sidecar-api.bat`) **ou** o modelo local (`ollama pull qwen3:4b`; ligue com `run-sidecar.bat`).
    O passo a passo ilustrado, para um PC do zero, está na página do projeto (`site/`, ver `docs/20_PAGINA_E_REPOSITORIO.md`).

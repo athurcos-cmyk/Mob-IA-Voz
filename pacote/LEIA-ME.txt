@@ -1,0 +1,29 @@
+﻿MOBVOZ IA  -  Alpha 0.1
+Fale com os mobs do Minecraft e ouca a resposta deles, em portugues.
+Minecraft Java 1.21.8 com Fabric. So Windows.
+
+ANTES DE COMECAR (so uma vez)
+  1. Instale o Minecraft Launcher (minecraft.net/download), abra, entre na sua conta e feche.
+  2. Tenha internet e uns 6 GB livres no disco.
+
+COMO INSTALAR  (3 duplos cliques, nesta ordem)
+  1-INSTALAR.bat           Instala tudo sozinho: Python, Fabric, os 3 mods e o servico de IA.
+                           Leva alguns minutos. Se o Windows pedir permissao, aceite.
+  2-CONFIGURAR-API.bat     So se for usar a sua propria IA (ex.: DeepSeek). Cole a chave quando pedir.
+                           (Sem chave? Instale o Ollama e use o modelo local: veja a pagina do projeto.)
+  3-LIGAR-SERVICO.bat      Liga a IA. Deixe essa janela ABERTA enquanto joga.
+
+COMO JOGAR
+  1. Abra o Minecraft Launcher, escolha a instalacao "MobVoz IA" e clique Jogar.
+  2. Crie um mundo (Criativo, para testar).
+  3. Aperte V (Simple Voice Chat) e escolha o microfone (ativacao por voz).
+  4. No chat do jogo, digite:  /mobvoz voz sim
+  5. Aponte para uma criatura (uma estrela amarela aparece) e fale com ela.
+     Sem microfone? Digite  /mobvoz chat sim  e escreva no chat.
+
+SE ALGO DER ERRADO
+  - Se o Windows mostrar "O Windows protegeu o seu PC": clique em "Mais informacoes" e "Executar assim mesmo".
+  - Se o 1-INSTALAR.bat falhar, feche e rode de novo: ele continua de onde parou.
+  - O mod, o Fabric API e o Simple Voice Chat devem estar na pasta  Meu usuario\MobVozJogo\mods.
+
+Projeto de fa, nao oficial: nao e produto da Mojang nem da Microsoft. Licencas em LICENSE e THIRD_PARTY.md.

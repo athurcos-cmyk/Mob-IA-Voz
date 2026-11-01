@@ -554,3 +554,9 @@ footer .bedrock { font-family: var(--font-pixel); font-size: 0.7rem; line-height
   .hotbar li.home-li { display: none; }
   .hotbar a { padding: 7px 10px; font-size: 0.8rem; }
 }
+
+/* "plano B" dentro de um passo (painel claro) */
+.gui details.inline { background: #dcdcdc; box-shadow: none; border: 3px solid #000; margin: 12px 0 0; }
+.gui details.inline summary { color: #1b1b1b; }
+.gui details.inline > div { color: #1b1b1b; padding-left: 20px; }
+.gui details.inline summary::before { background: #0a8a3a; color: #fff; }
