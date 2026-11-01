@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.request
+import zipfile
 
 MC = "1.21.8"
 FABRIC_API = "0.136.1+1.21.8"             # combinacao testada
@@ -65,17 +66,26 @@ def find_java(explicit):
     return next((c for c in cands if c and os.path.isfile(c)), None)
 
 
-def ensure_java(explicit):
-    java = find_java(explicit)
-    if java:
-        return java
-    say("Java nao encontrado. Instalando o Java 21 (Temurin) pelo winget...")
-    if not shutil.which("winget"):
-        fail("nao achei o Java e nem o winget. Instale o Java 21 em https://adoptium.net/temurin/releases/?version=21 e rode o 1-INSTALAR.bat de novo.")
-    subprocess.run(["winget", "install", "-e", "--id", "EclipseAdoptium.Temurin.21.JRE", "--silent", "--accept-package-agreements", "--accept-source-agreements"])
-    java = find_java(None)
+JRE_URL = "https://api.adoptium.net/v3/binary/latest/21/ga/windows/x64/jre/hotspot/normal/eclipse"
+
+
+def ensure_java(explicit, workdir):
+    """Sem Java no PC (comum num Windows limpo): baixa um JRE 21 portatil (~50 MB), usa so para o instalador do Fabric e apaga depois."""
+    if not os.environ.get("MOBVOZ_FORCE_JRE_DOWNLOAD"):
+        java = find_java(explicit)
+        if java:
+            return java
+    say("   Java nao encontrado. Baixando um Java 21 portatil (uns 50 MB; so para esta instalacao)...")
+    zpath = os.path.join(workdir, "jre21.zip")
+    try:
+        download(JRE_URL, zpath)
+    except Exception as e:  # rede, DNS...
+        fail("nao consegui baixar o Java (" + type(e).__name__ + "). Confira a internet, ou instale o Java 21 em https://adoptium.net/temurin/releases/?version=21 e rode o 1-INSTALAR.bat de novo.")
+    with zipfile.ZipFile(zpath) as z:
+        z.extractall(os.path.join(workdir, "jre21"))
+    java = next(iter(glob.glob(os.path.join(workdir, "jre21", "*", "bin", "java.exe"))), None)
     if not java:
-        fail("o Java nao foi instalado. Instale o Java 21 em https://adoptium.net/temurin/releases/?version=21 e rode o 1-INSTALAR.bat de novo.")
+        fail("o Java baixado veio sem o java.exe. Instale o Java 21 em https://adoptium.net/temurin/releases/?version=21 e rode o 1-INSTALAR.bat de novo.")
     return java
 
 
@@ -87,8 +97,8 @@ def modrinth_file(project, version):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--minecraft-dir", default=os.path.join(os.environ.get("APPDATA", ""), ".minecraft"))
-    ap.add_argument("--game-dir", default=os.path.join(os.path.expanduser("~"), "MobVozJogo"))
+    ap.add_argument("--minecraft-dir", default=os.environ.get("MOBVOZ_MC_DIR") or os.path.join(os.environ.get("APPDATA", ""), ".minecraft"))
+    ap.add_argument("--game-dir", default=os.environ.get("MOBVOZ_GAME_DIR") or os.path.join(os.path.expanduser("~"), "MobVozJogo"))
     ap.add_argument("--java", default=None)
     a = ap.parse_args()
     mcdir, gamedir = os.path.abspath(a.minecraft_dir), os.path.abspath(a.game_dir)
@@ -107,10 +117,14 @@ def main():
     if os.path.isdir(version_dir):
         say(f"   Fabric Loader {loader} ja instalado")
     else:
-        java = ensure_java(a.java)
-        tmp = os.path.join(tempfile.gettempdir(), "fabric-installer.jar")
-        download(inst["url"], tmp)
-        r = subprocess.run([java, "-jar", tmp, "client", "-dir", mcdir, "-mcversion", MC, "-loader", loader], capture_output=True, text=True)
+        work = tempfile.mkdtemp(prefix="mobvoz-")
+        try:
+            java = ensure_java(a.java, work)
+            tmp = os.path.join(work, "fabric-installer.jar")
+            download(inst["url"], tmp)
+            r = subprocess.run([java, "-jar", tmp, "client", "-dir", mcdir, "-mcversion", MC, "-loader", loader], capture_output=True, text=True)
+        finally:
+            shutil.rmtree(work, ignore_errors=True)
         say(r.stdout.strip()[-400:])
         if r.returncode != 0 or not os.path.isdir(version_dir):
             fail("o instalador do Fabric falhou:\n" + (r.stderr or r.stdout)[-600:])

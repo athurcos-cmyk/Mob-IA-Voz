@@ -16,14 +16,20 @@ function Atualizar-Path {
 Passo "1/3 Python (3.10 a 3.14; o 3.15 ainda nao serve para as bibliotecas de voz)"
 $achado = Achar-Python
 if (-not $achado) {
-    Write-Host "Nao ha um Python compativel neste PC. Instalando o Python 3.12 pelo winget (fica ao lado do que voce ja tem; pode pedir permissao)..."
-    if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-        throw "Nao achei um Python compativel e nem o winget. Instale o Python 3.12 em python.org/downloads (marque 'Add python.exe to PATH') e rode o 1-INSTALAR.bat de novo."
-    }
-    winget install -e --id Python.Python.3.12 --silent --accept-package-agreements --accept-source-agreements
-    Atualizar-Path
+    # Sem winget (muito Windows 10 nao tem): baixa o instalador oficial do Python 3.12 em python.org e instala so para o seu usuario,
+    # ao lado de qualquer outro Python (nao mexe no PATH nem nos seus outros Pythons). Nao pede senha de administrador.
+    Write-Host "Nao ha um Python compativel neste PC. Baixando o Python 3.12 de python.org (uns 27 MB)..."
+    $alvo = if ($env:MOBVOZ_PY_TARGET) { $env:MOBVOZ_PY_TARGET } else { "$env:LOCALAPPDATA\Programs\Python\Python312" }
+    $exe = Join-Path $env:TEMP "python-3.12.10-amd64.exe"
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    try { Invoke-WebRequest "https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe" -OutFile $exe -UseBasicParsing }
+    catch { throw "Nao consegui baixar o Python 3.12 (sem internet?). Instale-o em python.org/downloads/release/python-3120/ e de dois cliques no 1-INSTALAR.bat de novo." }
+    Write-Host "Instalando o Python 3.12 (alguns minutos, sem janela)..."
+    $r = Start-Process $exe -ArgumentList "/quiet", "InstallAllUsers=0", "PrependPath=0", "Include_launcher=0", "Include_test=0", "Include_doc=0", "Shortcuts=0", "AssociateFiles=0", "TargetDir=`"$alvo`"" -Wait -PassThru
+    Remove-Item $exe -ErrorAction SilentlyContinue
+    $env:MOBVOZ_PYTHON = Join-Path $alvo "python.exe"
     $achado = Achar-Python
-    if (-not $achado) { throw "O Python 3.12 nao ficou disponivel. Feche esta janela e de dois cliques no 1-INSTALAR.bat de novo (o Windows precisa recarregar o PATH) ou instale o 3.12 em python.org/downloads." }
+    if (-not $achado) { throw "O Python 3.12 nao foi instalado (codigo $($r.ExitCode)). Instale-o em python.org/downloads/release/python-3120/ (marque 'Add python.exe to PATH') e de dois cliques no 1-INSTALAR.bat de novo." }
 }
 $py = $achado.Exe
 Write-Host "Python $($achado.Ver): $py"
