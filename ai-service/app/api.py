@@ -94,19 +94,44 @@ class Handler(BaseHTTPRequestHandler):
         logging.getLogger("mobvoz.http").info("%s %s", self.command, self.path)
 
 
+def explain_llm_failure(log) -> None:
+    """A IA que conversa nao respondeu: diz na janela preta POR QUE e o que fazer (em vez de so aparecer "nao consegui pensar" no jogo)."""
+    try:
+        llm.chat([{"role": "user", "content": "oi"}], timeout=25)
+        log.error("A IA respondeu, mas fora do formato esperado. Tente falar de novo; se continuar, avise o autor.")
+        return
+    except llm.LlmError as e:
+        msg = str(e)
+    if config.PROVIDER == "api":
+        if "401" in msg or "403" in msg:
+            dica = "a chave da API esta errada ou sem permissao. De dois cliques em 2-CONFIGURAR-API.bat e cole a chave de novo."
+        elif "402" in msg:
+            dica = "a conta da API esta sem saldo. Coloque credito no site da API."
+        elif "429" in msg:
+            dica = "o limite de uso da API foi atingido. Espere um pouco e tente de novo."
+        else:
+            dica = f"nao consegui falar com a API ({msg}). Confira a internet e a chave."
+    else:
+        dica = (f"nao consegui falar com o Ollama ({msg}). Instale o Ollama (ollama.com/download), deixe-o aberto e rode no PowerShell:  "
+                f"ollama pull {config.MODEL}   Ou use a sua propria API: 2-CONFIGURAR-API.bat e depois feche e abra o 3-LIGAR-SERVICO.bat.")
+    log.error("==== ATENCAO: a IA que conversa NAO respondeu: %s", dica)
+
+
 def warm_up() -> None:
     """Aquece modelo, vozes e STT em segundo plano: a 1a fala do jogo nao paga o carregamento (antes ~17 s, depois ~3 s)."""
     log = logging.getLogger("mobvoz.warm")
     t0 = time.perf_counter()
     for name, job in (
         ("LLM", lambda: (service.analyze({"text": "oi", "capabilities": ["REGISTER_CLAIM", "OPEN_TRADE", "SOCIAL"]}),
-                         service.reply({"entity_type": "minecraft:cow", "text": "oi", "capabilities": []}))),
+                         service.reply({"entity_type": "minecraft:cow", "text": "oi", "capabilities": []}))[1]),
         ("vozes", lambda: [speech.synthesize("Oi.", v, 1.0, 1.0) for v in (("pt_BR-faber-medium",) if speech.active_engine() == "kokoro"
                                                                           else ("pt_BR-faber-medium", "pt_BR-cadu-medium", "pt_BR-jeff-medium"))]),
         ("STT", lambda: speech.transcribe(bytes(48000 * 2))),  # 1 s de silencio
     ):
         try:
-            job()
+            r = job()
+            if name == "LLM" and isinstance(r, dict) and r.get("source") != "llm":
+                explain_llm_failure(log)
         except Exception as e:  # modelo/voz ausente: o sidecar segue (a falha reaparece no uso)
             log.warning("aquecimento de %s falhou: %s", name, e)
     log.info("aquecimento concluido em %.1f s", time.perf_counter() - t0)
