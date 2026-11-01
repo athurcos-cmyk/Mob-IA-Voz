@@ -832,7 +832,29 @@ _add_ev(fam)  # reacoes ao mundo (ev_*) e assuntos novos de ambiente
 from genambient_puxa import add as _add_puxa  # noqa: E402
 
 _add_puxa(fam)  # a criatura puxa assunto com o jogador (ev_puxa_*)
+
+from genambient_mundo import add as _add_mundo  # noqa: E402
+from genambient_hostis import add as _add_hostis  # noqa: E402
+
+_add_mundo(fam)    # aquaticos, voadores, bichos da mata e outros, bichos entre especies, mais fazenda e estimacao
+_add_hostis(fam)   # Nether, End, outros hostis e mais assuntos para os monstros comuns
 drop("curiosidade_quadrado")  # o juiz a achou filosofica demais para aldeoes, nas tres reescritas
+
+# Reescritas assistidas por IA (tools/gen/reescrever_familias.py): trocam as listas a/b/c das familias que o juiz reprovou; so ficam as que o juiz aprovou
+_OV = Path(__file__).with_name("ambient_reescritas.json")
+if _OV.exists():
+    _over = json.loads(_OV.read_text(encoding="utf-8"))
+    for _f in FAMILIES:
+        _o = _over.get(_f["id"])
+        if _o and not _f.get("solo"):
+            _f["a"], _f["b"], _f["c"] = _o["a"], _o["b"], _o["c"]
+
+# Familias novas que o juiz de IA deu menos de 3,3 (3 reescritas nao as salvaram: o motor sorteia a/b/c sem coordenar e o tema generico nao se sustenta).
+# Sai so a que nao deixa a dupla de criaturas sem nenhuma conversa (as 12 unicas da dupla ficam). Lista gerada a partir de docs/relatorios/familias_mundo.md.
+_RM = Path(__file__).with_name("ambient_removidas.json")
+if _RM.exists():
+    for _id in json.loads(_RM.read_text(encoding="utf-8")):
+        drop(_id)
 
 GENERIC_B = ["Pois é.", "É verdade.", "Também acho.", "Nem me fale."]
 for _f in FAMILIES:

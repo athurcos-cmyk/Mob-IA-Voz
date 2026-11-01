@@ -94,8 +94,7 @@ public final class Ambient {
     }
 
     static void tryScene(ServerPlayer player, ServerConfig cfg) {
-        if (!(player.level() instanceof ServerLevel level) || !level.dimension().location().getPath().equals("overworld")
-                || ConversationService.activeSessions() > 0) {
+        if (!(player.level() instanceof ServerLevel level) || ConversationService.activeSessions() > 0) { // qualquer dimensao: piglins e blazes tambem conversam no Nether
             return;
         }
         List<Mob> near = new ArrayList<>(level.getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(PLAYER_RADIUS),
@@ -124,6 +123,13 @@ public final class Ambient {
         Situation sit = situation(level, player, a, b);
         String only = onlyFamily;
         var pick = AmbientScenes.pick(sit, RND, recent::contains, id -> only == null || id.equals(only));
+        if (pick.isEmpty()) { // uma familia de dois bichos diferentes (lobo e raposa) so serve numa ordem: tenta a outra
+            Mob t = a;
+            a = b;
+            b = t;
+            sit = situation(level, player, a, b);
+            pick = AmbientScenes.pick(sit, RND, recent::contains, id -> only == null || id.equals(only));
+        }
         if (pick.isEmpty()) {
             return false;
         }
@@ -285,8 +291,17 @@ public final class Ambient {
         }
     }
 
-    /** Monstros que conversam entre si (zumbi com esqueleto, creeper, aranha...; nunca com aldeao nem animal); os demais hostis nunca puxam assunto. */
-    static final Set<String> MONSTERS = Set.of("zombie", "skeleton", "spider", "creeper", "enderman", "witch", "warden");
+    /** Hostis que conversam entre si (nunca com aldeao nem animal): os comuns, os "outros" (slime, afogado, pillager...) e os do Nether e do End. */
+    static final Set<String> MONSTERS = Set.of("zombie", "skeleton", "spider", "creeper", "enderman", "witch", "warden",
+            "slime", "cave_spider", "silverfish", "husk", "stray", "drowned", "guardian", "elder_guardian", "vex", "phantom",
+            "pillager", "vindicator", "evoker", "ravager", "shulker", "endermite",
+            "piglin", "piglin_brute", "hoglin", "zombified_piglin", "blaze", "ghast", "magma_cube", "wither_skeleton");
+    /** Bichos do Nether: conversam so entre si (assunto de lava, fortaleza, ouro), nunca com as falas genericas do mundo de cima. */
+    static final Set<String> NETHER = Set.of("piglin", "piglin_brute", "hoglin", "zombified_piglin", "strider", "blaze", "ghast", "magma_cube", "wither_skeleton");
+    /** Voadores pacificos (abelha, papagaio, morcego, allay): conversam entre si e com os outros bichos. */
+    static final Set<String> FLYING = Set.of("bee", "parrot", "bat", "allay");
+    /** Bichos "selvagens" que nao sao da fazenda nem de estimacao nem da mata (assuntos de montanha, deserto, pantano, neve). */
+    static final Set<String> WILD = Set.of("goat", "llama", "camel", "frog", "armadillo", "polar_bear", "sniffer", "mooshroom");
 
     /** Bichos da mata: a classe "forest" das aberturas de conversa. */
     static final Set<String> FOREST = Set.of("fox", "wolf", "bee", "rabbit", "parrot", "panda", "ocelot");
@@ -298,27 +313,42 @@ public final class Ambient {
     }
 
     /**
-     * Duas criaturas so conversam se faz sentido: aldeoes entre si (e o golem da vila), animais de fazenda entre si (o "rebanho": vaca, porco,
-     * ovelha, galinha, cavalo), os demais animais (lobo, gato...) so com a MESMA especie, e os monstros entre si (qualquer especie).
+     * Quem conversa com quem: aldeoes entre si (e o golem da vila); QUALQUER bicho com qualquer bicho (vaca com lobo, raposa com coelho...); aquaticos
+     * entre si (peixe com golfinho); voadores entre si (abelha com morcego); os do Nether entre si; e os monstros entre si. Nunca monstro com aldeao
+     * nem com bicho pacifico. A familia sorteada define o assunto (um assunto de lobo e raposa, ou um generico de bichos).
      */
     static boolean canChat(Set<String> a, Set<String> b, boolean sameType) {
         return a.contains("villagers") && b.contains("villagers")
-                || a.contains("animals") && b.contains("animals") && (a.contains("herd") && b.contains("herd") || sameType)
+                || a.contains("animals") && b.contains("animals")
+                || a.contains("aquatic") && b.contains("aquatic")
+                || a.contains("flying") && b.contains("flying")
+                || a.contains("nether") && b.contains("nether")
                 || a.contains("monsters") && b.contains("monsters");
     }
 
     /** Classes de assunto da criatura (ver genambient.py): tipo ("villagers", "animals", "monsters"), "calm" (aldeao ou animal) e a especie. */
     static Set<String> classesOf(Mob m) {
         Set<String> c = new HashSet<>();
-        if (m instanceof Enemy) {
-            c.add("monsters");
-            c.add(typeName(m));
+        String key0 = Profiles.keyOf(m);
+        String type0 = key0.contains("#") ? key0.substring(0, key0.indexOf('#')) : key0;
+        String name = type0.substring(type0.indexOf(':') + 1);
+        if (NETHER.contains(name)) { // hostil ou nao (o Strider e pacifico): so assuntos do Nether, nunca as falas genericas do mundo de cima
+            c.add("nether");
+            c.add(name);
             return c;
         }
-        c.add("calm");
-        String key = Profiles.keyOf(m);
-        String type = key.contains("#") ? key.substring(0, key.indexOf('#')) : key;
-        String name = type.substring(type.indexOf(':') + 1);
+        if (m instanceof Enemy) {
+            c.add("monsters");
+            c.add(name);
+            return c;
+        }
+        // golfinho, lula e lula-brilhante sao AgeableWaterCreature (nao herdam de WaterAnimal); tartaruga e axolote sao Animal
+        boolean aquatic = m instanceof net.minecraft.world.entity.animal.WaterAnimal || m instanceof net.minecraft.world.entity.animal.AgeableWaterCreature
+                || name.equals("turtle") || name.equals("axolotl");
+        if (!aquatic) {
+            c.add("calm"); // as falas genericas de "criatura calma" (clima, hora, o jogador) falam de terra e ar: nao servem para quem vive na agua
+        }
+        String key = key0;
         if (m instanceof Animal) {
             c.add("animals");
         }
@@ -326,7 +356,13 @@ public final class Ambient {
         if (FOREST.contains(name)) {
             c.add("forest");
         }
-        if (m instanceof net.minecraft.world.entity.animal.WaterAnimal || name.equals("turtle") || name.equals("axolotl")) {
+        if (WILD.contains(name)) {
+            c.add("wild");
+        }
+        if (FLYING.contains(name)) {
+            c.add("flying");
+        }
+        if (aquatic) {
             c.add("aquatic");
         }
         if (m instanceof net.minecraft.world.entity.animal.AbstractFish) {

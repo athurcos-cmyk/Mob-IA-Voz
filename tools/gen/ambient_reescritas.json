@@ -1,0 +1,2393 @@
+{
+ "afogado_agua": {
+  "a": [
+   "O tridente do afogado está todo rachado.",
+   "Achei um tridente rachado no fundo.",
+   "Meu tridente não perfura mais nada.",
+   "O tridente quebrou na metade.",
+   "Aquele tridente está caindo aos pedaços.",
+   "O tridente rachou depois da caçada.",
+   "Vi um tridente rachado perto das ruínas."
+  ],
+  "b": [
+   "Esse tridente já viu dias melhores.",
+   "Tridente rachado não serve pra caçar.",
+   "Vou usar mesmo assim, quebra mais um pouco.",
+   "Achei um tridente rachado outro dia.",
+   "Tridente bom tem que estar inteiro.",
+   "Rachado assim não fura nada."
+  ],
+  "c": [
+   "Vou procurar outro tridente.",
+   "Deixa o tridente rachado pra lá.",
+   "Vou afiar o que sobrou.",
+   "Esse tridente não presta mais."
+  ]
+ },
+ "axolote_sorriso": {
+  "a": [
+   "Acho que vi um afogado com um tridente rachado.",
+   "Tinha um tridente quebrado perto da entrada da caverna.",
+   "Um afogado passou com um tridente todo lascado.",
+   "Aquele tridente no chão estava rachado no cabo.",
+   "O tridente do afogado brilhou e depois rachou.",
+   "Encontrei um tridente com uma rachadura na ponta.",
+   "O tridente do afogado fez um barulho estranho ao bater."
+  ],
+  "b": [
+   "Esse tridente já viu dias melhores.",
+   "Tridente rachado não vale nada.",
+   "O mar castiga até o tridente mais forte.",
+   "Rachadura no tridente é mau sinal.",
+   "Afogado não cuida do tridente.",
+   "Tridente quebrado atrai azar."
+  ],
+  "c": [
+   "Vou ficar longe de tridente rachado.",
+   "Melhor não mexer com isso.",
+   "O mar leva o que é fraco.",
+   "Deixa o tridente onde está."
+  ]
+ },
+ "bicho_amizade_geral": {
+  "a": [
+   "O fazendeiro deixou o balde perto do portão.",
+   "O galo cantou mais cedo hoje.",
+   "Tem capim fresco perto da cerca.",
+   "A poça de lama secou de ontem para hoje.",
+   "O cavalo relinchou quando o sol nasceu.",
+   "As galinhas ciscaram perto do celeiro a manhã toda."
+  ],
+  "b": [
+   "Esse balde vive esquecido por aí.",
+   "O galo anda apressado esses dias.",
+   "Capim fresco é sempre bom de achar.",
+   "A lama volta com a próxima chuva.",
+   "O cavalo fica inquieto de manhã.",
+   "As galinhas não param quietas."
+  ],
+  "c": [
+   "Vou ver se acho minhoca perto dali.",
+   "Melhor eu voltar para o pasto.",
+   "Fica de olho no portão.",
+   "Até a próxima ciscada."
+  ]
+ },
+ "bicho_medo_geral": {
+  "a": [
+   "Aquele espantalho novo me deixa arrepiado.",
+   "O portão do celeiro range à noite.",
+   "O galo cantou fora de hora hoje.",
+   "A sombra do moinho me assusta.",
+   "O porco fugiu do chiqueiro de novo.",
+   "O fazendeiro esqueceu a porteira aberta.",
+   "O gato preto da fazenda me olha estranho."
+  ],
+  "b": [
+   "Esse espantalho parece vivo.",
+   "O portão range quando venta.",
+   "O galo só canta quando algo se aproxima.",
+   "O porco foge quando sente perigo.",
+   "A porteira aberta chama predador."
+  ],
+  "c": [
+   "Vou ficar perto do celeiro.",
+   "Melhor não sair do quintal.",
+   "Vou dormir com um olho aberto.",
+   "Qualquer coisa eu corro pro galinheiro."
+  ]
+ },
+ "shulker_casca": {
+  "a": [
+   "Minha casca rachou quando o esqueleto atirou.",
+   "A casca ficou marcada depois daquela luta.",
+   "Vi um zumbi batendo na minha casca.",
+   "Minha casca aguentou o golpe do enderman.",
+   "A casca está cheia de marcas do tridente.",
+   "Um creeper explodiu perto da minha casca.",
+   "Minha casca tem um arranhão novo do esqueleto.",
+   "A casca protegeu do ataque do ghast."
+  ],
+  "b": [
+   "Essa casca já viu muitas batalhas.",
+   "A casca aguenta mais do que parece.",
+   "Marcas na casca mostram que você sobreviveu.",
+   "A casca é dura, mas não é invencível.",
+   "Cada arranhão na casca conta uma história.",
+   "A casca protege, mas o perigo continua."
+  ],
+  "c": [
+   "Vou verificar os danos na casca.",
+   "Fica de olho na casca.",
+   "Melhor reforçar a casca.",
+   "A casca precisa de descanso."
+  ]
+ },
+ "urso_gelo": {
+  "a": [
+   "O gelo daqui é o melhor do mundo.",
+   "Gosto de pescar nas fendas do gelo.",
+   "Quando o filhote está por perto, ninguém se aproxima.",
+   "A neve cobre tudo de branco.",
+   "A fenda no gelo está funda.",
+   "O peixe está escasso hoje.",
+   "O filhote já aprende a nadar.",
+   "O vento sopra forte do norte."
+  ],
+  "b": [
+   "Eu fico de olho nos filhotes.",
+   "O frio não me incomoda.",
+   "Peixe fresco é o melhor lanche.",
+   "Esse gelo é bem grosso.",
+   "A fenda pode se alargar.",
+   "O filhote precisa de prática."
+  ],
+  "c": [
+   "Vamos pescar.",
+   "Cuida do filhote.",
+   "Boa pescaria.",
+   "Fica de olho na fenda."
+  ]
+ },
+ "bicho_brincar_geral": {
+  "a": [
+   "Vamos brincar de pular o riacho raso?",
+   "Quer esconder no milharal comigo?",
+   "Vamos apostar corrida até a cerca?",
+   "Quer chutar pedrinha no pasto?",
+   "Vamos rolar na grama perto do lago?",
+   "Quer brincar de pega-pega no celeiro?",
+   "Vamos pular as moitas perto do rio?"
+  ],
+  "b": [
+   "Pular o riacho é divertido.",
+   "Esconder no milharal é bom.",
+   "Correr até a cerca é legal.",
+   "Chutar pedrinha é engraçado.",
+   "Rolar na grama é relaxante.",
+   "Pega-pega no celeiro é agitado."
+  ],
+  "c": [
+   "Foi uma boa brincadeira.",
+   "Agora vou descansar um pouco.",
+   "Vamos brincar de novo depois.",
+   "Que bom que brincamos juntos."
+  ]
+ },
+ "evocador_vex": {
+  "a": [
+   "O tridente do afogado está rachado.",
+   "A lava subiu até a borda do lago.",
+   "O bambu acabou no canteiro.",
+   "O tridente quebrou no meio da caçada.",
+   "A lava quase alcançou a ponte.",
+   "O último bambu foi cortado ontem.",
+   "O tridente rachou na pedra.",
+   "A lava subiu sem aviso."
+  ],
+  "b": [
+   "Esse tridente já viu dias melhores.",
+   "A lava sobe sem avisar.",
+   "O bambu não brota mais.",
+   "Tridente rachado não fura a presa.",
+   "Lava alta é perigo para todos.",
+   "Bambu que acaba deixa o panda sem comer."
+  ],
+  "c": [
+   "Vou treinar mais, então.",
+   "Fica de olho nessa lava.",
+   "Preciso de outro bambu.",
+   "Melhor consertar o tridente."
+  ]
+ },
+ "nether_teto": {
+  "a": [
+   "O teto é de pedra preta até onde vejo.",
+   "A pedra acima não quebra, já testei.",
+   "Nunca vi uma rachadura no teto daqui.",
+   "O teto não cede, mesmo sob o fogo.",
+   "Aqui embaixo ninguém vê o céu.",
+   "O teto é de rocha que nada quebra.",
+   "Já olhou para o teto? É só pedra preta.",
+   "O teto daqui é feito de rocha que nada quebra."
+  ],
+  "b": [
+   "Prefiro o teto, mais seguro.",
+   "Só os humanos olham para cima.",
+   "Nunca vi o céu mesmo.",
+   "Quem se importa com o céu?",
+   "O teto não cede, já tentei.",
+   "Verdade, é igual em todo lugar."
+  ],
+  "c": [
+   "Melhor não pensar nisso.",
+   "Cada um com o seu teto.",
+   "Segue andando.",
+   "Não vou olhar para cima."
+  ]
+ },
+ "tartaruga_praia": {
+  "a": [
+   "A areia da praia está mais macia hoje.",
+   "As ondas trouxeram mais conchas para o ninho.",
+   "O sol está alto e a areia brilha.",
+   "Encontrei um caminho sem pedras até o mar.",
+   "A maré baixa deixou a praia mais larga.",
+   "Tem um tronco caído perto da água.",
+   "O vento sopra forte do oceano.",
+   "A água está gelada esta manhã."
+  ],
+  "b": [
+   "A areia macia ajuda a cavar o ninho.",
+   "As conchas são boas para marcar o lugar.",
+   "O sol alto aquece os ovos mais rápido.",
+   "Caminho sem pedras é raro por aqui.",
+   "A maré baixa descobre mais areia seca.",
+   "O tronco pode servir de abrigo.",
+   "O vento forte anuncia tempestade.",
+   "Água gelada é melhor para os filhotes."
+  ],
+  "c": [
+   "Vou cavar o ninho agora.",
+   "Melhor voltar para o mar.",
+   "A maré está mudando.",
+   "Preciso encontrar meu caminho."
+  ]
+ },
+ "vex_voo": {
+  "a": [
+   "Atravessei uma parede e quase bati num creeper.",
+   "Minha espada cortou um morcego no voo.",
+   "O vento me carrega entre as árvores.",
+   "Vi um esqueleto atirando de cima.",
+   "Meu mestre me chamou de volta.",
+   "Passei por um fio de teia sem me prender.",
+   "Quase fui atingido por uma flecha.",
+   "Voei baixo e senti cheiro de pólvora."
+  ],
+  "b": [
+   "Cuidado com os creepers.",
+   "Morcegos são fáceis de acertar.",
+   "O vento é nosso aliado.",
+   "Esqueletos são péssimos de mira.",
+   "Teias não me seguram.",
+   "Flechas são lentas para nós.",
+   "Pólvora é sinal de perigo."
+  ],
+  "c": [
+   "Vamos embora daqui.",
+   "Continue voando rápido.",
+   "Não pare de se mover.",
+   "Fique longe do chão."
+  ]
+ },
+ "aq_bolhas": {
+  "a": [
+   "Essas bolhas estouram quando encosto nelas.",
+   "Tem bolha grudando na minha nadadeira.",
+   "As bolhas sobem do fundo sem parar.",
+   "Elas mudam o jeito da água.",
+   "O cardume brinca entre as bolhas.",
+   "Bolhas grandes sobem mais devagar."
+  ],
+  "b": [
+   "Elas estouram mesmo, é rápido.",
+   "Acontece comigo também.",
+   "Sobem do fundo o tempo todo.",
+   "Mudam a água, sim.",
+   "O cardume gosta delas.",
+   "As grandes demoram mais."
+  ],
+  "c": [
+   "Vou nadar entre elas.",
+   "Vamos seguir as bolhas.",
+   "Deixa as bolhas subirem.",
+   "Vou atrás das grandes."
+  ]
+ },
+ "brutamontes_guarda": {
+  "a": [
+   "O bastião tem paredes grossas.",
+   "Meu machado está afiado para quem tentar.",
+   "Ninguém passa pela entrada sem minha permissão.",
+   "Os piglins pequenos só pensam em ouro, eu penso em guarda.",
+   "O eco dos meus passos avisa que estou de vigia.",
+   "Aqui não entra nem um piglin zumbi.",
+   "Eu não durmo, eu vigio."
+  ],
+  "b": [
+   "Paredes grossas não seguram quem tem medo.",
+   "Esse machado já provou do que é capaz.",
+   "Entrada guardada é bastião seguro.",
+   "Ouro não vale nada se o bastião cair.",
+   "Meu posto é aqui, e aqui eu fico.",
+   "Piglin zumbi que tenta, morre de novo."
+  ],
+  "c": [
+   "Então continue de guarda.",
+   "Não deixe ninguém passar.",
+   "Volte ao seu posto.",
+   "Qualquer coisa, chame."
+  ]
+ },
+ "ghast_choro": {
+  "a": [
+   "Eu solto fogo e grito.",
+   "Minhas bolas de fogo acertam o chão.",
+   "O som que faço ecoa no Nether.",
+   "Flutuo e atiro fogo.",
+   "Meu grito assusta quem chega perto.",
+   "As bolas de fogo queimam tudo.",
+   "Eu grito quando vejo o jogador.",
+   "Meu fogo acende o chão do Nether."
+  ],
+  "b": [
+   "O fogo queima forte.",
+   "Meu grito é alto.",
+   "As bolas acertam longe.",
+   "O Nether é quente.",
+   "Eu flutuo e atiro.",
+   "O fogo não apaga."
+  ],
+  "c": [
+   "Vou continuar gritando.",
+   "O fogo vai queimar.",
+   "Flutuo para longe.",
+   "Atiro mais uma bola."
+  ]
+ },
+ "jaguatirica_creeper": {
+  "a": [
+   "O creeper me viu e saiu em disparada.",
+   "Quando eu chego, o creeper some.",
+   "Os creepers fogem de mim, sabia?",
+   "Eu nem preciso fazer nada, eles somem.",
+   "O creeper se escondeu atrás da árvore.",
+   "Vi um creeper hoje, ele correu.",
+   "Os creepers mudam de direção quando me sentem.",
+   "Dizem que sou o terror dos creepers."
+  ],
+  "b": [
+   "Esse creeper é rápido.",
+   "Eles têm medo de tudo.",
+   "É engraçado ver eles correndo.",
+   "Você assusta até os verdes.",
+   "Creepers são assim mesmo.",
+   "Eles não gostam de jaguatirica."
+  ],
+  "c": [
+   "Que fiquem longe.",
+   "Já vão tarde.",
+   "Deixa eles correrem.",
+   "Assim que é bom."
+  ]
+ },
+ "nether_portal": {
+  "a": [
+   "O portal range de novo.",
+   "O roxo do portal tá mais forte hoje.",
+   "O portal tá cuspindo faísca.",
+   "Tem um cheiro estranho vindo do portal.",
+   "O portal tá tremendo.",
+   "O portal fez um barulho alto agora."
+  ],
+  "b": [
+   "Esse portal só traz problema.",
+   "O roxo dele me deixa irritado.",
+   "Quem passa por ele volta diferente.",
+   "Fica longe desse portal.",
+   "O portal devia ser destruído.",
+   "Nunca confie nesse brilho roxo."
+  ],
+  "c": [
+   "Vou ficar de olho nele.",
+   "Não chega perto.",
+   "Deixa o portal pra lá.",
+   "Vou me afastar daqui."
+  ]
+ },
+ "raiders_totem": {
+  "a": [
+   "O totem do evocador brilhou quando ele caiu.",
+   "Aquele totem salvou o evocador da minha flecha.",
+   "O evocador segurava o totem com força antes de morrer.",
+   "Eu vi o totem voar longe quando o evocador tombou.",
+   "O totem caiu no chão e ninguém pegou.",
+   "O brilho do totem sumiu depois que o evocador morreu.",
+   "O capitão pegou o totem do evocador caído."
+  ],
+  "b": [
+   "Esse totem é perigoso nas mãos deles.",
+   "Sem o totem, o evocador cai rápido.",
+   "Melhor a gente pegar o totem antes.",
+   "O totem não devia existir.",
+   "Se o evocador não tivesse totem, já era.",
+   "Aquele brilho atrai problema."
+  ],
+  "c": [
+   "Vamos ficar de olho no próximo.",
+   "O totem não salva ninguém da gente.",
+   "Da próxima, o totem é nosso.",
+   "Deixa o totem pra lá, seguimos em frente."
+  ]
+ },
+ "aq_naufragio": {
+  "a": [
+   "O casco daquele naufrágio está rachado de lado.",
+   "Tem uma âncora enferrujada caída perto do naufrágio.",
+   "A correnteza empurrou um remo para dentro do naufrágio.",
+   "Vi um baú meio enterrado na areia do naufrágio.",
+   "O mastro do naufrágio quebrou e afundou.",
+   "Tem uma vela rasgada presa no convés do naufrágio."
+  ],
+  "b": [
+   "Essa rachadura aumenta a cada maré.",
+   "A âncora enferrujada já não segura nada.",
+   "O remo vai apodrecer ali dentro.",
+   "O baú enterrado pode ter algo bom.",
+   "O mastro quebrado virou esconderijo de peixe.",
+   "A vela rasgada balança com a água."
+  ],
+  "c": [
+   "Vou dar uma olhada mais de perto.",
+   "Fica de olho nesse baú.",
+   "A maré vai mudar logo.",
+   "Depois a gente volta aqui."
+  ]
+ },
+ "bicho_humano_geral": {
+  "a": [
+   "O tridente do afogado está todo rachado.",
+   "Aquele afogado deixou o tridente na areia.",
+   "Vi o tridente dele brilhando na água.",
+   "O tridente do afogado quase acertou a tartaruga.",
+   "Aquele tridente enferrujado está largado perto do recife.",
+   "O afogado perdeu o tridente na maré baixa."
+  ],
+  "b": [
+   "Esse tridente já viu dias melhores.",
+   "Tridente rachado não vale nada.",
+   "Ainda corta, mesmo rachado.",
+   "O mar vai engolir esse tridente.",
+   "Afogado sem tridente é só um zumbi molhado.",
+   "Melhor deixar o tridente onde está."
+  ],
+  "c": [
+   "Vou caçar longe desse afogado.",
+   "Fica de olho nesse tridente.",
+   "O mar resolve isso.",
+   "Então é isso, até o próximo naufrágio."
+  ]
+ },
+ "bicho_lembranca_geral": {
+  "a": [
+   "Lembra da poça de lama perto do portão?",
+   "O cheiro do feno molhado ainda me dá arrepio.",
+   "Aquele dia a chuva alagou o estábulo inteiro.",
+   "Eu nunca esqueci o susto com a cerca quebrada.",
+   "A lama cobriu minhas patas até o joelho.",
+   "O portão rangeu a noite toda com o vento.",
+   "A chuva trouxe minhocas para perto da cerca."
+  ],
+  "b": [
+   "A lama ainda gruda nas minhas patas.",
+   "O feno molhado fede demais.",
+   "A cerca quebrada assustou todo mundo.",
+   "O portão range sem parar.",
+   "A chuva deixou tudo encharcado.",
+   "Minhocas apareceram por todo lado."
+  ],
+  "c": [
+   "Vou me deitar no feno seco.",
+   "Fica longe da cerca quebrada.",
+   "Vou procurar minhocas.",
+   "O portão ainda range."
+  ]
+ },
+ "bicho_vento_geral": {
+  "a": [
+   "O milharal está balançando com o vento.",
+   "O vento forte derruba as espigas.",
+   "As galinhas ciscam perto do celeiro.",
+   "O porco fuça a terra perto da cerca.",
+   "A vaca pasta no pasto alto.",
+   "A ovelha se esconde debaixo da árvore.",
+   "O cavalo relincha ao longe."
+  ],
+  "b": [
+   "O vento mexe com tudo isso.",
+   "As espigas caem no chão.",
+   "As galinhas procuram grãos.",
+   "O porco acha raízes.",
+   "A vaca come sem parar.",
+   "A ovelha tem medo do vento."
+  ],
+  "c": [
+   "Vou me abrigar no estábulo.",
+   "Melhor ficar perto da cerca.",
+   "O vento logo passa.",
+   "Vou procurar outro canto."
+  ]
+ },
+ "cruz_lhama_camelo": {
+  "a": [
+   "Camelo, você conhece cada duna do deserto.",
+   "Eu nunca vi um oásis de perto.",
+   "O deserto castiga quem não conhece as trilhas.",
+   "Dizem que o oásis esconde água fresca.",
+   "Você sente o cheiro de água no vento?",
+   "O sol racha até as pedras por aqui."
+  ],
+  "b": [
+   "A areia guarda segredos antigos.",
+   "O oásis é a única salvação.",
+   "Sem água, ninguém atravessa.",
+   "O deserto não perdoa erro.",
+   "Água fresca vale mais que ouro."
+  ],
+  "c": [
+   "Vou lembrar disso na próxima travessia.",
+   "Fica de olho nas nuvens.",
+   "O deserto ensina a ter paciência."
+  ]
+ },
+ "nether_basalto": {
+  "a": [
+   "As colunas de basalto aqui são afiadas.",
+   "O deserto de basalto não tem vida nenhuma.",
+   "Gosto do silêncio das pedras pretas.",
+   "Tem cinza caindo para todo lado.",
+   "As colunas de basalto são altas demais.",
+   "O chão aqui é todo rachado.",
+   "O basalto brilha quando o fogo passa.",
+   "As pedras pretas escondem o caminho."
+  ],
+  "b": [
+   "Por isso ninguém vem para cá.",
+   "Eu me escondo entre as colunas.",
+   "É um bom lugar para quem gosta de paz.",
+   "A cinza nem me incomoda.",
+   "As colunas servem de abrigo.",
+   "O calor não me afeta."
+  ],
+  "c": [
+   "Fica por aqui, então.",
+   "Longe de tudo.",
+   "Aqui ninguém nos acha.",
+   "Vou procurar outro canto."
+  ]
+ },
+ "vingador_machado": {
+  "a": [
+   "Meu machado corta mais fundo hoje.",
+   "A lâmina está sedenta por madeira.",
+   "Vou derrubar árvores até o sol se pôr.",
+   "Nenhuma porta resiste a esse machado.",
+   "Madeira boa para o fogo da noite.",
+   "O aço canta quando acerta o tronco.",
+   "Vou abrir clareira na mata fechada."
+  ],
+  "b": [
+   "Machado afiado corta sem esforço.",
+   "Essa lâmina não perdoa tronco grosso.",
+   "Cada golpe derruba mais um.",
+   "Madeira não vai faltar para a fogueira.",
+   "O corte limpo é sinal de força.",
+   "A floresta vai encolher hoje."
+  ],
+  "c": [
+   "A mata vai tremer.",
+   "Vamos fazer lenha.",
+   "O machado não descansa.",
+   "Cortar até cansar."
+  ]
+ },
+ "abelha_trabalho": {
+  "a": [
+   "O mel está quase escorrendo dos favos.",
+   "O campo de girassóis está cheio de pólen hoje.",
+   "A colmeia está ficando sem espaço para o mel.",
+   "O vento atrapalhou meu voo de volta.",
+   "As flores perto do rio estão secando.",
+   "A rainha quer mais cera para os alvéolos."
+  ],
+  "b": [
+   "Esse pólen vai render um bom mel.",
+   "A colmeia precisa de mais cera.",
+   "O vento sopra forte mesmo.",
+   "Vamos buscar mais pólen amanhã.",
+   "As flores secas não dão pólen.",
+   "A rainha sempre quer mais cera."
+  ],
+  "c": [
+   "Vou descansar um pouco agora.",
+   "Depois a gente vê o resto.",
+   "Vou avisar as outras sobre o vento.",
+   "Amanhã recomeça o trabalho."
+  ]
+ },
+ "blaze_fortaleza": {
+  "a": [
+   "O gerador de fogo da fortaleza está mais forte.",
+   "Aquele humano rondou o corredor norte hoje.",
+   "A lava do fosso subiu até a ponte.",
+   "O som de passos ecoou na entrada.",
+   "O calor do gerador está insuportável até para mim.",
+   "Mais um humano tentou invadir a fortaleza."
+  ],
+  "b": [
+   "Eu queimo qualquer um que chegar perto.",
+   "A fortaleza é nossa, não deles.",
+   "Eu atiro primeiro se aparecer de novo.",
+   "O fogo vai consumir quem entrar.",
+   "Ninguém passa pelo meu corredor.",
+   "Eu vigio a ponte de lava."
+  ],
+  "c": [
+   "Fica de guarda no seu posto.",
+   "A fortaleza continua segura.",
+   "Qualquer movimento, a gente queima.",
+   "Eu volto para o gerador."
+  ]
+ },
+ "coelho_pulo": {
+  "a": [
+   "Pulei por cima daquela poça grande.",
+   "A grama perto do rio está macia.",
+   "Pulei da pedra até o tronco caído.",
+   "Quase caí na toca ao pular.",
+   "Vi uma poça funda perto do carvalho.",
+   "A terra solta me fez pular mais alto.",
+   "Pulei três vezes sem parar.",
+   "Aquele tronco caído é um bom alvo."
+  ],
+  "b": [
+   "Eu também pulei ali, mas quase escorreguei.",
+   "Pulei mais alto que o arbusto de samambaia.",
+   "A terra solta é traiçoeira para pular.",
+   "Aquele tronco é mais longe do que parece.",
+   "Pular na grama é melhor que na terra seca.",
+   "Eu prefiro pular perto do rio."
+  ],
+  "c": [
+   "Vou tentar pular por cima de novo.",
+   "Bora pular mais uma vez.",
+   "Quem cansa primeiro perde.",
+   "Vou treinar meu pulo na grama."
+  ]
+ },
+ "cruz_lobo_gato": {
+  "a": [
+   "Gato, você dorme o dia inteiro.",
+   "Gato, você nunca caça comigo.",
+   "Gato, você mia baixo demais.",
+   "Gato, você se acha melhor que eu?",
+   "Gato, você não late pra avisar.",
+   "Gato, você come peixe cru.",
+   "Gato, você não anda em matilha."
+  ],
+  "b": [
+   "Eu durmo porque posso.",
+   "Caçar é com você, lobo.",
+   "Miar baixo é meu jeito.",
+   "Eu sou independente.",
+   "Cada um com seu jeito.",
+   "Peixe cru é o melhor."
+  ],
+  "c": [
+   "Cada um com seu estilo.",
+   "Prefiro minha alcateia.",
+   "Fica bem aí.",
+   "Então tá."
+  ]
+ },
+ "golfinho_tesouro": {
+  "a": [
+   "Tem ruínas afundadas perto dos corais.",
+   "Achei um caminho para um tesouro no fundo.",
+   "Tem um baú escondido entre as pedras.",
+   "A correnteza leva até um lugar cheio de ouro.",
+   "Sigo cardumes até os restos de um navio.",
+   "O brilho do ouro aparece quando a luz bate.",
+   "Conheço uma fenda onde o tesouro afundou.",
+   "Já vi um baú preso nas algas escuras."
+  ],
+  "b": [
+   "O baú está bem escondido.",
+   "Só aparece para quem sabe nadar fundo.",
+   "O tesouro afundou perto das rochas.",
+   "A correnteza leva até as ruínas.",
+   "O ouro brilha quando a água clareia."
+  ],
+  "c": [
+   "Vou nadar por lá de novo.",
+   "Fica de olho nas ruínas.",
+   "Segue a correnteza que chega lá.",
+   "Vou procurar mais peixes."
+  ]
+ },
+ "guardiao_anciao": {
+  "a": [
+   "Meu laser atravessa qualquer armadura.",
+   "O monumento guarda segredos antigos.",
+   "Sinto cada corrente que me cerca.",
+   "Quem nada perto sente meu cansaço.",
+   "O oceano me obedece há eras.",
+   "Meu olho vê tudo nas profundezas.",
+   "O tesouro antigo ainda pulsa aqui."
+  ],
+  "b": [
+   "Esse laser já derreteu muitos escudos.",
+   "O monumento não perdoa invasores.",
+   "As correntes carregam minha força.",
+   "Ninguém escapa do meu alcance.",
+   "O oceano esconde o que é meu.",
+   "Meu olho nunca se fecha."
+  ],
+  "c": [
+   "Vou continuar a vigília.",
+   "Que tentem me desafiar.",
+   "O fundo permanece intocado.",
+   "Meu laser está pronto."
+  ]
+ },
+ "papagaio_biscoito": {
+  "a": [
+   "Aquele humano comeu biscoito perto de mim.",
+   "Vi um biscoito caído perto do galho.",
+   "Outro papagaio tentou me dar biscoito.",
+   "O humano jogou biscoito no chão.",
+   "Quase biquei um biscoito hoje.",
+   "Tem biscoito no chão perto da árvore.",
+   "Me ofereceram biscoito de novo."
+  ],
+  "b": [
+   "Biscoito é veneno para papagaio.",
+   "Semente é muito melhor.",
+   "Nunca como biscoito.",
+   "Biscoito faz mal.",
+   "Semente é minha comida.",
+   "Prefiro semente."
+  ],
+  "c": [
+   "Vou procurar semente.",
+   "Semente é o que importa.",
+   "Vou avisar os outros.",
+   "Fica longe do biscoito."
+  ]
+ },
+ "papagaio_selva": {
+  "a": [
+   "A selva tem cada som!",
+   "Aqui no alto das árvores o mundo é outro.",
+   "Eu adoro a selva, é tudo tão alto e verde.",
+   "Só voo onde tem copa de árvore.",
+   "Tem um ninho de arara no alto.",
+   "Fruta madura é a melhor coisa da selva."
+  ],
+  "b": [
+   "O melhor é pousar num galho alto.",
+   "Daqui dá para ver o mundo todo.",
+   "Eu moro aqui e não saio.",
+   "Esse barulho todo é uma festa.",
+   "A selva é cheia de coisas."
+  ],
+  "c": [
+   "Vamos para as copas.",
+   "A selva é a nossa casa.",
+   "Fica à vontade.",
+   "A gente se vê por aí."
+  ]
+ },
+ "wskel_fortaleza": {
+  "a": [
+   "A fortaleza tem mais fendas que antes.",
+   "Meu machado cortou três hoje.",
+   "As escadas rangem sob os pés.",
+   "A lava ilumina pouco os corredores.",
+   "Meus ossos estalam quando ando.",
+   "O cheiro de enxofre está forte.",
+   "Os corredores estão mais frios hoje."
+  ],
+  "b": [
+   "Fica de olho nas fendas.",
+   "Esse machado nunca falha.",
+   "Os rangidos avisam a chegada.",
+   "A lava esconde o que se move.",
+   "Ossos estalam, é só andar.",
+   "Enxofre atrai os vivos."
+  ],
+  "c": [
+   "Vou patrulhar as fendas.",
+   "Ninguém passa por mim.",
+   "Vigio os corredores.",
+   "Corto quem aparecer."
+  ]
+ },
+ "zpiglin_bando": {
+  "a": [
+   "Se um apanha, o bando inteiro ataca.",
+   "Mexeu com um, mexeu com todos.",
+   "Um de nós cai, todos avançam.",
+   "Se o humano bater, o bando revida.",
+   "A raiva de um vira raiva de todos.",
+   "Ninguém encara o bando e sai vivo.",
+   "Se um sangra, todos mordem."
+  ],
+  "b": [
+   "Raiva é de todos, sim.",
+   "Ele que tente.",
+   "O bando não perdoa.",
+   "A gente ataca junto.",
+   "Nenhum de nós foge.",
+   "Vamos em cima dele."
+  ],
+  "c": [
+   "O bando ataca junto.",
+   "Fica no grupo.",
+   "Nenhum de nós corre.",
+   "Vamos caçar."
+  ]
+ },
+ "allay_amizade": {
+  "a": [
+   "Eu achei um humano que me dá itens.",
+   "Recebi um item brilhante do humano hoje.",
+   "O humano me deu um item e eu fiquei feliz.",
+   "Eu ganhei um item do humano e não soltei mais.",
+   "Um humano me entregou um item, eu guardei.",
+   "Eu consegui um item novo do humano.",
+   "O humano me deu um item e eu cantei.",
+   "Eu tenho um humano que me dá itens."
+  ],
+  "b": [
+   "Esse item é bom de carregar.",
+   "Eu também quero um item assim.",
+   "O humano sabe o que a gente gosta.",
+   "Eu levo o item para o humano também.",
+   "Item novo é sempre bom.",
+   "Eu fico perto do humano que me dá item."
+  ],
+  "c": [
+   "Vou procurar mais itens.",
+   "Vou cantar para o humano.",
+   "Vou seguir o humano de novo.",
+   "Vou guardar meu item."
+  ]
+ },
+ "axolote_caverna": {
+  "a": [
+   "A água da caverna está bem gelada hoje.",
+   "Tem muito peixe pequeno nadando por aqui.",
+   "As plantas cresceram bastante na caverna.",
+   "O musgo está cobrindo as pedras de novo.",
+   "A correnteza trouxe mais areia para o fundo.",
+   "O teto da caverna está pingando água.",
+   "Tem algas novas perto da entrada."
+  ],
+  "b": [
+   "Essa água gelada é boa para nadar.",
+   "Peixe pequeno é fácil de pegar.",
+   "As plantas deixam a caverna mais cheia.",
+   "O musgo deixa tudo escorregadio.",
+   "A areia nova mudou o fundo.",
+   "As gotas fazem barulho na água."
+  ],
+  "c": [
+   "Vou nadar um pouco mais.",
+   "A caverna está boa hoje.",
+   "Fico por aqui mais um tempo."
+  ]
+ },
+ "nether_lava": {
+  "a": [
+   "O lago de lava subiu de novo.",
+   "A lava está mais alta que ontem.",
+   "Vi uma bolha de fogo estourar na margem.",
+   "O calor está mais forte perto do lago.",
+   "A pedra perto da lava rachou.",
+   "A lava engoliu um pedaço da margem.",
+   "O brilho da lava está mais intenso hoje."
+  ],
+  "b": [
+   "A lava sempre sobe sem avisar.",
+   "Esse lago já engoliu muita coisa.",
+   "O calor da lava é implacável.",
+   "A margem está cada vez mais fina.",
+   "Ninguém fica perto da beirada.",
+   "A lava não perdoa descuido."
+  ],
+  "c": [
+   "Fica longe da margem.",
+   "Vou para o outro lado.",
+   "Cuidado com a lava.",
+   "Não pisa perto do lago."
+  ]
+ },
+ "peixe_esconde": {
+  "a": [
+   "Achei um buraco entre as pedras.",
+   "Tem um canto escuro atrás do coral.",
+   "Me escondi no meio do cardume.",
+   "A sombra da rocha esconde bem.",
+   "Achei uma fenda na pedra grande.",
+   "O cardume se move e esconde a gente."
+  ],
+  "b": [
+   "Esse buraco é bom demais.",
+   "No escuro ninguém me acha.",
+   "O cardume confunde os olhos.",
+   "A sombra muda quando a água mexe.",
+   "Na fenda cabe só um peixe."
+  ],
+  "c": [
+   "Vou tentar esse esconderijo.",
+   "Fica de olho no cardume.",
+   "A sombra some quando o sol muda.",
+   "Vou nadando até lá."
+  ]
+ },
+ "silverfish_pedra": {
+  "a": [
+   "Pedra infestada é o melhor esconderijo.",
+   "Quando quebram a pedra, a gente sai em bando.",
+   "A fortaleza tem pedra infestada por todo lado.",
+   "Ninguém vê a gente dentro da pedra.",
+   "A pedra quebrada é o nosso sinal.",
+   "A gente fica quieto até alguém quebrar.",
+   "A fortaleza é cheia de pedra infestada.",
+   "Dentro da pedra a gente espera o barulho."
+  ],
+  "b": [
+   "A pedra esconde a gente.",
+   "Quando quebra, a gente aparece.",
+   "Ninguém desconfia da pedra.",
+   "Um sai e os outros vêm atrás.",
+   "A gente espera o momento certo.",
+   "A pedra é o nosso esconderijo."
+  ],
+  "c": [
+   "Vamos ficar na espreita.",
+   "Quando quebrar, a gente aparece.",
+   "Cada um no seu bloco.",
+   "A gente se vê na pedra."
+  ]
+ },
+ "aq_perigo": {
+  "a": [
+   "Ouviu aquele gemido? Parece um afogado.",
+   "Cuidado com o templo do fundo, lá tem guardiões.",
+   "Tem uns mortos-vivos rondando a costa à noite.",
+   "Algo grande passou por aqui agora há pouco.",
+   "Aquele tridente rachado no chão, é de afogado.",
+   "O cardume sumiu de repente, não é bom sinal.",
+   "Aquelas bolhas perto da areia, algo se mexe ali.",
+   "Aquele coral brilhante está atraindo predadores."
+  ],
+  "b": [
+   "Vamos nadar para longe.",
+   "Eu fico de olho.",
+   "Melhor ficar em grupo.",
+   "Esse tridente já viu dias melhores.",
+   "O perigo vem sem avisar.",
+   "Se algo vier, a gente se esconde."
+  ],
+  "c": [
+   "Fica atento, então.",
+   "Vamos sair daqui.",
+   "Se algo vier, a gente se separa.",
+   "Vou treinar mais, então."
+  ]
+ },
+ "cruz_gato_papagaio": {
+  "a": [
+   "Você faz barulho demais, papagaio.",
+   "Esse seu piado me acorda toda hora.",
+   "Sempre repete o que eu digo.",
+   "Fica me olhando com essa cara.",
+   "Seu barulho espanta os passarinhos.",
+   "Parece que você quer atenção."
+  ],
+  "b": [
+   "Eu repito o que quiser, gato.",
+   "Meu piado é mais alto que seu miado.",
+   "Você fala e eu imito, só isso.",
+   "Gato não manda em papagaio.",
+   "Miau, miau, miau!"
+  ],
+  "c": [
+   "Vou dormir longe de você.",
+   "Chega de barulho por hoje.",
+   "Vou procurar um lugar quieto.",
+   "Não quero mais conversa."
+  ]
+ },
+ "magma_pulo": {
+  "a": [
+   "O chão treme a cada pulo nosso.",
+   "Vi a lava espirrar quando caí perto.",
+   "Meu pulo abriu rachaduras na pedra.",
+   "Pulei tão alto que vi o lago de lava.",
+   "A cada pulo, o chão range mais.",
+   "Meu último pulo fez a lava borbulhar.",
+   "Pulo forte deixa marca no basalto.",
+   "O impacto do pulo ecoa nas cavernas."
+  ],
+  "b": [
+   "Esse chão não aguenta nosso pulo.",
+   "A lava responde a cada impacto.",
+   "Cada pulo racha mais a pedra.",
+   "O basalto sente o peso do pulo.",
+   "Pulo forte faz a lava agitar.",
+   "O eco do pulo some na escuridão."
+  ],
+  "c": [
+   "Vou testar outro pulo agora.",
+   "O chão vai tremer de novo.",
+   "Pulo até a lava espirrar.",
+   "Nenhum pulo é forte demais."
+  ]
+ },
+ "panda_espirro": {
+  "a": [
+   "Espirrei por causa do pólen das flores.",
+   "O vento trouxe pólen e me fez espirrar.",
+   "Aquele bambu estava cheio de pólen.",
+   "Meu nariz coçou com o pólen no ar.",
+   "O pólen das flores amarelas me pegou.",
+   "Espirrei forte por causa do pólen no vento."
+  ],
+  "b": [
+   "O pólen está forte hoje.",
+   "Esse pólen incomoda mesmo.",
+   "O vento espalha pólen por tudo.",
+   "Também sinto o pólen no ar.",
+   "As flores soltam muito pólen agora."
+  ],
+  "c": [
+   "Vou para longe das flores.",
+   "Melhor ficar onde o ar é limpo.",
+   "O pólen não me pega de novo.",
+   "Vou descansar longe do pólen."
+  ]
+ },
+ "papagaio_musica": {
+  "a": [
+   "Quando toca disco, eu danço sem parar.",
+   "Já ouviu uma música tocando por aqui?",
+   "Tem coisa melhor que dançar com música?",
+   "Se tem música, eu estou balançando a cabeça.",
+   "Música boa, eu danço.",
+   "Ouviu o som do disco?",
+   "Quando toca música, eu me mexo."
+  ],
+  "b": [
+   "Eu também, não resisto.",
+   "Dança comigo!",
+   "Eu só paro quando a música acaba.",
+   "O ritmo me pega todo.",
+   "Música mexe comigo.",
+   "Balanço a cabeça também."
+  ],
+  "c": [
+   "Que a música não pare.",
+   "Vou dançar mais.",
+   "Até a próxima música."
+  ]
+ },
+ "piglin_bastiao": {
+  "a": [
+   "Aquele baú no canto está cheio de ouro.",
+   "O ouro do baú brilha demais hoje.",
+   "Tem um baú transbordando de ouro ali.",
+   "O ouro no baú está pedindo briga.",
+   "A pilha de ouro no baú cresceu.",
+   "O baú de ouro está quase estourando.",
+   "Tem ouro demais naquele baú."
+  ],
+  "b": [
+   "Esse ouro é nosso.",
+   "Ninguém tira o ouro do baú.",
+   "Ouro no baú é para sempre.",
+   "Baú cheio de ouro é bom sinal.",
+   "Ouro guardado é ouro seguro.",
+   "Esse baú tem ouro de sobra."
+  ],
+  "c": [
+   "Vou conferir o baú.",
+   "O ouro fica onde está.",
+   "Ninguém mexe no baú.",
+   "Vou ficar de olho no ouro."
+  ]
+ },
+ "ravager_investida": {
+  "a": [
+   "Eu derrubo qualquer porta.",
+   "Minha investida não tem freio.",
+   "Os saqueadores confiam em mim.",
+   "Quando eu corro, tudo cai.",
+   "Nada resiste à minha cabeçada.",
+   "Eu derrubo muros.",
+   "A aldeia vai cair.",
+   "Eu sempre vou na frente."
+  ],
+  "b": [
+   "Eu derrubo muros.",
+   "Nada resiste à minha cabeçada.",
+   "A aldeia vai cair.",
+   "Eu sempre vou na frente.",
+   "Minha investida derruba tudo.",
+   "Portas não me seguram."
+  ],
+  "c": [
+   "Vamos derrubar.",
+   "Mais força.",
+   "Nada nos para.",
+   "A investida continua."
+  ]
+ },
+ "afogado_tridente": {
+  "a": [
+   "Meu tridente rachou na última caçada.",
+   "Achei um tridente rachado no fundo.",
+   "O tridente que peguei está rachado.",
+   "Rachei meu tridente contra uma pedra.",
+   "Meu tridente tem uma rachadura feia.",
+   "O tridente rachado ainda fura bem.",
+   "Esse tridente rachado já viu muita luta."
+  ],
+  "b": [
+   "Tridente rachado ainda mata.",
+   "Rachadura não impede a caça.",
+   "O meu também já rachou.",
+   "Tridente rachado é sinal de uso.",
+   "Rachado, mas afiado.",
+   "Conserta isso logo."
+  ],
+  "c": [
+   "Vou caçar mesmo assim.",
+   "Rachado ou não, eu uso.",
+   "Melhor que nada.",
+   "Fica de olho no meu."
+  ]
+ },
+ "allay_musica": {
+  "a": [
+   "O disco tocou e eu girei no ar.",
+   "Aquele som de nota me fez dançar.",
+   "O sino tocou e eu voei até lá.",
+   "Eu ouvi a flauta e fiquei leve.",
+   "O toque de nota me fez brilhar.",
+   "Aquele som me fez girar sem parar.",
+   "O disco girou e eu dancei junto."
+  ],
+  "b": [
+   "Aquele som me faz girar também.",
+   "Eu danço quando ouço nota.",
+   "O sino me deixa leve.",
+   "Eu sigo o som da flauta.",
+   "O toque de nota me faz brilhar.",
+   "Eu girei com o disco."
+  ],
+  "c": [
+   "Vou atrás do próximo som.",
+   "Danço mais um pouco.",
+   "Até o próximo toque.",
+   "Vou girar mais."
+  ]
+ },
+ "bicho_comida_geral": {
+  "a": [
+   "O capim perto da cerca está mais alto hoje.",
+   "Aquele feno no cocho cheira bem forte.",
+   "O milho seco sumiu rápido de novo.",
+   "Achei umas folhas novas perto do portão.",
+   "A grama do pasto está mais doce esta manhã.",
+   "O cocho está cheio de grãos hoje.",
+   "Tem trevo crescendo perto da sombra."
+  ],
+  "b": [
+   "Capim alto é o melhor para comer.",
+   "Feno bom faz a diferença.",
+   "Milho seco acaba rápido demais.",
+   "Folhas novas são fáceis de mastigar.",
+   "Grama doce é difícil de achar.",
+   "Grãos no cocho não duram nada."
+  ],
+  "c": [
+   "Vou pastar um pouco mais.",
+   "Depois a gente se vê no pasto.",
+   "Barriga cheia, hora de descansar.",
+   "Vou procurar mais capim."
+  ]
+ },
+ "cabra_pulo": {
+  "a": [
+   "Pulo de uma pedra para outra sem cair.",
+   "A montanha tem pedras boas para pular.",
+   "Quanto mais alto, melhor o pulo.",
+   "As pedras da encosta são meu lugar.",
+   "Pulo alto nas pedras da montanha.",
+   "Salto entre as pedras da encosta.",
+   "Pulo de cima da pedra grande."
+  ],
+  "b": [
+   "Eu pulo mais longe que você.",
+   "Quero ver você tentar.",
+   "As alturas me chamam.",
+   "Cuidado para não escorregar.",
+   "Cuidado com as pedras soltas.",
+   "Pular de pedra é o que sei fazer."
+  ],
+  "c": [
+   "Bora pular.",
+   "Boa pulada.",
+   "Vamos subir mais.",
+   "Bons pulos por aí."
+  ]
+ },
+ "cavalo_galope": {
+  "a": [
+   "O pasto verde está cheio de trevo hoje.",
+   "As montanhas ficam douradas no fim da tarde.",
+   "O campo escorregadio depois da chuva.",
+   "O vento frio corta a crina.",
+   "O rio baixou perto da cerca.",
+   "A grama nova brotou no morro."
+  ],
+  "b": [
+   "O trevo deixa o pasto mais doce.",
+   "A luz dourada avisa que é hora de voltar.",
+   "Cuidado com a lama perto do portão.",
+   "O vento frio pede mais galope.",
+   "O rio baixo mostra as pedras.",
+   "A grama nova é macia nas patas."
+  ],
+  "c": [
+   "Vou pastar mais um pouco.",
+   "Melhor voltar para o estábulo.",
+   "Hora de descansar as patas.",
+   "Até amanhã, então."
+  ]
+ },
+ "cruz_galinha_raposa": {
+  "a": [
+   "Tem raposa rondando o galinheiro.",
+   "Raposa, cheiro de raposa por aqui.",
+   "Cuidado, raposa à espreita.",
+   "Raposa, não se aproxime dos ovos.",
+   "Vejo uma raposa perto do milharal.",
+   "Raposa, o que faz aqui?",
+   "Raposa, fique longe dos pintinhos."
+  ],
+  "b": [
+   "Só estou de passagem.",
+   "Não quero nada com suas penas.",
+   "Estou atrás de frutinhas.",
+   "Não me interesso por ovos hoje.",
+   "Apenas observando o galinheiro."
+  ],
+  "c": [
+   "Melhor você ir embora.",
+   "Não quero ver você aqui.",
+   "Vou vigiar o galinheiro.",
+   "Suma daqui, raposa."
+  ]
+ },
+ "endermite_perola": {
+  "a": [
+   "Pérola rachada, nasci dela.",
+   "Enderman passou, pérola caiu.",
+   "Sigo o cheiro da pérola.",
+   "Pérola quebrada me chama.",
+   "O brilho roxo me guia.",
+   "Enderman teleportou, deixou pérola.",
+   "Pérola no chão, eu saio dela."
+  ],
+  "b": [
+   "Pérola rachada é meu começo.",
+   "O brilho roxo me puxa.",
+   "Enderman derruba, eu apareço.",
+   "Sigo a trilha da pérola.",
+   "Pérola quebrada me faz sair.",
+   "O cheiro da pérola não engana."
+  ],
+  "c": [
+   "Vou atrás da próxima pérola.",
+   "Pérola nova, vida nova.",
+   "Fico perto das pérolas.",
+   "Enderman passa, eu sigo."
+  ]
+ },
+ "esqueleto_arco": {
+  "a": [
+   "Meu arco range quando puxo a corda.",
+   "A corda do meu arco está gasta.",
+   "Flecha velha voa torto.",
+   "Ontem errei um tiro por causa do vento.",
+   "Preciso de mais flechas.",
+   "O arco está com a madeira rachada."
+  ],
+  "b": [
+   "A corda gasta atrapalha a mira.",
+   "Flecha velha não presta.",
+   "O vento desvia a flecha.",
+   "Falta flecha para treinar.",
+   "Madeira rachada quebra na hora errada."
+  ],
+  "c": [
+   "Vou consertar meu arco.",
+   "Preciso de flechas novas.",
+   "Vou treinar sem vento."
+  ]
+ },
+ "ghast_bolas": {
+  "a": [
+   "Soltei uma bola de fogo e acertei longe.",
+   "Tem humano rebatendo minhas bolas.",
+   "Já viu o que acontece quando devolvem a bola?",
+   "Quando devolvem a bola de fogo, eu me estrago.",
+   "Minha bola de fogo voltou e me acertou em cheio.",
+   "O humano rebateu minha bola e quase me pegou.",
+   "Errei a mira e a bola explodiu na parede.",
+   "Acertei uma bola no chão e quase cai no vazio."
+  ],
+  "b": [
+   "Cuidado com o rebote.",
+   "Eles aprenderam o truque.",
+   "Só atiro de longe.",
+   "Essas bolas são traiçoeiras.",
+   "O rebote é o pior.",
+   "Malditos humanos espertos."
+  ],
+  "c": [
+   "Mira melhor.",
+   "Fica atento.",
+   "Vou continuar atirando.",
+   "Não deixo ninguém rebater."
+  ]
+ },
+ "golfinho_barco": {
+  "a": [
+   "Barco passando, vamos seguir?",
+   "Tem barco por perto, senti a água tremer.",
+   "O barulho do barco é bom de seguir.",
+   "Passou um barco, vamos atrás?",
+   "Eu adoro nadar ao lado dos barcos.",
+   "Barco à vista, vamos nadar junto?",
+   "O barco está vindo, vamos acompanhar?",
+   "Senti o barco na água, vamos ver?"
+  ],
+  "b": [
+   "Vamos lá, mas sem encostar.",
+   "Eles ficam felizes quando a gente aparece.",
+   "A gente sempre chega na frente.",
+   "Se ele parar, eu fico esperando.",
+   "Vou atrás, mas com cuidado para não bater.",
+   "Sigo o barco de longe, sem problema."
+  ],
+  "c": [
+   "Foi bom enquanto durou.",
+   "Já voltamos para o grupo.",
+   "Corrida ganha, agora descanso.",
+   "O barco foi embora, acabou."
+  ]
+ },
+ "husk_deserto": {
+  "a": [
+   "O sol do deserto não me queima.",
+   "A areia quente não me incomoda.",
+   "Os humanos passam por aqui com sede.",
+   "Zumbis comuns queimam no sol, eu não.",
+   "O vento seco arrasta a areia.",
+   "À noite o deserto esfria rápido.",
+   "A sede deixa os humanos lentos."
+  ],
+  "b": [
+   "O calor é nosso aliado.",
+   "A areia guarda pegadas frescas.",
+   "Vou rondar as dunas.",
+   "A fome me deixa mais forte.",
+   "O deserto é nosso território.",
+   "Quem passa aqui sente o peso."
+  ],
+  "c": [
+   "Fica no calor, então.",
+   "Vamos rondar juntos.",
+   "Cada um no seu canto.",
+   "O deserto decide."
+  ]
+ },
+ "lula_brilho_dueto": {
+  "a": [
+   "Nossa luz acende o fundo da caverna.",
+   "Meu brilho pulsou forte agora.",
+   "O escuro aqui embaixo é pesado, mas a gente brilha.",
+   "Minhas manchas brilham mais depois que eu nado rápido.",
+   "Tem uma pedra ali que reflete o nosso brilho.",
+   "A gente brilha junto e clareia a caverna."
+  ],
+  "b": [
+   "Nosso brilho é o que guia na escuridão.",
+   "Sem a nossa luz, nada se acha aqui.",
+   "Esse brilho cansa, mas é preciso.",
+   "A luz da gente espanta os peixes.",
+   "Nossas manchas brilham sem parar.",
+   "O brilho é parte de viver aqui."
+  ],
+  "c": [
+   "Vou nadar e brilhar mais adiante.",
+   "Continua brilhando que eu sigo.",
+   "Brilha aí, depois a gente se vê.",
+   "Vou descansar um pouco, mas continuo brilhando."
+  ]
+ },
+ "lula_deriva": {
+  "a": [
+   "Eu só deixo a água me levar.",
+   "Nadar sem rumo é o meu passatempo.",
+   "Hoje fui parar onde nunca estive.",
+   "Quem tem pressa não aproveita o mar.",
+   "A correnteza me trouxe até aqui.",
+   "Eu sigo o fluxo, sem lutar contra a água.",
+   "Deixei a maré decidir meu caminho.",
+   "O oceano me levou para longe de casa."
+  ],
+  "b": [
+   "A correnteza escolhe o caminho.",
+   "Eu também me perco por aí.",
+   "Isso é viver bem.",
+   "Só preciso estar de volta antes de escurecer.",
+   "O mar sempre decide por nós.",
+   "Deixar a água guiar é o jeito certo."
+  ],
+  "c": [
+   "Boa viagem, então.",
+   "A gente se esbarra mais tarde.",
+   "Sem pressa.",
+   "Vou continuar seguindo a correnteza."
+  ]
+ },
+ "lula_tinta": {
+  "a": [
+   "A tinta sai escura e o predador fica perdido.",
+   "Já soltei tinta sem querer e fugi de mim mesmo.",
+   "Tem muita tinta guardada em mim agora.",
+   "A água fica preta e eu escapo rápido.",
+   "Hoje quase fiquei sem tinta na fuga.",
+   "Minha tinta mancha a areia do fundo.",
+   "O polvo me ensinou a soltar tinta para trás."
+  ],
+  "b": [
+   "Essa tinta salva a gente de predador.",
+   "Melhor soltar tinta do que virar comida.",
+   "A tinta confunde até peixe grande.",
+   "Sem tinta, a gente vira presa fácil.",
+   "Tinta é o jeito mais rápido de sumir.",
+   "Se a tinta acabar, é só nadar muito."
+  ],
+  "c": [
+   "Vou guardar tinta para a próxima fuga.",
+   "Nada como um bom jato de tinta.",
+   "Fica de olho se a água escurecer.",
+   "Melhor nadar antes que precise de tinta."
+  ]
+ },
+ "papagaio_imitar": {
+  "a": [
+   "Ouvi um creeper chiando e aprendi o som.",
+   "Sei imitar quase tudo que escuto.",
+   "Hoje imitei um esqueleto. Ficou perfeito.",
+   "Aprendi um som novo hoje e não vou contar qual.",
+   "Imitei o zumbi e assustei um morcego.",
+   "O som do Enderman é difícil, mas consegui.",
+   "Ouvi um lobo uivando e imitei na hora."
+  ],
+  "b": [
+   "Faz de novo, quero aprender.",
+   "Eu imito até o zumbi.",
+   "Isso assusta qualquer um.",
+   "Eu só imito o que é engraçado.",
+   "Esse som é fácil de imitar.",
+   "Me ensina esse som depois."
+  ],
+  "c": [
+   "Que tal um dueto?",
+   "Vou treinar mais.",
+   "Ninguém imita como a gente.",
+   "Vou imitar esse som para os outros."
+  ]
+ },
+ "slime_pulo": {
+  "a": [
+   "Eu pulo e faço blob, blob, blob.",
+   "Quando me partem, viro vários.",
+   "O pântano à noite é o melhor lugar para mim.",
+   "Não existe nada mais divertido que pular.",
+   "Pulo mais alto quando estou no lodo.",
+   "Meu corpo quica no chão duro.",
+   "Vi outro slime se dividir hoje.",
+   "O pulo faz barulho de esguicho."
+  ],
+  "b": [
+   "Blob, blob!",
+   "Eu me divido em dois.",
+   "Quicar é o que sei fazer.",
+   "Cuidado para não se perder.",
+   "O lodo ajuda a pular.",
+   "Pulo junto com você."
+  ],
+  "c": [
+   "Vamos pular mais.",
+   "Cada um do seu tamanho.",
+   "Pulo para lá agora."
+  ]
+ },
+ "strider_lava": {
+  "a": [
+   "O lago de lava está alto hoje.",
+   "Vi uma bolha grande na lava.",
+   "A lava esfriou perto da margem.",
+   "Meu casco ficou quente na lava.",
+   "Senti a lava mexer embaixo de mim.",
+   "Tem pedra nova caindo na lava.",
+   "A lava brilha mais depois da chuva de fogo."
+  ],
+  "b": [
+   "A lava sempre me esquenta.",
+   "A lava não para de borbulhar.",
+   "A lava é o nosso chão.",
+   "Sem a lava eu tremo.",
+   "Essa lava está mais quente que ontem.",
+   "A lava sobe sem avisar."
+  ],
+  "c": [
+   "Vou andar mais um pouco.",
+   "Fica de olho na lava.",
+   "Melhor voltar pro meio.",
+   "A lava não espera."
+  ]
+ },
+ "voo_altura": {
+  "a": [
+   "Vi um bando de passarinhos voando em formação.",
+   "Sobrevoei aquela montanha hoje cedo.",
+   "Lá em cima o ar é mais frio.",
+   "Gosto de ficar bem alto, longe de tudo.",
+   "As nuvens ficam logo abaixo das minhas asas.",
+   "A altura me faz sentir livre de tudo.",
+   "Daqui de cima dá para ver tudo."
+  ],
+  "b": [
+   "Eu fico mais perto do chão.",
+   "O que você viu de lá?",
+   "Dá até vertigem.",
+   "Só desço quando tenho fome.",
+   "O ar frio é revigorante, não acha?",
+   "Planar é a melhor parte do voo."
+  ],
+  "c": [
+   "Vamos voar mais alto.",
+   "Quando eu subir, te chamo.",
+   "A vista compensa.",
+   "Cada um aproveita a altura do seu jeito."
+  ]
+ },
+ "allay_itens": {
+  "a": [
+   "Achei uma pena caída perto do rio.",
+   "O humano deixou cair uma maçã no chão.",
+   "Vi um cascalho solto com uma pederneira.",
+   "Tem um couro largado na entrada da caverna.",
+   "Peguei uma flor que estava no caminho.",
+   "Aquele osso perto da areia é meu agora."
+  ],
+  "b": [
+   "Essa pena vai para o jogador.",
+   "A maçã é melhor entregar logo.",
+   "Pederneira é útil para setas.",
+   "Couro serve para fazer armaduras.",
+   "Flor não tem muito uso, mas eu levo.",
+   "Osso é para os lobos do jogador."
+  ],
+  "c": [
+   "Vou continuar atento a mais itens.",
+   "Entrego e volto para procurar.",
+   "Nada fica no chão por muito tempo.",
+   "Nosso trabalho é juntar e devolver."
+  ]
+ },
+ "aq_noite": {
+  "a": [
+   "A noite deixa a água bem escura.",
+   "Dá para ouvir os peixes se mexendo no escuro.",
+   "A lua aparece toda tremida na superfície.",
+   "Nado mais devagar quando escurece.",
+   "As sombras no fundo ficam maiores de noite.",
+   "Ouço barulhos estranhos vindo da areia.",
+   "A água fria da noite me deixa mais lento."
+  ],
+  "b": [
+   "Essa escuridão esconde bem os predadores.",
+   "A lua não ilumina nada aqui embaixo.",
+   "Melhor ficar perto do fundo agora.",
+   "Os sons da noite são diferentes.",
+   "A água fria me deixa alerta.",
+   "O escuro muda tudo por aqui."
+  ],
+  "c": [
+   "Vou achar um canto tranquilo.",
+   "Fica de olho nas sombras.",
+   "Amanhã o mar clareia de novo.",
+   "Vou nadar até o recife."
+  ]
+ },
+ "camelo_corrida": {
+  "a": [
+   "A areia voa quando eu arranco.",
+   "Minhas pernas longas comem o deserto.",
+   "Corro tão rápido que a poeira me segue.",
+   "Ninguém acredita na minha velocidade.",
+   "Meu casco corta a areia sem afundar.",
+   "Fiz uma corrida que levantou uma nuvem de areia.",
+   "Quando corro, até o vento fica para trás.",
+   "A areia do deserto conhece minha passada."
+  ],
+  "b": [
+   "Essa arrancada levanta poeira de verdade.",
+   "Quero ver essa nuvem de areia.",
+   "Correr com carga é o meu jeito.",
+   "A areia guarda as marcas dos seus cascos.",
+   "O deserto inteiro ouve seus cascos."
+  ],
+  "c": [
+   "Bora levantar poeira então.",
+   "Foi uma bela nuvem de areia.",
+   "Poeira para todo lado, é isso.",
+   "A areia não esquece uma boa corrida."
+  ]
+ },
+ "cave_spider_mina": {
+  "a": [
+   "Teia no túnel pegou um morcego.",
+   "A picada parou aquele minerador.",
+   "O túnel escuro tem cheiro de presa.",
+   "As teias cobriram a entrada da mina.",
+   "Um zumbi ficou preso na teia.",
+   "O veneno derrubou um esqueleto.",
+   "A mina tem muitos cantos para espreitar.",
+   "As teias balançam com o vento da mina."
+  ],
+  "b": [
+   "A teia segura bem.",
+   "O veneno age rápido.",
+   "A mina é cheia de cantos.",
+   "As teias são nossa armadilha.",
+   "A presa não escapa da teia.",
+   "O escuro esconde a teia."
+  ],
+  "c": [
+   "A teia aguenta.",
+   "O veneno resolve.",
+   "A mina é nossa.",
+   "A presa vem."
+  ]
+ },
+ "cruz_raposa_coelho": {
+  "a": [
+   "Coelho, não precisa fugir, hoje estou sem fome.",
+   "Que cenoura é essa aí, coelho?",
+   "Eu só vim passear.",
+   "Pode ficar tranquilo, hoje eu como frutinhas.",
+   "Essa grama alta esconde bem você.",
+   "Vi um falcão rondando por cima.",
+   "Suas orelhas aparecem por trás do arbusto.",
+   "O cheiro de cenoura está forte por aqui."
+  ],
+  "b": [
+   "Eu não confio em você.",
+   "Hoje não, por favor.",
+   "Vou me esconder na toca mesmo assim.",
+   "Não chega muito perto.",
+   "Sempre fico de olho no céu.",
+   "Cenoura é minha, fica longe."
+  ],
+  "c": [
+   "Fica tranquilo.",
+   "Boa sorte com a toca.",
+   "Vou indo por aí.",
+   "Até a próxima, coelho."
+  ]
+ },
+ "hoglin_floresta": {
+  "a": [
+   "Fungo vermelho brotando perto da lava.",
+   "A floresta carmesim está cheia de fungos hoje.",
+   "Sinto cheiro de fungo fresco no ar.",
+   "Aqui tem comida para todo mundo.",
+   "Os fungos estão grandes e suculentos.",
+   "Vejo um cacho de fungos além das árvores.",
+   "O chão está coberto de fungos bons de comer."
+  ],
+  "b": [
+   "Eu como bastante.",
+   "Vamos explorar mais.",
+   "É o único lugar que gosto.",
+   "Tem sempre um fungo novo.",
+   "Fungo é o que me sustenta.",
+   "Vou pegar um para mim."
+  ],
+  "c": [
+   "Vou comer mais um pouco.",
+   "Fica por perto.",
+   "O melhor lugar do mundo.",
+   "Vou atrás daquele fungo."
+  ]
+ },
+ "lobo_alcateia": {
+  "a": [
+   "A alcateia está inteira hoje.",
+   "Sem alcateia, lobo nenhum é nada.",
+   "Eu confio em quem corre ao meu lado.",
+   "Ninguém fica para trás.",
+   "Todos os lobos estão aqui.",
+   "Sinto o cheiro de cada um.",
+   "A alcateia se move junta."
+  ],
+  "b": [
+   "Eu fico na retaguarda.",
+   "Onde vai um, vão todos.",
+   "Somos um só corpo.",
+   "Quem mexe com um, mexe com todos.",
+   "A força está no grupo."
+  ],
+  "c": [
+   "Vamos em frente.",
+   "A alcateia segue unida.",
+   "Boa caçada.",
+   "Que o uivo nos guie."
+  ]
+ },
+ "mooshroom_ilha": {
+  "a": [
+   "Os cogumelos da ilha estão enormes hoje.",
+   "Meus cogumelos nas costas coçam de tanto crescer.",
+   "A relva da ilha tem gosto de cogumelo fresco.",
+   "As vacas comem cogumelos o dia todo por aqui.",
+   "Nenhum monstro aparece nesta ilha de cogumelos.",
+   "O chão da ilha é macio e úmido para os cogumelos.",
+   "Os cogumelos vermelhos são os mais saborosos da ilha.",
+   "A ilha tem cheiro de cogumelo maduro depois da chuva."
+  ],
+  "b": [
+   "Cogumelo bom é assim, grande e carnudo.",
+   "Esses cogumelos crescem sem parar.",
+   "Comer cogumelo da ilha é o melhor.",
+   "Cogumelo fresco é o que sustenta a gente.",
+   "Os cogumelos daqui não têm igual.",
+   "Cogumelo da ilha enche a barriga."
+  ],
+  "c": [
+   "Vou pastar mais um pouco.",
+   "Deixa eu comer mais um cogumelo.",
+   "Fico aqui com meus cogumelos.",
+   "Os cogumelos me esperam."
+  ]
+ },
+ "raposa_frutinha": {
+  "a": [
+   "Achei uma moita cheia de frutinhas vermelhas.",
+   "Frutinha é o meu lanche favorito.",
+   "Quem me dera ter frutinha todo dia.",
+   "Hoje comi tanta frutinha que mal consigo andar.",
+   "Tem um arbusto de frutinhas perto do rio.",
+   "As frutinhas estão maduras nesta época.",
+   "Vi um coelho comendo frutinhas na clareira.",
+   "Frutinha doce é melhor que qualquer carne."
+  ],
+  "b": [
+   "Onde foi isso?",
+   "Eu também adoro, mas ando atrás de galinha.",
+   "Me leva lá.",
+   "Eu como o que encontro.",
+   "Frutinha é boa, mas galinha é melhor.",
+   "Vamos procurar mais juntos."
+  ],
+  "c": [
+   "Vamos lá juntos.",
+   "Guarda um pouco para mim.",
+   "Quem chegar primeiro, come mais.",
+   "Vou caçar galinha, depois como frutinha."
+  ]
+ },
+ "tartaruga_casco": {
+  "a": [
+   "Meu casco tem areia grudada nas bordas.",
+   "A areia entrou nas frestas do meu casco.",
+   "Meu casco coçou a noite toda por causa da areia.",
+   "A areia deixou meu casco todo arranhado.",
+   "Cavar na areia deixou meu casco pesado.",
+   "A areia fica presa entre as placas do casco.",
+   "Meu casco está coberto de areia fina."
+  ],
+  "b": [
+   "A areia gruda no casco e não solta.",
+   "O meu casco também tem areia nas frestas.",
+   "A areia deixa o casco mais pesado.",
+   "Esfregar o casco na pedra tira a areia.",
+   "A areia arranha o casco se não sair.",
+   "O casco coça quando fica com areia."
+  ],
+  "c": [
+   "Vou esfregar o casco numa pedra.",
+   "A areia sai com uma boa esfregada.",
+   "Melhor limpar o casco antes de nadar.",
+   "Vou procurar uma pedra lisa."
+  ]
+ },
+ "vaca_balde": {
+  "a": [
+   "O humano vem com balde e banquinho.",
+   "Balde gelado encosta na minha pele.",
+   "O humano espreme minhas tetas devagar.",
+   "Sinto o leite descendo pro balde.",
+   "O balde fica pesado e o humano sorri.",
+   "O humano me dá capim depois da ordenha.",
+   "A ordenha de hoje foi rápida.",
+   "O humano esqueceu o balde no pasto."
+  ],
+  "b": [
+   "Balde cheio é trabalho bem feito.",
+   "Leite fresco é o que eles querem.",
+   "Depois do balde, fico leve.",
+   "Quem trata bem, eu dou.",
+   "O balde frio me faz arrepiar.",
+   "Capim depois da ordenha é o melhor."
+  ],
+  "c": [
+   "Vou pastar um pouco agora.",
+   "O sol está bom pra descansar.",
+   "Muuu, até a próxima ordenha.",
+   "O pasto me espera."
+  ]
+ },
+ "voo_vento": {
+  "a": [
+   "O vento mudou de direção de repente.",
+   "Quase perdi o equilíbrio com essa rajada.",
+   "O vento está empurrando as nuvens para o sul.",
+   "Senti o vento gelado vindo das montanhas.",
+   "O vento está forte demais para planar.",
+   "Uma corrente de ar quente me levantou sem esforço.",
+   "O vento assobia entre as penas das minhas asas.",
+   "O vento carregou folhas secas para o alto."
+  ],
+  "b": [
+   "O vento não escolhe lado.",
+   "A gente aproveita quando ele empurra a favor.",
+   "Vento forte cansa as asas.",
+   "Melhor planar baixo até ele acalmar.",
+   "O vento muda rápido demais.",
+   "Vento gelado corta o voo."
+  ],
+  "c": [
+   "Vou procurar uma corrente quente.",
+   "Fica de olho nas rajadas.",
+   "O vento decide, a gente voa.",
+   "Vou planar até o ninho."
+  ]
+ },
+ "zpiglin_passado": {
+  "a": [
+   "Eu já fui um piglin, sabia?",
+   "Lembro vagamente de ouro e de um bastião.",
+   "Depois do portal, tudo mudou.",
+   "Não sinto mais fome de ouro.",
+   "Minha pele caiu e a raiva ficou.",
+   "Eu grunhia com os outros piglins.",
+   "O ouro brilhava no meu bastião.",
+   "Agora só quero atacar."
+  ],
+  "b": [
+   "Eu também, mas não lembro de nada.",
+   "Ficou só a raiva.",
+   "O portal nos deixou assim.",
+   "Tudo ficou lento.",
+   "Só grunhido e raiva restaram.",
+   "Ouro não vale nada agora."
+  ],
+  "c": [
+   "Seguimos andando.",
+   "O que passou, passou.",
+   "Vamos em frente.",
+   "Chega de lembrar."
+  ]
+ },
+ "aq_fundo": {
+  "a": [
+   "Lá no fundo está tudo escuro.",
+   "Tem bicho que nunca sobe à superfície.",
+   "Lá embaixo a água é bem mais fria, já reparou?",
+   "O fundo tem cada barulho esquisito.",
+   "Já foi até o fundão? Eu dei meia-volta.",
+   "A luz daqui de cima já me basta."
+  ],
+  "b": [
+   "Eu gosto do escuro, é tranquilo.",
+   "Só vou até onde ainda enxergo alguma coisa.",
+   "Tem coisa lá que é melhor nem ver.",
+   "Eu também prefiro a luz.",
+   "Dizem que tem tesouro lá embaixo."
+  ],
+  "c": [
+   "Cada um no seu cantinho.",
+   "Pelo menos aqui dá para ver o sol.",
+   "Fica perto da luz, então."
+  ]
+ },
+ "bicho_sono_geral": {
+  "a": [
+   "A sombra daquela árvore é fresca.",
+   "O celeiro tem um canto bem quentinho.",
+   "A palha seca é melhor que a terra.",
+   "O sol esquenta demais o pasto.",
+   "A chuva de ontem molhou meu canto.",
+   "O vento traz cheiro de grama cortada.",
+   "A noite passada o celeiro estava frio."
+  ],
+  "b": [
+   "A sombra ajuda no calor.",
+   "O celeiro é seguro.",
+   "A palha seca é confortável.",
+   "O pasto fica quente demais.",
+   "A chuva atrapalha o descanso.",
+   "O vento é fresco à noite."
+  ],
+  "c": [
+   "Vou descansar agora.",
+   "O sono chega rápido.",
+   "Durmo cedo hoje.",
+   "O cansaço é grande."
+  ]
+ },
+ "camelo_deserto": {
+  "a": [
+   "O deserto é imenso, mas a gente conhece cada duna.",
+   "Eu aguento dias sem beber.",
+   "A areia quente não me incomoda.",
+   "Quem anda no deserto precisa de paciência.",
+   "O sol castiga quem não conhece o caminho.",
+   "A sede é uma velha conhecida minha.",
+   "A carga pesa, mas eu sigo em frente."
+  ],
+  "b": [
+   "Eu levo gente e carga sem reclamar.",
+   "O segredo é andar devagar.",
+   "A sede passa quando a gente se acostuma.",
+   "O sol é nosso amigo e inimigo.",
+   "A areia quente é o nosso chão.",
+   "Cada passo na duna é uma vitória."
+  ],
+  "c": [
+   "Vamos em frente.",
+   "Boa travessia.",
+   "Devagar chegamos.",
+   "O deserto espera."
+  ]
+ },
+ "golfinho_peixe": {
+  "a": [
+   "Quer apostar uma corrida de nado?",
+   "Você é rápido, hein! Quase me alcançou.",
+   "Eu nado mais rápido do que qualquer um aqui.",
+   "Fica de olho que eu passo nadando.",
+   "Aposto que alcanço aquele cardume antes de você.",
+   "Nadar com você é divertido, vamos de novo?"
+  ],
+  "b": [
+   "Eu me escondo antes de você chegar.",
+   "Só ganho se me deixar sair na frente.",
+   "Você sempre passa sem ver ninguém.",
+   "Eu só quero que não me confunda com almoço.",
+   "Nado no meu ritmo, sem pressa.",
+   "Se você quer, eu topo, mas sem me assustar."
+  ],
+  "c": [
+   "Fica à vontade, hoje estou sem fome.",
+   "Corrida ganha por mim.",
+   "Vou nadar para o outro lado.",
+   "Até a próxima, se você me achar."
+  ]
+ },
+ "hoglin_fungo": {
+  "a": [
+   "Tem fungo roxo ali perto da lava.",
+   "Aquele fungo roxo cresceu de novo.",
+   "O fungo roxo tomou conta do caminho.",
+   "Não chego perto do fungo roxo.",
+   "O cheiro do fungo roxo ficou forte.",
+   "Fungo roxo brotou do nada."
+  ],
+  "b": [
+   "Esse fungo estraga tudo.",
+   "Fungo roxo só atrapalha.",
+   "Melhor evitar esse fungo.",
+   "Fungo roxo não presta.",
+   "Cuspo longe desse fungo."
+  ],
+  "c": [
+   "Vou caçar longe daqui.",
+   "Que a lava engula esse fungo.",
+   "Não quero ver fungo roxo de novo."
+  ]
+ },
+ "lhama_caravana": {
+  "a": [
+   "A carga está mais pesada que ontem.",
+   "O vento sopra forte contra a caravana.",
+   "O chefe da caravana está com passo firme.",
+   "A trilha está cheia de pedras soltas.",
+   "O sol está quente demais para andar.",
+   "A caravana está mais lenta que o normal."
+  ],
+  "b": [
+   "A carga pesa, mas a caravana segue.",
+   "O vento atrapalha, mas não para a gente.",
+   "O passo firme mantém a ordem.",
+   "Pedras soltas fazem a gente tropeçar.",
+   "O calor cansa, mas a caravana não para.",
+   "A lentidão é por causa da carga."
+  ],
+  "c": [
+   "Vamos continuar andando.",
+   "A caravana segue em frente.",
+   "Não podemos parar agora.",
+   "Foco na trilha."
+  ]
+ },
+ "nether_alma": {
+  "a": [
+   "A areia das almas me atrasa.",
+   "Ghasts choram no vale das almas.",
+   "O fogo azul queima sem parar.",
+   "A areia das almas suga meus pés.",
+   "O vale das almas tem ar denso.",
+   "A areia das almas me prende no chão.",
+   "O fogo azul do vale não apaga.",
+   "Ghasts gemem perto da areia das almas."
+  ],
+  "b": [
+   "Essa areia das almas é um atraso.",
+   "O fogo azul é pior que a lava.",
+   "Ghasts choram sem motivo.",
+   "A areia das almas puxa para baixo.",
+   "O vale das almas é só desgraça.",
+   "Fogo azul não é para fracos."
+  ],
+  "c": [
+   "Não quero voltar lá.",
+   "Que o vale fique longe.",
+   "Basta de areia das almas.",
+   "Vou evitar esse fogo."
+  ]
+ },
+ "nether_fome": {
+  "a": [
+   "A fome me faz querer morder basalto.",
+   "Sinto o cheiro de carne podre no ar.",
+   "Meu estômago ruge como um ghast.",
+   "Quero estraçalhar um porco zumbi.",
+   "A fome me deixa furioso.",
+   "Preciso de carne para não atacar qualquer um.",
+   "O cheiro de osso queimado me dá fome.",
+   "A lava não mata a fome que sinto."
+  ],
+  "b": [
+   "Carne podre serve para enganar a fome.",
+   "Porco zumbi é lento, dá para pegar.",
+   "A fome deixa qualquer um mais agressivo.",
+   "Osso queimado não alimenta.",
+   "A carne fresca é rara aqui.",
+   "Vamos caçar o que aparecer."
+  ],
+  "c": [
+   "Vou atrás de carne agora.",
+   "Melhor caçar antes que a fome piore.",
+   "Não vou dividir o que achar.",
+   "A fome não espera."
+  ]
+ },
+ "nether_humano": {
+  "a": [
+   "{Jogador} entrou no Nether de novo.",
+   "Tem humano perto do nosso ouro.",
+   "O cheiro de humano tá forte aqui.",
+   "Um humano passou pelo portal.",
+   "Tem um estranho andando no nosso território.",
+   "Aquele humano tá mexendo nas nossas coisas."
+  ],
+  "b": [
+   "Vamos caçar ele.",
+   "Que ele não toque no ouro.",
+   "Vou arrancar a cabeça dele.",
+   "Ele não dura muito aqui.",
+   "Manda ele de volta pro mundo dele.",
+   "Se ele chegar perto, ataca."
+  ],
+  "c": [
+   "Vou atrás dele agora.",
+   "Fica de olho no ouro.",
+   "Qualquer coisa, a gente mata.",
+   "Não deixa ele escapar."
+  ]
+ },
+ "peixe_comida": {
+  "a": [
+   "Tem uns vermes gordos na areia perto do coral.",
+   "Vi um cardume pequeno passando perto das algas.",
+   "Achei restos de peixe presos nas pedras.",
+   "Tem uns moluscos fáceis de abrir na fenda.",
+   "Uns camarões minúsculos estão escondidos no cascalho.",
+   "Achei uma carcaça fresca boiando perto da superfície.",
+   "Tem larvas na madeira afundada."
+  ],
+  "b": [
+   "Vou nadar até lá agora.",
+   "Esses vermes são bons demais.",
+   "Nunca vi camarão nesse cascalho.",
+   "Carcaça fresca atrai predador.",
+   "Molusco dá trabalho para abrir.",
+   "Cardume pequeno some rápido."
+  ],
+  "c": [
+   "Vou caçar antes que suma.",
+   "Fico de olho na fenda.",
+   "Melhor ir logo.",
+   "Depois te conto se achei mais."
+  ]
+ },
+ "sapo_slime": {
+  "a": [
+   "Slime pequeno é o lanche perfeito.",
+   "Vi um slime pulando perto do lago.",
+   "Comi um slime verde hoje, croac.",
+   "Slime pequeno não dá trabalho.",
+   "Slime é melhor que inseto, croac.",
+   "Slime grande é difícil de engolir.",
+   "O slime que comi estava gelado."
+  ],
+  "b": [
+   "Slime pequeno é fácil de pegar.",
+   "Também gosto de slime verde.",
+   "Slime é bom quando está fresco.",
+   "Onde você achou esse slime?",
+   "Slime grande é perigoso.",
+   "Prefiro slime pequeno, croac."
+  ],
+  "c": [
+   "Vou caçar mais slimes.",
+   "Fica de olho nos slimes.",
+   "Croac, vou procurar slime.",
+   "Slime bom é slime pequeno."
+  ]
+ },
+ "saqueador_ataque": {
+  "a": [
+   "A aldeia nem sabe o que vai acontecer.",
+   "Hoje o ataque vai ser grande.",
+   "A besta carrega tudo que precisamos.",
+   "O capitão ergueu a bandeira.",
+   "Os machados estão afiados.",
+   "A muralha da aldeia é fraca.",
+   "Os sinos vão tocar em vão.",
+   "Nossos passos já ecoam na floresta."
+  ],
+  "b": [
+   "Eu avanço pela esquerda.",
+   "Vamos derrubar tudo.",
+   "O capitão manda atacar.",
+   "Eles não têm chance.",
+   "A besta vai disparar primeiro.",
+   "O saque será nosso."
+  ],
+  "c": [
+   "Vamos atacar.",
+   "Sem piedade com os aldeões.",
+   "Em frente, sem recuar.",
+   "A bandeira já está alta."
+  ]
+ },
+ "tatu_rolar": {
+  "a": [
+   "Quando o perigo chega, eu me enrolo.",
+   "Minha casca me protege quando me enrolo.",
+   "Eu me enrolo e fico quietinho.",
+   "Me enrolar é o que eu sei fazer.",
+   "Quando me enrolo, fico bem protegido.",
+   "Eu me enrolo sempre que ouço barulho estranho."
+  ],
+  "b": [
+   "Minha casca também me protege.",
+   "Enrolado eu fico bem escondido.",
+   "Eu faço isso também.",
+   "É assim que eu me salvo.",
+   "Minha casca aguenta muita coisa.",
+   "Eu me enrolo e espero."
+  ],
+  "c": [
+   "Vou continuar me enrolando.",
+   "Assim eu fico tranquilo.",
+   "Melhor não arriscar.",
+   "Enrolado eu fico seguro."
+  ]
+ },
+ "aq_humano_vendo": {
+  "a": [
+   "{Jogador} parou na beira, com uma vara na mão.",
+   "Tem um humano espiando a água bem aqui.",
+   "{Jogador} não sai da margem, olhando pro fundo.",
+   "Aquele humano trouxe um balde e uma linha.",
+   "O humano está agachado perto das algas.",
+   "{Jogador} parece querer pegar peixe hoje.",
+   "Tem um humano remexendo a areia da margem.",
+   "{Jogador} veio pra cá sem fazer barulho."
+  ],
+  "b": [
+   "Vamos ficar longe da linha dele.",
+   "Esse humano pode ter um anzol.",
+   "Não vou chegar perto da vara.",
+   "A gente se esconde entre as plantas.",
+   "Se ele jogar a linha, a gente foge.",
+   "O humano quer pegar algo na água."
+  ],
+  "c": [
+   "Vou pro meio do lago.",
+   "Melhor sumir antes que ele lance.",
+   "Fica de olho na sombra dele.",
+   "Se ele se mexer, a gente mergulha."
+  ]
+ },
+ "aq_luz": {
+  "a": [
+   "Os raios de sol cortam a água até o fundo.",
+   "A luz do sol entra forte na água hoje.",
+   "O sol ilumina as algas perto da superfície.",
+   "Vejo o reflexo do sol na areia do fundo.",
+   "A luz do sol deixa a água mais clara.",
+   "O sol bate direto na pedra onde descanso.",
+   "Os peixes pequenos nadam nos raios de sol."
+  ],
+  "b": [
+   "Fica fácil enxergar os peixes nessa luz.",
+   "A água esquenta um pouco com esse sol.",
+   "Dá para ver as bolhas subindo na luz.",
+   "Os corais brilham quando o sol bate assim.",
+   "Nessa luz, até o lodo parece dourado.",
+   "O sol ajuda a achar comida no fundo."
+  ],
+  "c": [
+   "Vou nadar mais um pouco nessa luz.",
+   "Aproveitar o sol antes que escureça.",
+   "Vou caçar perto dos raios agora.",
+   "Bom ficar aqui enquanto o sol dura."
+  ]
+ },
+ "axolote_morto": {
+  "a": [
+   "Vi um peixe boiando de barriga pra cima.",
+   "Um peixe fingiu de morto perto das algas.",
+   "O peixe ficou imóvel quando a água mexeu.",
+   "Teve um que boiou e nem se mexeu.",
+   "A água agitou e o peixe virou de lado.",
+   "O peixe se fingiu de morto na correnteza."
+  ],
+  "b": [
+   "Peixe morto atrai predador.",
+   "Fingir de morto engana quem caça.",
+   "Boiar assim espanta os curiosos.",
+   "É defesa quando a água agita.",
+   "Peixe parado parece sem vida.",
+   "Na correnteza, o truque funciona."
+  ],
+  "c": [
+   "Vou lembrar desse truque.",
+   "Melhor ficar atento na água.",
+   "Quem sabe eu finjo também.",
+   "Esse peixe é esperto."
+  ]
+ },
+ "cruz_lobo_raposa": {
+  "a": [
+   "Raposa, eu vi suas pegadas perto da minha toca.",
+   "Você é rápida, mas minha alcateia é mais.",
+   "Não chegue perto da minha carne, raposa.",
+   "Seu pelo vermelho se vê de longe.",
+   "Eu ouvi você fuçando no mato ontem.",
+   "A floresta é grande, mas não o bastante para nós dois.",
+   "Você sempre some quando eu apareço."
+  ],
+  "b": [
+   "Eu só passo por aqui, lobo.",
+   "Minhas pernas me levam para longe de você.",
+   "Eu não quero briga, só frutinhas.",
+   "Seu cheiro me avisa antes de você chegar.",
+   "Eu caço pequeno, você caça grande.",
+   "A mata tem espaço para os dois."
+  ],
+  "c": [
+   "Então mantenha distância.",
+   "Vou seguir meu caminho.",
+   "Até a próxima, se houver."
+  ]
+ },
+ "raposa_astucia": {
+  "a": [
+   "A neve esconde minhas pegadas.",
+   "Eu conheço cada toca nesta mata.",
+   "Minha cauda apaga minhas pegadas atrás de mim.",
+   "Sem fazer barulho, ninguém me percebe.",
+   "Esperto mesmo é quem sabe a hora de sumir.",
+   "Hoje enganei um lobo, juro.",
+   "Eu sempre dou um jeito de escapar."
+  ],
+  "b": [
+   "O segredo é não fazer barulho.",
+   "Eu pulo e sumo.",
+   "Eu me escondo onde ninguém acha.",
+   "Você é boa nisso.",
+   "Já enganei um lobo também.",
+   "Eu ensinei você, lembra?"
+  ],
+  "c": [
+   "Vamos treinar mais.",
+   "Agora é a minha vez.",
+   "Boa fuga.",
+   "A gente se vê por aí."
+  ]
+ },
+ "voo_noite": {
+  "a": [
+   "Não vejo o chão lá embaixo.",
+   "A lua está alta, mas não clareia o bastante.",
+   "O vento mudou depois que escureceu.",
+   "Ouvi um farfalhar nas árvores escuras.",
+   "Meus olhos não enxergam bem na escuridão.",
+   "As estrelas não ajudam a achar o ninho.",
+   "Voei perto de um galho e quase bati."
+  ],
+  "b": [
+   "A noite confunde até as asas.",
+   "O escuro esconde os galhos.",
+   "A lua só mostra as nuvens.",
+   "O vento noturno empurra para longe.",
+   "Os sons da noite enganam.",
+   "Só dá para voar perto das copas."
+  ],
+  "c": [
+   "Vou pousar antes que piore.",
+   "Melhor não arriscar agora.",
+   "Fico por aqui até amanhecer.",
+   "Amanhã vejo o caminho."
+  ]
+ }
+}

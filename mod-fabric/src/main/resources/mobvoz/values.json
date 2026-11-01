@@ -161,6 +161,9 @@
     "minecraft:emerald_block": {"value": 90.0, "pt": ["bloco de esmeralda", "blocos de esmeralda"]},
     "minecraft:diamond_block": {"value": 180.0, "pt": ["bloco de diamante", "blocos de diamante"]},
     "minecraft:lantern": {"value": 4.0, "pt": ["lanterna", "lanternas"]},
-    "minecraft:nether_star": {"value": 150.0, "pt": ["estrela do nether", "estrelas do nether", "estrela do inferno", "estrela do wither", "estrelas do wither"]}
+    "minecraft:nether_star": {"value": 150.0, "pt": ["estrela do nether", "estrelas do nether", "estrela do inferno", "estrela do wither", "estrelas do wither"]},
+    "minecraft:crimson_fungus": {"value": 1.0, "pt": ["fungo carmesim", "fungos carmesim"]},
+    "minecraft:ghast_tear": {"value": 12.0, "pt": ["lágrima de ghast", "lágrimas de ghast"]},
+    "minecraft:magma_cream": {"value": 3.0, "pt": ["creme de magma", "cremes de magma"]}
   }
 }

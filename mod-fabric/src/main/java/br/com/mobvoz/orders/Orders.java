@@ -95,10 +95,10 @@ public final class Orders {
     // ---- adaptador de movimento ----
 
     public static boolean canWalkFollow(Mob mob) {
-        return mob instanceof PathfinderMob && !(mob instanceof AbstractVillager || mob instanceof Warden || mob instanceof AbstractPiglin
-                || mob instanceof Hoglin || mob instanceof Allay || mob instanceof Frog || mob instanceof Goat || mob instanceof Camel
-                || mob instanceof Sniffer || mob instanceof Axolotl || mob instanceof WaterAnimal || mob instanceof FlyingAnimal
-                || mob instanceof WitherBoss);
+        // piglins, hoglins, sapo, cabra, camelo e sniffer (IA por brain) agora seguem pelo adaptador do brain (BossAdapter.usesBrain); ficam de fora quem nada
+        // (WaterAnimal, axolote), quem voa (Allay, FlyingAnimal; o Ghast nem e PathfinderMob), os aldeoes (rotina da vila) e os chefes (BossAdapter)
+        return mob instanceof PathfinderMob && !(mob instanceof AbstractVillager || mob instanceof Warden || mob instanceof Allay
+                || mob instanceof Axolotl || mob instanceof WaterAnimal || mob instanceof FlyingAnimal || mob instanceof WitherBoss);
     }
 
     public static Subject subjectOf(Mob mob) {
@@ -403,7 +403,7 @@ public final class Orders {
         if (mob.isNoAi()) {
             return;
         }
-        if (owner != null && BossAdapter.isBoss(mob) && !rallied.containsKey(mob.getUUID())) {
+        if (owner != null && (BossAdapter.isBoss(mob) || BossAdapter.usesBrain(mob)) && !rallied.containsKey(mob.getUUID())) {
             BossAdapter.pacify(mob, owner); // o aliado nunca mira quem o comanda
         }
         if (o.mode() == MobOrders.Mode.FOLLOW && owner != null && owner.level() == mob.level()) {

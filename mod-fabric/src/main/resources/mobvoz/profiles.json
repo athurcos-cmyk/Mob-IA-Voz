@@ -645,7 +645,7 @@
    "pitch": 0.75,
    "speed": 0.85,
    "credulity": 0,
-   "follow": 0.25
+   "follow": 0.3
   },
   {
    "id": "minecraft:ender_dragon",
@@ -947,6 +947,137 @@
    "pitch": 1.0,
    "speed": 1.0,
    "credulity": 0,
+   "follow": 0.5
+  },
+  {
+   "id": "minecraft:hoglin",
+   "label": "hoglin",
+   "style": "bruto, teimoso e sempre com fome; bufa e rosna, mas é leal a quem lhe dá fungo",
+   "diet": "fungos carmesim",
+   "about": "vive nas florestas carmesim do Nether; é criado e caçado pelos piglins; foge do fungo distorcido",
+   "address": "Humano",
+   "likes": [
+    "minecraft:crimson_fungus"
+   ],
+   "dislikes": [
+    "minecraft:warped_fungus"
+   ],
+   "wants": [
+    "minecraft:crimson_fungus"
+   ],
+   "drops": [
+    "minecraft:porkchop",
+    "minecraft:leather"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.7,
+   "speed": 0.9,
+   "credulity": 1,
+   "follow": 0.55
+  },
+  {
+   "id": "minecraft:zombified_piglin",
+   "label": "piglin zumbificado",
+   "style": "lento, rouco e rancoroso; murmura 'ouro' e 'bando' sem lembrar direito de nada",
+   "diet": "carne podre e o que sobrar",
+   "about": "vaga pelo Nether e pelo mundo de cima; se um apanha, o bando inteiro ataca",
+   "address": "Humano",
+   "likes": [
+    "minecraft:gold_nugget"
+   ],
+   "dislikes": [],
+   "wants": [
+    "minecraft:porkchop",
+    "minecraft:beef",
+    "minecraft:chicken"
+   ],
+   "drops": [
+    "minecraft:gold_nugget",
+    "minecraft:rotten_flesh"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.65,
+   "speed": 0.8,
+   "credulity": 1,
+   "follow": 0.6
+  },
+  {
+   "id": "minecraft:piglin_brute",
+   "label": "piglin brutamontes",
+   "style": "seco, brutal e sem paciência; guarda o bastião e não liga para ouro",
+   "diet": "porco assado",
+   "about": "guarda os bastiões do Nether; ataca quem entra e não aceita ouro",
+   "address": "Humano",
+   "likes": [
+    "minecraft:cooked_porkchop"
+   ],
+   "dislikes": [
+    "minecraft:gold_ingot"
+   ],
+   "wants": [
+    "minecraft:cooked_porkchop",
+    "minecraft:porkchop"
+   ],
+   "drops": [
+    "minecraft:gold_ingot"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 0.6,
+   "speed": 0.9,
+   "credulity": 0,
+   "follow": 0.7
+  },
+  {
+   "id": "minecraft:ghast",
+   "label": "ghast",
+   "style": "chorão, agudo e dramático; geme e solta uivos tristes",
+   "diet": "não come; vive de lágrimas e fumaça",
+   "about": "flutua nos vales de almas e desertos de basalto; chora; solta bolas de fogo; nunca sai do Nether",
+   "address": "Humano",
+   "likes": [
+    "minecraft:glowstone_dust"
+   ],
+   "dislikes": [
+    "minecraft:fire_charge"
+   ],
+   "wants": [
+    "minecraft:glowstone_dust",
+    "minecraft:quartz"
+   ],
+   "drops": [
+    "minecraft:ghast_tear",
+    "minecraft:gunpowder"
+   ],
+   "voice": "pt_BR-faber-medium",
+   "pitch": 1.45,
+   "speed": 0.85,
+   "credulity": 1,
+   "follow": 0.8
+  },
+  {
+   "id": "minecraft:magma_cube",
+   "label": "cubo de magma",
+   "style": "saltitante, estalante e brincalhão; faz 'plof' e 'blop' de vez em quando",
+   "diet": "combustível, como carvão",
+   "about": "vive nos desertos de basalto e nas fortalezas; pula e se divide quando apanha",
+   "address": "Humano",
+   "likes": [
+    "minecraft:coal"
+   ],
+   "dislikes": [
+    "minecraft:water_bucket"
+   ],
+   "wants": [
+    "minecraft:coal",
+    "minecraft:charcoal"
+   ],
+   "drops": [
+    "minecraft:magma_cream"
+   ],
+   "voice": "pt_BR-cadu-medium",
+   "pitch": 1.1,
+   "speed": 1.15,
+   "credulity": 2,
    "follow": 0.5
   },
   {

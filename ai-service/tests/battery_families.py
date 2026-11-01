@@ -42,6 +42,15 @@ WHO = {
     "cow": "uma vaca", "pig": "um porco", "sheep": "uma ovelha", "chicken": "uma galinha", "wolf": "um lobo", "cat": "um gato", "horse": "um cavalo",
     "golem": "um golem de ferro", "zombie": "um zumbi", "skeleton": "um esqueleto", "spider": "uma aranha", "creeper": "um creeper",
     "enderman": "um enderman", "witch": "uma bruxa", "warden": "um Warden", "pet": "um animal de estimação (lobo ou gato)",
+    "aquatic": "um bicho aquático", "fish": "um peixe", "squid": "uma lula", "glow_squid": "uma lula brilhante", "dolphin": "um golfinho", "turtle": "uma tartaruga",
+    "axolotl": "um axolote", "flying": "um bicho voador", "bee": "uma abelha", "parrot": "um papagaio", "bat": "um morcego", "allay": "um allay", "fox": "uma raposa",
+    "rabbit": "um coelho", "panda": "um panda", "ocelot": "uma jaguatirica", "goat": "uma cabra", "llama": "uma lhama", "camel": "um camelo", "frog": "um sapo",
+    "armadillo": "um tatu", "polar_bear": "um urso-polar", "sniffer": "um sniffer", "mooshroom": "uma vaca-cogumelo", "nether": "uma criatura do Nether",
+    "piglin": "um piglin", "piglin_brute": "um piglin brutamontes", "hoglin": "um hoglin", "zombified_piglin": "um piglin zumbificado", "strider": "um strider",
+    "blaze": "um blaze", "ghast": "um ghast", "magma_cube": "um cubo de magma", "wither_skeleton": "um esqueleto wither", "shulker": "um shulker",
+    "endermite": "um endermite", "slime": "um slime", "cave_spider": "uma aranha da caverna", "silverfish": "um traça", "husk": "um husk", "stray": "um stray",
+    "drowned": "um afogado", "guardian": "um guardião", "elder_guardian": "um guardião ancião", "vex": "um vex", "phantom": "um phantom", "pillager": "um saqueador",
+    "vindicator": "um vingador", "evoker": "um evocador", "ravager": "um devastador",
 }
 TAGS = {"day": "é de dia", "night": "é noite", "dusk": "é fim de tarde", "dawn": "está amanhecendo", "clear": "o céu está limpo", "rain": "está chovendo",
         "thunder": "há tempestade", "hurt": "o jogador está ferido", "hungry": "o jogador está com fome", "holds": "o jogador segura um item",
@@ -178,6 +187,11 @@ def main():
     lines = ["# Juiz de IA por família de assunto (conversas ambiente)", "",
              f"{time.strftime('%Y-%m-%d %H:%M')}; {len(by)} famílias, {len(items)} cenas, juiz `{LOCAL_MODEL if LOCAL else JUDGE_MODEL}`, {time.time() - t0:.0f} s. Média geral **{statistics.mean(allnotas):.2f}**; "
              f"famílias abaixo de {minimo}: **{sum(1 for r in rows if r[0] < minimo)}**.", "", "| Família | cenas | nota |", "|---|---|---|"]
+    json_path = next((a.split("=", 1)[1] for a in args if a.startswith("--json=")), None)
+    if json_path:  # dados por familia (nota, problemas, cenas) para o reescritor assistido por IA (tools/gen/reescrever_familias.py)
+        data = {fid: {"nota": round(m, 2), "cenas": [{"nota": i["juiz"]["nota"], "falas": i["payload"]["falas"], "problemas": i["juiz"]["problemas"]} for i in its]}
+                for m, fid, its in rows}
+        Path(json_path).write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     for m, fid, its in rows:
         lines.append(f"| {fid} | {len(its)} | {m:.2f}{'  REVER' if m < minimo else ''} |")
     lines += ["", "## Problemas apontados (famílias abaixo do mínimo primeiro)", ""]

@@ -63,8 +63,14 @@ class AmbientCoherenceTest {
         assertTrue(Ambient.canChat(cow(), cow(), true));
         assertTrue(Ambient.canChat(cow(), pig(), false), "animais com animais");
         assertTrue(Ambient.canChat(wolf(), wolf(), true));
-        assertFalse(Ambient.canChat(wolf(), cat(), false), "predadores de especies diferentes nao tem assunto");
-        assertFalse(Ambient.canChat(cat(), cow(), false));
+        assertTrue(Ambient.canChat(wolf(), cat(), false), "qualquer bicho conversa com qualquer bicho");
+        assertTrue(Ambient.canChat(cat(), cow(), false));
+        assertTrue(Ambient.canChat(Set.of("aquatic", "fish", "cod"), Set.of("aquatic", "dolphin"), false), "aquaticos entre si (golfinho com peixe)");
+        assertFalse(Ambient.canChat(Set.of("aquatic", "fish"), cow(), false), "peixe nao conversa com vaca");
+        assertTrue(Ambient.canChat(Set.of("flying", "calm", "bee"), Set.of("flying", "bat"), false), "voadores entre si (abelha com morcego)");
+        assertTrue(Ambient.canChat(Set.of("nether", "piglin"), Set.of("nether", "hoglin"), false), "os do Nether entre si");
+        assertFalse(Ambient.canChat(Set.of("nether", "piglin"), mon("zombie"), false), "Nether so com Nether; as falas do mundo de cima nao servem");
+        assertFalse(Ambient.canChat(Set.of("nether", "blaze"), farmer(), false), "Nether nunca com aldeao");
         assertTrue(Ambient.canChat(farmer(), librarian(), false), "aldeoes entre si");
         assertTrue(Ambient.canChat(farmer(), golem(), false), "o golem faz parte da vila");
         assertTrue(Ambient.canChat(mon("zombie"), mon("zombie"), true));
@@ -91,7 +97,7 @@ class AmbientCoherenceTest {
             case "villagers", "villager", "golem", "wandering_trader" -> Set.of("villagers");
             case "animals", "farm", "cow", "pig", "sheep", "chicken", "pet", "wolf", "cat", "horse" -> Set.of("animals");
             default -> who.startsWith("villager:") ? Set.of("villagers")
-                    : (who.equals("monsters") || Ambient.MONSTERS.contains(who)) ? Set.of("monsters") : Set.of("animals"); // bicho da mata, aquatico...: pacifico
+                    : (who.equals("monsters") || who.equals("nether") || Ambient.MONSTERS.contains(who) || Ambient.NETHER.contains(who)) ? Set.of("monsters") : Set.of("animals"); // bicho da mata, aquatico...: pacifico
         };
     }
 

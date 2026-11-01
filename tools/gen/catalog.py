@@ -13,6 +13,9 @@ VALUES_PATH = str(RES_DIR / "values.json")
 TRADES_PATH = str(RES_DIR / "trades.json")
 # id -> (valor em pontos; 1 esmeralda = 10, nomes pt-BR: singular, plural, ...). Nome repetido = substantivo de massa.
 NEW_VALUES = {
+    "crimson_fungus": (1.0, ["fungo carmesim", "fungos carmesim"]),
+    "ghast_tear": (12.0, ["lágrima de ghast", "lágrimas de ghast"]),
+    "magma_cream": (3.0, ["creme de magma", "cremes de magma"]),
     "dandelion": (0.5, ["dente-de-leão", "dentes-de-leão"]),
     "blue_orchid": (1.5, ["orquídea azul", "orquídeas azuis", "orquídea-azul"]),
     "allium": (1.5, ["alium", "aliuns"]),
@@ -176,6 +179,11 @@ CATALOG = {
         r("blaze_rod", 1, 2, "Arrancado do meu próprio fogo."), r("blaze_powder", 2)]),
     M + "piglin": (w("gold_ingot", "gold_nugget", "gold_block"), [
         r("iron_nugget", 9), r("string", 6), r("obsidian", 1, 2), r("quartz", 4), r("leather", 2), r("fire_charge", 2)]),
+    M + "hoglin": (w("crimson_fungus"), [r("porkchop", 2, flavor="Isso é do meu próprio lombo, mas hoje estou generoso."), r("leather", 1)]),
+    M + "zombified_piglin": (w("porkchop", "beef", "chicken"), [r("gold_nugget", 4, flavor="Achei isso no bolso, não lembro de quem."), r("rotten_flesh", 2)]),
+    M + "piglin_brute": (w("cooked_porkchop", "porkchop"), [r("gold_ingot", 1, flavor="Do bastião. Não conte a ninguém.")]),
+    M + "ghast": (w("glowstone_dust", "quartz"), [r("ghast_tear", 1, flavor="Chorei isso hoje de manhã."), r("gunpowder", 3)]),
+    M + "magma_cube": (w("coal", "charcoal"), [r("magma_cream", 2, flavor="Soltei isso quando me parti.")]),
     M + "enderman": (w("grass_block", "sand", "gravel", "clay", "pumpkin", "melon"), [
         r("ender_pearl", 1, 2, "Guardo isso desde o Fim.")]),
     M + "iron_golem": (FLOWERS + w("vine", "pumpkin"), [

@@ -101,7 +101,7 @@ public final class OrderPolicy {
             case "FOLLOW_PLAYER" -> {
                 if (!s.canWalkFollow()) {
                     return new Decision(action, Verdict.UNSUPPORTED, s.boss() ? "e um ser preso ao proprio territorio (o Fim, o monumento, as ruinas): nao sai dele para acompanhar ninguem"
-                            : "nao consegue acompanhar (movimento ainda sem adaptador)");
+                            : Refusals.cannotFollow(s.entityType()));
                 }
                 if (cur.mode() == MobOrders.Mode.FOLLOW && mine) {
                     return new Decision(action, Verdict.ALREADY, "ja esta seguindo");
@@ -117,7 +117,7 @@ public final class OrderPolicy {
             case "STAY_AT" -> {
                 if (!s.canWalkFollow()) {
                     return new Decision(action, Verdict.UNSUPPORTED, s.boss() ? "e um ser preso ao proprio territorio (o Fim, o monumento, as ruinas): nao sai dele para ficar de guarda em outro lugar"
-                            : "nao consegue ficar de guarda num ponto (sem adaptador)");
+                            : Refusals.cannotStay(s.entityType()));
                 }
                 if (cur.mode() == MobOrders.Mode.STAY && mine) {
                     return new Decision(action, Verdict.ALREADY, "ja esta esperando ali");
@@ -145,7 +145,7 @@ public final class OrderPolicy {
             }
             case "DEFEND_PLAYER" -> {
                 if (!s.canFight()) {
-                    return new Decision(action, Verdict.UNSUPPORTED, "nao sabe lutar (sem ataque/adaptador de combate)");
+                    return new Decision(action, Verdict.UNSUPPORTED, Refusals.cannotFight(s.entityType()));
                 }
                 if (cur.defend() && (cur.owner().isEmpty() || cur.owner().equals(player))) {
                     return new Decision(action, Verdict.ALREADY, "ja defende");
