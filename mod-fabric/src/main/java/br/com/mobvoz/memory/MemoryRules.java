@@ -39,12 +39,14 @@ public final class MemoryRules {
      * decrescentes: o presente N rende menos (piso 10%), entao spammar 64 itens nao zera o jogo.
      */
     public static MobMemory gift(MobMemory m, UUID player, String itemId, int count, long tick, double likeFactor, String reaction) {
-        double diminishing = Math.max(0.1, 1.0 - m.counts().getOrDefault("GIFT", 0) / 20.0);
-        float k = (float) (likeFactor * diminishing);
+        double diminishing = Math.max(0.05, 1.0 - m.counts().getOrDefault("GIFT", 0) / 12.0); // os primeiros presentes pesam; spammar 64 itens nao compra a criatura
+        var before = m.relationOf(player);
+        boolean apology = likeFactor > 0.5 && before.trust() * 0.5 + before.affinity() * 0.5 - before.fear() * 0.5 < 0; // presente a quem esta chateado perdoa mais rapido
+        float k = (float) (likeFactor * diminishing * (apology ? 2 : 1));
         String detail = itemId + " x" + count + (reaction.isEmpty() ? "" : " (" + reaction + ")");
         return firstMeeting(m, player, tick)
                 .withFact(new Fact("GIFT", player, detail, tick))
-                .withRelation(player, r -> r.plus(0.02f * k, 0.04f * k, -0.02f * k));
+                .withRelation(player, r -> r.plus(0.04f * k, 0.08f * k, -0.04f * k));
     }
 
     /** Troca concluida pelo servidor (fato verificado). */
@@ -96,7 +98,15 @@ public final class MemoryRules {
         }
         return firstMeeting(m, player, tick)
                 .withFact(new Fact("DAMAGED_BY_PLAYER", player, "", tick))
-                .withRelation(player, r -> r.plus(-0.20f, -0.15f, 0.20f));
+                .withRelation(player, r -> r.plus(-0.12f, -0.08f, 0.15f)); // um clique sem querer nao pode arruinar tudo
+    }
+
+    /** Teto da afinidade que so conversa amistosa constroi: papo ajuda a quebrar o gelo, mas confianca de verdade vem de presentes e atos. */
+    public static final float CHAT_AFFINITY_CAP = 0.12f;
+
+    /** Uma fala do jogador que nao foi ameaca: soma um pouquinho de afinidade (ate {@link #CHAT_AFFINITY_CAP}). */
+    public static MobMemory chatted(MobMemory m, UUID player, long tick) {
+        return firstMeeting(m, player, tick).withRelation(player, r -> r.affinity() < CHAT_AFFINITY_CAP ? r.plus(0f, 0.01f, 0f) : r);
     }
 
     // ---- propostas do LLM: so alegacoes/crencas, com saneamento ----

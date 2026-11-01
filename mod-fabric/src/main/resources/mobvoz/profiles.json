@@ -645,7 +645,7 @@
    "pitch": 0.75,
    "speed": 0.85,
    "credulity": 0,
-   "follow": 0.3
+   "follow": 0.25
   },
   {
    "id": "minecraft:ender_dragon",

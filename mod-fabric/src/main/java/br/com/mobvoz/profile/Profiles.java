@@ -26,14 +26,27 @@ public final class Profiles {
             if (likes.contains(itemId) || wants.contains(itemId)) {
                 return 1.0;
             }
-            return dislikes.contains(itemId) ? -0.3 : 0.15;
+            if (dislikes.contains(itemId)) {
+                return -0.3;
+            }
+            String base = SIMILAR.get(itemId); // parecido com o que ela gosta (cenoura dourada ~ cenoura): quase vale tanto
+            return base != null && (likes.contains(base) || wants.contains(base)) ? 0.8 : 0.15;
         }
 
         public String reaction(String itemId) {
             double f = likeFactor(itemId);
-            return f >= 1.0 ? "gostou" : f < 0 ? "não gostou" : "indiferente";
+            return f >= 0.8 ? "gostou" : f < 0 ? "não gostou" : "indiferente";
         }
     }
+
+    /** Versoes "melhoradas" de um item e o item base: dar uma cenoura dourada a quem gosta de cenoura agrada quase igual. */
+    private static final Map<String, String> SIMILAR = Map.ofEntries(
+            Map.entry("minecraft:golden_carrot", "minecraft:carrot"), Map.entry("minecraft:golden_apple", "minecraft:apple"),
+            Map.entry("minecraft:enchanted_golden_apple", "minecraft:apple"), Map.entry("minecraft:baked_potato", "minecraft:potato"),
+            Map.entry("minecraft:cooked_porkchop", "minecraft:porkchop"), Map.entry("minecraft:cooked_beef", "minecraft:beef"),
+            Map.entry("minecraft:cooked_chicken", "minecraft:chicken"), Map.entry("minecraft:cooked_cod", "minecraft:cod"),
+            Map.entry("minecraft:cooked_salmon", "minecraft:salmon"), Map.entry("minecraft:cooked_mutton", "minecraft:mutton"),
+            Map.entry("minecraft:cooked_rabbit", "minecraft:rabbit"), Map.entry("minecraft:hay_block", "minecraft:wheat"));
 
     private static final Map<String, Profile> BY_ID = new HashMap<>();
     private static Profile fallback;

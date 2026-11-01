@@ -117,4 +117,49 @@ class MemoryRulesTest {
         assertTrue(m.relationOf(me).affinity() > 0 && m.relationOf(me).trust() > 0);
         assertEquals(0f, m.relationOf(other).trust());
     }
+
+    private static float warmth(MobMemory m, UUID p) {
+        var r = m.relationOf(p);
+        return r.trust() * 0.5f + r.affinity() * 0.5f - r.fear() * 0.5f;
+    }
+
+    /** Presente que ela gosta: ~+0.06 de calor o 1o; indiferente quase nada. */
+    @Test
+    void likedGiftsBuildTrustFasterThanIndifferentOnes() {
+        MobMemory liked = MemoryRules.gift(MobMemory.create(UUID.randomUUID()), me, "minecraft:carrot", 1, 0, 1.0, "gostou");
+        MobMemory meh = MemoryRules.gift(MobMemory.create(UUID.randomUUID()), me, "minecraft:stone", 1, 0, 0.15, "indiferente");
+        assertEquals(0.06f, warmth(liked, me), 1e-4);
+        assertTrue(warmth(meh, me) < 0.01f);
+    }
+
+    /** 4 presentes que ela gosta ja bastam para um porco (limite 0.2) aceitar seguir. */
+    @Test
+    void fewLikedGiftsReachAPigsThreshold() {
+        MobMemory m = MobMemory.create(UUID.randomUUID());
+        for (int i = 0; i < 4; i++) {
+            m = MemoryRules.gift(m, me, "minecraft:carrot", 1, i, 1.0, "gostou");
+        }
+        assertTrue(warmth(m, me) >= 0.2f, "calor " + warmth(m, me));
+    }
+
+    /** Um golpe sem querer machuca (calor negativo), mas um presente que ela gosta perdoa em dobro. */
+    @Test
+    void aGiftAfterAHitApologizesTwiceAsFast() {
+        MobMemory hit = MemoryRules.damagedByPlayer(MobMemory.create(UUID.randomUUID()), me, 0);
+        float w0 = warmth(hit, me);
+        assertTrue(w0 < 0 && w0 > -0.25f, "calor apos um golpe " + w0);
+        MobMemory sorry = MemoryRules.gift(hit, me, "minecraft:carrot", 1, 100_000, 1.0, "gostou");
+        assertTrue(warmth(sorry, me) - w0 >= 0.11f, "ganho " + (warmth(sorry, me) - w0));
+    }
+
+    /** Papo amistoso soma um pouco de afinidade, com teto: nunca substitui presentes e atos. */
+    @Test
+    void friendlyChatBreaksTheIceButHasACap() {
+        MobMemory m = MobMemory.create(UUID.randomUUID());
+        for (int i = 0; i < 50; i++) {
+            m = MemoryRules.chatted(m, me, i);
+        }
+        assertEquals(MemoryRules.CHAT_AFFINITY_CAP, m.relationOf(me).affinity(), 0.011f);
+        assertTrue(m.relationOf(me).trust() == 0f);
+    }
 }

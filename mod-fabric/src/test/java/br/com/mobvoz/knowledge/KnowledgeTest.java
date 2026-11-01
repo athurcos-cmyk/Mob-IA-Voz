@@ -61,4 +61,21 @@ class KnowledgeTest {
         var json = Knowledge.CODEC.encodeStart(JsonOps.INSTANCE, k).getOrThrow();
         assertEquals(k, Knowledge.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow());
     }
+
+    /** Um golpe so (talvez sem querer) pesa 0.15 e o tempo apaga: metade em 30 min de jogo. */
+    @Test
+    void attacksAreForgivenOverTime() {
+        Knowledge k = Knowledge.EMPTY.withFaction("aldeia", new Event("ATTACKED_MEMBER", me, "", 0));
+        assertEquals(0.15f, k.trustPenalty("aldeia", me, 0), 1e-6);
+        assertEquals(0.075f, k.trustPenalty("aldeia", me, 36000), 1e-4);
+        assertTrue(k.trustPenalty("aldeia", me, 36000 * 5) < 0.01f);
+    }
+
+    @Test
+    void oneHitIsDescribedAsPossiblyAccidental() {
+        Knowledge k = Knowledge.EMPTY.withFaction("aldeia", new Event("ATTACKED_MEMBER", me, "", 0));
+        var lines = k.factionLines("aldeia", me, 100);
+        assertEquals(1, lines.size());
+        assertTrue(lines.get(0).contains("uma vez") && lines.get(0).contains("sem querer"), lines.get(0));
+    }
 }

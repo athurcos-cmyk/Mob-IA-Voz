@@ -35,7 +35,9 @@ public final class MemoryEvents {
                 if (!sp.isCreative()) {
                     stack.shrink(1);
                 }
-                sp.displayClientMessage(Component.literal("Você deu 1x " + stack.getHoverName().getString() + " de presente."), true);
+                String reaction = prof.reaction(id);
+                sp.displayClientMessage(Component.literal("Você deu 1x " + stack.getHoverName().getString() + ": " + reaction + ". ")
+                        .append(br.com.mobvoz.server.TrustBar.text(mob, sp.getUUID())), true);
             }
             return InteractionResult.SUCCESS;
         });

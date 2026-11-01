@@ -474,6 +474,9 @@ public final class ConversationService {
             mem = MemoryStore.update(mob, m -> MemoryRules.applyProposals(m, pid, List.of(new SidecarClient.Proposal("REGISTER_CLAIM",
                     Map.of("text", an.claim(), "stance", stance))), tick));
         }
+        if (an.social().equals("NONE") || an.social().equals("COMFORT")) { // papo amistoso quebra o gelo (so um pouco; confianca de verdade vem de presentes e atos)
+            mem = MemoryStore.update(mob, m -> MemoryRules.chatted(m, pid, tick));
+        }
         List<Map<String, String>> results = new ArrayList<>();
         List<String> orderReqs = new ArrayList<>(an.orders());
         boolean tradeTalk = isTradeTalk(mob, pid, an);
@@ -563,12 +566,13 @@ public final class ConversationService {
         facts.addAll(0, br.com.mobvoz.social.SceneFacts.lines(mob, player)); // hora, clima, vida, o que o jogador segura, quem esta perto
         if (!faction.isEmpty()) { // memoria coletiva: a faccao desconfia de quem atacou um dos seus
             facts.addAll(know.factionLines(faction, pid, tick));
-            float pen = know.trustPenalty(faction, pid);
+            float pen = know.trustPenalty(faction, pid, tick);
             rel = new MobMemory.Relationship(rel.trust() - pen, rel.affinity(), rel.fear());
         }
         if (pkey.equals("minecraft:ender_dragon")) { // o Dragao so "narra" o que esta no registro verificado
             facts.addAll(know.historyLines(pid, tick));
         }
+        player.displayClientMessage(TrustBar.text(mob, pid), true); // a barrinha de confianca, a cada fala
         return new SpeechContext(facts, MemoryRules.claimLines(mem, pid),
                 Map.of("trust", (double) rel.trust(), "affinity", (double) rel.affinity(), "fear", (double) rel.fear(),
                         "credulity", (double) Traits.credulity(Profiles.keyOf(mob), mem.identityId())),

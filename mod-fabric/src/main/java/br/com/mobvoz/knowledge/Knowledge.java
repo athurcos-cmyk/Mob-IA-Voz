@@ -69,19 +69,38 @@ public record Knowledge(Map<String, List<Event>> factions, List<Event> history) 
         return new Knowledge(factions, List.copyOf(nh));
     }
 
-    /** Quanto a faccao desconfia deste jogador por ataques a seus membros (0 .. 0.6). */
+    /** Cada ataque pesa 0.15 e vai sendo esquecido: pela metade a cada 30 min de jogo (36000 ticks). */
+    static final double FORGIVE_HALF_LIFE_TICKS = 36000;
+
+    /** Quanto a faccao desconfia deste jogador por ataques a seus membros (0 .. 0.6), contando o perdao do tempo. */
+    public float trustPenalty(String faction, UUID player, long now) {
+        double sum = factions.getOrDefault(faction, List.of()).stream()
+                .filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(player))
+                .mapToDouble(e -> Math.pow(0.5, Math.max(0, now - e.tick()) / FORGIVE_HALF_LIFE_TICKS)).sum();
+        return (float) Math.min(0.6, 0.15 * sum);
+    }
+
+    /** Sem a hora: conta todos (testes e usos antigos). */
     public float trustPenalty(String faction, UUID player) {
-        long n = factions.getOrDefault(faction, List.of()).stream()
-                .filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(player)).count();
-        return (float) Math.min(0.6, 0.15 * n);
+        return trustPenalty(faction, player, 0);
     }
 
     public List<String> factionLines(String faction, UUID speaker, long now) {
         List<String> out = new ArrayList<>();
+        long mine = factions.getOrDefault(faction, List.of()).stream().filter(e -> e.type().equals("ATTACKED_MEMBER") && e.player().equals(speaker)).count();
+        boolean attackedShown = false;
         for (Event e : factions.getOrDefault(faction, List.of())) {
             if (e.type().equals("ATTACKED_MEMBER")) {
-                String who = e.player().equals(speaker) ? "o jogador que fala com você" : "outro jogador";
-                out.add("Todos os da sua espécie sabem: " + who + " atacou um de vocês (" + age(now - e.tick()) + ").");
+                if (e.player().equals(speaker)) {
+                    if (!attackedShown) { // um resumo so, proporcional: um golpe pode ter sido sem querer
+                        attackedShown = true;
+                        out.add("Todos os da sua espécie sabem: o jogador que fala com você bateu em um de vocês " + (mine == 1
+                                ? "uma vez (" + age(now - e.tick()) + "); pode ter sido sem querer, e vocês não o odeiam por isso."
+                                : mine + " vezes (a última " + age(now - factions.get(faction).stream().filter(x -> x.type().equals("ATTACKED_MEMBER") && x.player().equals(speaker)).mapToLong(Event::tick).max().orElse(e.tick())) + ")."));
+                    }
+                } else {
+                    out.add("Todos os da sua espécie sabem: outro jogador atacou um de vocês (" + age(now - e.tick()) + ").");
+                }
             } else if (e.type().equals("HONEST_RETURN")) {
                 String who = e.player().equals(speaker) ? "o jogador que fala com você" : "outro jogador";
                 out.add("Todos os da sua espécie sabem: " + who + " devolveu a um de vocês, sem ser pedido, o que não era dele (" + age(now - e.tick()) + ").");

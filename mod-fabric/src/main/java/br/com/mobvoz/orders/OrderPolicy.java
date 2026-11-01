@@ -70,7 +70,7 @@ public final class OrderPolicy {
     /** Chefe so firma pacto com quem ganhou muita confianca. */
     public static final double BOSS_MIN_TRUST = 0.75;
 
-    static double followThreshold(Subject s) {
+    public static double followThreshold(Subject s) {
         double t = br.com.mobvoz.profile.Profiles.of(s.entityType()).follow();
         if (s.boss()) {
             return Math.max(t, BOSS_MIN_TRUST);
