@@ -128,18 +128,18 @@ public class NegotiationGameTest implements FabricClientGameTest {
             System.out.println("[gametest] wither: " + wopen.verdict() + " / " + wopen.reason());
             check(wopen.verdict().equals("ACEITO") && wopen.reason().contains("9 diamantes") && wopen.reason().contains("Limite")
                     && !wopen.reason().contains("pontos"), "oferta do Wither (3 caveiras): " + wopen);
-            String ev = world.getServer().computeOnServer(s -> Trades.evaluate(mob(s, ws), java.util.Map.of("minecraft:iron_ingot", 3, "minecraft:diamond_pickaxe", 1)));
+            String ev = world.getServer().computeOnServer(s -> Trades.evaluate(mob(s, ws), java.util.Map.of("minecraft:cobblestone", 3, "minecraft:diamond_pickaxe", 1)));
             System.out.println("[gametest] avaliacao: " + ev);
-            check(ev.contains("3 ferros: sem interesse") && ev.contains("1 picareta de diamante: interessa"), "avaliacao: " + ev);
-            drop(world, "minecraft:iron_ingot", 3);
-            waitFor(context, 300, () -> said("ferros não me interessam"));
+            check(ev.contains("3 pedregulhos: sem interesse") && ev.contains("1 picareta de diamante: interessa"), "avaliacao: " + ev);
+            drop(world, "minecraft:cobblestone", 3);
+            waitFor(context, 300, () -> said("pedregulhos não me interessam"));
             check(said("bom motivo"), "o Wither deveria abrir espaco para ser convencido: " + ConversationService.announced());
-            var weak = world.getServer().computeOnServer(s -> Trades.persuade(mob(s, ws), "minecraft:iron_ingot", 0, 1, 0.0));
-            var good = world.getServer().computeOnServer(s -> Trades.persuade(mob(s, ws), "minecraft:iron_ingot", 2, 1, 0.0));
+            var weak = world.getServer().computeOnServer(s -> Trades.persuade(mob(s, ws), "minecraft:cobblestone", 0, 1, 0.0));
+            var good = world.getServer().computeOnServer(s -> Trades.persuade(mob(s, ws), "minecraft:cobblestone", 2, 1, 0.0));
             System.out.println("[gametest] convencer sem motivo=" + weak.verdict() + " com motivo forte=" + good.verdict());
             check(weak.verdict().equals("RECUSADO") && good.verdict().equals("CONVENCIDO"), "persuasao");
-            check(world.getServer().computeOnServer(s -> Trades.evaluate(mob(s, ws), java.util.Map.of("minecraft:iron_ingot", 3))).contains("3 ferros: interessa"),
-                    "ferro deveria passar a interessar");
+            check(world.getServer().computeOnServer(s -> Trades.evaluate(mob(s, ws), java.util.Map.of("minecraft:cobblestone", 3))).contains("3 pedregulhos: interessa"),
+                    "pedregulho deveria passar a interessar");
             cmd.runCommand("kill @e[type=item]");
             drop(world, "minecraft:diamond_pickaxe", 1);
             drop(world, "minecraft:gold_ingot", 28);
@@ -177,11 +177,11 @@ public class NegotiationGameTest implements FabricClientGameTest {
             drop(world, "minecraft:raw_iron", 11);
             waitFor(context, 800, () -> onGround(world, "minecraft:iron_pickaxe") > 0);
             check(onGround(world, "minecraft:iron_pickaxe") == 1, "picareta improvisada nao entregue");
-            check(onGround(world, "minecraft:raw_iron") == 1, "a sobra de 1 ferro bruto deveria voltar (ha " + onGround(world, "minecraft:raw_iron") + ")");
+            check(onGround(world, "minecraft:raw_iron") >= 1 && onGround(world, "minecraft:raw_iron") <= 3, "a sobra do ferro bruto deveria voltar (o preco agora e menor; ha " + onGround(world, "minecraft:raw_iron") + ")");
             // pedido que a IA julgou impossivel e sem sorte (valor alto): recusado, nada abre
-            var nope = world.getServer().computeOnServer(s -> Trades.open(mob(s, golem), player(s), 0, "minecraft:diamond_pickaxe", 1, "YES"));
-            check(nope.verdict().equals("IMPOSSIVEL"), "item caro nunca e improvisado, nem com a IA dizendo que sim: " + nope);
-            System.out.println("[gametest] E ok: picareta de ferro improvisada pelo golem, paga com ferro bruto (julgado pela IA); item caro recusado");
+            var nope = world.getServer().computeOnServer(s -> Trades.open(mob(s, golem), player(s), 0, "minecraft:netherite_block", 1, "YES"));
+            check(nope.verdict().equals("IMPOSSIVEL"), "o que passa de 400 pontos nunca e improvisado, nem com a IA dizendo que sim: " + nope);
+            System.out.println("[gametest] E ok: picareta de ferro improvisada pelo golem, paga com ferro bruto (julgado pela IA); item acima de 400 pontos recusado");
 
             // ---- F) preco VARIAVEL: travado na oferta, dentro da faixa, com barganha limitada ----
             ServerConfig.set(new ServerConfig()); // dynamicPrices = true (padrao)

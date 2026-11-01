@@ -100,9 +100,9 @@ public class PhysicalTradeGameTest implements FabricClientGameTest {
         var r0 = world.getServer().computeOnServer(s -> Trades.open(mob(s, pig), player(s), 0, "", 0));
         check(r0.verdict().equals("ACEITO"), "oferta deveria abrir: " + r0);
         System.out.println("[gametest] condicoes: " + r0.reason());
-        drop(world, "minecraft:diamond", 1);
+        drop(world, "minecraft:cobblestone", 1); // diamante, ouro, ferro e esmeralda valem como moeda para todos; pedregulho nao
         context.waitTicks(120);
-        check(onGround(world, "minecraft:diamond") == 1 && onGround(world, "minecraft:apple") == 0, "item errado foi tocado!");
+        check(onGround(world, "minecraft:cobblestone") == 1 && onGround(world, "minecraft:apple") == 0, "item errado foi tocado!");
         System.out.println("[gametest] T13 ok: item errado intocado, sem recompensa");
         clearItems(world);
 

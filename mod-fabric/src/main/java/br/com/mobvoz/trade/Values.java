@@ -96,8 +96,24 @@ public final class Values {
             return Optional.of(exact);
         }
         String lk = loose(stripped);
-        return LOOSE_AMBIGUOUS.contains(lk) ? Optional.empty() : Optional.ofNullable(LOOSE.get(lk));
+        if (!LOOSE_AMBIGUOUS.contains(lk) && LOOSE.get(lk) != null) {
+            return Optional.of(LOOSE.get(lk));
+        }
+        // "armadura de ferro boa", "uma picareta de diamante nova": tira os qualificativos do fim e tenta de novo
+        String[] words = stripped.split(" ");
+        int end = words.length;
+        while (end > 1 && QUALIFIERS.contains(words[end - 1])) {
+            end--;
+        }
+        if (end < words.length) {
+            return lookup(String.join(" ", java.util.Arrays.copyOf(words, end)));
+        }
+        return Optional.empty();
     }
+
+    private static final java.util.Set<String> QUALIFIERS = java.util.Set.of("boa", "bom", "boas", "bons", "melhor", "melhores", "nova", "novo", "novas", "novos",
+            "legal", "legais", "qualquer", "completa", "completo", "inteira", "inteiro", "bonita", "bonito", "resistente", "forte", "rara", "raro", "decente", "top",
+            "pra", "para", "mim", "favor", "porfavor");
 
     /** Nome legivel em pt-BR para a fala. */
     public static String name(String id, boolean plural) {

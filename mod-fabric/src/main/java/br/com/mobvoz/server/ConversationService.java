@@ -554,7 +554,10 @@ public final class ConversationService {
         List<String> orderReqs = new ArrayList<>(an.orders());
         boolean tradeTalk = isTradeTalk(mob, pid, an);
         orderReqs.remove("OPEN_TRADE");
-        if (tradeTalk) { // negociacao: oferta aberta SO pelo servidor, so se a receita existe; itens falados sao resolvidos no catalogo
+        Ask demanded = resolveAsk(mob, an);
+        // "me da isso, senao eu te mato": ameaca para conseguir um item. Nao abre proposta de troca: ela cede ou nao (ver Extortion)
+        boolean threatDemand = "THREAT".equals(an.social()) && !demanded.item().isEmpty() && !demanded.isPayment();
+        if (tradeTalk && !threatDemand) { // negociacao: oferta aberta SO pelo servidor, so se a receita existe; itens falados sao resolvidos no catalogo
             Ask ak = resolveAsk(mob, an);
             String asked = ak.item();
             boolean askedIsPayment = ak.isPayment();
@@ -650,10 +653,13 @@ public final class ConversationService {
         String faction = KnowledgeStore.factionOf(pkey);
         var know = KnowledgeStore.get(player.getServer());
         if (!an.social().equals("NONE")) { // ameaca/consolo por palavras: a criatura REAGE segundo a sua natureza
-            var rx = br.com.mobvoz.social.Reactions.react(mob, player, an.social());
+            var rx = br.com.mobvoz.social.Reactions.reactOutcome(mob, player, an.social());
             if (rx != null) {
-                results.add(rx);
+                results.add(rx.result());
                 mem = MemoryStore.get(mob);
+                if (threatDemand) {
+                    results.add(br.com.mobvoz.trade.Extortion.demand(mob, player, demanded.item(), Math.max(1, an.ask().count()), judged.give(), rx.reaction()));
+                }
             }
         }
         MobMemory.Relationship rel = mem.relationOf(pid);

@@ -144,6 +144,9 @@ def system_prompt(entity_type: str, capabilities: list[str], profile: dict | Non
         "recuse com uma frase NOVA e sua, improvisada na hora, mostrando com humor ou espanto por que isso é impossível para a SUA espécie "
         "e a SUA vida (o que você é, onde vive, o que come, o que sabe fazer). Nada de frase pronta e nada de copiar expressões de exemplo: invente uma imagem própria da SUA espécie e do SEU mundo. Depois, se o 'motivo' listar o que você PODERIA dar, "
         "ofereça isso com naturalidade, sem inventar nada fora da lista.\n"
+        "- EXTORSAO (em 'resultado_das_ordens'): o jogador te ameaçou para conseguir um item. ENTREGOU = por medo você largou o item no chão para ele: fale assustada ou "
+        "a contragosto, em 1 ou 2 frases, e diga em UMA frase de onde veio o item; RECUSOU = você não cedeu (siga a REACAO); SEM_O_ITEM = você não tem aquilo. "
+        "Nunca diga que entregou algo se o resultado não for ENTREGOU.\n"
         "- REACAO (em 'resultado_das_ordens') é o que você FEZ de verdade ao tom do jogador: FOGE = você está em PÂNICO e correndo: grite e IMPLORE para não ser machucado(a), "
         "cite o que o jogador ameaçou fazer, fale curto e ofegante, sem piada e sem despedida calma; ENFURECE = você está FURIOSO(A): responda com raiva direta ao que o jogador ameaçou, frase curta e ríspida (rosnar cabe), nada de reflexão calma nem de filosofia; IMPASSIVEL = a ameaça não te abala: explique pela SUA natureza (ex.: se você é cego, "
         "fale de vibrações e ruído); CONGELA = você quer reagir mas não consegue se mexer; ACALMA = você relaxa e confia mais. Fale do seu ponto de vista.\n"
@@ -232,7 +235,8 @@ ANALYZE_SYSTEM = (
     "3c) appeal (opcional, 0 se não houver): o jogador dá um MOTIVO para a criatura aceitar o PEDIDO ou ORDEM (seguir, proteger, ser domada, fazer as pazes): 0 = só pede/insiste sem motivo, 1 = motivo plausível (promete cuidar, abrigo, comida), 2 = motivo concreto e forte ligado ao que a criatura valoriza.\n"
     "4) social: o TOM do jogador com a criatura. THREAT = ameaça ou fala de machucar, matar, comer, cozinhar, transformar em comida ou "
     "levar para o abate; COMFORT = acalmar, tranquilizar, prometer não machucar, carinho; NONE = qualquer outra coisa (conversa comum, "
-    "perguntas, elogios leves, ordens, trocas).\n"
+    "perguntas, elogios leves, ordens, trocas). EXTORSÃO é THREAT: pedir um item sob ameaça (\"me dá X senão eu te mato\", \"me dá X que eu não te machuco\", "
+    "\"entrega isso ou morre\") é THREAT mesmo que a frase diga \"não te mato\"; nesse caso preencha também ask com o item pedido e deixe orders sem OPEN_TRADE.\n"
     "Responda SOMENTE JSON {\"claim\": str, \"orders\": [..], \"ask\": {..}, \"offers\": [..], \"persuasion\": {..}, \"social\": str}.\n"
     "Exemplos:\n"
     '"Eu sou seu pai, sabia?" -> {"claim": "o jogador diz ser pai da criatura", "orders": []}\n'
@@ -268,7 +272,9 @@ ANALYZE_SYSTEM = (
     '"persuasion": {"item": "", "strength": 0}, "social": "THREAT"}\n'
     '"Vou te matar, seu monstro" -> {"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [], '
     '"persuasion": {"item": "", "strength": 0}, "social": "THREAT"}\n'
-    '"Calma, calma, não vou te machucar, sou amigo" -> {"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [], '
+    '"Me dá o olho de aranha, que eu não te mato!" -> {"claim": "", "orders": [], "ask": {"item": "olho de aranha", "count": 1}, "offers": [], '
+    '"persuasion": {"item": "", "strength": 0}, "social": "THREAT"}\n'
+    '"Calma, calma, não vou te machucar, sou amigo" ->{"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [], '
     '"persuasion": {"item": "", "strength": 0}, "social": "COMFORT"}\n'
     '"Eu sou seu pai, vem comigo!" -> {"claim": "o jogador diz ser pai da criatura", "orders": ["FOLLOW_PLAYER"], "ask": {"item": "", "count": 0}, '
     '"offers": [], "persuasion": {"item": "", "strength": 0}}\n'
@@ -325,10 +331,16 @@ def judge_messages(profile: dict, accept: list[str], give: str) -> list[dict]:
         "Regras de bom senso, sempre pela natureza da espécie: a criatura NÃO precisa aceitar tudo. "
         "ACEITAR (receber como pagamento): YES = serve a ela de verdade (comida da sua dieta, material do seu ofício, algo que ela use, "
         "colecione ou ache valioso); MAYBE = esquisito, mas ela toparia com um bom motivo; NO = não tem nada a ver com ela. "
-        "DAR (entregar ao jogador): YES = ela teria isso ou conseguiria na vida normal dela (é parte do corpo dela, do que ela produz, "
-        "do que cai dela ou do seu ambiente); MAYBE = improvável, mas poderia achar largado por aí; NO = impossível para ela. "
+        "DAR (entregar ao jogador): seja GENEROSO e criativo, o jogo é para ser divertido. YES = ela teria isso ou conseguiria na vida normal dela: parte do "
+        "corpo dela, do que ela produz, do que cai dela, do seu ambiente, do que ela guarda ou acharia por aí (um golem de ferro tem peças e ferramentas de ferro; "
+        "um peixe e o fundo do mar guardam tesouros de naufrágios, inclusive armaduras e tridentes; zumbis, esqueletos e o Warden carregam o equipamento de aventureiros "
+        "que morreram tentando enfrentá-los; um aldeão tem as ferramentas e os produtos do seu ofício, e quase tudo de uma vila; um piglin, ouro e achados do Nether; "
+        "uma aranha, fios, olhos e o que sobra das suas presas). MAYBE = raro ou improvável, mas poderia ter achado ou herdado (tesouros, itens encantados, tecnologia "
+        "estranha ao seu mundo). NO = só se for absurdo para o seu mundo e a sua natureza (um peixe entregar uma cama; uma vaca dar um bloco de comando). "
+        "Na dúvida entre MAYBE e NO, escolha MAYBE; entre YES e MAYBE para algo plausível, escolha YES. "
         "Exemplos de OUTRAS criaturas: a vaca ACEITA trigo (YES) e NÃO aceita espada (NO); a vaca DÁ couro (YES), dá uma flor do pasto (YES), "
-        "dá uma picareta (MAYBE: poderia achar uma esquecida), dá diamante (NO). "
+        "dá uma picareta (YES: alguém deixou no pasto), dá um diamante (MAYBE); um golem DÁ armadura e picareta de ferro (YES); um peixe DÁ uma armadura de um "
+        "naufrágio (YES); um creeper DÁ pólvora e um disco de música (MAYBE). "
         'Responda SOMENTE com JSON: {"accept": [{"item": nome, "verdict": "YES|MAYBE|NO"}], "give": "YES|MAYBE|NO"}. '
         "Use exatamente os nomes recebidos em 'aceitar'. Se 'dar' vier vazio, use NO."
     )

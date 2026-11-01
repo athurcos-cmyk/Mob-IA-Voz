@@ -1,0 +1,167 @@
+{
+"amethyst_cluster": {
+"value": 8.0
+},
+"azalea": {
+"value": 0.5
+},
+"bee_nest": {
+"value": 3.0
+},
+"bell": {
+"value": 8.0
+},
+"big_dripleaf": {
+"value": 1.0
+},
+"blue_egg": {
+"value": 0.0
+},
+"breeze_rod": {
+"value": 12.0
+},
+"brown_egg": {
+"value": 0.0
+},
+"brown_mushroom_block": {
+"value": 0.5
+},
+"bush": {
+"value": 0.1
+},
+"cactus_flower": {
+"value": 0.5
+},
+"carved_pumpkin": {
+"value": 1.0
+},
+"chainmail_boots": {
+"value": 5.0
+},
+"chainmail_chestplate": {
+"value": 5.0
+},
+"chainmail_helmet": {
+"value": 5.0
+},
+"chainmail_leggings": {
+"value": 5.0
+},
+"chipped_anvil": {
+"value": 10.0
+},
+"chiseled_resin_bricks": {
+"value": 2.0
+},
+"chorus_flower": {
+"value": 4.0
+},
+"damaged_anvil": {
+"value": 10.0
+},
+"diamond_horse_armor": {
+"value": 30.0
+},
+"dirt_path": {
+"value": 0.1
+},
+"firefly_bush": {
+"value": 0.5
+},
+"flowering_azalea": {
+"value": 0.5
+},
+"gilded_blackstone": {
+"value": 6.0
+},
+"golden_horse_armor": {
+"value": 15.0
+},
+"iron_horse_armor": {
+"value": 8.0
+},
+"jack_o_lantern": {
+"value": 1.0
+},
+"large_amethyst_bud": {
+"value": 6.0
+},
+"medium_amethyst_bud": {
+"value": 4.0
+},
+"nether_sprouts": {
+"value": 0.5
+},
+"pale_hanging_moss": {
+"value": 0.5
+},
+"pale_moss_block": {
+"value": 0.5
+},
+"pale_moss_carpet": {
+"value": 0.5
+},
+"pearlescent_froglight": {
+"value": 5.0
+},
+"pitcher_pod": {
+"value": 2.0
+},
+"red_mushroom_block": {
+"value": 0.5
+},
+"resin_block": {
+"value": 2.0
+},
+"resin_brick": {
+"value": 1.0
+},
+"resin_brick_slab": {
+"value": 0.5
+},
+"resin_brick_stairs": {
+"value": 0.5
+},
+"resin_brick_wall": {
+"value": 0.5
+},
+"resin_bricks": {
+"value": 0.5
+},
+"sculk_vein": {
+"value": 0.5
+},
+"short_dry_grass": {
+"value": 0.1
+},
+"skeleton_skull": {
+"value": 8.0
+},
+"small_amethyst_bud": {
+"value": 1.0
+},
+"small_dripleaf": {
+"value": 0.5
+},
+"tall_dry_grass": {
+"value": 0.1
+},
+"torchflower_seeds": {
+"value": 1.0
+},
+"twisting_vines": {
+"value": 0.5
+},
+"verdant_froglight": {
+"value": 3.0
+},
+"warped_wart_block": {
+"value": 0.5
+},
+"weeping_vines": {
+"value": 0.5
+},
+"wildflowers": {
+"value": 0.1
+}
+}

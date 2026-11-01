@@ -53,8 +53,25 @@ public final class Reactions {
         return nature == Threat.FLEE ? Reaction.FLEE : Reaction.FIGHT;
     }
 
+    /** A reacao decidida e o resultado que vai para a fala. */
+    public record Outcome(Reaction reaction, Map<String, String> result) {
+    }
+
     /** Server thread: aplica a reacao (fisica + memoria) e devolve o resultado para a fala. */
     public static Map<String, String> react(Mob mob, ServerPlayer player, String social) {
+        Outcome o = reactOutcome(mob, player, social);
+        return o == null ? null : o.result();
+    }
+
+    /** Ela se acalma (cedeu ao pedido sob ameaca): para de fugir ou de perseguir. */
+    public static void calm(Mob mob) {
+        active.remove(mob.getUUID());
+        if (mob.getTarget() instanceof ServerPlayer) {
+            mob.setTarget(null);
+        }
+    }
+
+    public static Outcome reactOutcome(Mob mob, ServerPlayer player, String social) {
         if (!"THREAT".equals(social) && !"COMFORT".equals(social)) {
             return null;
         }
@@ -95,7 +112,7 @@ public final class Reactions {
             case CALMED -> "o jogador a acalmou; ela relaxa";
             case NONE -> "";
         };
-        return Map.of("pedido", "REACAO", "resultado", res, "motivo", why);
+        return new Outcome(r, Map.of("pedido", "REACAO", "resultado", res, "motivo", why));
     }
 
     public static boolean isActive(UUID mob) {

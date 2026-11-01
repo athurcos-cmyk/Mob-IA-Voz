@@ -190,7 +190,12 @@ class NegotiationTest {
         assertEquals("minecraft:iron_pickaxe", r.outputItem());
         assertTrue(r.price() >= Values.value("minecraft:iron_pickaxe"), "preco " + r.price());
         assertEquals(r, TradeCatalog.byId(r.id()).orElseThrow(), "o id carrega a receita inteira (sobrevive a salvar/sair)");
-        assertTrue(TradeCatalog.dynamic("minecraft:chicken", "minecraft:diamond_pickaxe", 2.5, 1).isEmpty(), "nada caro (>30) e improvisado");
+        assertTrue(TradeCatalog.dynamic("minecraft:chicken", "minecraft:diamond_pickaxe", 1.2, 1).isPresent(), "picareta de diamante pode ser improvisada, pelo preco da raridade");
+        assertTrue(TradeCatalog.dynamic("minecraft:chicken", "minecraft:netherite_block", 1.2, 1).isEmpty(), "o que passa de 400 pontos nao e improvisado");
+        assertEquals(16, TradeCatalog.dynUnits("minecraft:bone_meal"), "item barato sai em quantidade");
+        assertEquals(1, TradeCatalog.dynUnits("minecraft:elytra"), "item caro sai um por vez");
+        assertTrue(TradeCatalog.currencyFor("minecraft:iron_chestplate").stream().noneMatch(c -> c.endsWith("iron_ingot")), "ninguem paga ferro para ganhar ferro");
+        assertTrue(TradeCatalog.currencyFor("minecraft:iron_chestplate").contains("minecraft:emerald"));
         assertTrue(TradeCatalog.dynamic("minecraft:chicken", "minecraft:iron_pickaxe", 0.5, 1).isEmpty(), "margem < 1 criaria valor");
         assertTrue(TradeCatalog.byId("dyn|minecraft:chicken|minecraft:iron_pickaxe|1|1").isEmpty(), "id adulterado com preco baixo e recusado");
         assertTrue(TradeCatalog.byId("dyn|minecraft:chicken|minecraft:nao_existe|50|1").isEmpty());
@@ -198,7 +203,8 @@ class NegotiationTest {
         assertFalse(r.conditions(1).isEmpty());
         // criatura sem gosto fixo: o preco sai em esmeraldas, nunca vazio
         var odd = TradeCatalog.dynamic("othermod:blob", "minecraft:gunpowder", 1.5, 3).orElseThrow();
-        assertTrue(odd.paymentExamples(1).get(0).contains("esmeralda"), odd.paymentExamples(1).toString());
+        assertFalse(odd.paymentExamples(1).isEmpty(), "sempre diz como pagar");
+        assertTrue(odd.paymentExamples(1).stream().anyMatch(x -> x.contains("ferro") || x.contains("ouro") || x.contains("esmeralda") || x.contains("diamante")), "paga-se com moedas: " + odd.paymentExamples(1));
     }
 
     /** Sorte: determinista por (criatura, item, dia); em media ~15% (NO) e ~35% (MAYBE); outra criatura/dia pode dar outro resultado. */

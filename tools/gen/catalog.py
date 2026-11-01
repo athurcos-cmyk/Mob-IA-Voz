@@ -129,7 +129,7 @@ def w(*names):
     return [M + n for n in names]
 
 
-def r(item, count=1, units=4, flavor="", margin=1.5, price=None):
+def r(item, count=1, units=4, flavor="", margin=1.2, price=None):
     return dict(item=M + item, count=count, units=units, flavor=flavor, margin=margin, price=price)
 
 
@@ -188,8 +188,8 @@ CATALOG = {
         r("ender_pearl", 1, 2, "Guardo isso desde o Fim.")]),
     M + "iron_golem": (FLOWERS + w("vine", "pumpkin"), [
         r("iron_ingot", 3, flavor="Esse ferro saiu do meu próprio corpo; já fiz o conserto, pode levar."),
-        r("iron_block", 1, 2, margin=1.1), r("iron_helmet", 1, 2, margin=1.2), r("iron_chestplate", 1, 2, margin=1.2),
-        r("iron_leggings", 1, 2, margin=1.2), r("iron_boots", 1, 2, margin=1.2),
+        r("iron_block", 1, 2, margin=1.1), r("iron_helmet", 1, 2, margin=1.1), r("iron_chestplate", 1, 2, margin=1.1),
+        r("iron_leggings", 1, 2, margin=1.1), r("iron_boots", 1, 2, margin=1.1),
         r("cobblestone", 8), r("stone_bricks", 4)]),
     M + "wither_skeleton": (w("gold_ingot", "gold_block", "diamond", "diamond_pickaxe", "diamond_sword", "netherite_scrap", "emerald"), [
         r("wither_skeleton_skull", 1, 3, margin=1.0, price=60.0), r("nether_star", 1, 1, "Ela estava guardada com as caveiras; só os nossos sabem onde.", margin=1.1), r("coal", 3), r("bone", 3)]),
@@ -206,7 +206,7 @@ CATALOG = {
     V + "fisherman": (w("string", "coal", "cod", "salmon"), [r("emerald", margin=1.3), r("fishing_rod", 1, 2), r("oak_boat", 1, 2)]),
     V + "shepherd": (w("white_wool", "wheat"), [r("emerald", margin=1.3), r("shears", 1, 2), r("white_bed", 1, 2)]),
     V + "butcher": (w("porkchop", "beef", "chicken", "coal"), [
-        r("emerald", margin=1.3), r("cooked_beef", 2, margin=1.2), r("cooked_porkchop", 2, margin=1.2)]),
+        r("emerald", margin=1.3), r("cooked_beef", 2, margin=1.1), r("cooked_porkchop", 2, margin=1.1)]),
     V + "fletcher": (w("stick", "flint", "feather", "string"), [r("emerald", margin=1.3), r("arrow", 8), r("bow", 1, 2)]),
     V + "leatherworker": (w("leather"), [
         r("emerald", margin=1.3), r("leather_helmet", 1, 2), r("leather_chestplate", 1, 2), r("leather_leggings", 1, 2),

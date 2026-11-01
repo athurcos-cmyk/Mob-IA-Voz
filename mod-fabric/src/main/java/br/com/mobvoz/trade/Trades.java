@@ -157,6 +157,10 @@ public final class Trades {
     static final double LUCK_MAYBE = 0.35;
     static final double LUCK_NO = 0.15;
     static final double LUCK_MAX_VALUE = 20.0;
+    /** Margem sobre o valor do item nos negocios improvisados (a IA acha plausivel / improvavel / "so por sorte"): baixa, para ser divertido. */
+    static final double DYN_MARGIN_YES = 1.2;
+    static final double DYN_MARGIN_MAYBE = 1.7;
+    static final double DYN_MARGIN_LUCK = 2.0;
 
     /** Determinista por (criatura, item, dia): insistir no mesmo pedido no mesmo dia nao muda a sorte; outra criatura/dia, sim. */
     static boolean luck(java.util.UUID mob, String item, long day, String verdict) {
@@ -181,9 +185,11 @@ public final class Trades {
             long day = player.level().getGameTime() / 24000;
             boolean lucky = false;
             if (giveVerdict.equals("YES")) {
-                r = TradeCatalog.dynamic(key, askedItem, 1.5, 3).orElse(null);
+                r = TradeCatalog.dynamic(key, askedItem, DYN_MARGIN_YES, TradeCatalog.dynUnits(askedItem)).orElse(null);
+            } else if (giveVerdict.equals("MAYBE")) { // improvavel, mas ela topa se pagarem mais: o preco acompanha o quanto custa conseguir
+                r = TradeCatalog.dynamic(key, askedItem, DYN_MARGIN_MAYBE, Math.min(2, TradeCatalog.dynUnits(askedItem))).orElse(null);
             } else if (Values.value(askedItem) <= LUCK_MAX_VALUE && luck(mob.getUUID(), askedItem, day, giveVerdict)) {
-                r = TradeCatalog.dynamic(key, askedItem, 2.5, 1).orElse(null);
+                r = TradeCatalog.dynamic(key, askedItem, DYN_MARGIN_LUCK, 1).orElse(null);
                 lucky = r != null;
             }
             if (r == null) {
@@ -218,7 +224,14 @@ public final class Trades {
         }
         int wanted = askedCount > 0 ? askedCount : (wasOpen ? cur.offerUnits() : 1);
         int units = Math.max(1, Math.min(wanted, r.maxUnits()));
-        set(mob, cur.open(r.id(), pid, now + r.offerTicks(), units, lock));
+        MobTrades opened = cur.open(r.id(), pid, now + r.offerTicks(), units, lock);
+        var prof = Profiles.of(key);
+        for (String coin : TradeCatalog.currencyFor(r.outputItem())) { // esmeralda, diamante, ouro e ferro valem para qualquer um (menos o do mesmo material do que ela da)
+            if (!prof.dislikes().contains(coin) && !prof.wants().contains(coin)) {
+                opened = opened.withJudged(coin, 800);
+            }
+        }
+        set(mob, opened);
         double unitPrice = get(mob).unitPrice(r.price());
         String cut = wanted > units ? "O jogador quis " + wanted + ", mas ela só dá até " + units + " por negócio. " : "";
         String others = recipes.size() > 1 && askedItem.isEmpty() ? ". " + whatItCanGive(recipes) : "";
@@ -585,7 +598,10 @@ public final class Trades {
         int total = r.outputCount() * t.txUnits();
         String delivered = "FATO PRINCIPAL (diga isso): você acabou de entregar ao jogador " + total + " " + Values.name(r.outputItem(), total != 1) + ", como combinado";
         String fact = delivered + (note != null ? ". Detalhe: " + note[0] : "")
-                + (r.flavor().isEmpty() ? "" : "; se quiser, diga de onde veio (dica, com suas palavras: " + r.flavor() + ")");
+                + (r.flavor().isEmpty() ? "" : "; dica da origem, com suas palavras: " + r.flavor())
+                + "; na sua fala, além de dizer que entregou, INCLUA obrigatoriamente UMA frase curta com a história de onde veio esse item: um causo seu, plausível "
+                + "para a sua espécie e o seu mundo (ex.: um peixe achou no fundo de um naufrágio; um golem diz que a ferramenta já cavou muita mina; um zumbi tirou de um "
+                + "aventureiro que não voltou). Pode ser inventado, é só uma história; nada de números, encantamentos ou poderes que o item não tem. Se couber, termine com um aviso";
         String line = (note != null ? note[1] + " " : "") + "Pronto, tá aqui, como eu falei." + (r.flavor().isEmpty() ? "" : " " + r.flavor());
         announceTo(mob, level, t.txPlayer(), fact, line);
     }

@@ -36,7 +36,9 @@ public final class TradeCatalog {
         public List<String> paymentExamples(int units, double unitPrice) {
             Profiles.Profile p = Profiles.of(profile);
             double total = unitPrice * units;
-            List<String> ids = p.wants().stream().filter(i -> Values.value(i) > 0 && !i.endsWith("_pickaxe") && !i.endsWith("_sword"))
+            java.util.LinkedHashSet<String> acc = new java.util.LinkedHashSet<>(p.wants());
+            currencyFor(outputItem).stream().filter(c -> !p.dislikes().contains(c)).forEach(acc::add); // moedas que todo mundo aceita
+            List<String> ids = acc.stream().filter(i -> Values.value(i) > 0 && !i.endsWith("_pickaxe") && !i.endsWith("_sword"))
                     .sorted((a, b) -> Double.compare(Values.value(a), Values.value(b))).toList();
             List<String> out = new ArrayList<>();
             for (String i : ids) { // itens "normais": quantidade entre 2 e 16 (nem 1 item so, nem pilhas absurdas)
@@ -65,7 +67,9 @@ public final class TradeCatalog {
 
         public String conditions(int units, double unitPrice) {
             Profiles.Profile p = Profiles.of(profile);
-            String accepts = p.wants().stream().sorted((a, b) -> {
+            java.util.LinkedHashSet<String> accepted = new java.util.LinkedHashSet<>(p.wants());
+            currencyFor(outputItem).stream().filter(c -> !p.dislikes().contains(c)).forEach(accepted::add);
+            String accepts = accepted.stream().sorted((a, b) -> {
                 int c = Double.compare(Values.value(b), Values.value(a));
                 return c != 0 ? c : a.compareTo(b);
             }).limit(6).map(i -> Values.name(i, true)).collect(Collectors.joining(", "));
@@ -133,12 +137,35 @@ public final class TradeCatalog {
     // ---- receitas IMPROVISADAS: item fora do catalogo que a IA julgou plausivel (ou que a criatura achou por sorte) ----
     // O id carrega tudo ("dyn|perfil|item|preco em decimos|unidades"), entao sobrevive a salvar/sair sem nenhum estado extra.
     private static final String DYN = "dyn|";
-    public static final double DYN_MAX_VALUE = 30.0;
+    public static final double DYN_MAX_VALUE = 400.0; // qualquer item do jogo (ate netherite e elitro) pode ser improvisado; o preco acompanha a raridade
+    public static final int DYN_MAX_UNITS = 16;
+
+    /** Quantas unidades cabem num negocio improvisado: item barato em quantidade (farinha de osso), caro de a um. */
+    public static int dynUnits(String item) {
+        double v = Values.value(item);
+        return v < 2 ? DYN_MAX_UNITS : v < 10 ? 8 : v < 60 ? 4 : 1;
+    }
+
+    /** Moedas que qualquer criatura aceita (a menos que odeie), exceto o que e do mesmo material do que ela da: ninguem paga ferro para ganhar ferro. */
+    public static final List<String> CURRENCY = List.of("minecraft:emerald", "minecraft:diamond", "minecraft:gold_ingot", "minecraft:iron_ingot");
+    private static final java.util.Set<String> MATERIALS = java.util.Set.of("iron", "golden", "gold", "diamond", "netherite", "emerald", "copper", "leather", "chainmail");
+
+    /** Material do item pela 1a palavra do id ("iron_chestplate" -> "iron"); "" se nao for de material. */
+    static String materialOf(String itemId) {
+        String id = itemId.substring(itemId.indexOf(':') + 1);
+        String first = id.contains("_") ? id.substring(0, id.indexOf('_')) : id;
+        return MATERIALS.contains(first) ? (first.equals("golden") ? "gold" : first) : "";
+    }
+
+    public static List<String> currencyFor(String outputItem) {
+        String mat = materialOf(outputItem);
+        return CURRENCY.stream().filter(c -> mat.isEmpty() || !materialOf(c).equals(mat)).toList();
+    }
 
     /** Receita improvisada: preco por unidade = valor x margem (meio em meio), sempre >= valor da saida (sem criar valor). */
     public static Optional<Recipe> dynamic(String profile, String item, double margin, int units) {
         double value = Values.value(item);
-        if (value <= 0 || value > DYN_MAX_VALUE || margin < 1.0 || units < 1 || units > 4) {
+        if (value <= 0 || value > DYN_MAX_VALUE || margin < 1.0 || units < 1 || units > DYN_MAX_UNITS) {
             return Optional.empty();
         }
         double price = Math.ceil(value * margin * 2 - 1e-9) / 2;
@@ -153,7 +180,7 @@ public final class TradeCatalog {
             }
             double price = Integer.parseInt(f[3]) / 10.0;
             int units = Integer.parseInt(f[4]);
-            if (!Values.known(f[2]) || price + 1e-9 < Values.value(f[2]) || units < 1 || units > 4 || Values.value(f[2]) > DYN_MAX_VALUE) {
+            if (!Values.known(f[2]) || price + 1e-9 < Values.value(f[2]) || units < 1 || units > DYN_MAX_UNITS || Values.value(f[2]) > DYN_MAX_VALUE) {
                 return Optional.empty(); // id adulterado/invalido: nunca cria valor
             }
             return Optional.of(new Recipe(id, f[1], price, f[2], 1, "", 2400, units));
