@@ -1,7 +1,7 @@
 # Instala o servico de IA (sidecar) do MobVoz num Windows limpo: ambiente Python, bibliotecas, vozes e modelo de reconhecimento de fala.
 # Rode (a partir da pasta ai-service):   powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1
 # Modo leve (so a voz Piper, sem o Kokoro):  ... -File .\instalar-sidecar.ps1 -Leve
-# Precisa de: Python 3.10 a 3.14 no PATH (testado com 3.14) (python.org: marque "Add python.exe to PATH") e ~1,5 GB de disco livre.
+# Precisa de: Python 3.10 a 3.14 (testado com 3.14; o 3.15 ainda NAO serve) e ~1,5 GB de disco livre.
 param([switch]$Leve)
 $ErrorActionPreference = 'Stop'
 $env:HF_HUB_DISABLE_SYMLINKS_WARNING = '1'  # aviso inofensivo do Hugging Face no Windows sem modo desenvolvedor
@@ -13,15 +13,21 @@ function Rodar($exe, [string[]]$argumentos) {
     if ($LASTEXITCODE -ne 0) { throw "Falhou: $exe $($argumentos -join ' ') (codigo $LASTEXITCODE)" }
 }
 
-$py = Get-Command python -ErrorAction SilentlyContinue
-if (-not $py) { throw "Python nao encontrado. Instale em python.org (marque 'Add python.exe to PATH') e rode este script de novo." }
-$ver = (& python -c "import sys; print('%d.%d' % sys.version_info[:2])").Trim()
-if ([version]$ver -lt [version]'3.10') { throw "Python $ver e antigo demais; instale o 3.10 ou mais novo." }
-Write-Host "Python $ver encontrado."
-if ([version]$ver -ge [version]'3.15') { Write-Host "Aviso: o Python $ver e mais novo que o testado (3.14); se a instalacao das bibliotecas falhar, instale o Python 3.12 ou 3.13." -ForegroundColor Yellow }
+. "$PSScriptRoot\python-compativel.ps1"
+$achado = Achar-Python
+if (-not $achado) {
+    throw "Nao achei um Python compativel (3.10 a 3.14). Se voce tem o Python 3.15 ou mais novo, ele ainda NAO serve (faltam pacotes prontos das bibliotecas de voz): instale o Python 3.12 em python.org/downloads ou rode no PowerShell:  winget install -e --id Python.Python.3.12   e depois rode este script de novo."
+}
+$py = $achado.Exe
+Write-Host "Python $($achado.Ver) encontrado: $py"
 
 Passo "Criando o ambiente (.venv)"
-if (-not (Test-Path .venv\Scripts\python.exe)) { Rodar python @('-m', 'venv', '.venv') }
+if (Test-Path .venv\Scripts\python.exe) {
+    # um .venv feito com Python incompativel (ex.: 3.15) nao serve: apaga e refaz
+    $vv = Versao-Python '.venv\Scripts\python.exe'
+    if (-not $vv -or $vv -lt $script:PyMin -or $vv -gt $script:PyMax) { Write-Host "Refazendo o ambiente (o anterior usava Python $vv)."; Remove-Item -Recurse -Force .venv }
+}
+if (-not (Test-Path .venv\Scripts\python.exe)) { Rodar $py @('-m', 'venv', '.venv') }
 $vpy = '.venv\Scripts\python.exe'
 
 Passo "Instalando as bibliotecas (alguns minutos)"

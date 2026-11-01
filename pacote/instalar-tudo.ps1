@@ -11,35 +11,23 @@ function Atualizar-Path {
     $env:Path = "$m;$u"
 }
 
-function Achar-Python {
-    # ignora o "atalho" da Microsoft Store (WindowsApps), que abre a loja em vez de rodar o Python
-    $cands = @()
-    $c = Get-Command python -ErrorAction SilentlyContinue
-    if ($c -and $c.Source -notlike '*WindowsApps*') { $cands += $c.Source }
-    $cands += Get-ChildItem "$env:LOCALAPPDATA\Programs\Python\Python3*\python.exe" -ErrorAction SilentlyContinue | Sort-Object FullName -Descending | ForEach-Object FullName
-    $cands += Get-ChildItem "$env:ProgramFiles\Python3*\python.exe" -ErrorAction SilentlyContinue | Sort-Object FullName -Descending | ForEach-Object FullName
-    foreach ($p in $cands) {
-        try { $v = [version](& $p -c "import sys; print('%d.%d' % sys.version_info[:2])").Trim() } catch { continue }
-        if ($v -ge [version]'3.10') { return $p }
-    }
-    return $null
-}
+. "$PSScriptRoot\ai-service\python-compativel.ps1"
 
-Passo "1/3 Python"
-$py = Achar-Python
-if (-not $py) {
-    Write-Host "Python nao encontrado. Instalando o Python 3.12 pelo winget (pode pedir permissao)..."
+Passo "1/3 Python (3.10 a 3.14; o 3.15 ainda nao serve para as bibliotecas de voz)"
+$achado = Achar-Python
+if (-not $achado) {
+    Write-Host "Nao ha um Python compativel neste PC. Instalando o Python 3.12 pelo winget (fica ao lado do que voce ja tem; pode pedir permissao)..."
     if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-        throw "Nao achei o Python e nem o winget. Instale o Python em python.org/downloads (marque 'Add python.exe to PATH') e rode o 1-INSTALAR.bat de novo."
+        throw "Nao achei um Python compativel e nem o winget. Instale o Python 3.12 em python.org/downloads (marque 'Add python.exe to PATH') e rode o 1-INSTALAR.bat de novo."
     }
     winget install -e --id Python.Python.3.12 --silent --accept-package-agreements --accept-source-agreements
     Atualizar-Path
-    $py = Achar-Python
-    if (-not $py) { throw "O Python nao ficou disponivel. Feche esta janela, abra o 1-INSTALAR.bat de novo (o Windows precisa recarregar o PATH) ou instale em python.org/downloads." }
+    $achado = Achar-Python
+    if (-not $achado) { throw "O Python 3.12 nao ficou disponivel. Feche esta janela e de dois cliques no 1-INSTALAR.bat de novo (o Windows precisa recarregar o PATH) ou instale o 3.12 em python.org/downloads." }
 }
-Write-Host "Python: $py"
-# as proximas etapas usam este Python: coloca a pasta dele na frente do PATH
-$env:Path = (Split-Path $py) + ";" + (Split-Path $py) + "\Scripts;" + $env:Path
+$py = $achado.Exe
+Write-Host "Python $($achado.Ver): $py"
+$env:MOBVOZ_PYTHON = $py   # o instalar-sidecar.ps1 usa o mesmo
 
 Passo "2/3 Minecraft: Fabric, pasta de jogo e mods"
 & $py "$PSScriptRoot\instalar_jogo.py"
