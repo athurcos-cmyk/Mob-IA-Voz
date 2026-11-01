@@ -38,6 +38,8 @@
 
 ## Pendências a decidir (com o dono)
 
+- **Conversa de ambiente entre mobs aquaticos**: NAO existe (2026-11-01). Peixe, lula e golfinho so tem a classe `calm` e `Ambient.canChat` so liga aldeao, animal (`Animal`) e monstro; tartaruga, axolote e sapo sao `animals`, mas nao ha familia propria (so as genericas de pasto, que nao combinam). Hoje os aquaticos so PUXAM ASSUNTO com o jogador (`ev_puxa_*`: ~35 falas). Se o dono quiser, criar familias entre eles (cardume, correnteza, fundo do mar) e uma regra `canChat` para `aquatic` da mesma especie.
+
 - **Reações dos monstros a acontecimentos (zumbi, esqueleto, creeper...)**: hoje só criaturas calmas reagem a creeper/raio/pancada/morte (`WorldReactions.around` ignora `Enemy`; monstros só têm ~100-130 falas de ambiente contra ~700-880 de aldeões e bichos). O dono NÃO quer que fique chato (ex.: matar um zumbi atrás do outro e todo mundo comentando). Se for feito: chance baixa, tempo de espera longo e só nos momentos raros (primeira vez, chefe, vários de uma vez), nunca a cada morte. Decidido em 2026-11-01: ESPERAR.
 - **Cumprimento por IA opcional** (interruptor `aiReactions`, desligado por padrão, com limite diário) para os poucos momentos ricos em memória (reencontro, volta de uma morte): oferecido, o dono escolheu só as falas fixas do golem.
 
@@ -71,6 +73,8 @@
 - Simple Voice Chat 2.6.27 (Fabric 1.21.8) é dependência *recomendada*, baixada só no perfil de desenvolvimento.
 
 ## Limitações conhecidas
+
+- **Teste em jogo instavel (2026-11-01):** `WorldReactionsGameTest` falhou 1 vez em 2 baterias completas ("a fala nao e de uma familia ev_obrigado", passo WR4: agradecimento da vila ao matar um monstro) e passou 3 de 3 rodando sozinho. Causa nao confirmada (suspeita: tempo da janela de 60 ticks); se voltar a falhar, rode-o isolado e olhe `[gametest] WR4` no log.
 
 - **Nunca testado com microfone real nem ouvindo o áudio**: toda a verificação injeta PCM sintético (Piper) no lugar do microfone e confirma que os frames de áudio chegam ao cliente pela entidade certa. Latência real de fala natural, ruído, sotaque e qualidade da voz são do seu teste.
 - O STT (Whisper `small`) errou 1 de 4 frases sintéticas ("portal"→"putal"); com voz real a taxa pode ser melhor ou pior. Há opção de modelo maior (`MOBVOZ_STT_MODEL=medium`).

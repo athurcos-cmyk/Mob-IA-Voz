@@ -56,6 +56,7 @@ public class WorldReactionsGameTest implements FabricClientGameTest {
         }
         var cfg = new ServerConfig();
         cfg.ambientChatter = false; // so as reacoes, sem a conversa de ambiente por cima
+        cfg.mobsInitiate = false; // a criatura nao puxa assunto no meio do teste
         ServerConfig.set(cfg);
         WorldReactions.reset();
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {

@@ -5,12 +5,13 @@ import re
 import time
 import zlib
 
-from . import config, llm, prompts
+from . import config, fastpath, llm, prompts
 from .validation import _EMOJI, REPLY_SCHEMA_LITE, ValidationError, looks_english, validate_reply
 
 log = logging.getLogger("mobvoz.ai")
 
 
+STATS = {"fast": 0, "llm": 0}  # quantas analises foram dispensadas / feitas pela IA (diagnostico)
 STANCE_BY_LEVEL = {0: "DOUBTS", 1: "SUSPECTS", 2: "BELIEVES"}
 
 
@@ -32,6 +33,10 @@ def analyze(req: dict, chat=llm.chat) -> dict:
     empty = {"claim": "", "orders": [], "ask": {"item": "", "count": 0}, "offers": [], "persuasion": {"item": "", "strength": 0}, "social": "NONE", "haggle": 0, "appeal": 0}
     if not text:
         return empty
+    if fastpath.is_simple(text):  # papo simples: a analise da IA seria vazia, entao nem chama (uma espera a menos)
+        STATS["fast"] += 1
+        return empty
+    STATS["llm"] += 1
     try:
         raw = chat(prompts.analyze_messages(text), model=req.get("model") if isinstance(req.get("model"), str) else None,
                    schema=prompts.ANALYZE_SCHEMA, options={"temperature": 0, "num_predict": 260})

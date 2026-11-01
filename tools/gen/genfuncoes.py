@@ -23,6 +23,9 @@ CATS = [
   ("Assuntos delicados, com cuidado", "heart", "Proposta indecente: recusa com leveza. Autolesão: acolhe, sugere conversar com alguém de confiança e o CVV (188).", [T_OK]),
   ("Falas de reserva por espécie", "shield", "Se a IA falhar, a criatura diz uma de 5 frases do jeito da espécie (16 espécies mais a padrão), sempre pedindo para você repetir, em vez de um erro seco.", [T_OK]),
   ("Cache de áudio", "bolt", "As falas prontas se repetem sem sintetizar de novo (de 888 ms para 0 ms no teste), em um cache de 48 MB.", [T_OK]),
+  ("Voz por frase", "bolt", "A resposta não espera a fala inteira ficar pronta: a primeira frase toca assim que é gerada e as outras são geradas enquanto ela toca. O som continua saindo do próprio mob.", [T_OK]),
+  ("Papo simples, sem espera extra", "feather", "Pergunta ou cumprimento sem pedido, troca, item, mentira nem ameaça dispensa a primeira análise da IA: uma chamada a menos (cerca de 1,2 s com a API). Conferido com a IA real em 1.187 frases: nenhuma fala com pedido ou troca passou pelo atalho.", [T_OK]),
+  ("Som de “pensando”", "eye", "Se a resposta demora, a criatura solta um som curto do jeito da espécie (“Muuu?”, “Hmm, oinc...”) e a resposta espera ele acabar. Se a resposta chega logo, nada é dito. Dá para desligar (<code>thinkingSounds</code>).", [T_OK, T_FREE]),
  ]),
  ("memoria", "Memória e relações", "book", "Cada criatura lembra o que viveu com você, e o que ela sabe vem de fatos reais.", [
   ("Memória de cada criatura", "book", "Presentes, trocas, golpes, consolo: tudo vira lembrança da criatura, guardada no próprio mob e mantida ao salvar e sair do mundo. Só é criada quando você interage.", [T_OK]),
@@ -58,7 +61,7 @@ CATS = [
   ("Hostis negociam sem atacar", "skull", "Um zumbi, esqueleto ou piglin que conversa ou negocia com você não ataca. Atacar o parceiro cancela a oferta.", [T_OK]),
  ]),
  ("mundo", "Mundo vivo", "bubbles", "Falas prontas, sem custo de IA, para o mundo parecer habitado mesmo quando você só passa.", [
-  ("Conversas entre criaturas", "bubbles", "Aldeões com aldeões, vacas com vacas, zumbis com zumbis: 221 assuntos e 1.675 falas únicas, prontas e sem custo de IA.", [T_OK, T_FREE, (WARN, "frequência: palpite a ajustar")]),
+  ("Conversas entre criaturas", "bubbles", "Aldeões com aldeões, vacas com vacas, zumbis com zumbis: 300 assuntos e mais de 2.000 falas únicas, prontas e sem custo de IA.", [T_OK, T_FREE, (WARN, "frequência: palpite a ajustar")]),
   ("Cada tipo de mob no seu assunto", "feather", "Só conversa quem faz sentido: aldeão com aldeão, animais de fazenda entre si, monstro só com a mesma espécie. Vaca nunca fala de “trocar”.", [T_OK]),
   ("Reparam no que você tem", "eye", "O trigo na sua mão, a armadura que você veste: a vaca pergunta se é para ela, e cada mob quer o que combina com ele.", [T_OK, T_FREE]),
   ("Falam do mundo", "bolt", "Hora, clima, bioma (neve, deserto, selva, pântano, floresta, montanha, praia, savana), lua cheia e nova, profundidade e altura.", [T_OK, T_FREE]),
@@ -67,7 +70,8 @@ CATS = [
   ("Golem, guarda da vila", "shield", "Ao voltar à vila, o golem cumprimenta e pede ajuda para protegê-la, lembrando de presente, pancada, consolo ou promessa quebrada. 7 grupos de falas.", [T_OK, T_FREE]),
   ("Atrás da parede, sem espiar", "lock", "Sem linha de visão até você, ninguém comenta o que você veste ou faz. Falam do clima, dos bichos e do que lembram de você.", [T_OK]),
   ("Cumprimentam quem conhecem", "heart", "Quem já te conhece reage ao te ver de novo, do jeito da espécie.", [T_OK, T_FREE]),
-  ("Variedade sem repetir", "feather", "As últimas 120 cenas ficam de fora do sorteio e cada acontecimento tem tempo de espera, para um creeper nunca gerar sempre a mesma fala.", [T_OK]),
+  ("A criatura puxa assunto", "star", "De vez em quando uma criatura pacífica, perto e que vê você, abre a conversa: pergunta, adivinha, piada, dica, segredo, assunto do ofício (aldeões), da mata, do mar. Cerca de 400 aberturas, sem custo de IA; hostis nunca. Quando você responde, a IA continua o MESMO assunto (a abertura entra no histórico).", [T_OK, T_FREE]),
+  ("Variedade sem repetir", "feather","As últimas 120 cenas ficam de fora do sorteio e cada acontecimento tem tempo de espera, para um creeper nunca gerar sempre a mesma fala.", [T_OK]),
  ]),
  ("criaturas", "Personalidade", "heart", "Nenhuma criatura é igual à outra, nem entre espécies nem dentro da mesma.", [
   ("66 criaturas com história", "book", "Origem, sentidos, motivações e medos de 66 criaturas, pesquisados no wiki (com as lendas marcadas como lendas).", [T_OK]),
@@ -75,7 +79,8 @@ CATS = [
   ("Cada criatura é única", "star", "Memória própria, humor do dia e um tom de voz levemente diferente de uma vaca para outra.", [T_OK]),
  ]),
  ("tecnologia", "IA, privacidade e servidor", "lock", "Você escolhe a IA, e o servidor do jogo manda em tudo o que acontece.", [
-  ("Sua IA, seu ritmo", "feather", "Modelo local grátis (Ollama) ou a sua própria API, como a DeepSeek. Voz principal Kokoro (natural) ou Piper (leve e rápida).", [T_OK]),
+  ("Programa de instalação", "arrow", "Um <code>MobVozIA.exe</code> com janela: instala tudo, guarda a chave da API <b>uma vez</b> (testa na hora e mostra só o final), liga e para o serviço sem janela preta e abre o Minecraft. Atualizar para uma versão nova reaproveita o que já foi baixado.", [T_OK]),
+  ("Sua IA, seu ritmo", "feather","Modelo local grátis (Ollama) ou a sua própria API, como a DeepSeek. Voz principal Kokoro (natural) ou Piper (leve e rápida).", [T_OK]),
   ("Privacidade por desenho", "lock", "O áudio nunca sai do seu PC e não é gravado. Nada de jogador vai para o log. Só o texto vai à API, e só se você escolher uma. Sem o seu consentimento, o microfone não é usado.", [T_OK]),
   ("A IA só sugere", "shield", "Ela devolve um JSON estrito; o servidor só executa o que está numa lista permitida e passa pelas regras. Nada de console ou <code>/give</code> vindo do modelo.", [T_OK]),
   ("Servidor e multijogador", "bubbles", "Consentimento por jogador, conferido no servidor. Testado num servidor dedicado com 1 jogador conectado.", [T_OK, (WARN, "2+ jogadores: sem teste")]),
@@ -121,7 +126,7 @@ PAGE = '''<!doctype html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=13">
+  <link rel="stylesheet" href="assets/css/style.css?v=14">
 </head>
 <body>
 <a class="skip" href="#main">Ir para o conteúdo</a>
@@ -171,7 +176,7 @@ PAGE = '''<!doctype html>
 
 </main>
 %(footer)s
-<script src="assets/js/app.js?v=13" defer></script>
+<script src="assets/js/app.js?v=14" defer></script>
 </body>
 </html>
 '''

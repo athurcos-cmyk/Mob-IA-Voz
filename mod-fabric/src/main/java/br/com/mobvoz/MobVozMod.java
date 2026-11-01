@@ -33,6 +33,7 @@ public final class MobVozMod implements ModInitializer {
         br.com.mobvoz.social.Parley.register();
         br.com.mobvoz.social.Events.register();
         br.com.mobvoz.social.WorldReactions.register();
+        br.com.mobvoz.social.Initiative.register(); // a criatura puxa assunto de vez em quando
         br.com.mobvoz.server.MobVozCommands.register();
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
             ConversationService.reset();

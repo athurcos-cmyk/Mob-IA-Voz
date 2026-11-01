@@ -70,6 +70,7 @@ public class NameCallGameTest implements FabricClientGameTest {
         }
         var cfg = new ServerConfig();
         cfg.ambientChatter = false;
+        cfg.mobsInitiate = false; // a criatura nao puxa assunto no meio do teste
         cfg.naturalEvents = false; // nada de fala espontanea ocupando a vaca
         ServerConfig.set(cfg);
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {

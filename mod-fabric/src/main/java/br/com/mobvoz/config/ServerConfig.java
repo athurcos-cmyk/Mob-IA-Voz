@@ -35,6 +35,12 @@ public final class ServerConfig {
     public int ambientCooldownSeconds = 60;
     /** Quanto custa conquistar a confianca de uma criatura: "facil" (aceita seguir com bem menos), "normal" ou "dificil". */
     public String trustDifficulty = "normal";
+    /** Som curto de "pensando" ("Hmm...", "Muuu?") quando a resposta demora: disfarca a espera. false = silencio ate a resposta. */
+    public boolean thinkingSounds = true;
+    /** Criaturas pacificas puxam assunto com o jogador de vez em quando (falas prontas, sem IA; a resposta do jogador e conversa normal com a IA). */
+    public boolean mobsInitiate = true;
+    /** Intervalo medio entre uma abertura de conversa e a proxima, por jogador (30 a 3600 s). */
+    public int initiativeSeconds = 240;
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static volatile ServerConfig current = new ServerConfig();
@@ -58,6 +64,7 @@ public final class ServerConfig {
         }
         voiceEngine = voiceEngine.toLowerCase();
         trustDifficulty = isDifficulty(trustDifficulty) ? trustDifficulty.toLowerCase() : "normal";
+        initiativeSeconds = Math.max(30, Math.min(initiativeSeconds, 3600));
         return this;
     }
 

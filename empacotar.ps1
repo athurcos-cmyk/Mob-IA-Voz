@@ -27,7 +27,7 @@ Copy-Item $jar "$comp\mod\"
 Copy-Item $exe $stage
 Copy-Item "$root\pacote\LEIA-ME.txt" $stage
 Get-ChildItem "$root\pacote" -Exclude 'LEIA-ME.txt' | Copy-Item -Destination $comp
-robocopy "$root\ai-service" "$comp\ai-service" /E /XD .venv models __pycache__ tests /XF *.pyc README.md requirements.txt /NFL /NDL /NJH /NJS | Out-Null
+robocopy "$root\ai-service" "$comp\ai-service" /E /XD .venv models __pycache__ tests /XF *.pyc *.log *.err README.md requirements.txt /NFL /NDL /NJH /NJS | Out-Null
 foreach ($f in 'LICENSE', 'THIRD_PARTY.md') { Copy-Item "$root\$f" $stage }
 
 $zip = "$root\dist\MobVozIA-$version.zip"

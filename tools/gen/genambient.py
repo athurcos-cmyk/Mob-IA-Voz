@@ -828,6 +828,10 @@ fam("jogador_dono", ["calm", "calm"], ["f0:TAMED"],
 from genambient_ev import add as _add_ev  # noqa: E402
 
 _add_ev(fam)  # reacoes ao mundo (ev_*) e assuntos novos de ambiente
+
+from genambient_puxa import add as _add_puxa  # noqa: E402
+
+_add_puxa(fam)  # a criatura puxa assunto com o jogador (ev_puxa_*)
 drop("curiosidade_quadrado")  # o juiz a achou filosofica demais para aldeoes, nas tres reescritas
 
 GENERIC_B = ["Pois é.", "É verdade.", "Também acho.", "Nem me fale."]

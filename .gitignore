@@ -12,3 +12,5 @@ site/.vercel/
 ai-service/models/
 *.log
 launcher/build/
+ai-service/*.log
+ai-service/*.err

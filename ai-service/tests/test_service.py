@@ -275,5 +275,46 @@ class FallbackTests(unittest.TestCase):
         self.assertIn(out["speech_text"], prompts.FALLBACK_SPEECH["minecraft:wolf"])
 
 
+class FastPathTests(unittest.TestCase):
+    """O atalho de papo simples (app/fastpath.py): nunca pode dispensar a analise de uma fala com pedido, troca, afirmacao ou tom."""
+
+    def test_no_action_phrase_takes_the_shortcut(self):
+        from app import fastpath
+        from tests.fastpath_corpus import ACTION
+        leaked = [t for t in ACTION if fastpath.is_simple(t)]
+        self.assertEqual(leaked, [], f"fala com pedido/troca/afirmacao/tom passou pelo atalho: {leaked}")
+
+    def test_plain_chat_takes_the_shortcut(self):
+        from app import fastpath
+        from tests.fastpath_corpus import CHAT, TASTE
+        miss = [t for t in CHAT + TASTE if not fastpath.is_simple(t)]
+        self.assertLessEqual(len(miss), 3, f"cobertura caiu; perdidas: {miss}")  # 2 conhecidas ("ficar", "tem")
+
+    def test_limits_and_odd_input(self):
+        from app import fastpath
+        for t in ["", "   ", "?", "Oi! " * 40, "O que você gosta de 3 coisas?", "Qual é o seu nome?" + "a" * 100]:
+            self.assertFalse(fastpath.is_simple(t) and len(t) > 90, t)
+        self.assertFalse(fastpath.is_simple(""))
+        self.assertFalse(fastpath.is_simple("Você tem 3 maçãs?"))  # numero: pode ser troca
+        self.assertFalse(fastpath.is_simple("Eu sou seu pai, tudo bem?"))  # afirmacao escondida num cumprimento
+
+    def test_analyze_skips_the_llm_for_chat_and_calls_it_for_the_rest(self):
+        calls = []
+
+        def spy(messages, model=None, **kw):
+            calls.append(messages)
+            return json.dumps({"claim": "", "orders": ["FOLLOW_PLAYER"], "ask": {"item": "", "count": 0}, "offers": [],
+                               "persuasion": {"item": "", "strength": 0}, "social": "NONE"})
+        caps = ["REGISTER_CLAIM", "FOLLOW_PLAYER"]
+        out = service.analyze({"text": "Oi, tudo bem?", "capabilities": caps}, chat=spy)
+        self.assertEqual((calls, out["orders"], out["claim"]), ([], [], ""))
+        out = service.analyze({"text": "Me segue!", "capabilities": caps}, chat=spy)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(out["orders"], ["FOLLOW_PLAYER"])
+        before = dict(service.STATS)
+        service.analyze({"text": "Como você está?", "capabilities": caps}, chat=spy)
+        self.assertEqual(service.STATS["fast"], before["fast"] + 1)
+
+
 if __name__ == "__main__":
     unittest.main()

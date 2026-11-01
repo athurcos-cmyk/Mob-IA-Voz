@@ -288,6 +288,9 @@ public final class Ambient {
     /** Monstros que conversam entre si (zumbi com esqueleto, creeper, aranha...; nunca com aldeao nem animal); os demais hostis nunca puxam assunto. */
     static final Set<String> MONSTERS = Set.of("zombie", "skeleton", "spider", "creeper", "enderman", "witch", "warden");
 
+    /** Bichos da mata: a classe "forest" das aberturas de conversa. */
+    static final Set<String> FOREST = Set.of("fox", "wolf", "bee", "rabbit", "parrot", "panda", "ocelot");
+
     private static String typeName(Mob m) {
         String key = Profiles.keyOf(m);
         String type = key.contains("#") ? key.substring(0, key.indexOf('#')) : key;
@@ -318,6 +321,16 @@ public final class Ambient {
         String name = type.substring(type.indexOf(':') + 1);
         if (m instanceof Animal) {
             c.add("animals");
+        }
+        c.add(name); // a especie tambem e uma classe (fox, bee, dolphin...): as aberturas de conversa tem familias proprias
+        if (FOREST.contains(name)) {
+            c.add("forest");
+        }
+        if (m instanceof net.minecraft.world.entity.animal.WaterAnimal || name.equals("turtle") || name.equals("axolotl")) {
+            c.add("aquatic");
+        }
+        if (m instanceof net.minecraft.world.entity.animal.AbstractFish) {
+            c.add("fish");
         }
         switch (name) {
             case "cow", "pig", "sheep", "chicken" -> {

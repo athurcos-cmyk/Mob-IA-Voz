@@ -69,6 +69,7 @@ public class SpokenConversationGameTest implements FabricClientGameTest {
         }
         var cfg = new br.com.mobvoz.config.ServerConfig();
         cfg.ambientChatter = false; // as vacas vizinhas conversariam entre si e o teste acharia que "outra vaca falou"
+        cfg.mobsInitiate = false; // a criatura nao puxa assunto no meio do teste
         br.com.mobvoz.config.ServerConfig.set(cfg);
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {
             world.getClientWorld().waitForChunksRender();

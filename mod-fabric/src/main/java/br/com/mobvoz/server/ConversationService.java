@@ -61,6 +61,11 @@ public final class ConversationService {
         speaker = s;
     }
 
+    /** A saida de voz atual (null sem o Simple Voice Chat); usada pelos testes. */
+    public static Speaker speaker() {
+        return speaker;
+    }
+
     private static final java.util.List<String> ANNOUNCED = new java.util.concurrent.CopyOnWriteArrayList<>();
 
     /** Ultimas falas fixas do servidor (trocas, cenas). */
@@ -99,6 +104,40 @@ public final class ConversationService {
         while (d.size() > HISTORY_TURNS) {
             d.pollFirst();
         }
+    }
+
+    /** Marca, no historico, a vez em que foi a CRIATURA quem puxou assunto (ver {@link #rememberOpening}). */
+    static final String OPENING_MARK = "(a criatura puxou assunto com o jogador)";
+    private static final long OPENING_TTL_MS = 10 * 60_000;
+
+    /**
+     * A criatura puxou assunto ("Qual foi o seu maior susto?"): a frase entra no historico da conversa com este jogador, e a proxima fala dele e
+     * respondida COM esse contexto (historico + um fato explicito pedindo para continuar o assunto). Thread do servidor.
+     */
+    public static void rememberOpening(Mob mob, ServerPlayer player, String line) {
+        rememberOpening(mob.getUUID(), player.getUUID(), line);
+    }
+
+    static void rememberOpening(UUID mob, UUID player, String line) {
+        remember(mob, player, OPENING_MARK, line);
+    }
+
+    /** O historico curto desta criatura com este jogador (testes e diagnostico). */
+    public static List<Map<String, String>> historyOf(UUID mob, UUID player) {
+        return historyFor(mob, player);
+    }
+
+    /** Se a ultima coisa que a criatura disse foi ela puxando assunto (ha pouco), a IA recebe um aviso: a fala do jogador responde a isso. */
+    static List<String> withOpening(List<String> facts, UUID mob, UUID player) {
+        var d = HISTORY.get(mob + ":" + player);
+        Turn last = d == null ? null : d.peekLast();
+        if (last == null || !OPENING_MARK.equals(last.jogador()) || System.currentTimeMillis() - last.at() > OPENING_TTL_MS) {
+            return facts;
+        }
+        List<String> all = new ArrayList<>(facts);
+        all.add(0, "VOCÊ acabou de puxar assunto com o jogador, dizendo: \"" + last.voce()
+                + "\". O que o jogador falou agora responde a isso: continue ESSE mesmo assunto, sem mudar de tema nem recomeçar a conversa.");
+        return all;
     }
 
     /** Fatos de lore sobre outras criaturas citadas na fala (para opinar sem inventar). */
@@ -174,13 +213,13 @@ public final class ConversationService {
                         return sidecarSpeak(r, ignored, said, voice);
                     }
                     if (fallback == null) {
-                        return CompletableFuture.completedFuture((short[]) null);
+                        return CompletableFuture.completedFuture((SentenceVoice.Voiced) null);
                     }
                     said.set(fallback); // IA fora do ar: a reserva fixa mantem a troca compreensivel
-                    return sidecar.synthesize(fallback, voice.voice(), voice.pitch(), voice.speed()).thenApply(o -> o.orElse(null));
+                    return sidecar.synthesize(fallback, voice.voice(), voice.pitch(), voice.speed()).thenApply(o -> o.map(SentenceVoice.Voiced::of).orElse(null));
                 })
                 .orTimeout(PIPELINE_TIMEOUT_S, TimeUnit.SECONDS)
-                .whenComplete((pcm, err) -> server.execute(() -> {
+                .whenComplete((voiced, err) -> server.execute(() -> {
                     EVENTS_IN_FLIGHT.decrementAndGet();
                     Runnable done = () -> mobToPlayer.remove(mid, pid);
                     if (err != null || said.get() == null || !mob.isAlive() || player.hasDisconnected()) {
@@ -190,11 +229,11 @@ public final class ConversationService {
                     remember(mid, pid, "(aconteceu: " + event + ")", said.get());
                     ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.displayName(mob), said.get()));
                     Speaker sp = speaker;
-                    if (pcm == null || sp == null) {
+                    if (voiced == null || sp == null) {
                         done.run();
                         return;
                     }
-                    sp.speak(mob, pcm, () -> server.execute(done));
+                    SentenceVoice.play(sp, server, mob, voiced, () -> server.execute(done));
                 }));
     }
 
@@ -204,6 +243,12 @@ public final class ConversationService {
         mobToPlayer.clear();
         playerToMob.clear();
         lastTick.clear();
+    }
+
+    /** O jogador falou com alguma criatura nos ultimos {@code ticks}? (para nao puxar assunto logo depois) */
+    public static boolean recentlyTalked(UUID player, long ticks, long nowTick) {
+        Long last = lastTick.get(player);
+        return last != null && nowTick - last < ticks;
     }
 
     /** Esta criatura esta numa conversa com algum jogador agora? */
@@ -263,6 +308,8 @@ public final class ConversationService {
         String type = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString();
         String pkey = Profiles.keyOf(mob);
         Voices voice = Voices.forProfile(pkey, MemoryStore.get(mob).identityId());
+        // se a resposta demorar, a criatura solta um som curto de "pensando" (disfarca a espera; a resposta espera o som acabar)
+        ThinkingSound.Handle thinking = ThinkingSound.begin(server, speaker, sidecar, mob, voice, BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).getPath());
         long t0 = System.nanoTime();
         MemoryStore.update(mob, m -> MemoryRules.firstMeeting(m, pid, now)); // fato verificado
         learnName(mob, pid, text);
@@ -278,15 +325,16 @@ public final class ConversationService {
                         .thenCompose(job -> job == null ? CompletableFuture.completedFuture(SidecarClient.Judgment.NONE)
                                 : sidecar.judge(profileMap(mob, pid), job.accept(), job.giveName()))
                         .thenCompose(j -> onServerThread(server, () -> withNickname(mob, pid, text, decideAndApply(mob, player, an, j)))))
-                .thenCompose(ctx -> sidecar.reply(type, text, MemoryRules.CAPABILITIES, withMentions(ctx.facts(), type, text), ctx.claims(), ctx.relation(),
+                .thenCompose(ctx -> sidecar.reply(type, text, MemoryRules.CAPABILITIES, withOpening(withMentions(ctx.facts(), type, text), mid, pid), ctx.claims(), ctx.relation(),
                         ctx.claim(), ctx.orderResults(), profileMap(mob, pid), historyFor(mid, pid)))
-                .thenCompose(r -> r.offline() ? CompletableFuture.completedFuture((short[]) null)
+                .thenCompose(r -> r.offline() ? CompletableFuture.completedFuture((SentenceVoice.Voiced) null)
                         : sidecarSpeak(r, proposals, said, voice))
                 .orTimeout(PIPELINE_TIMEOUT_S, TimeUnit.SECONDS)
-                .whenComplete((pcm, err) -> server.execute(() -> {
+                .whenComplete((voiced, err) -> server.execute(() -> {
                     Speaker sp = speaker;
                     // Sem TTS/SVC mas com texto valido (ex.: jogador sem audio): ainda ha legenda; so a voz some.
                     if (err != null || said.get() == null || !mob.isAlive() || mob.isRemoved()) {
+                        thinking.beforeAnswer(() -> { });
                         Metrics.failures.incrementAndGet();
                         send(player, mid, StatusPayload.ERROR);
                         release.run();
@@ -302,12 +350,16 @@ public final class ConversationService {
                     MobVozMod.LOGGER.info("{} respondeu: {}", type, Metrics.summary(activeSessions(), br.com.mobvoz.social.Chatter.linesSpoken()));
                     remember(mid, pid, text, said.get());
                     ServerPlayNetworking.send(player, new SubtitlePayload(mid, Profiles.displayName(mob), said.get()));
-                    if (pcm == null || sp == null) {
+                    if (voiced == null || sp == null) {
+                        thinking.beforeAnswer(() -> { });
                         release.run(); // so legenda
                         return;
                     }
-                    send(player, mid, StatusPayload.SPEAKING);
-                    sp.speak(mob, pcm, release);
+                    // a resposta toca por frase (a 1a assim que fica pronta); se o som de "pensando" esta tocando, espera ele acabar
+                    thinking.beforeAnswer(() -> {
+                        send(player, mid, StatusPayload.SPEAKING);
+                        SentenceVoice.play(sp, server, mob, voiced, release);
+                    });
                 }));
     }
 
@@ -596,15 +648,17 @@ public final class ConversationService {
                 an.claim(), results);
     }
 
-    private static CompletableFuture<short[]> sidecarSpeak(SidecarClient.Reply r, AtomicReference<List<SidecarClient.Proposal>> out,
-                                                          AtomicReference<String> said, Voices voice) {
+    /** Pronto quando a 1a frase da fala esta sintetizada (as outras seguem em cadeia enquanto ela toca). {@code ttsMs} = tempo ate a 1a frase. */
+    private static CompletableFuture<SentenceVoice.Voiced> sidecarSpeak(SidecarClient.Reply r, AtomicReference<List<SidecarClient.Proposal>> out,
+                                                                        AtomicReference<String> said, Voices voice) {
         out.set(r.proposals());
         said.set(r.speechText());
         Metrics.llmMs.set(r.llmMs());
         long t = System.nanoTime();
-        return sidecar.synthesize(r.speechText(), voice.voice(), voice.pitch(), voice.speed()).thenApply(o -> {
+        SentenceVoice.Voiced voiced = SentenceVoice.synthesize(sidecar, r.speechText(), voice);
+        return voiced.first().thenApply(o -> {
             Metrics.ttsMs.set((System.nanoTime() - t) / 1_000_000);
-            return o.orElse(null);
+            return o.isPresent() ? voiced : null;
         });
     }
 

@@ -55,6 +55,7 @@ public class NicknameGameTest implements FabricClientGameTest {
         }
         var cfg = new ServerConfig();
         cfg.ambientChatter = false; // as duas vacas conversariam entre si e trocariam a legenda
+        cfg.mobsInitiate = false; // a criatura nao puxa assunto no meio do teste
         cfg.naturalEvents = false; // sem cumprimentos espontaneos: eles ocupam a criatura e mascaram a resposta
         ServerConfig.set(cfg);
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {

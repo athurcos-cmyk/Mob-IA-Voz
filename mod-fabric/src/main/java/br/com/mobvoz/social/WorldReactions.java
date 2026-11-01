@@ -76,6 +76,14 @@ public final class WorldReactions {
         return play(p, speaker, null, event, thing, "m:" + speaker.getUUID() + ":" + event, cooldown);
     }
 
+    /**
+     * A criatura puxa assunto com o jogador (familias ev_puxa_*; ver {@link Initiative}). A abertura vai para o historico da conversa deles, e a
+     * resposta do jogador e tratada com esse contexto. Cada criatura espera 20 min para abrir outra vez.
+     */
+    static boolean opener(ServerPlayer p, Mob speaker) {
+        return play(p, speaker, null, "ev:puxa", "", "puxa:" + speaker.getUUID(), 24000);
+    }
+
     /** Quem estiver perto do ponto reage (uma criatura, ou duas que conversem). */
     static boolean around(ServerPlayer p, ServerLevel level, double x, double y, double z, double radius, Predicate<Mob> who, String event, String thing,
                           long cooldown) {
@@ -132,6 +140,9 @@ public final class WorldReactions {
             }
         }
         fired.incrementAndGet();
+        if (event.equals("ev:puxa")) { // a criatura abriu a conversa: a fala entra no historico, para a resposta do jogador ter contexto
+            ConversationService.rememberOpening(a, p, scene.lines().get(0).text());
+        }
         Ambient.play(actors, p, b == null ? scene.lines().subList(0, 1) : scene.lines(), 0, true);
         return true;
     }

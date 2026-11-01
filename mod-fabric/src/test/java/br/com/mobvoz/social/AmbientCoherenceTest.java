@@ -88,9 +88,10 @@ class AmbientCoherenceTest {
     private static Set<String> kinds(String who) {
         return switch (who) {
             case "calm" -> Set.of("animals", "villagers");
-            case "villagers", "villager", "golem" -> Set.of("villagers");
+            case "villagers", "villager", "golem", "wandering_trader" -> Set.of("villagers");
             case "animals", "farm", "cow", "pig", "sheep", "chicken", "pet", "wolf", "cat", "horse" -> Set.of("animals");
-            default -> who.startsWith("villager:") ? Set.of("villagers") : Set.of("monsters");
+            default -> who.startsWith("villager:") ? Set.of("villagers")
+                    : (who.equals("monsters") || Ambient.MONSTERS.contains(who)) ? Set.of("monsters") : Set.of("animals"); // bicho da mata, aquatico...: pacifico
         };
     }
 
