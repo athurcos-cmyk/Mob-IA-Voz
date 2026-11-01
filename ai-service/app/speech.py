@@ -40,8 +40,8 @@ def transcribe(pcm48: bytes) -> dict:
             from faster_whisper import WhisperModel
             _whisper = WhisperModel(config.STT_MODEL, device=config.STT_DEVICE, compute_type=config.STT_COMPUTE)
         audio = pcm48_to_16k(pcm48)
-        segments, info = _whisper.transcribe(audio, language="pt", beam_size=1, vad_filter=True,
-                                             condition_on_previous_text=False)
+        segments, info = _whisper.transcribe(audio, language="pt", beam_size=3, vad_filter=True, condition_on_previous_text=False,
+                                             initial_prompt=config.STT_HINT or None)
         text = " ".join(s.text.strip() for s in segments).strip()
     return {"text": text, "duration_s": round(len(audio) / WHISPER_RATE, 2), "language": info.language}
 

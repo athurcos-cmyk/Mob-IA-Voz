@@ -9,6 +9,7 @@ LLM_TIMEOUT_S = float(os.environ.get("MOBVOZ_LLM_TIMEOUT", "30"))
 TOKEN = os.environ.get("MOBVOZ_TOKEN", "")  # se definido, exige o header X-MobVoz-Token
 MAX_BODY = 64 * 1024
 MAX_PLAYER_TEXT = 500
+STT_HINT = os.environ.get("MOBVOZ_STT_HINT", "Conversa em português do Brasil com criaturas do Minecraft: vaca, porco, aldeão, golem de ferro, creeper, zumbi, esqueleto Wither, Warden, esmeralda, diamante, troca, me segue, quem criou você.")  # dica de vocabulario: o Whisper erra nomes de mobs sem ela
 STT_MODEL = os.environ.get("MOBVOZ_STT_MODEL", "small")  # faster-whisper: tiny|base|small|medium
 STT_DEVICE = os.environ.get("MOBVOZ_STT_DEVICE", "cpu")  # GPU fica livre para o LLM
 STT_COMPUTE = os.environ.get("MOBVOZ_STT_COMPUTE", "int8")

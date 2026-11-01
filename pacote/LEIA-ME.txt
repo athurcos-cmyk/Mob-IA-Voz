@@ -18,7 +18,9 @@ COMO JOGAR
   2. Crie um mundo (Criativo, para testar).
   3. Aperte V (Simple Voice Chat) e escolha o microfone (ativacao por voz).
   4. No chat do jogo, digite:  /mobvoz voz sim
-  5. Aponte para uma criatura (uma estrela amarela aparece) e fale com ela.
+  5. Aponte para uma criatura (uma estrela amarela aparece) e fale com ela.
+     Quer que ela te siga? Dê presentes que ela gosta (segure o item e SHIFT + botao direito).
+     Uma barrinha de confianca aparece na barra de acao e mostra quanto falta.
      Sem microfone? Digite  /mobvoz chat sim  e escreva no chat.
 
 SE ALGO DER ERRADO
