@@ -1,7 +1,9 @@
 import json
 import unittest
 
-from app import service
+import os
+
+from app import config, service
 from app.llm import LlmError
 from app.validation import ValidationError, looks_english, validate_reply
 
@@ -231,6 +233,19 @@ class ThinAddressTest(unittest.TestCase):
         kept = sum("humano" in service._thin_address(t, [], ["Humano"], spread=True) for t in speeches)
         self.assertTrue(10 <= kept <= 30, kept)
         self.assertEqual("Oi, Bia.", service._thin_address("Oi, Bia.", [], ["Humano", "Bia"], spread=True))  # o nome aprendido nunca some por sorteio
+
+
+class ApiKeyFileTest(unittest.TestCase):
+    def test_reads_the_key_even_when_the_file_has_a_utf8_bom(self):
+        import json
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as home:
+            os.makedirs(os.path.join(home, ".mobvoz"))
+            with open(os.path.join(home, ".mobvoz", "api.json"), "w", encoding="utf-8-sig") as f:  # com BOM, como o PowerShell 5 gravava
+                json.dump({"key": "abc123"}, f)
+            with mock.patch.dict(os.environ, {"USERPROFILE": home, "HOME": home, "MOBVOZ_API_KEY": ""}):
+                self.assertEqual("abc123", config.api_key())
 
 
 if __name__ == "__main__":

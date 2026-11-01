@@ -10,6 +10,7 @@ $ptr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($seguro)
 try { $chave = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($ptr) } finally { [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($ptr) }
 $chave = $chave.Trim()
 if ($chave.Length -lt 16) { throw 'Essa chave parece curta demais. Confira e rode de novo.' }
-@{ key = $chave } | ConvertTo-Json | Set-Content -Path $arq -Encoding UTF8
+# sem BOM (o Set-Content -Encoding UTF8 do PowerShell 5 poe um BOM no comeco do arquivo)
+[IO.File]::WriteAllText($arq, (@{ key = $chave } | ConvertTo-Json), (New-Object System.Text.UTF8Encoding $false))
 Write-Host "Chave guardada em $arq" -ForegroundColor Green
 Write-Host "Ligue o servico com run-sidecar-api.bat. NUNCA compartilhe esse arquivo nem poste a chave."
