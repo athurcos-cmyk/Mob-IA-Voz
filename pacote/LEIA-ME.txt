@@ -6,12 +6,18 @@ ANTES DE COMECAR (so uma vez)
   1. Instale o Minecraft Launcher (minecraft.net/download), abra, entre na sua conta e feche.
   2. Tenha internet e uns 6 GB livres no disco.
 
-COMO INSTALAR  (3 duplos cliques, nesta ordem)
-  1-INSTALAR.bat           Instala tudo sozinho: Python, Fabric, os 3 mods e o servico de IA.
-                           Leva alguns minutos. Se o Windows pedir permissao, aceite.
-  2-CONFIGURAR-API.bat     So se for usar a sua propria IA (ex.: DeepSeek). Cole a chave quando pedir.
-                           (Sem chave? Instale o Ollama e use o modelo local: veja a pagina do projeto.)
-  3-LIGAR-SERVICO.bat      Liga a IA. Deixe essa janela ABERTA enquanto joga.
+COMO INSTALAR  (um programa, tres passos na janela)
+  Abra  MobVozIA.exe  (duplo clique). Se o Windows mostrar "O Windows protegeu o seu PC", clique em
+  "Mais informacoes" e depois em "Executar assim mesmo" (e um projeto novo, sem assinatura paga).
+  1. Instalar / atualizar tudo   Instala Python, Fabric, os 3 mods e o servico de IA. Leva alguns minutos na
+                                 primeira vez; ao atualizar, so confere (segundos).
+  2. IA que conversa             Cole a chave da sua API (ex.: DeepSeek) e clique em "Salvar e testar".
+                                 A chave fica guardada neste PC: nao precisa colar de novo, nem ao atualizar.
+                                 (Sem chave? Escolha o modelo local gratis com o Ollama.)
+  3. Jogar                       "Ligar o servico de IA" (sem janela preta; deixe o programa aberto enquanto joga)
+                                 e "Abrir o Minecraft".
+  A pasta "componentes" tem tudo o que o programa usa (nao precisa mexer). Quem preferir os arquivos .bat
+  de sempre, eles continuam la dentro, em componentes\ (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO).
 
 COMO JOGAR
   1. Abra o Minecraft Launcher, escolha a instalacao "MobVoz IA" e clique Jogar.

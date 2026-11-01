@@ -11,3 +11,4 @@ ai-service/models/
 site/.vercel/
 ai-service/models/
 *.log
+launcher/build/

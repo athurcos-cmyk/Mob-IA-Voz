@@ -1,8 +1,8 @@
-# Gera dist\MobVozIA-<versao>.zip: o pacote de quem so quer baixar e jogar. Leva SO o necessario para funcionar:
-#   - pacote\ (1-INSTALAR.bat, 2-CONFIGURAR-API.bat, 3-LIGAR-SERVICO.bat, LEIA-ME.txt e os scripts de instalacao)
-#   - mod\mobvoz-<versao>.jar
-#   - ai-service\ (so o codigo do servico e os scripts; sem testes, .venv, models, README)
-#   - LICENSE e THIRD_PARTY.md (licencas)
+# Gera dist\MobVozIA-<versao>.zip: o pacote de quem so quer baixar e jogar. Layout:
+#   MobVozIA.exe          o programa (instalar, guardar a chave da API, ligar o servico, abrir o Minecraft)
+#   LEIA-ME.txt, LICENSE, THIRD_PARTY.md
+#   componentes\          tudo que o programa usa: mod\mobvoz-<versao>.jar, ai-service\ (so codigo e scripts; sem testes, .venv, models, README),
+#                         instalar-tudo.ps1, instalar_jogo.py e os .bat (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO) para quem preferir
 # NAO leva: docs, CHANGELOG, STATUS, README, config de exemplo, testes, Simple Voice Chat (All Rights Reserved), modelos de voz/IA, JDK.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -14,12 +14,20 @@ $jar = "$root\mod-fabric\build\libs\mobvoz-$version.jar"
 if ($LASTEXITCODE -ne 0) { throw "O build do mod falhou; o pacote nao foi gerado (rode mod-fabric\build.bat para ver o erro)" }
 if (-not (Test-Path $jar)) { throw "JAR nao encontrado: $jar" }
 
+# o programa (C#, compilado com o csc.exe que ja vem no Windows)
+$exe = "$root\launcher\build\MobVozIA.exe"
+& "$root\launcher\construir.ps1" | Out-Null
+if (-not (Test-Path $exe)) { throw "O programa MobVozIA.exe nao compilou (rode launcher\construir.ps1 para ver o erro)" }
+
 $stage = "$root\dist\stage\MobVozIA-$version"
+$comp = "$stage\componentes"
 Remove-Item -Recurse -Force "$root\dist\stage" -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -Force "$stage\mod" | Out-Null
-Copy-Item $jar "$stage\mod\"
-Copy-Item "$root\pacote\*" $stage
-robocopy "$root\ai-service" "$stage\ai-service" /E /XD .venv models __pycache__ tests /XF *.pyc README.md requirements.txt /NFL /NDL /NJH /NJS | Out-Null
+New-Item -ItemType Directory -Force "$comp\mod" | Out-Null
+Copy-Item $jar "$comp\mod\"
+Copy-Item $exe $stage
+Copy-Item "$root\pacote\LEIA-ME.txt" $stage
+Get-ChildItem "$root\pacote" -Exclude 'LEIA-ME.txt' | Copy-Item -Destination $comp
+robocopy "$root\ai-service" "$comp\ai-service" /E /XD .venv models __pycache__ tests /XF *.pyc README.md requirements.txt /NFL /NDL /NJH /NJS | Out-Null
 foreach ($f in 'LICENSE', 'THIRD_PARTY.md') { Copy-Item "$root\$f" $stage }
 
 $zip = "$root\dist\MobVozIA-$version.zip"
