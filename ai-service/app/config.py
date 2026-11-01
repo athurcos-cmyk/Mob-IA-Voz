@@ -13,7 +13,17 @@ STT_HINT = os.environ.get("MOBVOZ_STT_HINT", "Conversa em português do Brasil c
 STT_MODEL = os.environ.get("MOBVOZ_STT_MODEL", "small")  # faster-whisper: tiny|base|small|medium
 STT_DEVICE = os.environ.get("MOBVOZ_STT_DEVICE", "cpu")  # GPU fica livre para o LLM
 STT_COMPUTE = os.environ.get("MOBVOZ_STT_COMPUTE", "int8")
-MODELS_DIR = os.environ.get("MOBVOZ_MODELS", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models"))
+def _models_dir() -> str:
+    """Vozes: MOBVOZ_MODELS; senao a pasta fixa do usuario (~/.mobvoz/sidecar/models, feita pelo instalador), se existir; senao ai-service/models."""
+    env = os.environ.get("MOBVOZ_MODELS")
+    if env:
+        return env
+    home = os.environ.get("MOBVOZ_HOME") or os.path.join(os.path.expanduser("~"), ".mobvoz")
+    fixed = os.path.join(home, "sidecar", "models")
+    return fixed if os.path.isdir(fixed) else os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models")
+
+
+MODELS_DIR = _models_dir()
 MAX_AUDIO = 48000 * 2 * 20  # 20 s de PCM 48 kHz 16-bit
 MAX_TTS_CHARS = 400
 TTS_ENGINE = os.environ.get("MOBVOZ_TTS", "kokoro").lower()  # "kokoro" (mais natural, mais pesado) | "piper" (modo leve)

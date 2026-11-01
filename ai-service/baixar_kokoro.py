@@ -1,4 +1,4 @@
-"""Baixa os modelos do Kokoro (voz principal do MobVoz) para ai-service/models, conferindo o hash.
+"""Baixa os modelos do Kokoro (voz principal do MobVoz) para a pasta de modelos (MOBVOZ_MODELS ou ai-service/models), conferindo o hash.
 
 Uso (no .venv do ai-service):   .venv\\Scripts\\python.exe baixar_kokoro.py
 Precisa tambem de:               .venv\\Scripts\\python.exe -m pip install kokoro-onnx==0.4.7
@@ -8,6 +8,7 @@ Os hashes abaixo sao os dos arquivos que testamos; se um download nao bater, o a
 Sem o Kokoro, o sidecar funciona no modo leve (Piper).
 """
 import hashlib
+import os
 import sys
 import urllib.request
 from pathlib import Path
@@ -28,8 +29,9 @@ def sha256(path: Path) -> str:
 
 
 def main() -> int:
-    dest = Path(__file__).resolve().parent / "models"
-    dest.mkdir(exist_ok=True)
+    # MOBVOZ_MODELS (a pasta fixa do usuario, definida pelo instalar-sidecar.ps1) ou, sem ela, a pasta models ao lado deste arquivo
+    dest = Path(os.environ.get("MOBVOZ_MODELS") or Path(__file__).resolve().parent / "models")
+    dest.mkdir(parents=True, exist_ok=True)
     for name, want in FILES.items():
         target = dest / name
         if target.exists() and sha256(target) == want:

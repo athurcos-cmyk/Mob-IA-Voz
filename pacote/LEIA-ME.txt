@@ -18,8 +18,8 @@ COMO JOGAR
   2. Crie um mundo (Criativo, para testar).
   3. Aperte V (Simple Voice Chat) e escolha o microfone (ativacao por voz).
   4. No chat do jogo, digite:  /mobvoz voz sim
-  5. Aponte para uma criatura (uma estrela amarela aparece) e fale com ela.
-     Quer que ela te siga? Dê presentes que ela gosta (segure o item e SHIFT + botao direito).
+  5. Aponte para uma criatura (uma estrela amarela aparece) e fale com ela.
+     Quer que ela te siga? Dê presentes que ela gosta (segure o item e SHIFT + botao direito).
      Uma barrinha de confianca aparece na barra de acao e mostra quanto falta.
      Sem microfone? Digite  /mobvoz chat sim  e escreva no chat.
   6. De um apelido: diga "vou te chamar de Mimosa". Depois e so chamar, sem mirar: "Mimosa, vem aqui!"
@@ -29,6 +29,9 @@ COMO JOGAR
 SE ALGO DER ERRADO
   - Se o Windows mostrar "O Windows protegeu o seu PC": clique em "Mais informacoes" e "Executar assim mesmo".
   - Se o 1-INSTALAR.bat falhar, feche e rode de novo: ele continua de onde parou.
+  - ATUALIZANDO para uma versao nova: extraia o zip novo onde quiser e de dois cliques no 1-INSTALAR.bat de novo. As bibliotecas e as vozes
+    ficam guardadas em  Meu usuario\.mobvoz\sidecar  e sao reaproveitadas: so baixa o que faltar (leva segundos, nao minutos).
+    (Quem instalou antes desta mudanca baixa tudo mais uma ultima vez.)
   - O mod, o Fabric API e o Simple Voice Chat devem estar na pasta  Meu usuario\MobVozJogo\mods.
 
 Projeto de fa, nao oficial: nao e produto da Mojang nem da Microsoft. Licencas em LICENSE e THIRD_PARTY.md.
