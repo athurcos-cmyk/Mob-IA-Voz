@@ -112,11 +112,11 @@ public class BroadTradeChatGameTest implements FabricClientGameTest {
             context.waitTicks(30);
             UUID zb = context.computeOnClient(mc -> MobVozClient.target() == null ? null : MobVozClient.target().getUUID());
             check(zb != null, "o zumbi nao esta na mira");
-            say(context, "Zumbi, me dá uma armadura de ferro boa?");
+            say(context, "Zumbi, me dá uma armadura muito boa?");
             System.out.println("[gametest] BROADCHAT 3) zumbi: " + ChatMode.lastSubtitle);
             var tz = world.getServer().computeOnServer(s -> Trades.get((Mob) s.overworld().getEntity(zb)));
             System.out.println("[gametest] BROADCHAT oferta do zumbi: " + tz.offerRecipe());
-            check(tz.hasOffer() && tz.offerRecipe().contains("iron_chestplate"), "o zumbi deveria topar vender uma armadura de ferro: " + tz);
+            check(tz.hasOffer() && tz.offerRecipe().contains("diamond_chestplate"), "\"armadura muito boa\" deveria virar a de diamante: " + tz);
 
             // ameaca: a vaca (medrosa) larga o couro de medo e conta de onde veio
             cmd.runCommand("kill @e[type=!player]");

@@ -83,37 +83,137 @@ public final class Values {
         return VALUE.getOrDefault(id, 0.0);
     }
 
-    /** Nome falado -> id real ("picareta de diamante" -> minecraft:diamond_pickaxe). Vazio se o servidor nao conhece. */
+    /**
+     * Nome falado -> id real ("picareta de diamante" -> minecraft:diamond_pickaxe). Entende o jeito de falar do jogador: nome exato e apelidos; sem "de"; pedido vago
+     * ("uma armadura muito boa", "uma espada", "botas") em que o servidor ESCOLHE o item pela categoria, material e qualidade ({@link ItemIntent}); qualificativos soltos
+     * ("armadura de ferro boa"); e erros de fala ("espada de dimante"). Vazio se o servidor nao conhece.
+     */
     public static Optional<String> lookup(String spoken) {
-        String n = norm(spoken);
+        return lookup(norm(spoken), true);
+    }
+
+    private static Optional<String> lookup(String n, boolean allowFuzzy) {
+        Optional<String> direct = direct(n);
+        if (direct.isPresent()) {
+            return direct;
+        }
+        if (allowFuzzy) { // "espada de dimante": corrige as palavras desconhecidas antes de decidir
+            Optional<String> fixed = fuzzy(n.split(" "));
+            if (fixed.isPresent()) {
+                return fixed;
+            }
+        }
+        Optional<String> intent = ItemIntent.resolve(n.replaceFirst("^(o|a|os|as|um|uma|uns|umas|\\d+) ", ""));
+        if (intent.isPresent()) {
+            return intent;
+        }
+        // "armadura de ferro boa": tira os qualificativos do fim e tenta de novo
+        String[] words = n.replaceFirst("^(o|a|os|as|um|uma|uns|umas|\\d+) ", "").split(" ");
+        int end = words.length;
+        while (end > 1 && QUALIFIERS.contains(words[end - 1])) {
+            end--;
+        }
+        if (end < words.length) {
+            Optional<String> r = lookup(String.join(" ", java.util.Arrays.copyOf(words, end)), allowFuzzy);
+            if (r.isPresent()) {
+                return r;
+            }
+        }
+        return allowFuzzy ? fuzzy(words) : Optional.empty();
+    }
+
+    /** Nome exato, com artigo/quantidade na frente, ou sem "de/do/da" (quando so um item tem esse nome). */
+    private static Optional<String> direct(String n) {
         if (BY_NAME.containsKey(n)) {
             return Optional.of(BY_NAME.get(n));
         }
-        // plural/artigos simples: "as cenouras", "3 ferros"
         String stripped = n.replaceFirst("^(o|a|os|as|um|uma|uns|umas|\\d+) ", "");
         String exact = BY_NAME.get(stripped);
         if (exact != null) {
             return Optional.of(exact);
         }
         String lk = loose(stripped);
-        if (!LOOSE_AMBIGUOUS.contains(lk) && LOOSE.get(lk) != null) {
-            return Optional.of(LOOSE.get(lk));
-        }
-        // "armadura de ferro boa", "uma picareta de diamante nova": tira os qualificativos do fim e tenta de novo
-        String[] words = stripped.split(" ");
-        int end = words.length;
-        while (end > 1 && QUALIFIERS.contains(words[end - 1])) {
-            end--;
-        }
-        if (end < words.length) {
-            return lookup(String.join(" ", java.util.Arrays.copyOf(words, end)));
-        }
-        return Optional.empty();
+        return LOOSE_AMBIGUOUS.contains(lk) ? Optional.empty() : Optional.ofNullable(LOOSE.get(lk));
     }
 
     private static final java.util.Set<String> QUALIFIERS = java.util.Set.of("boa", "bom", "boas", "bons", "melhor", "melhores", "nova", "novo", "novas", "novos",
             "legal", "legais", "qualquer", "completa", "completo", "inteira", "inteiro", "bonita", "bonito", "resistente", "forte", "rara", "raro", "decente", "top",
-            "pra", "para", "mim", "favor", "porfavor");
+            "pra", "para", "mim", "favor", "porfavor", "muito", "bem", "bastante", "super", "mega", "demais", "excelente", "otima", "otimo", "simples");
+
+    private static volatile java.util.Set<String> vocabulary;
+
+    /** Palavras que existem nos nomes dos itens e no vocabulario de categorias: o chao para corrigir erro de fala. */
+    private static java.util.Set<String> vocabulary() {
+        java.util.Set<String> v = vocabulary;
+        if (v == null) {
+            v = new java.util.HashSet<>(ItemIntent.vocabulary());
+            for (String name : BY_NAME.keySet()) {
+                for (String w : name.split(" ")) {
+                    if (w.length() >= 4) {
+                        v.add(w);
+                    }
+                }
+            }
+            vocabulary = v;
+        }
+        return v;
+    }
+
+    /** Erros de reconhecimento de voz ("dimante", "composteria"): troca cada palavra desconhecida pela UNICA palavra conhecida a 1 letra (2 se longa); empate = nao adivinha. */
+    private static Optional<String> fuzzy(String[] words) {
+        java.util.Set<String> vocab = vocabulary();
+        boolean changed = false;
+        String[] fixed = words.clone();
+        for (int i = 0; i < words.length; i++) {
+            String w = words[i];
+            if (w.length() < 5 || vocab.contains(w) || w.matches("\\d+")) {
+                continue;
+            }
+            int max = w.length() >= 8 ? 2 : 1;
+            String best = null;
+            int bestD = max + 1;
+            boolean tie = false;
+            for (String c : vocab) {
+                if (Math.abs(c.length() - w.length()) > max) {
+                    continue;
+                }
+                int d = distance(w, c, max);
+                if (d < bestD) {
+                    best = c;
+                    bestD = d;
+                    tie = false;
+                } else if (d == bestD && d <= max) {
+                    tie = true;
+                }
+            }
+            if (best != null && !tie && bestD <= max) {
+                fixed[i] = best;
+                changed = true;
+            }
+        }
+        return changed ? lookup(String.join(" ", fixed), false) : Optional.empty();
+    }
+
+    /** Distancia de edicao (inserir, apagar, trocar, trocar duas letras vizinhas), cortada em {@code limit + 1}. */
+    static int distance(String a, String b, int limit) {
+        int[][] d = new int[a.length() + 1][b.length() + 1];
+        for (int i = 0; i <= a.length(); i++) {
+            d[i][0] = i;
+        }
+        for (int j = 0; j <= b.length(); j++) {
+            d[0][j] = j;
+        }
+        for (int i = 1; i <= a.length(); i++) {
+            for (int j = 1; j <= b.length(); j++) {
+                int cost = a.charAt(i - 1) == b.charAt(j - 1) ? 0 : 1;
+                d[i][j] = Math.min(Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + cost);
+                if (i > 1 && j > 1 && a.charAt(i - 1) == b.charAt(j - 2) && a.charAt(i - 2) == b.charAt(j - 1)) {
+                    d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+                }
+            }
+        }
+        return d[a.length()][b.length()] > limit ? limit + 1 : d[a.length()][b.length()];
+    }
 
     /** Nome legivel em pt-BR para a fala. */
     public static String name(String id, boolean plural) {

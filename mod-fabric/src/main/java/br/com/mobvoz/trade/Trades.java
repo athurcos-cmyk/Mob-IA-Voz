@@ -159,8 +159,8 @@ public final class Trades {
     static final double LUCK_MAX_VALUE = 20.0;
     /** Margem sobre o valor do item nos negocios improvisados (a IA acha plausivel / improvavel / "so por sorte"): baixa, para ser divertido. */
     static final double DYN_MARGIN_YES = 1.2;
-    static final double DYN_MARGIN_MAYBE = 1.7;
-    static final double DYN_MARGIN_LUCK = 2.0;
+    static final double DYN_MARGIN_MAYBE = 1.4;
+    static final double DYN_MARGIN_LUCK = 1.6;
 
     /** Determinista por (criatura, item, dia): insistir no mesmo pedido no mesmo dia nao muda a sorte; outra criatura/dia, sim. */
     static boolean luck(java.util.UUID mob, String item, long day, String verdict) {
@@ -228,7 +228,7 @@ public final class Trades {
         var prof = Profiles.of(key);
         for (String coin : TradeCatalog.currencyFor(r.outputItem())) { // esmeralda, diamante, ouro e ferro valem para qualquer um (menos o do mesmo material do que ela da)
             if (!prof.dislikes().contains(coin) && !prof.wants().contains(coin)) {
-                opened = opened.withJudged(coin, 800);
+                opened = opened.withJudged(coin, 1000); // moeda vale o valor de face
             }
         }
         set(mob, opened);

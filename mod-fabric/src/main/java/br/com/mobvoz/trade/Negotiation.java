@@ -26,7 +26,8 @@ public final class Negotiation {
         if (p.wants().contains(item)) {
             return 1.0;
         }
-        return Math.min(MAX_PERSUADED_INTEREST, persuadedMilli.getOrDefault(item, 0) / 1000.0);
+        int milli = persuadedMilli.getOrDefault(item, 0);
+        return milli >= 1000 ? 1.0 : Math.min(MAX_PERSUADED_INTEREST, milli / 1000.0); // 1000 = moeda (esmeralda, ouro...): vale o valor de face
     }
 
     public enum Verdict { CONVINCED, PARTIAL, NO_ARGUMENT, AVERSION, FATIGUE, ALREADY_INTERESTED }
