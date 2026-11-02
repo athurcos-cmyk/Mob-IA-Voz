@@ -204,12 +204,12 @@ def header(cur):
   <nav class="nav" aria-label="Principal"><ul>
 %s
   </ul></nav>
-  <a class="btn sm head-cta" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar</a>
+  <a class="btn sm head-cta" href="downloads/MobVozIA-0.2.0.zip" download>&#11015; Baixar</a>
 </div></header>''' % "\n".join(items)
 
 FOOTER = '''<footer class="site-foot"><div class="wrap">
   <div class="cols">
-    <div><h4>MobVoz IA</h4><p>Alpha 0.1 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
+    <div><h4>MobVoz IA</h4><p>Beta 0.2 · Mod Fabric para Minecraft Java 1.21.8. Código próprio sob licença MIT. Projeto de fã: não é um produto oficial do Minecraft, nem aprovado ou associado à Mojang ou à Microsoft.</p></div>
     <div><h4>Páginas</h4><ul>
       <li><a href="funcionalidades.html">Funcionalidades</a></li><li><a href="como-funciona.html">Como funciona</a></li><li><a href="instalar.html">Instalar</a></li><li><a href="comandos.html">Comandos</a></li></ul></div>
     <div><h4>Ajuda</h4><ul>

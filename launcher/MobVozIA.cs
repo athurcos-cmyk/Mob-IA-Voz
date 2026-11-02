@@ -345,7 +345,7 @@ namespace MobVozIA
             t.ForeColor = Texto;
             t.AutoSize = true;
             raiz.Controls.Add(t);
-            Label sub = Rotulo("Fale com os mobs do Minecraft. Versao " + Caminhos.Versao() + " (Alpha). Tudo roda no seu computador.", Suave);
+            Label sub = Rotulo("Fale com os mobs do Minecraft. Versao " + Caminhos.Versao() + " (Beta). Tudo roda no seu computador.", Suave);
             raiz.Controls.Add(sub);
 
             // ---- estado

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 Beta — 2026-11-02 (sai do Alpha)
+
+Por que Beta: o mod está completo nas funções, o autor jogou de verdade com microfone e ajustou o que apareceu, e as partes de voz, negociação e conversa foram refeitas e medidas. Ainda não é a 1.0 porque a instalação do zero em outros computadores, o servidor com várias pessoas e a voz de outros microfones ainda não foram conferidos por mais gente.
+
+- **Pacote só com o programa**: `MobVozIA.exe` leva os componentes dentro e os extrai para `%USERPROFILE%\.mobvoz\app`; o zip tem apenas o exe, o LEIA-ME e as licenças. Passo novo na janela para a **voz na nuvem do Azure** (opcional).
+- **Vozes**: por espécie e por indivíduo, com emoção; voz humana opcional pelo Azure (16 vozes pt-BR, limite diário, queda automática para a voz local); sem sons de bicho falados em voz alta (a legenda mantém).
+- **Negociações e favores**: itens de qualquer tipo com preço pela raridade, ameaça, pagar por favor (inclusive aos poucos e soltando no chão), presentes jogando o item (Q) na mira, chefes seguem e só atacam hostis (contratos ligados por padrão).
+- **Conversas**: 68 famílias reescritas como cenas inteiras com condições (nota do juiz ~3,5 para ~4,2), lembranças de momentos marcantes sem repetir, menos conversas de ambiente (comando `/mobvoz conversas`), sem "deixa eu pensar".
+- **Rapidez**: reconhecimento de fala 3 a 6 vezes mais rápido (~0,7 s), serviço em prioridade baixa e só CPU para o jogo não sentir.
+- Ver os detalhes nas seções abaixo (cada uma com a data).
+
 ## Conversas: cenas inteiras e lembranças
 - **Cenas escritas inteiras** no motor de conversas de ambiente (`scenes` em `ambient.json`): abertura, resposta e fecho que combinam, com condições próprias (hora, clima, bioma). 68 famílias reescritas assim; nota do juiz de IA nelas de ~3,5 para ~4,2 (rejulgadas só essas). Teste novo garante que nenhuma cena mistura falas de cenas diferentes.
 - **Lembranças** (`Recall`): de vez em quando a criatura recebe UM momento marcante vivido com o jogador como sugestão de assunto; limites para não repetir (5 min por criatura, 30 min por momento, 30% de chance, nunca momento recém-acontecido) e a IA só o cita se combinar com o que foi falado.

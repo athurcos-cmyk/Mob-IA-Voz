@@ -6,7 +6,7 @@
 
 ## A página (`site/`)
 
-Página estática (HTML + CSS + JS, sem framework nem build), tema "blocos". Texturas e ícones são **arte própria** gerada por `tools/gen/gensite.py` (nada do Minecraft). Seções: início, em ação (prints + vozes), o que o mod faz, como funciona, instalação passo a passo (13 passos com checklist salvo no navegador, botões de copiar e "deve aparecer"), comandos e controles, IA própria × local × modo leve, solução de problemas, estado do projeto (Alpha) e créditos. Os prints saem de `ShowcaseGameTest` (rode `gradlew runClientGameTest -Ponly=ShowcaseGameTest[:farm|:village|:warden]`; usa a IA de verdade, melhor com a API) e são copiados à mão para `site/assets/img/`.
+Página estática (HTML + CSS + JS, sem framework nem build), tema "blocos". Texturas e ícones são **arte própria** gerada por `tools/gen/gensite.py` (nada do Minecraft). Seções: início, em ação (prints + vozes), o que o mod faz, como funciona, instalação passo a passo (13 passos com checklist salvo no navegador, botões de copiar e "deve aparecer"), comandos e controles, IA própria × local × modo leve, solução de problemas, estado do projeto (Beta) e créditos. Os prints saem de `ShowcaseGameTest` (rode `gradlew runClientGameTest -Ponly=ShowcaseGameTest[:farm|:village|:warden]`; usa a IA de verdade, melhor com a API) e são copiados à mão para `site/assets/img/`.
 
 Para ver local: `python -m http.server 4173 --directory site` e abra `http://localhost:4173`.
 
@@ -16,7 +16,7 @@ Para ver local: `python -m http.server 4173 --directory site` e abra `http://loc
 2. **Root Directory: `site`**; Framework Preset: Other; sem comando de build; sem diretório de saída (é estático). `site/vercel.json` já traz os cabeçalhos.
 3. Deploy. Para atualizar: `git push` (o Vercel publica sozinho).
 
-Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), o link de download da etapa 4 aponta para `dist/MobVozIA-0.1.0.zip` no repositório privado (quem baixa precisa de acesso e estar logado no GitHub); para divulgar além dos amigos, publique o zip num lugar público e revise o texto de "Estado do projeto" (a página diz que ninguém testou com microfone real).
+Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), o link de download da etapa 4 aponta para `dist/MobVozIA-0.2.0.zip` no repositório privado (quem baixa precisa de acesso e estar logado no GitHub); para divulgar além dos amigos, publique o zip num lugar público e revise o texto de "Estado do projeto" (a página diz que ninguém testou com microfone real).
 
 ### O que a página afirma e onde está a prova
 
@@ -28,4 +28,4 @@ Antes de divulgar: gere uma chave nova de API (a antiga foi colada em chat), o l
 | Medidas de peso, voz | `docs/relatorios/audicao_vozes/LEIAME.md` |
 | Instalação do zero | `ai-service/instalar-sidecar.ps1` testado numa cópia limpa (89 s, com cache); serviço sobe e fala |
 
-Ninguém seguiu o passo a passo em outro PC ainda: é o primeiro teste real desta Alpha.
+Ninguém seguiu o passo a passo em outro PC ainda: é o primeiro teste real desta Beta.

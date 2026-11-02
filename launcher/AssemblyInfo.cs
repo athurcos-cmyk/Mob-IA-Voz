@@ -4,5 +4,5 @@ using System.Reflection;
 [assembly: AssemblyCompany("MobVoz IA (projeto de fa, codigo aberto sob licenca MIT)")]
 [assembly: AssemblyProduct("MobVoz IA")]
 [assembly: AssemblyCopyright("MIT")]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]

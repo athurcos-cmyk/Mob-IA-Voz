@@ -1,4 +1,4 @@
-﻿MOBVOZ IA  -  Alpha 0.1
+﻿MOBVOZ IA  -  Beta 0.2
 Fale com os mobs do Minecraft e ouca a resposta deles, em portugues.
 Minecraft Java 1.21.8 com Fabric. So Windows.
 
