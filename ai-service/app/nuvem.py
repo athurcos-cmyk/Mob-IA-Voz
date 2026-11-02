@@ -7,6 +7,7 @@ import json
 import logging
 import math
 import os
+import re
 import threading
 import time
 import urllib.error
@@ -27,13 +28,26 @@ EMOTION = {  # emocao da fala -> (fator de tom, fator de ritmo); aqui entra pela
 }
 # especie -> (chance de voz feminina, semitons, ritmo). Tudo perto do normal: o dono quer vozes humanas, so com um toque de personalidade.
 TABLE: dict[str, tuple[float, float, float]] = {
-    "cow": (1.0, 0.0, 0.97), "mooshroom": (1.0, -0.5, 0.97), "pig": (0.2, -1.0, 1.05), "chicken": (0.9, 1.0, 1.1), "sheep": (0.9, 0.0, 0.97),
-    "horse": (0.3, 0.0, 1.0), "donkey": (0.1, -1.0, 0.95), "mule": (0.1, -1.0, 0.95), "wolf": (0.1, -0.5, 1.0), "cat": (0.9, 1.0, 1.05),
-    "fox": (0.6, 1.0, 1.1), "bee": (1.0, 1.1, 1.2), "vex": (0.7, 1.5, 1.1), "iron_golem": (0.0, -1.5, 0.92), "zombie": (0.1, -1.5, 0.9),
-    "husk": (0.1, -1.5, 0.9), "skeleton": (0.2, 0.0, 1.0), "stray": (0.2, 0.0, 0.97), "piglin": (0.1, 0.0, 1.08), "warden": (0.0, -2.0, 0.88),
-    "wither": (0.0, -2.0, 0.92), "spider": (0.7, -0.5, 1.0), "cave_spider": (0.7, 0.5, 1.05), "creeper": (0.2, 0.5, 1.0), "enderman": (0.0, -1.5, 0.92),
-    "witch": (1.0, -0.5, 1.0), "villager#farmer": (0.1, 0.0, 1.0), "villager#librarian": (0.9, 0.0, 0.97),
+    "cow": (1.0, 0.0, 1.0), "mooshroom": (1.0, -0.3, 1.0), "pig": (0.2, 0.5, 1.0), "chicken": (0.9, 0.8, 1.05), "sheep": (0.9, 0.0, 1.0),
+    "horse": (0.3, 0.0, 1.0), "donkey": (0.1, -0.5, 0.97), "mule": (0.1, -0.5, 0.97), "wolf": (0.1, -0.3, 1.0), "cat": (0.9, 0.8, 1.05),
+    "fox": (0.6, 0.8, 1.08), "bee": (1.0, 1.1, 1.09), "vex": (0.7, 1.5, 1.0), "iron_golem": (0.0, -1.0, 0.95), "zombie": (0.1, 0.0, 0.95),
+    "husk": (0.1, 0.0, 0.95), "skeleton": (0.2, 0.0, 1.0), "stray": (0.2, 0.0, 1.0), "piglin": (0.1, 0.0, 1.0), "warden": (0.0, 0.0, 0.93),
+    "wither": (0.0, 0.0, 0.95), "spider": (0.7, -0.5, 1.0), "cave_spider": (0.7, 0.5, 1.05), "creeper": (0.2, 0.5, 1.0), "enderman": (0.0, -1.5, 1.0),
+    "witch": (1.0, -0.5, 1.0), "villager#farmer": (0.1, 0.0, 1.0), "villager#librarian": (0.9, 0.0, 1.0),
 }
+BASE_RATE = 1.1  # o Azure fala pausado demais para o jogo: +10% em tudo
+SMALL = {"chicken", "bee", "cat", "fox", "cave_spider"}  # so estas usam a voz de som mais jovem (Leticia): nas demais ela soa como crianca
+YOUNG = {"pt-BR-LeticiaNeural"}
+# misturar com o Kokoro (local) para dar variedade: o vex SEMPRE (so o Kokoro tem o efeito etereo que o dono aprovou); estas, em 1 de cada 4 individuos
+# vozes que o dono ja ouviu e aprovou, por especie (o individuo escolhe uma da lista); o resto se espalha pelo genero. O primeiro nome define o genero.
+PIN = {
+    "cow": ["Giovanna", "Leila", "Francisca", "Brenda"], "mooshroom": ["Brenda", "Yara"], "pig": ["Fabio", "Donato"], "chicken": ["Leticia", "Thalita"],
+    "sheep": ["Francisca", "Yara"], "horse": ["Humberto", "Antonio"], "donkey": ["Donato"], "mule": ["Humberto"], "wolf": ["Valerio", "Nicolau"],
+    "bee": ["Giovanna"], "iron_golem": ["Fabio"], "skeleton": ["Antonio", "Humberto"], "stray": ["Antonio"], "piglin": ["Nicolau"],
+    "enderman": ["Antonio"], "villager#farmer": ["Julio", "Donato"], "villager#librarian": ["Manuela", "Elza"],
+}
+LOCAL_ALWAYS = {"vex"}
+LOCAL_SOMETIMES = {"sheep", "horse", "wolf", "villager#farmer", "villager#librarian"}
 
 _lock = threading.Lock()
 _available: dict = {}
@@ -119,33 +133,60 @@ def voices(key: str, region: str) -> dict:
     return _available[ck]
 
 
+def uses_local(species: str, seed: int) -> bool:
+    """Esta criatura fica com a voz local (Kokoro), para misturar: o vex sempre; algumas especies aprovadas, em 1 de cada 4 individuos."""
+    sp = species.replace("minecraft:", "")
+    base = sp.split("#")[0]
+    if base in LOCAL_ALWAYS:
+        return True
+    return (sp in LOCAL_SOMETIMES or base in LOCAL_SOMETIMES) and zlib.crc32(f"local|{sp}|{int(seed) % 64}".encode()) % 4 == 0
+
+
 def choose(species: str, seed: int, emotion: str, names: dict) -> tuple[str, float, float]:
     """(voz, semitons, velocidade) da criatura. Sempre uma VOZ HUMANA normal do Azure (nada de imitar bicho): a especie define so o genero provavel
-    e um ajuste pequeno de tom/ritmo (golem mais velho, enderman um pouco mais grave); o individuo escolhe outra voz do mesmo genero."""
+    e um ajuste pequeno de tom/ritmo; as especies se espalham pelas vozes (duas especies vizinhas quase nunca repetem) e o individuo troca de voz."""
     sp = species.replace("minecraft:", "")
-    pf, st, rate = TABLE.get(sp) or TABLE.get(sp.split("#")[0]) or (0.5, 0.0, 1.0)
+    key = sp if sp in TABLE else sp.split("#")[0]
+    pf, st, rate = TABLE.get(key) or (0.5, 0.0, 1.0)
     h = zlib.crc32(f"{sp}|{int(seed) % 64}".encode())
     g = "F" if (h % 1000) / 1000 < pf else "M"
+    pinned = [f"pt-BR-{n}Neural" for n in PIN.get(key, [])]
+    pinned = [v for v in pinned if v in names.get("F", []) + names.get("M", [])]
+    if pinned:
+        g = "F" if pinned[0] in names.get("F", []) else "M"
     pool = names.get(g) or names.get("F" if g == "M" else "M") or []
     if not pool:
         return "", 0.0, 1.0
-    pick = pool[(zlib.crc32(sp.encode()) + int(seed)) % len(pool)]
+    if key.split("#")[0] not in SMALL:
+        pool = [v for v in pool if v not in YOUNG] or pool
+    same = [k for k, v in TABLE.items() if (v[0] >= 0.5) == (g == "F")]
+    rank = same.index(key) if key in same else zlib.crc32(sp.encode())
+    pick = pinned[(int(seed) + len(pinned) - 1) % len(pinned)] if pinned else pool[(rank + int(seed)) % len(pool)]
     st += ((h >> 10) % 100 - 50) / 100.0 * 0.8  # +-0,4 st: duas vacas nao soam iguais mesmo com a mesma voz
     pfac, sfac = EMOTION.get(emotion, (1.0, 1.0))
     st += 12 * math.log2(pfac) * 0.5
-    return pick, max(-4.0, min(4.0, st)), max(0.8, min(1.25, rate * (1 + (sfac - 1) * 0.5)))
+    return pick, max(-4.0, min(4.0, st)), max(0.8, min(1.4, rate * BASE_RATE * (1 + (sfac - 1) * 0.5)))
+
+
+def pace(text: str) -> str:
+    """Reticencias e ponto de exclamacao viram pausa longa no Azure ('Ouro! Ouro! Onde tem ouro?' sai picado): vira virgula/ponto."""
+    t = re.sub(r"\s*(?:\.{2,}|\u2026)\s*", ", ", text)
+    t = re.sub(r"!+", ".", t)
+    return re.sub(r",\s*([.?])", r"\1", t)
 
 
 def ssml(text: str, voice: str, semitones: float, speed: float) -> str:
-    rate = max(-30, min(40, round((speed - 1) * 100)))
-    return (f"<speak version='1.0' xml:lang='pt-BR' xmlns='http://www.w3.org/2001/10/synthesis'><voice name='{voice}'>"
-            f"<prosody pitch='{semitones:+.1f}st' rate='{rate:+d}%'>{escape(text)}</prosody></voice></speak>")
+    rate = max(-30, min(60, round((speed - 1) * 100)))
+    # pausas curtas nas pontuacoes: o padrao do Azure e lento demais para uma fala de jogo
+    gap = "<mstts:silence type='Sentenceboundary' value='120ms'/><mstts:silence type='Comma-exact' value='60ms'/>"
+    return (f"<speak version='1.0' xml:lang='pt-BR' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'><voice name='{voice}'>{gap}"
+            f"<prosody pitch='{semitones:+.1f}st' rate='{rate:+d}%'>{escape(pace(text))}</prosody></voice></speak>")
 
 
 def synthesize(text: str, species: str = "", seed: int = 0, emotion: str = "") -> bytes | None:
     """PCM int16 mono 24 kHz, ou None (o chamador usa a voz local). Nunca levanta."""
     global _down_until, _fails
-    if not enabled() or not text.strip():
+    if not enabled() or not text.strip() or uses_local(species, seed):
         return None
     key, region = credentials()
     voice, st, speed = choose(species, seed, emotion, voices(key, region))

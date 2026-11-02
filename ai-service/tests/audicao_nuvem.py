@@ -43,10 +43,13 @@ def main() -> None:
         sys.exit("Isto gasta uns 800 caracteres do Azure. Rode de novo com --confirmo se for isso mesmo.")
     if not nuvem.enabled():
         sys.exit("Sem chave do Azure (rode configurar-voz-nuvem.ps1) ou MOBVOZ_NO_CLOUD ligado.")
-    out = Path(args[0]) if args else HERE.parents[1] / "docs" / "relatorios" / "audicao_nuvem_v2"
+    out = Path(args[0]) if args else HERE.parents[1] / "docs" / "relatorios" / "audicao_nuvem_v3"
     out.mkdir(parents=True, exist_ok=True)
     chars = 0
     for sp, seed, text in LINES:
+        if nuvem.uses_local(sp, seed):
+            print(f"{sp} {seed}: fica com a voz local (Kokoro), sem Azure")
+            continue
         name = sp.replace("minecraft:", "").replace("#", "_") + f"_{seed}"
         raw = nuvem.synthesize(speech.clean_for_speech(text), sp, seed)
         if not raw:
@@ -55,6 +58,18 @@ def main() -> None:
         save(out / f"{name}_azure.wav", azure)
         chars += len(text)
         print(f"{name}: {nuvem.choose(sp, seed, '', nuvem.voices(*nuvem.credentials()))}  {len(azure) / 96000:.1f}s")
+    # catalogo: cada voz do Azure falando normal, sem ajuste nenhum, para escolher de ouvido
+    cat = out / "catalogo"
+    cat.mkdir(exist_ok=True)
+    key, region = nuvem.credentials()
+    for g, nomes in nuvem.voices(key, region).items():
+        for v in nomes:
+            n = v.replace("pt-BR-", "").replace("Neural", "")
+            frase = f"Oi, eu sou {'a' if g == 'F' else 'o'} {n}. Tudo bem com você?"
+            raw = nuvem._request(f"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1", key, nuvem.ssml(frase, v, 0.0, 1.1).encode("utf-8"),
+                                 {"Content-Type": "application/ssml+xml", "X-Microsoft-OutputFormat": "raw-24khz-16bit-mono-pcm", "User-Agent": "MobVozIA"})
+            save(cat / f"{g}_{n}.wav", speech._to_pcm48(np.frombuffer(raw, dtype="<i2").astype(np.float32), nuvem.RATE))
+            chars += len(frase)
     print(f"\nPronto em {out}  ({chars} caracteres enviados ao Azure)")
 
 

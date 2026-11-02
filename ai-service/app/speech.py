@@ -159,6 +159,8 @@ def _sound_word(w: str) -> str | None:
         return ""  # rosnado / tremor
     if re.fullmatch(r"h?m{3,}", low):
         return "Hmm"
+    if re.fullmatch(r"m+u+h*|b+[eé]+h*|oinc+|c[oó]+|c[oó]+c[oó]+r[ií]+c[oó]+|mi+a+u+|clu+c+k+|ba{2,}", low):
+        return ""  # onomatopeia de bicho (mu, bé, oinc, có, cocoricó, miau): o dono achou artificial falado; a legenda continua com ela
     return None
 
 

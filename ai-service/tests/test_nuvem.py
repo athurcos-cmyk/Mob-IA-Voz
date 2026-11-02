@@ -52,7 +52,7 @@ class NuvemTests(unittest.TestCase):
             for seed in range(0, 64, 9):
                 for emo in ("", "triste", "medroso", "alegre"):
                     _, st, rate = nuvem.choose(sp, seed, emo, self.names)
-                    self.assertTrue(-4 <= st <= 4 and 0.8 <= rate <= 1.25, (sp, seed, emo, st, rate))
+                    self.assertTrue(-4 <= st <= 4 and 0.8 <= rate <= 1.4, (sp, seed, emo, st, rate))
         self.assertLess(nuvem.choose("minecraft:enderman", 1, "", self.names)[1], 0)
         self.assertLess(nuvem.choose("minecraft:iron_golem", 1, "", self.names)[1], 0)
 

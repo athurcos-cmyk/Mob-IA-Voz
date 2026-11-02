@@ -30,8 +30,14 @@ class CleanForSpeechTests(unittest.TestCase):
         self.assertEqual("Hmm, só não entendi.", speech.clean_for_speech("Hmm, sssó não entendi."))
 
     def test_normal_speech_is_untouched(self):
-        for t in ("Muuu, eu só quero pastar em paz.", "Béééh... será que tem grama?", "Có! Tem semente?", "Hmm, não entendi.", "Pão com ovo e arroz."):
+        for t in ("Hmm, não entendi.", "Pão com ovo e arroz.", "Bem, mas e o mundo?", "Cobre e cobalto, uma coisa só."):
             self.assertEqual(t, speech.clean_for_speech(t), t)
+
+    def test_animal_onomatopoeia_is_not_spoken(self):
+        self.assertEqual("Eu só quero pastar em paz.", speech.clean_for_speech("Muuu, eu só quero pastar em paz."))
+        self.assertEqual("Será que tem grama?", speech.clean_for_speech("Béééh... será que tem grama?"))
+        self.assertEqual("Tem semente?", speech.clean_for_speech("Có! Tem semente?"))
+        self.assertEqual("Bom dia.", speech.clean_for_speech("Cocoricó! Bom dia."))
 
     def test_only_a_sound_becomes_a_short_hmm_not_silence(self):
         self.assertEqual("Hmm.", speech.clean_for_speech("Grrr..."))
