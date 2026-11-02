@@ -276,13 +276,17 @@ public final class SidecarClient {
 
     /** Como {@link #synthesize}, mas com cache: so para falas fixas (as da IA sao unicas). O tom individual e arredondado em degraus de 2%. */
     public CompletableFuture<Optional<short[]>> synthesizeCached(String text, String voice, double pitch, double speed) {
+        return synthesizeCached(text, voice, pitch, speed, "", 0, "");
+    }
+
+    public CompletableFuture<Optional<short[]>> synthesizeCached(String text, String voice, double pitch, double speed, String species, int bucket, String emotion) {
         double p = AudioCache.quantizePitch(pitch);
-        String key = AudioCache.key(text, voice, p, speed, br.com.mobvoz.config.ServerConfig.current().voiceEngine);
+        String key = AudioCache.key(text, voice + "|" + species + "|" + bucket + "|" + emotion, p, speed, br.com.mobvoz.config.ServerConfig.current().voiceEngine);
         short[] hit = AUDIO.get(key);
         if (hit != null) {
             return CompletableFuture.completedFuture(Optional.of(hit));
         }
-        return synthesize(text, voice, p, speed).thenApply(o -> {
+        return synthesize(text, voice, p, speed, species, bucket, emotion).thenApply(o -> {
             o.ifPresent(pcm -> AUDIO.put(key, pcm));
             return o;
         });
@@ -290,11 +294,21 @@ public final class SidecarClient {
 
     /** Texto pt-BR -> PCM int16 48 kHz mono (como short[]). Vazio se o TTS estiver indisponivel. */
     public CompletableFuture<Optional<short[]>> synthesize(String text, String voice, double pitch, double speed) {
+        return synthesize(text, voice, pitch, speed, "", 0, "");
+    }
+
+    /** Com a especie, o individuo (0 a 63) e a emocao: o sintetizador usa a mistura de vozes da especie, com a variacao do individuo. */
+    public CompletableFuture<Optional<short[]>> synthesize(String text, String voice, double pitch, double speed, String species, int bucket, String emotion) {
         JsonObject body = new JsonObject();
         body.addProperty("text", text);
         body.addProperty("voice", voice);
         body.addProperty("pitch", pitch);
         body.addProperty("speed", speed);
+        if (species != null && !species.isEmpty()) {
+            body.addProperty("species", species);
+            body.addProperty("seed", bucket);
+            body.addProperty("emotion", emotion == null ? "" : emotion);
+        }
         String engine = br.com.mobvoz.config.ServerConfig.current().voiceEngine;
         if (!"auto".equals(engine)) {
             body.addProperty("engine", engine);

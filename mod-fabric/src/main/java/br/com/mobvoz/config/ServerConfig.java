@@ -33,11 +33,17 @@ public final class ServerConfig {
     /** Motor de voz: "auto" (o que o servico de IA usa: Kokoro, mais natural; ou Piper se faltar) | "kokoro" | "piper" (modo leve: menos tempo por fala). */
     public String voiceEngine = "auto";
     /** Intervalo minimo entre conversas ambiente na mesma regiao (cada criatura espera o triplo). */
-    public int ambientCooldownSeconds = 60;
+    public int ambientCooldownSeconds = 60; // em desuso: vale ambientLevel
+    /** Quantas conversas de ambiente: "nenhuma" | "poucas" (padrao) | "normal" | "muitas". Mude com /mobvoz conversas. */
+    public String ambientLevel = "poucas";
+
+    public static boolean isAmbientLevel(String s) {
+        return s != null && java.util.Set.of("nenhuma", "poucas", "normal", "muitas").contains(s.toLowerCase());
+    }
     /** Quanto custa conquistar a confianca de uma criatura: "facil" (aceita seguir com bem menos), "normal" ou "dificil". */
     public String trustDifficulty = "normal";
     /** Som curto de "pensando" ("Hmm...", "Muuu?") quando a resposta demora: disfarca a espera. false = silencio ate a resposta. */
-    public boolean thinkingSounds = true;
+    public boolean thinkingFillers = false;
     /** Criaturas pacificas puxam assunto com o jogador de vez em quando (falas prontas, sem IA; a resposta do jogador e conversa normal com a IA). */
     public boolean mobsInitiate = true;
     /** A criatura que recusa um pedido (seguir, ficar, lutar...) so por falta de confianca aceita ser PAGA com itens que ela gosta; o pagamento pode ser aos poucos. */

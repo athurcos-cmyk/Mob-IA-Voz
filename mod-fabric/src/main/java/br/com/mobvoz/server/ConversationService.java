@@ -217,7 +217,7 @@ public final class ConversationService {
                         return CompletableFuture.completedFuture((SentenceVoice.Voiced) null);
                     }
                     said.set(fallback); // IA fora do ar: a reserva fixa mantem a troca compreensivel
-                    return sidecar.synthesize(fallback, voice.voice(), voice.pitch(), voice.speed()).thenApply(o -> o.map(SentenceVoice.Voiced::of).orElse(null));
+                    return sidecar.synthesize(fallback, voice.voice(), voice.pitch(), voice.speed(), voice.species(), voice.bucket(), voice.emotion()).thenApply(o -> o.map(SentenceVoice.Voiced::of).orElse(null));
                 })
                 .orTimeout(PIPELINE_TIMEOUT_S, TimeUnit.SECONDS)
                 .whenComplete((voiced, err) -> server.execute(() -> {
@@ -386,7 +386,7 @@ public final class ConversationService {
         String type = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString();
         Voices v = Voices.forProfile(Profiles.keyOf(mob), MemoryStore.get(mob).identityId());
         MinecraftServer server = player.getServer();
-        sidecar.synthesizeCached(text, v.voice(), v.pitch(), v.speed()).thenAccept(o -> server.execute(() -> {
+        sidecar.synthesizeCached(text, v.voice(), v.pitch(), v.speed(), v.species(), v.bucket(), v.emotion()).thenAccept(o -> server.execute(() -> {
             if (o.isPresent() && mob.isAlive() && !mobToPlayer.containsKey(mob.getUUID())) {
                 sp.speak(mob, o.get(), () -> server.execute(next));
             }
@@ -688,7 +688,7 @@ public final class ConversationService {
         said.set(r.speechText());
         Metrics.llmMs.set(r.llmMs());
         long t = System.nanoTime();
-        SentenceVoice.Voiced voiced = SentenceVoice.synthesize(sidecar, r.speechText(), voice);
+        SentenceVoice.Voiced voiced = SentenceVoice.synthesize(sidecar, r.speechText(), voice.withEmotion(r.emotion())); // a emocao da fala muda tom e velocidade um pouco
         return voiced.first().thenApply(o -> {
             Metrics.ttsMs.set((System.nanoTime() - t) / 1_000_000);
             return o.isPresent() ? voiced : null;

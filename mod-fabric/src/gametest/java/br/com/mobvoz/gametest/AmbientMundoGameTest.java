@@ -38,7 +38,9 @@ public class AmbientMundoGameTest implements FabricClientGameTest {
         if (Only.skip(getClass())) {
             return;
         }
-        ServerConfig.set(new ServerConfig());
+        ServerConfig on = new ServerConfig();
+        on.ambientLevel = "muitas";
+        ServerConfig.set(on);
         Ambient.reset();
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {
             world.getClientWorld().waitForChunksRender();

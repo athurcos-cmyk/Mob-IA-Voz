@@ -84,7 +84,11 @@ class Handler(BaseHTTPRequestHandler):
             if not voice.replace("-", "").replace("_", "").isalnum():  # sem path traversal
                 return self._send(400, {"error": "bad_voice"})
             engine = req.get("engine") if req.get("engine") in ("kokoro", "piper") else None
-            pcm = speech.synthesize(text, voice, float(req.get("pitch", 1.0)), float(req.get("speed", 1.0)), engine)
+            species = str(req.get("species", ""))[:60]
+            if species and not species.replace(":", "").replace("_", "").replace("#", "").replace("-", "").replace(".", "").isalnum():
+                species = ""  # so letras, numeros e : _ # - .
+            emotion = str(req.get("emotion", ""))[:20] if str(req.get("emotion", "")).isalpha() else ""
+            pcm = speech.synthesize(text, voice, float(req.get("pitch", 1.0)), float(req.get("speed", 1.0)), engine, species, int(req.get("seed", 0)), emotion)
         except (KeyError, ValueError, TypeError, json.JSONDecodeError):
             return self._send(400, {"error": "bad_request"})
         except Exception as e:

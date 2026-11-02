@@ -96,6 +96,23 @@ public final class VoiceUi {
                             Minecraft.getInstance().player.connection.sendCommand("mobvozinfo memoria");
                             return 1;
                         }))
+                        .then(ClientCommandManager.literal("conversas")
+                                .executes(ctx -> {
+                                    Minecraft.getInstance().player.connection.sendCommand("mobvozinfo conversas");
+                                    return 1;
+                                })
+                                .then(ClientCommandManager.argument("nivel", StringArgumentType.word())
+                                        .suggests((c, b) -> {
+                                            b.suggest("nenhuma");
+                                            b.suggest("poucas");
+                                            b.suggest("normal");
+                                            b.suggest("muitas");
+                                            return b.buildFuture();
+                                        })
+                                        .executes(ctx -> {
+                                            Minecraft.getInstance().player.connection.sendCommand("mobvozinfo conversas " + StringArgumentType.getString(ctx, "nivel"));
+                                            return 1;
+                                        })))
                         .then(ClientCommandManager.literal("dificuldade")
                                 .executes(ctx -> {
                                     Minecraft.getInstance().player.connection.sendCommand("mobvozinfo dificuldade");

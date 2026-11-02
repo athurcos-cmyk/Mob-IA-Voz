@@ -30,6 +30,9 @@ public final class MobVozCommands {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(Commands.literal("mobvozinfo")
                 .then(Commands.literal("memoria").executes(ctx -> memory(ctx.getSource())))
+                .then(Commands.literal("conversas")
+                        .executes(ctx -> chatter(ctx.getSource(), null))
+                        .then(Commands.argument("nivel", StringArgumentType.word()).executes(ctx -> chatter(ctx.getSource(), StringArgumentType.getString(ctx, "nivel")))))
                 .then(Commands.literal("dificuldade")
                         .executes(ctx -> difficulty(ctx.getSource(), null))
                         .then(Commands.argument("nivel", StringArgumentType.word()).executes(ctx -> difficulty(ctx.getSource(), StringArgumentType.getString(ctx, "nivel")))))));
@@ -65,6 +68,33 @@ public final class MobVozCommands {
         var view = new MemoryReport.View(name, Profiles.ofMob(mob).label(), mem.nameOf(p.getUUID()), mem, p.getUUID(), now, warmth,
                 OrderPolicy.followThreshold(Orders.subjectOf(mob)), ServerConfig.current().trustDifficulty, grudge);
         MemoryReport.lines(view).forEach(l -> src.sendSuccess(() -> Component.literal(l), false));
+        return 1;
+    }
+
+    /** Quantas conversas de ambiente entre as criaturas (as falas que voce escuta sem falar com ninguem). */
+    private static int chatter(CommandSourceStack src, String level) {
+        var cfg = ServerConfig.current();
+        if (level == null) {
+            src.sendSuccess(() -> Component.literal("MobVoz: conversas de ambiente = " + cfg.ambientLevel + ". Troque com /mobvoz conversas nenhuma|poucas|normal|muitas."), false);
+            return 1;
+        }
+        if (!ServerConfig.isAmbientLevel(level)) {
+            src.sendFailure(Component.literal("MobVoz: use nenhuma, poucas, normal ou muitas."));
+            return 0;
+        }
+        if (!src.getServer().isSingleplayer() && !src.hasPermission(2)) {
+            src.sendFailure(Component.literal("MobVoz: só o administrador do servidor muda as conversas de ambiente."));
+            return 0;
+        }
+        cfg.ambientLevel = level.toLowerCase();
+        ServerConfig.save();
+        br.com.mobvoz.social.Ambient.reset();
+        src.sendSuccess(() -> Component.literal("MobVoz: conversas de ambiente agora são " + cfg.ambientLevel + switch (cfg.ambientLevel) {
+            case "nenhuma" -> " (as criaturas só falam com você)";
+            case "poucas" -> " (o padrão: uma de vez em quando, nunca em sequência)";
+            case "normal" -> " (uma a cada ~45 s por perto)";
+            default -> " (bem animado: várias por minuto)";
+        }), true);
         return 1;
     }
 

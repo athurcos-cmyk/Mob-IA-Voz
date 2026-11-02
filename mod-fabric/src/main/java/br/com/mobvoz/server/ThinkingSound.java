@@ -19,7 +19,7 @@ import net.minecraft.world.entity.Mob;
  * e guardadas no cache de audio (a repeticao e instantanea). Se a resposta chegar antes, nada e dito; se chegar durante o som, espera ele acabar.
  */
 public final class ThinkingSound {
-    static final long DELAY_MS = 900;
+    static final long DELAY_MS = 2500; // so quando a resposta demora de verdade (com a fala mais rapida quase nunca toca); desligado por padrao (thinkingFillers)
     private static final long MAX_WAIT_S = 2;
     private static final Random RND = new Random();
     private static final Map<UUID, String> LAST = new ConcurrentHashMap<>();
@@ -97,14 +97,14 @@ public final class ThinkingSound {
      * Chamar na thread do servidor.
      */
     public static Handle begin(MinecraftServer server, Speaker speaker, SidecarClient sidecar, Mob mob, Voices voice, String entityPath) {
-        if (speaker == null || !ServerConfig.current().thinkingSounds) {
+        if (speaker == null || !ServerConfig.current().thinkingFillers) {
             return NONE;
         }
         UUID id = mob.getUUID();
         String text = pick(entityPath, LAST.get(id), RND);
         LAST.put(id, text);
         Handle h = new Handle();
-        CompletableFuture<Optional<short[]>> pcm = sidecar.synthesizeCached(text, voice.voice(), voice.pitch(), voice.speed());
+        CompletableFuture<Optional<short[]>> pcm = sidecar.synthesizeCached(text, voice.voice(), voice.pitch(), voice.speed(), voice.species(), voice.bucket(), voice.emotion());
         CompletableFuture<Void> delay = CompletableFuture.runAsync(() -> { }, CompletableFuture.delayedExecutor(DELAY_MS, TimeUnit.MILLISECONDS));
         delay.thenCombine(pcm, (d, o) -> o).whenComplete((o, err) -> server.execute(() -> {
             if (err != null || o == null || o.isEmpty() || h.answered || !mob.isAlive() || mob.isRemoved()) {

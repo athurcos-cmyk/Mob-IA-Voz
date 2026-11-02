@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -34,7 +36,6 @@ import net.minecraft.world.entity.npc.Villager;
  */
 public final class Ambient {
     private static final int CHECK_EVERY = 100;      // ticks entre sorteios por jogador
-    private static final double CHANCE = 0.4;
     private static final double PLAYER_RADIUS = 16;
     private static final double PAIR_RADIUS = 6;
     private static final int RECENT = 80;
@@ -42,7 +43,6 @@ public final class Ambient {
     private static final Random RND = new Random();
     private static final ArrayDeque<String> recent = new ArrayDeque<>();
     private static ChatterScheduler scheduler;
-    private static int schedulerSeconds = -1;
     private static final AtomicInteger scenes = new AtomicInteger();
     private static final AtomicInteger lines = new AtomicInteger();
     private static volatile String onlyFamily;
@@ -66,29 +66,47 @@ public final class Ambient {
     /** Para testes: recomeca o orcamento e o historico. */
     public static void reset() {
         scheduler = null;
-        schedulerSeconds = -1;
+        schedulerLevel = "";
+        lastScene.clear();
         recent.clear();
     }
 
     public static void register() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             var cfg = ServerConfig.current();
-            if (!cfg.ambientChatter || !cfg.chatterEnabled || server.getTickCount() % CHECK_EVERY != 0) {
+            if (!cfg.ambientChatter || !cfg.chatterEnabled || "nenhuma".equalsIgnoreCase(cfg.ambientLevel) || server.getTickCount() % CHECK_EVERY != 0) {
                 return;
             }
+            double chance = levelOf(cfg).chance();
             for (ServerPlayer p : server.getPlayerList().getPlayers()) {
-                if (RND.nextDouble() < CHANCE) {
+                if (RND.nextDouble() < chance) {
                     tryScene(p, cfg);
                 }
             }
         });
     }
 
+    /** Quantas conversas de ambiente: espera por regiao (32x32 blocos), por criatura, intervalo minimo entre duas perto do mesmo jogador, teto por minuto e chance a cada checagem. */
+    record Level(long regionCooldown, long mobCooldown, long playerGap, int perMinute, double chance) {
+    }
+
+    static Level levelOf(ServerConfig cfg) {
+        return switch (cfg.ambientLevel == null ? "poucas" : cfg.ambientLevel.toLowerCase()) {
+            case "muitas" -> new Level(1200, 3600, 300, 3, 0.4);   // antigo: 1 por regiao a cada 60 s, 3 por minuto
+            case "normal" -> new Level(2400, 7200, 900, 2, 0.3);   // 120 s por regiao, no minimo 45 s entre duas perto de voce
+            default -> new Level(4800, 12000, 2000, 1, 0.2);       // poucas (padrao): 240 s por regiao, no minimo ~100 s entre duas perto de voce
+        };
+    }
+
+    private static final Map<UUID, Long> lastScene = new java.util.concurrent.ConcurrentHashMap<>();
+    private static String schedulerLevel = "";
+
     private static ChatterScheduler scheduler(ServerConfig cfg) {
-        int secs = Math.max(10, cfg.ambientCooldownSeconds);
-        if (scheduler == null || schedulerSeconds != secs) {
-            scheduler = new ChatterScheduler(new ChatterScheduler.Config(secs * 20L, secs * 60L, 3, 3));
-            schedulerSeconds = secs;
+        String lvl = cfg.ambientLevel == null ? "poucas" : cfg.ambientLevel.toLowerCase();
+        if (scheduler == null || !lvl.equals(schedulerLevel)) {
+            Level l = levelOf(cfg);
+            scheduler = new ChatterScheduler(new ChatterScheduler.Config(l.regionCooldown(), l.mobCooldown(), l.perMinute(), 3));
+            schedulerLevel = lvl;
         }
         return scheduler;
     }
@@ -102,6 +120,11 @@ public final class Ambient {
                         && !ConversationService.isBusy(m.getUUID())));
         if (near.size() < 2) {
             return;
+        }
+        long nowTick = level.getGameTime();
+        Long last = lastScene.get(player.getUUID());
+        if (last != null && nowTick - last < levelOf(cfg).playerGap()) {
+            return; // acabou de ter uma conversa por perto: espera (varios bichos juntos nao viram festa)
         }
         Collections.shuffle(near, RND);
         for (Mob x : near) {
@@ -144,6 +167,7 @@ public final class Ambient {
             recent.pollFirst();
         }
         scenes.incrementAndGet();
+        lastScene.put(player.getUUID(), now);
         if (!scene.name().isEmpty()) { // ouviu o nome em voz alta: as duas criaturas o aprendem
             for (Mob m : List.of(a, b)) {
                 if (!MemoryStore.get(m).nameOf(player.getUUID()).equals(scene.name())) {

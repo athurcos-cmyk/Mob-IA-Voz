@@ -176,11 +176,42 @@ def clean_for_speech(text: str) -> str:
     return out or "Hmm."  # so havia o som: fala um 'Hmm' curto em vez de silencio
 
 
-def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0, speed: float = 1.0, engine: str | None = None) -> bytes:
-    """Texto pt-BR -> PCM int16 mono 48 kHz. `voice`/`pitch`/`speed` vem do perfil (vozes Piper); o Kokoro as traduz."""
+def _fx_etereo(x: np.ndarray, rate: int) -> np.ndarray:
+    """Efeito do Vex (o unico que o dono aprovou): tremolo suave + eco curto."""
+    t = np.arange(len(x)) / rate
+    x = x * (0.8 + 0.2 * (0.5 + 0.5 * np.sin(2 * np.pi * 9 * t)))
+    n = int(rate * 1.1)
+    ir = np.random.default_rng(7).standard_normal(n) * np.exp(-np.linspace(0, 6, n))
+    ir[0] = 0
+    y = np.convolve(x, ir / np.abs(ir).sum() * 4)[: len(x) + n]
+    out = np.zeros(len(y), dtype=np.float32)
+    out[: len(x)] += x * 0.6
+    return (out + y * 0.4).astype(np.float32)
+
+
+def _synthesize_kokoro_plan(text: str, pl) -> bytes:
+    """Voz da especie (mistura das 3 vozes) com a variacao do individuo e a emocao: ver vozes.plan."""
+    k = _kokoro_model()
+    style = sum(k.get_voice_style(v) * w for v, w in pl.mix)
+    with _lock:
+        samples, rate = k.create(text, voice=style.astype(np.float32), speed=pl.speed / pl.pitch, lang="pt-br")
+    audio = samples.astype(np.float32)
+    shifted = int(rate * pl.pitch)  # o tom vem de reinterpretar a taxa; a velocidade ja foi dividida por ele, entao a duracao final nao muda
+    if pl.fx == "etereo":
+        audio = _fx_etereo(audio, shifted)
+    return _to_pcm48(audio * 32767.0, shifted)
+
+
+def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0, speed: float = 1.0, engine: str | None = None,
+               species: str = "", seed: int = 0, emotion: str = "") -> bytes:
+    """Texto pt-BR -> PCM int16 mono 48 kHz. `voice`/`pitch`/`speed` vem do perfil (vozes Piper); o Kokoro as traduz.
+    Com `species` (e `seed` do individuo, `emotion` da fala) o Kokoro usa a mistura de vozes da especie (ver vozes.py)."""
     text = clean_for_speech(text)
     if active_engine(engine) == "kokoro":
         try:
+            if species:
+                from . import vozes
+                return _synthesize_kokoro_plan(text, vozes.plan(species, seed, emotion, pitch, voice))
             return _synthesize_kokoro(text, voice, pitch, speed)
         except Exception as e:  # noqa: BLE001 - uma fala nunca fica muda por falha do motor principal
             log.warning("Kokoro falhou (%s); esta fala usa o Piper", e)

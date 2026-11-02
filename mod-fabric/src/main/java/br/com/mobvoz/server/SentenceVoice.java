@@ -84,7 +84,7 @@ public final class SentenceVoice {
 
     /** Sintetiza em cadeia: o pedaco N+1 so comeca quando o N termina (o TTS e um so), e todos comecam a contar ja. */
     public static Voiced synthesize(SidecarClient sidecar, String text, Voices v) {
-        return chain(split(text), p -> sidecar.synthesize(p, v.voice(), v.pitch(), v.speed()));
+        return chain(split(text), p -> sidecar.synthesize(p, v.voice(), v.pitch(), v.speed(), v.species(), v.bucket(), v.emotion()));
     }
 
     static Voiced chain(List<String> parts, Function<String, CompletableFuture<Optional<short[]>>> synth) {

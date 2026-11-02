@@ -60,7 +60,9 @@ public class AmbientChatterGameTest implements FabricClientGameTest {
         if (Only.skip(getClass())) {
             return;
         }
-        ServerConfig.set(new ServerConfig()); // ambientChatter e chatterEnabled ligados
+        ServerConfig on = new ServerConfig(); // ambientChatter e chatterEnabled ligados
+        on.ambientLevel = "muitas"; // o padrao ("poucas") demora minutos entre duas conversas; o teste precisa de varias seguidas
+        ServerConfig.set(on);
         Ambient.reset();
         try (TestSingleplayerContext world = context.worldBuilder().setUseConsistentSettings(true).create()) {
             world.getClientWorld().waitForChunksRender();

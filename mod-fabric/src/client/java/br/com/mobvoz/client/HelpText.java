@@ -5,7 +5,7 @@ import java.util.List;
 /** Texto do {@code /mobvoz ajuda}: como falar com as criaturas, ganhar confianca, chamar pelo nome e todos os comandos. */
 public final class HelpText {
     /** Todos os subcomandos de {@code /mobvoz} que o texto precisa explicar (um teste confere). */
-    public static final List<String> COMMANDS = List.of("voz", "chat", "legenda", "falar", "memoria", "dificuldade", "status", "ajuda");
+    public static final List<String> COMMANDS = List.of("voz", "chat", "legenda", "falar", "memoria", "conversas", "dificuldade", "status", "ajuda");
 
     private HelpText() {
     }
@@ -22,6 +22,7 @@ public final class HelpText {
                 " /mobvoz legenda sim|nao: mostra o que as criaturas dizem",
                 " /mobvoz falar <texto>: fala com a criatura da mira",
                 " /mobvoz memoria: o que a criatura da mira sabe de você",
+                " /mobvoz conversas [nenhuma|poucas|normal|muitas]: quanto as criaturas conversam entre si (padrão: poucas)",
                 " /mobvoz dificuldade [facil|normal|dificil]: quão difícil é ganhar confiança",
                 " /mobvoz status: estado do serviço de IA",
                 " /mobvoz ajuda: esta tela",
