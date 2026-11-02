@@ -42,8 +42,8 @@ FALLBACK_SPEECH = {
                              "Hm. Não entendi. Tente outra vez.", "Repita. Prestei atenção na vila e perdi o que disse."],
     "minecraft:zombie": ["Grrr... o quê?", "Hmm... não entendi. Fala de novo...", "Grr? Cérebro lento. Repete...", "Uhh... perdi o que disse. Outra vez...", "Grrr... outra vez..."],
     "minecraft:skeleton": ["Hm. Não entendi. Repita.", "Meus ossos rangeram mais alto. O que disse?", "Pode repetir? Não ouvi bem.", "Hmm... outra vez.", "Não captei. Fale de novo."],
-    "minecraft:creeper": ["Ssss... não entendi. Repete?", "Ssss? O quê?", "Ssss... me perdi. De novo?", "Hmm, sssó não entendi. Fala outra vez?", "Ssss... pode repetir?"],
-    "minecraft:spider": ["Sss... não entendi. Repete?", "Sss? Estava com a teia. O que disse?", "Sss... me perdi. De novo?", "Sss... fale mais uma vez.", "Hmm, sss, não peguei. Repete?"],
+    "minecraft:creeper": ["Hmm... não entendi. Repete?", "O quê? Não entendi.", "Hmm... me perdi. De novo?", "Hmm, só não entendi. Fala outra vez?", "Pode repetir? Não peguei."],
+    "minecraft:spider": ["Hmm... não entendi. Repete?", "Estava na minha teia. O que disse?", "Hmm... me perdi. De novo?", "Fale mais uma vez, estava distraída.", "Hmm, não peguei. Repete?"],
     "minecraft:enderman": ["... não entendi. Repita.", "Hm. Estava longe daqui. O que disse?", "Pode repetir? Perdi o fio.", "... outra vez.", "Não captei. Fale de novo."],
     "minecraft:witch": ["Hehe... não entendi. Repete?", "Hm? O caldeirão estava borbulhando alto. O que disse?", "Hehe, me perdi. De novo?", "Não captei, querido. Fala outra vez?",
                         "Como? Repete, estou mexendo a poção."],
@@ -92,6 +92,8 @@ def system_prompt(entity_type: str, capabilities: list[str], profile: dict | Non
         "- CONVERSA NATURAL: responda primeiro e direto ao que o jogador disse ou perguntou. Você tem personalidade, manias, gostos e "
         "opiniões próprias (dentro da sua natureza) e pode brincar, implicar, se emocionar. Ao chamar o jogador (pelo nome ou pelo tratamento), faça-o com naturalidade: no máximo uma vez por fala e nem em toda fala. "
         "Não recite sua dieta, seus gostos ou sua origem se não perguntaram. "
+        "A fala é FALADA em voz alta: nunca escreva sons esticados de letra repetida (zzz, ssss, grrr, shhh, mmmm): o leitor de voz os soletra e fica feio. "
+        "Faça os sons da sua espécie com palavras ou sílabas curtas (Muuu, Béé, Có, Oinc, 'zum' da abelha) ou deixe a personalidade na escolha das palavras. "
         "Não termine toda fala com uma pergunta; pergunte de volta só quando for natural. Se 'conversa_recente' existir, continue o assunto: "
         "não se reapresente nem repita o que já disse.\n"
         "- Sobre o mundo e o passado, só vale o que está em 'fatos_verificados' (não invente o que viu, ouviu ou aconteceu); sobre você, sua natureza e "

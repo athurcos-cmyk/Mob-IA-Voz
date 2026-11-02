@@ -4,6 +4,7 @@ Formato de audio do jogo (Simple Voice Chat): PCM 16-bit little-endian, mono, 48
 Audio de entrada nunca e gravado em disco nem logado.
 """
 import logging
+import re
 import threading
 from pathlib import Path
 
@@ -139,8 +140,45 @@ def _to_pcm48(audio: np.ndarray, src_rate: int) -> bytes:
     return np.clip(out, -32768, 32767).astype("<i2").tobytes()
 
 
+_WORD = re.compile(r"[A-Za-zÀ-ÿ]+")
+
+
+def _sound_word(w: str) -> str | None:
+    """Sons esticados que o leitor de voz SOLETRA ('Zzzz' vira 'ex-ex-ex-e'): devolve a palavra falada que os substitui, '' para sumir, ou None se nao e um deles."""
+    low = w.lower()
+    if re.fullmatch(r"b?z{2,}", low):
+        return "Zum"  # zumbido de abelha
+    if re.fullmatch(r"(?:s{2,}h*|sh{2,}|ps{2,})", low):
+        return ""  # sibilo (aranha, creeper): na fala escrita fica bom, falado vira letra repetida
+    if re.fullmatch(r"(?:g?r{3,}|b?r{3,}|gr{2,}|br{2,})", low):
+        return ""  # rosnado / tremor
+    if re.fullmatch(r"h?m{3,}", low):
+        return "Hmm"
+    return None
+
+
+def clean_for_speech(text: str) -> str:
+    """Texto -> o que e FALADO (a legenda continua o texto original). Tira sons esticados que viram soletracao (zzz, sss, grrr, shhh) e reduz letras esticadas dentro de palavras."""
+    def fix(m: re.Match) -> str:
+        w = m.group(0)
+        s = _sound_word(w)
+        if s is not None:
+            return s if not w[0].isupper() else s[:1].upper() + s[1:]
+        return re.sub(r"([bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ])\1{2,}", r"\1", w)  # 'sssó' -> 'só'
+
+    out = _WORD.sub(fix, text)
+    out = re.sub(r"\s+([,.!?…;:])", r"\1", out)
+    out = re.sub(r"([,;:])(?:\s*[,;:])+", r"\1", out)
+    out = re.sub(r"^[\s,.;:…!?-]+", "", out)
+    out = re.sub(r"\s{2,}", " ", out).strip()
+    if out and text[:1].isupper():
+        out = out[:1].upper() + out[1:]  # o 1o som saiu: a frase que sobrou comeca com maiuscula
+    return out or "Hmm."  # so havia o som: fala um 'Hmm' curto em vez de silencio
+
+
 def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0, speed: float = 1.0, engine: str | None = None) -> bytes:
     """Texto pt-BR -> PCM int16 mono 48 kHz. `voice`/`pitch`/`speed` vem do perfil (vozes Piper); o Kokoro as traduz."""
+    text = clean_for_speech(text)
     if active_engine(engine) == "kokoro":
         try:
             return _synthesize_kokoro(text, voice, pitch, speed)

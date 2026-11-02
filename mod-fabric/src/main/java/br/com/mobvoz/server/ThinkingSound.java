@@ -44,7 +44,7 @@ public final class ThinkingSound {
             Map.entry("iron_golem", List.of("Hm. Um instante.", "Processando...", "Hmm. Analisando.")),
             Map.entry("zombie", List.of("Uuurgh...", "Hmm... uuurgh.", "Peraaaí...")),
             Map.entry("skeleton", List.of("Hmm... clac clac.", "Um instante...", "Hmm, deixa eu pensar...")),
-            Map.entry("creeper", List.of("Sss... peraí.", "Hmm... sss.", "Um instante...")),
+            Map.entry("creeper", List.of("Peraí...", "Hmm... deixa eu ver.", "Um instante...")),
             Map.entry("enderman", List.of("Hmm... vwoop.", "Um instante...", "Hmm...")),
             Map.entry("warden", List.of("...", "Hmm.", "Um instante.")));
     private static final List<String> DEFAULT = List.of("Hmm...", "Ah, peraí...", "Deixa eu pensar...", "Hum...", "Um instante...");

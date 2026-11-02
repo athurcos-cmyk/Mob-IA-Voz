@@ -16,6 +16,28 @@ class SpeechUnitTests(unittest.TestCase):
         self.assertEqual(len(out), 48000)
 
 
+class CleanForSpeechTests(unittest.TestCase):
+    """O leitor de voz SOLETRA sons esticados (zzz vira 'ex-ex-ex-e', sss vira 'S-U-S-U'): so o que e falado muda, a legenda fica."""
+
+    def test_buzz_becomes_a_word_and_hiss_disappears(self):
+        self.assertEqual("Zum, as flores estão lindas.", speech.clean_for_speech("Zzzz, as flores estão lindas."))
+        self.assertEqual("Não entendi. Repete?", speech.clean_for_speech("Ssss... não entendi. Repete?"))
+        self.assertEqual("Tem gente por perto.", speech.clean_for_speech("Grrr... tem gente por perto."))
+        self.assertEqual("Hmm, não entendi.", speech.clean_for_speech("Hmmm, não entendi."))
+        self.assertEqual("Silêncio.", speech.clean_for_speech("Shhh, silêncio."))
+
+    def test_stretched_letters_inside_words_shrink(self):
+        self.assertEqual("Hmm, só não entendi.", speech.clean_for_speech("Hmm, sssó não entendi."))
+
+    def test_normal_speech_is_untouched(self):
+        for t in ("Muuu, eu só quero pastar em paz.", "Béééh... será que tem grama?", "Có! Tem semente?", "Hmm, não entendi.", "Pão com ovo e arroz."):
+            self.assertEqual(t, speech.clean_for_speech(t), t)
+
+    def test_only_a_sound_becomes_a_short_hmm_not_silence(self):
+        self.assertEqual("Hmm.", speech.clean_for_speech("Grrr..."))
+        self.assertEqual("Hmm.", speech.clean_for_speech("Sss."))
+
+
 class TtsEngineTests(unittest.TestCase):
     def test_kokoro_voice_mapping_and_limited_pitch_shift(self):
         self.assertEqual("pm_santa", speech.kokoro_voice("pt_BR-jeff-medium", 0.6)[0])
