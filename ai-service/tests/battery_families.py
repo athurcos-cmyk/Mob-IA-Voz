@@ -101,11 +101,14 @@ def thing_for(f):
     return {"ev:danger": "zumbi", "ev:honest": "trigo" if "animals" in f["who"] else "3 esmeraldas", "ev:gift_like": "papoula" if "golem" in f["who"] else "cenoura", "ev:gift_meh": "pedra", "ev:gift_dislike": "carne podre"}.get(ev, "")
 
 
-def render(f, rnd, pools):
-    i = rnd.randrange(len(f["a"]))
-    a = f["a"][i]
-    bpool = f["b"] if (not f.get("bg") or a.strip().endswith("?")) else f["b"] + f["bg"]
-    texts = [a] if f.get("solo") else [a, rnd.choice(bpool)] + ([rnd.choice(f["c"])] if f["c"] else [])
+def render(f, rnd, pools, scene=None):
+    if scene is not None:  # cena escrita inteira (abertura, resposta e fecho que combinam)
+        texts = [scene["a"], scene["b"]] + ([scene["c"]] if scene.get("c") else [])
+    else:
+        i = rnd.randrange(len(f["a"]))
+        a = f["a"][i]
+        bpool = f["b"] if (not f.get("bg") or a.strip().endswith("?")) else f["b"] + f["bg"]
+        texts = [a] if f.get("solo") else [a, rnd.choice(bpool)] + ([rnd.choice(f["c"])] if f["c"] else [])
     chosen = {}
     item = item_for(f)
     out = []
@@ -162,12 +165,14 @@ def main():
             continue
         seen = set()
         for _ in range(n * 4):
-            lines = render(f, rnd, d["pools"])
+            scene = rnd.choice(f["scenes"]) if f.get("scenes") else None
+            lines = render(f, rnd, d["pools"], scene)
             key = " | ".join(lines)
             if key in seen:
                 continue
             seen.add(key)
-            tags = [TAGS[t] for t in f["need"] if t in TAGS] + [("NÃO: " + TAGS[t[1:]]) for t in f["need"] if t.startswith("!") and t[1:] in TAGS]
+            need = f["need"] + (scene.get("need", []) if scene else [])
+            tags = [TAGS[t] for t in need if t in TAGS] + [("NÃO: " + TAGS[t[1:]]) for t in need if t.startswith("!") and t[1:] in TAGS]
             items.append({"family": f["id"], "payload": {"quem": who_text(f["who"]), "situacao": "; ".join(tags) or "uma situação qualquer do dia a dia", "falas": lines}})
             if len(seen) >= n:
                 break

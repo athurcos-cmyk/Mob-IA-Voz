@@ -849,6 +849,20 @@ if _OV.exists():
         if _o and not _f.get("solo"):
             _f["a"], _f["b"], _f["c"] = _o["a"], _o["b"], _o["c"]
 
+# Cenas ESCRITAS INTEIRAS (tools/gen/reescrever_cenas.py): abertura, resposta e fecho que combinam, cada cena com suas condicoes (hora, clima, bioma).
+# A familia passa a usar so essas cenas (o motor nunca mistura falas de cenas diferentes); a/b/c viram a uniao das falas, so para os testes de vocabulario.
+_CEN = Path(__file__).with_name("ambient_cenas.json")
+if _CEN.exists():
+    _cenas = json.loads(_CEN.read_text(encoding="utf-8"))
+    for _f in FAMILIES:
+        _sc = _cenas.get(_f["id"])
+        if _sc and not _f.get("solo"):
+            _common = set.intersection(*[set(x.get("need", [])) for x in _sc])  # condicao que TODAS as cenas pedem (ex.: deserto) vira da familia
+            _f["need"] = list(_f["need"]) + sorted(_common - set(_f["need"]))
+            _f["scenes"] = [{**x, "need": [n for n in x.get("need", []) if n not in _common]} for x in _sc]
+            for _k in "abc":
+                _f[_k] = list(dict.fromkeys(x[_k] for x in _sc if x.get(_k)))
+
 # Familias novas que o juiz de IA deu menos de 3,3 (3 reescritas nao as salvaram: o motor sorteia a/b/c sem coordenar e o tema generico nao se sustenta).
 # Sai so a que nao deixa a dupla de criaturas sem nenhuma conversa (as 12 unicas da dupla ficam). Lista gerada a partir de docs/relatorios/familias_mundo.md.
 _RM = Path(__file__).with_name("ambient_removidas.json")
@@ -872,7 +886,7 @@ def check():
         assert f["id"].startswith("ev_") == any(n.startswith("ev:") for n in f["need"]), f["id"]
         n = 1
         for lst in lists:
-            n *= len(lst)
+            n *= len(lst) if not f.get("scenes") else 1
             for t in lst:
                 assert "—" not in t and "–" not in t, t
                 assert len(t) <= 110, t
@@ -886,7 +900,7 @@ def check():
                         assert "armor" in f["need"], f["id"]
                     if s in ("nome", "Nome"):
                         assert "n0" in f["need"] or "n1" in f["need"], f["id"]
-        combos += n
+        combos += len(f["scenes"]) if f.get("scenes") else n
     return combos
 
 

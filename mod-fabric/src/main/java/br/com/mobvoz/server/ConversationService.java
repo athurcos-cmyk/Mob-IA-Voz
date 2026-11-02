@@ -666,6 +666,7 @@ public final class ConversationService {
         MobMemory.Relationship rel = mem.relationOf(pid);
         List<String> facts = new ArrayList<>(MemoryRules.factLines(mem, pid, tick));
         facts.addAll(0, br.com.mobvoz.social.SceneFacts.lines(mob, player)); // hora, clima, vida, o que o jogador segura, quem esta perto
+        br.com.mobvoz.memory.Recall.pick(mob.getUUID(), mem, pid, tick, java.util.concurrent.ThreadLocalRandom.current()).ifPresent(facts::add); // de vez em quando, um momento marcante
         if (!faction.isEmpty()) { // memoria coletiva: a faccao desconfia de quem atacou um dos seus
             facts.addAll(know.factionLines(faction, pid, tick, mob.getX(), mob.getZ()));
             float pen = know.trustPenalty(faction, pid, tick, mob.getX(), mob.getZ());

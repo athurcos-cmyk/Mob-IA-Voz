@@ -161,4 +161,29 @@ class AmbientScenesTest {
         assertEquals(0, repeatsInWindow, "nenhuma cena repete dentro das ultimas 80");
         assertTrue(seen.size() > 150, "cenas diferentes em 300 sorteios: " + seen.size());
     }
+
+    @Test
+    void scriptedFamiliesPlayWholeScenesThatBelongTogether() {
+        Random rnd = new Random(3);
+        int scripted = 0;
+        for (Family f : AmbientScenes.families()) {
+            if (f.scripts().isEmpty()) {
+                continue;
+            }
+            scripted++;
+            Set<String> tags = new HashSet<>();
+            f.need().stream().filter(n -> !n.startsWith("!")).forEach(tags::add);
+            Set<String> a = new HashSet<>(List.of("calm", f.whoA()));
+            Set<String> b = new HashSet<>(List.of("calm", f.whoB()));
+            assertTrue(f.scripts().stream().anyMatch(sc -> sc.need().isEmpty()), f.id() + " precisa de uma cena sem condicao");
+            for (int n = 0; n < 40; n++) {
+                var picked = AmbientScenes.pick(sit(tags, a, b, "", ""), rnd, k -> false, id -> id.equals(f.id()));
+                assertTrue(picked.isPresent(), f.id());
+                var lines = picked.get().lines();
+                assertTrue(lines.size() >= 2, f.id() + " cena com " + lines.size() + " fala(s)");
+                assertTrue(f.scripts().stream().anyMatch(sc -> sc.a().contains("{") || sc.b().contains("{")) || f.scripts().stream().anyMatch(sc -> sc.a().equals(lines.get(0).text()) && sc.b().equals(lines.get(1).text())), f.id() + " misturou falas de cenas diferentes: " + lines);
+            }
+        }
+        assertTrue(scripted >= 50, "familias com cenas inteiras: " + scripted);
+    }
 }

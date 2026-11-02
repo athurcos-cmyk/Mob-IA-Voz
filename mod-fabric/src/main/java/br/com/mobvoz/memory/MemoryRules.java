@@ -162,27 +162,9 @@ public final class MemoryRules {
     public static List<String> factLines(MobMemory m, UUID speaker, long nowTick) {
         List<String> out = new ArrayList<>();
         for (Fact f : m.facts()) {
-            String who = f.player().equals(speaker) ? "o jogador que fala com você" : "outro jogador";
-            String when = ago(nowTick - f.tick());
-            switch (f.type()) {
-                case "FIRST_MET" -> out.add("Você conheceu " + who + " " + when + ".");
-                case "GIFT" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1) + " te deu de presente "
-                        + f.detail() + " " + when + ".");
-                case "CONVERSION" -> out.add("Você se transformou (" + f.detail() + ") " + when + ", mas continua sendo você mesmo.");
-                case "TRADE" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " fez uma troca justa com você (" + f.detail() + ") " + when + ".");
-                case "TAMED" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " te convenceu a aceitar ser dele " + when + ".");
-                case "HONEST_RETURN" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " devolveu, sem você pedir, o que você tinha entregado (" + f.detail() + ") " + when + ": foi honesto, o que é raro.");
-                case "PACT_BROKEN" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " quebrou o pacto de paz ferindo você " + when + ".");
-                case "THREAT_SPOKEN" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " te ameaçou com palavras " + when + " (interpretação da fala; você não foi ferido por isso).");
-                case "COMFORTED" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1) + " te acalmou com palavras gentis " + when + ".");
-                case "DAMAGED_BY_PLAYER" -> out.add(who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1)
-                        + " te machucou " + when + ".");
-                default -> { }
+            String line = factLine(f, speaker, nowTick);
+            if (line != null) {
+                out.add(line);
             }
         }
         for (Map.Entry<String, Integer> e : m.counts().entrySet()) { // totais de eventos que sairam da lista detalhada
@@ -192,6 +174,26 @@ public final class MemoryRules {
             }
         }
         return out;
+    }
+
+    /** A frase de um fato verificado para a criatura (ou null se o tipo nao tem frase). */
+    public static String factLine(Fact f, UUID speaker, long nowTick) {
+        String who = f.player().equals(speaker) ? "o jogador que fala com você" : "outro jogador";
+        String when = ago(nowTick - f.tick());
+        String cap = who.substring(0, 1).toUpperCase(Locale.ROOT) + who.substring(1);
+        return switch (f.type()) {
+            case "FIRST_MET" -> "Você conheceu " + who + " " + when + ".";
+            case "GIFT" -> cap + " te deu de presente " + f.detail() + " " + when + ".";
+            case "CONVERSION" -> "Você se transformou (" + f.detail() + ") " + when + ", mas continua sendo você mesmo.";
+            case "TRADE" -> cap + " fez uma troca justa com você (" + f.detail() + ") " + when + ".";
+            case "TAMED" -> cap + " te convenceu a aceitar ser dele " + when + ".";
+            case "HONEST_RETURN" -> cap + " devolveu, sem você pedir, o que você tinha entregado (" + f.detail() + ") " + when + ": foi honesto, o que é raro.";
+            case "PACT_BROKEN" -> cap + " quebrou o pacto de paz ferindo você " + when + ".";
+            case "THREAT_SPOKEN" -> cap + " te ameaçou com palavras " + when + " (interpretação da fala; você não foi ferido por isso).";
+            case "COMFORTED" -> cap + " te acalmou com palavras gentis " + when + ".";
+            case "DAMAGED_BY_PLAYER" -> cap + " te machucou " + when + ".";
+            default -> null;
+        };
     }
 
     /** Alegacoes ja com indice (para UPDATE_BELIEF) e a crenca atual. */

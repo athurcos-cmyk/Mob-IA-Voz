@@ -27,11 +27,28 @@ import java.util.regex.Pattern;
 public final class AmbientScenes {
     /** {@code bg}: reacoes genericas ("Pois e."), usadas so depois de uma AFIRMACAO; uma pergunta so recebe resposta de {@code b}. */
     public record Family(String id, String whoA, String whoB, List<String> need, int weight, boolean aboutPlayer, List<String> a, List<String> b,
-                         List<String> bg, List<String> c, boolean solo) {
+                         List<String> bg, List<String> c, boolean solo, List<Script> scripts) {
         /** {@code solo}: reacao de UMA criatura (so a abertura {@code a}; sem resposta nem fecho). */
         public int combos() {
-            return solo ? a.size() : a.size() * (b.size() + bg.size()) * Math.max(1, c.size());
+            return !scripts.isEmpty() ? scripts.size() : solo ? a.size() : a.size() * (b.size() + bg.size()) * Math.max(1, c.size());
         }
+    }
+
+    /**
+     * Cena ESCRITA INTEIRA (abertura, resposta e fecho que combinam entre si), com condicoes proprias alem das da familia ({@code need}: hora, clima, bioma...).
+     * Familias com {@code scripts} nunca misturam falas de cenas diferentes (o sorteio independente de a/b/c deixava respostas que nao respondem).
+     */
+    public record Script(List<String> need, String a, String b, String c) {
+    }
+
+    static boolean needs(List<String> need, Set<String> tags) {
+        for (String n : need) {
+            boolean neg = n.startsWith("!");
+            if (tags.contains(neg ? n.substring(1) : n) == neg) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Respostas possiveis a abertura {@code i}: pergunta -> so as especificas; afirmacao -> tambem as genericas. */
@@ -83,7 +100,7 @@ public final class AmbientScenes {
                 FAMILIES.add(new Family(o.get("id").getAsString(), who.get(0).getAsString(), who.get(1).getAsString(), strings(o.getAsJsonArray("need")),
                         o.get("weight").getAsInt(), o.has("player") && o.get("player").getAsBoolean(), strings(o.getAsJsonArray("a")),
                         strings(o.getAsJsonArray("b")), o.has("bg") ? strings(o.getAsJsonArray("bg")) : List.of(), strings(o.getAsJsonArray("c")),
-                        o.has("solo") && o.get("solo").getAsBoolean()));
+                        o.has("solo") && o.get("solo").getAsBoolean(), scripts(o)));
             }
         } catch (IOException | RuntimeException e) {
             throw new IllegalStateException("ambient.json invalido", e);
@@ -91,6 +108,18 @@ public final class AmbientScenes {
     }
 
     private AmbientScenes() {
+    }
+
+    private static List<Script> scripts(JsonObject fam) {
+        List<Script> out = new ArrayList<>();
+        if (fam.has("scenes")) {
+            for (JsonElement el : fam.getAsJsonArray("scenes")) {
+                JsonObject o = el.getAsJsonObject();
+                out.add(new Script(o.has("need") ? strings(o.getAsJsonArray("need")) : List.of(), o.get("a").getAsString(), o.get("b").getAsString(),
+                        o.has("c") ? o.get("c").getAsString() : ""));
+            }
+        }
+        return List.copyOf(out);
     }
 
     private static List<String> strings(JsonArray arr) {
@@ -111,13 +140,7 @@ public final class AmbientScenes {
         if (!s.classesA().contains(f.whoA()) || !s.classesB().contains(f.whoB())) {
             return false;
         }
-        for (String n : f.need()) {
-            boolean neg = n.startsWith("!");
-            if (s.tags().contains(neg ? n.substring(1) : n) == neg) {
-                return false;
-            }
-        }
-        return true;
+        return needs(f.need(), s.tags()) && (f.scripts().isEmpty() || f.scripts().stream().anyMatch(sc -> needs(sc.need(), s.tags())));
     }
 
     /** Escolhe uma cena para este momento, evitando as ja usadas ({@code recentlyUsed} recebe a chave da cena); vazio = nenhum assunto cabe. */
@@ -142,6 +165,7 @@ public final class AmbientScenes {
         int i = 0;
         int j = 0;
         int k = 0;
+        int script = -1;
         String key = "";
         for (int attempt = 0; attempt < 24; attempt++) { // sorteia de novo (ate a familia) para fugir do que acabou de ser dito
             int r = rnd.nextInt(total);
@@ -152,24 +176,46 @@ public final class AmbientScenes {
                 }
                 r -= f.weight();
             }
-            i = rnd.nextInt(fam.a().size());
-            j = fam.solo() ? 0 : rnd.nextInt(bPool(fam, i).size());
-            k = fam.c().isEmpty() ? -1 : rnd.nextInt(fam.c().size());
-            key = fam.id() + ":" + i + ":" + j + ":" + k;
+            if (!fam.scripts().isEmpty()) { // cena escrita inteira: sorteia so entre as que cabem neste momento
+                List<Integer> fit = new ArrayList<>();
+                for (int n = 0; n < fam.scripts().size(); n++) {
+                    if (needs(fam.scripts().get(n).need(), s.tags())) {
+                        fit.add(n);
+                    }
+                }
+                script = fit.get(rnd.nextInt(fit.size()));
+                i = j = k = 0;
+                key = fam.id() + ":s" + script;
+            } else {
+                script = -1;
+                i = rnd.nextInt(fam.a().size());
+                j = fam.solo() ? 0 : rnd.nextInt(bPool(fam, i).size());
+                k = fam.c().isEmpty() ? -1 : rnd.nextInt(fam.c().size());
+                key = fam.id() + ":" + i + ":" + j + ":" + k;
+            }
             if (!recentlyUsed.test(key)) {
                 break;
             }
         }
-        return Optional.of(render(fam, i, j, k, key, s, rnd));
+        return Optional.of(script >= 0 ? render(fam, fam.scripts().get(script), key, s, rnd) : render(fam, i, j, k, key, s, rnd));
+    }
+
+    static Scene render(Family f, Script sc, String key, Situation s, Random rnd) {
+        boolean closing = !sc.c().isEmpty();
+        return render(f, closing ? new int[] {0, 1, 0} : new int[] {0, 1}, closing ? new String[] {sc.a(), sc.b(), sc.c()} : new String[] {sc.a(), sc.b()}, key, s, rnd);
     }
 
     static Scene render(Family f, int i, int j, int k, String key, Situation s, Random rnd) {
-        Map<String, String> chosen = new HashMap<>();
-        List<Line> lines = new ArrayList<>();
-        String heard = ""; // nome que ja foi dito em voz alta nesta cena
         int[] speakers = f.solo() ? new int[] {0} : k >= 0 ? new int[] {0, 1, 0} : new int[] {0, 1};
         String[] texts = f.solo() ? new String[] {f.a().get(i)} : k >= 0 ? new String[] {f.a().get(i), bPool(f, i).get(j), f.c().get(k)}
                 : new String[] {f.a().get(i), bPool(f, i).get(j)};
+        return render(f, speakers, texts, key, s, rnd);
+    }
+
+    private static Scene render(Family f, int[] speakers, String[] texts, String key, Situation s, Random rnd) {
+        Map<String, String> chosen = new HashMap<>();
+        List<Line> lines = new ArrayList<>();
+        String heard = ""; // nome que ja foi dito em voz alta nesta cena
         for (int n = 0; n < texts.length; n++) {
             String own = speakers[n] == 0 ? s.nameA() : s.nameB();
             String name = !own.isEmpty() ? own : heard;
@@ -209,7 +255,7 @@ public final class AmbientScenes {
             if (usedName) {
                 heard = name;
             }
-            lines.add(new Line(speakers[n], out.toString().replace("de o humano", "do humano").replace("em o humano", "no humano").replace(" a o humano", " ao humano").replace("por o humano", "pelo humano")));
+            lines.add(new Line(speakers[n], out.toString().replaceAll("\\bde o humano", "do humano").replaceAll("\\bem o humano", "no humano").replace(" a o humano", " ao humano").replaceAll("\\bpor o humano", "pelo humano")));
         }
         return new Scene(f.id(), key, List.copyOf(lines), heard, f.aboutPlayer());
     }

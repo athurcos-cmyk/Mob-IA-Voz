@@ -1,5 +1,10 @@
 # Changelog
 
+## Conversas: cenas inteiras e lembranças
+- **Cenas escritas inteiras** no motor de conversas de ambiente (`scenes` em `ambient.json`): abertura, resposta e fecho que combinam, com condições próprias (hora, clima, bioma). 68 famílias reescritas assim; nota do juiz de IA nelas de ~3,5 para ~4,2 (rejulgadas só essas). Teste novo garante que nenhuma cena mistura falas de cenas diferentes.
+- **Lembranças** (`Recall`): de vez em quando a criatura recebe UM momento marcante vivido com o jogador como sugestão de assunto; limites para não repetir (5 min por criatura, 30 min por momento, 30% de chance, nunca momento recém-acontecido) e a IA só o cita se combinar com o que foi falado.
+- **Voz:** onomatopeias de bicho (mu, bé, oinc, có, cocoricó, miau) não são mais faladas (a legenda mantém); no Azure, fala 10% mais rápida e pausas curtas, e vozes aprovadas fixadas por espécie. Correção: "morde o humano" não vira mais "mordo humano".
+
 ## Voz na nuvem opcional (Azure Speech)
 - `ai-service/app/nuvem.py`: motor de voz `nuvem` (Azure, REST sem dependência nova). Genero e voz pela espécie/indivíduo (mesma criatura = mesma voz), tom em semitons e velocidade do `vozes.plan`, emoção incluída. Chave e região só em `%USERPROFILE%\.mobvozzure.json` (`configurar-voz-nuvem.ps1`/`4-CONFIGURAR-VOZ-NUVEM.bat`, confere a chave de graça antes de gravar).
 - Travas de gasto: limite diário (15.000 caracteres, cabe no gratuito F0), `MOBVOZ_NO_CLOUD=1` desliga por completo (baterias/testes), 3 falhas seguidas pausam 5 min, e qualquer falha cai no Kokoro/Piper (a fala nunca fica muda). O aquecimento do serviço nunca gasta caractere pago. Falas fixas continuam no cache de áudio do jogo.
