@@ -21,7 +21,19 @@ DAILY_CHARS = int(os.environ.get("MOBVOZ_NUVEM_MAX_CHARS", "15000"))
 # vozes neurais pt-BR comuns (preco padrao); a lista real da conta, se vier, filtra esta
 FEMALE = ["Francisca", "Brenda", "Elza", "Giovanna", "Leila", "Leticia", "Manuela", "Thalita", "Yara"]
 MALE = ["Antonio", "Donato", "Fabio", "Humberto", "Julio", "Nicolau", "Valerio"]
-REF_PITCH = {"F": 1.2, "M": 0.95}  # tom "normal" de cada genero na escala de vozes.py (Kokoro): o desvio disso vira semitons
+EMOTION = {  # emocao da fala -> (fator de tom, fator de ritmo); aqui entra pela metade
+    "neutro": (1.0, 1.0), "curioso": (1.04, 1.02), "alegre": (1.06, 1.08), "cauteloso": (0.97, 0.92), "irritado": (1.0, 1.10), "triste": (0.93, 0.88),
+    "desconfiado": (0.97, 0.95), "hostil": (0.94, 1.05), "calculista": (0.98, 0.95), "medroso": (1.08, 1.12),
+}
+# especie -> (chance de voz feminina, semitons, ritmo). Tudo perto do normal: o dono quer vozes humanas, so com um toque de personalidade.
+TABLE: dict[str, tuple[float, float, float]] = {
+    "cow": (1.0, 0.0, 0.97), "mooshroom": (1.0, -0.5, 0.97), "pig": (0.2, -1.0, 1.05), "chicken": (0.9, 1.0, 1.1), "sheep": (0.9, 0.0, 0.97),
+    "horse": (0.3, 0.0, 1.0), "donkey": (0.1, -1.0, 0.95), "mule": (0.1, -1.0, 0.95), "wolf": (0.1, -0.5, 1.0), "cat": (0.9, 1.0, 1.05),
+    "fox": (0.6, 1.0, 1.1), "bee": (1.0, 1.1, 1.2), "vex": (0.7, 1.5, 1.1), "iron_golem": (0.0, -1.5, 0.92), "zombie": (0.1, -1.5, 0.9),
+    "husk": (0.1, -1.5, 0.9), "skeleton": (0.2, 0.0, 1.0), "stray": (0.2, 0.0, 0.97), "piglin": (0.1, 0.0, 1.08), "warden": (0.0, -2.0, 0.88),
+    "wither": (0.0, -2.0, 0.92), "spider": (0.7, -0.5, 1.0), "cave_spider": (0.7, 0.5, 1.05), "creeper": (0.2, 0.5, 1.0), "enderman": (0.0, -1.5, 0.92),
+    "witch": (1.0, -0.5, 1.0), "villager#farmer": (0.1, 0.0, 1.0), "villager#librarian": (0.9, 0.0, 0.97),
+}
 
 _lock = threading.Lock()
 _available: dict = {}
@@ -107,17 +119,21 @@ def voices(key: str, region: str) -> dict:
     return _available[ck]
 
 
-def choose(plan, species: str, seed: int, names: dict) -> tuple[str, float, float]:
-    """(voz, semitons, velocidade) da criatura: genero pela mistura da especie, voz entre as do genero pelo individuo, tom/velocidade do plano (vozes.py)."""
-    w = dict(plan.mix)
-    g = "F" if w.get("pf_dora", 0) > 0.5 else "M"
+def choose(species: str, seed: int, emotion: str, names: dict) -> tuple[str, float, float]:
+    """(voz, semitons, velocidade) da criatura. Sempre uma VOZ HUMANA normal do Azure (nada de imitar bicho): a especie define so o genero provavel
+    e um ajuste pequeno de tom/ritmo (golem mais velho, enderman um pouco mais grave); o individuo escolhe outra voz do mesmo genero."""
+    sp = species.replace("minecraft:", "")
+    pf, st, rate = TABLE.get(sp) or TABLE.get(sp.split("#")[0]) or (0.5, 0.0, 1.0)
+    h = zlib.crc32(f"{sp}|{int(seed) % 64}".encode())
+    g = "F" if (h % 1000) / 1000 < pf else "M"
     pool = names.get(g) or names.get("F" if g == "M" else "M") or []
     if not pool:
         return "", 0.0, 1.0
-    sp = species.replace("minecraft:", "").split("#")[0]
-    pick = pool[zlib.crc32(f"{sp}|{int(seed) % 64}".encode()) % len(pool)]
-    semitones = max(-8.0, min(8.0, 12 * math.log2(plan.pitch / REF_PITCH[g])))
-    return pick, semitones, plan.speed
+    pick = pool[(zlib.crc32(sp.encode()) + int(seed)) % len(pool)]
+    st += ((h >> 10) % 100 - 50) / 100.0 * 0.8  # +-0,4 st: duas vacas nao soam iguais mesmo com a mesma voz
+    pfac, sfac = EMOTION.get(emotion, (1.0, 1.0))
+    st += 12 * math.log2(pfac) * 0.5
+    return pick, max(-4.0, min(4.0, st)), max(0.8, min(1.25, rate * (1 + (sfac - 1) * 0.5)))
 
 
 def ssml(text: str, voice: str, semitones: float, speed: float) -> str:
@@ -126,13 +142,13 @@ def ssml(text: str, voice: str, semitones: float, speed: float) -> str:
             f"<prosody pitch='{semitones:+.1f}st' rate='{rate:+d}%'>{escape(text)}</prosody></voice></speak>")
 
 
-def synthesize(text: str, plan, species: str = "", seed: int = 0) -> bytes | None:
+def synthesize(text: str, species: str = "", seed: int = 0, emotion: str = "") -> bytes | None:
     """PCM int16 mono 24 kHz, ou None (o chamador usa a voz local). Nunca levanta."""
     global _down_until, _fails
     if not enabled() or not text.strip():
         return None
     key, region = credentials()
-    voice, st, speed = choose(plan, species, seed, voices(key, region))
+    voice, st, speed = choose(species, seed, emotion, voices(key, region))
     if not voice or not _spend(len(text)):
         return None
     try:

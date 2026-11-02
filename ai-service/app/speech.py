@@ -214,8 +214,8 @@ def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0,
     text = clean_for_speech(text)
     eng = active_engine(engine)
     if eng == "nuvem":
-        from . import nuvem, vozes
-        raw = nuvem.synthesize(text, vozes.plan(species or "minecraft:villager", seed, emotion, pitch, voice), species, seed)
+        from . import nuvem
+        raw = nuvem.synthesize(text, species or "minecraft:villager", seed, emotion)
         if raw:
             return _to_pcm48(np.frombuffer(raw[: len(raw) // 2 * 2], dtype="<i2").astype(np.float32), nuvem.RATE)
         eng = active_engine("kokoro")  # a nuvem nao respondeu (ou estourou o limite do dia): esta fala sai na voz local

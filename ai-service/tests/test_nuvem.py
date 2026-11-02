@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-from app import nuvem, speech, vozes
+from app import nuvem, speech
 
 
 class NuvemTests(unittest.TestCase):
@@ -28,7 +28,7 @@ class NuvemTests(unittest.TestCase):
         with mock.patch.dict(os.environ, {"MOBVOZ_NO_CLOUD": "1"}):
             self.assertFalse(nuvem.enabled(), "trava dura das baterias")
             with mock.patch.object(nuvem, "_request") as req:
-                self.assertIsNone(nuvem.synthesize("Oi", vozes.plan("cow", 1)))
+                self.assertIsNone(nuvem.synthesize("Oi", "minecraft:cow"))
                 req.assert_not_called()
         with mock.patch.dict(os.environ, {"MOBVOZ_AZURE_KEY": ""}):
             self.assertFalse(nuvem.enabled())
@@ -40,12 +40,21 @@ class NuvemTests(unittest.TestCase):
         self.assertEqual(("abc", "eastus"), nuvem.credentials())
 
     def test_same_creature_same_voice_and_individuals_spread(self):
-        a = nuvem.choose(vozes.plan("cow", 5), "minecraft:cow", 5, self.names)
-        self.assertEqual(a, nuvem.choose(vozes.plan("cow", 5), "minecraft:cow", 5, self.names))
-        picked = {nuvem.choose(vozes.plan("cow", s), "minecraft:cow", s, self.names)[0] for s in range(64)}
+        a = nuvem.choose("minecraft:cow", 5, "", self.names)
+        self.assertEqual(a, nuvem.choose("minecraft:cow", 5, "", self.names))
+        picked = {nuvem.choose("minecraft:cow", s, "", self.names)[0] for s in range(64)}
         self.assertEqual({"pt-BR-AaNeural", "pt-BR-BbNeural"}, picked, "vaca e voz feminina; os individuos se espalham pelas vozes")
-        self.assertIn(nuvem.choose(vozes.plan("zombie", 1), "minecraft:zombie", 1, self.names)[0], self.names["M"])
-        self.assertLess(nuvem.choose(vozes.plan("warden", 1), "minecraft:warden", 1, self.names)[1], -4, "warden e bem mais grave")
+        self.assertIn(nuvem.choose("minecraft:iron_golem", 1, "", self.names)[0], self.names["M"])
+
+    def test_voices_stay_human_and_close_to_normal(self):
+        """O dono quer vozes humanas: nenhum tom/ritmo extremo, so um toque (golem mais velho, enderman um pouco mais grave)."""
+        for sp in list(nuvem.TABLE) + ["minecraft:tadpole"]:
+            for seed in range(0, 64, 9):
+                for emo in ("", "triste", "medroso", "alegre"):
+                    _, st, rate = nuvem.choose(sp, seed, emo, self.names)
+                    self.assertTrue(-4 <= st <= 4 and 0.8 <= rate <= 1.25, (sp, seed, emo, st, rate))
+        self.assertLess(nuvem.choose("minecraft:enderman", 1, "", self.names)[1], 0)
+        self.assertLess(nuvem.choose("minecraft:iron_golem", 1, "", self.names)[1], 0)
 
     def test_ssml_escapes_text_and_limits_prosody(self):
         x = nuvem.ssml("a < b & c", "pt-BR-AaNeural", -3.04, 1.1)
@@ -56,14 +65,14 @@ class NuvemTests(unittest.TestCase):
     def test_daily_limit_stops_spending_and_falls_back(self):
         with mock.patch.object(nuvem, "DAILY_CHARS", 30), mock.patch.object(nuvem, "voices", return_value=self.names), \
                 mock.patch.object(nuvem, "_request", return_value=b"\x01\x00" * 500) as req:
-            self.assertIsNotNone(nuvem.synthesize("x" * 20, vozes.plan("cow", 1)))
-            self.assertIsNone(nuvem.synthesize("y" * 20, vozes.plan("cow", 1)), "passou do limite do dia")
+            self.assertIsNotNone(nuvem.synthesize("x" * 20, "minecraft:cow"))
+            self.assertIsNone(nuvem.synthesize("y" * 20, "minecraft:cow"), "passou do limite do dia")
             self.assertEqual(1, req.call_count)
 
     def test_failures_return_none_and_pause_the_cloud(self):
         with mock.patch.object(nuvem, "voices", return_value=self.names), mock.patch.object(nuvem, "_request", side_effect=OSError("sem rede")) as req:
             for _ in range(3):
-                self.assertIsNone(nuvem.synthesize("Oi", vozes.plan("cow", 1)))
+                self.assertIsNone(nuvem.synthesize("Oi", "minecraft:cow"))
             self.assertFalse(nuvem.enabled(), "depois de 3 falhas espera um tempo em vez de travar cada fala")
             self.assertEqual(3, req.call_count)
 

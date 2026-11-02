@@ -13,7 +13,7 @@ os.environ.pop("MOBVOZ_NO_CLOUD", None)
 
 import numpy as np  # noqa: E402
 
-from app import nuvem, speech, vozes  # noqa: E402
+from app import nuvem, speech  # noqa: E402
 
 LINES = [  # especie, seed, frase
     ("minecraft:cow", 1, "Muuu... eu só quero pastar em paz, humano."), ("minecraft:cow", 2, "Muuu... eu só quero pastar em paz, humano."),
@@ -43,20 +43,18 @@ def main() -> None:
         sys.exit("Isto gasta uns 800 caracteres do Azure. Rode de novo com --confirmo se for isso mesmo.")
     if not nuvem.enabled():
         sys.exit("Sem chave do Azure (rode configurar-voz-nuvem.ps1) ou MOBVOZ_NO_CLOUD ligado.")
-    out = Path(args[0]) if args else HERE.parents[1] / "docs" / "relatorios" / "audicao_nuvem"
+    out = Path(args[0]) if args else HERE.parents[1] / "docs" / "relatorios" / "audicao_nuvem_v2"
     out.mkdir(parents=True, exist_ok=True)
     chars = 0
     for sp, seed, text in LINES:
         name = sp.replace("minecraft:", "").replace("#", "_") + f"_{seed}"
-        raw = nuvem.synthesize(speech.clean_for_speech(text), vozes.plan(sp, seed), sp, seed)
+        raw = nuvem.synthesize(speech.clean_for_speech(text), sp, seed)
         if not raw:
             sys.exit(f"O Azure nao respondeu para {name} (veja o aviso acima). Nada foi misturado com a voz local.")
         azure = speech._to_pcm48(np.frombuffer(raw, dtype="<i2").astype(np.float32), nuvem.RATE)
-        koko = speech.synthesize(text, "pt_BR-faber-medium", 1.0, 1.0, "kokoro", sp, seed, "")
         save(out / f"{name}_azure.wav", azure)
-        save(out / f"{name}_kokoro.wav", koko)
         chars += len(text)
-        print(f"{name}: azure {len(azure) / 96000:.1f}s | kokoro {len(koko) / 96000:.1f}s")
+        print(f"{name}: {nuvem.choose(sp, seed, '', nuvem.voices(*nuvem.credentials()))}  {len(azure) / 96000:.1f}s")
     print(f"\nPronto em {out}  ({chars} caracteres enviados ao Azure)")
 
 
