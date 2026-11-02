@@ -72,7 +72,7 @@ public final class ServerConfig {
             chatterEnabled = false; // o preset leve poupa as cenas ambiente; nunca reduz o limite de aliados
         }
         maxActiveFollowersPerPlayer = Math.max(0, Math.min(maxActiveFollowersPerPlayer, 32));
-        if (voiceEngine == null || !java.util.Set.of("auto", "kokoro", "piper").contains(voiceEngine.toLowerCase())) {
+        if (voiceEngine == null || !java.util.Set.of("auto", "kokoro", "piper", "nuvem").contains(voiceEngine.toLowerCase())) {
             voiceEngine = "auto";
         }
         voiceEngine = voiceEngine.toLowerCase();

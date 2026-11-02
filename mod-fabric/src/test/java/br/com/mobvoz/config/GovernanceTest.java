@@ -79,5 +79,6 @@ class GovernanceTest {
         assertEquals("auto", d.voiceEngine);
         assertEquals("piper", ServerConfig.parse("{\"voiceEngine\":\"Piper\"}").voiceEngine);
         assertEquals("auto", ServerConfig.parse("{\"voiceEngine\":\"xyz\"}").voiceEngine, "valor invalido = auto");
+        assertEquals("nuvem", ServerConfig.parse("{\"voiceEngine\":\"Nuvem\"}").voiceEngine);
     }
 }

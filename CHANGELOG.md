@@ -1,5 +1,10 @@
 # Changelog
 
+## Voz na nuvem opcional (Azure Speech)
+- `ai-service/app/nuvem.py`: motor de voz `nuvem` (Azure, REST sem dependência nova). Genero e voz pela espécie/indivíduo (mesma criatura = mesma voz), tom em semitons e velocidade do `vozes.plan`, emoção incluída. Chave e região só em `%USERPROFILE%\.mobvozzure.json` (`configurar-voz-nuvem.ps1`/`4-CONFIGURAR-VOZ-NUVEM.bat`, confere a chave de graça antes de gravar).
+- Travas de gasto: limite diário (15.000 caracteres, cabe no gratuito F0), `MOBVOZ_NO_CLOUD=1` desliga por completo (baterias/testes), 3 falhas seguidas pausam 5 min, e qualquer falha cai no Kokoro/Piper (a fala nunca fica muda). O aquecimento do serviço nunca gasta caractere pago. Falas fixas continuam no cache de áudio do jogo.
+- Comando `/mobvoz motorvoz auto|kokoro|piper|nuvem`; `tests/audicao_nuvem.py --confirmo` gera 1 frase por criatura (Azure × Kokoro) para comparar de ouvido.
+
 ## 0.1.0 — 2026-10-30 (primeira versão completa do roadmap, ainda SEM teste com microfone real)
 
 - **Fase 1** alvo único com estrela (qualquer `Mob`, 6 blocos, linha de visão).

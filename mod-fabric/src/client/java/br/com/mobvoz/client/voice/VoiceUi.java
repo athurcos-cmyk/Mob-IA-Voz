@@ -113,6 +113,23 @@ public final class VoiceUi {
                                             Minecraft.getInstance().player.connection.sendCommand("mobvozinfo conversas " + StringArgumentType.getString(ctx, "nivel"));
                                             return 1;
                                         })))
+                        .then(ClientCommandManager.literal("motorvoz")
+                                .executes(ctx -> {
+                                    Minecraft.getInstance().player.connection.sendCommand("mobvozinfo motorvoz");
+                                    return 1;
+                                })
+                                .then(ClientCommandManager.argument("motor", StringArgumentType.word())
+                                        .suggests((c, b) -> {
+                                            b.suggest("auto");
+                                            b.suggest("kokoro");
+                                            b.suggest("piper");
+                                            b.suggest("nuvem");
+                                            return b.buildFuture();
+                                        })
+                                        .executes(ctx -> {
+                                            Minecraft.getInstance().player.connection.sendCommand("mobvozinfo motorvoz " + StringArgumentType.getString(ctx, "motor"));
+                                            return 1;
+                                        })))
                         .then(ClientCommandManager.literal("dificuldade")
                                 .executes(ctx -> {
                                     Minecraft.getInstance().player.connection.sendCommand("mobvozinfo dificuldade");

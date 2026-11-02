@@ -90,6 +90,9 @@ public class CommandsGameTest implements FabricClientGameTest {
             // 3) /mobvoz dificuldade: valida, muda e o efeito aparece na confianca exigida
             check(run(world, "mobvozinfo dificuldade") == 1 && ServerConfig.current().trustDifficulty.equals("normal"), "padrao = normal");
             check(run(world, "mobvozinfo dificuldade impossivel") == 0 && ServerConfig.current().trustDifficulty.equals("normal"), "nivel invalido e recusado");
+            check(run(world, "mobvozinfo motorvoz nuvem") == 1 && ServerConfig.current().voiceEngine.equals("nuvem"), "motor da voz: nuvem");
+            check(run(world, "mobvozinfo motorvoz xyz") == 0 && ServerConfig.current().voiceEngine.equals("nuvem"), "motor invalido e recusado");
+            check(run(world, "mobvozinfo motorvoz auto") == 1 && ServerConfig.current().voiceEngine.equals("auto"), "motor volta para auto");
             double[] pct = new double[3];
             boolean[] follows = new boolean[3];
             String[] levels = {"dificil", "normal", "facil"};

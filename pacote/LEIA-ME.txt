@@ -19,6 +19,12 @@ COMO INSTALAR  (um programa, tres passos na janela)
   A pasta "componentes" tem tudo o que o programa usa (nao precisa mexer). Quem preferir os arquivos .bat
   de sempre, eles continuam la dentro, em componentes\ (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO).
 
+VOZES NA NUVEM (opcional, nao precisa para jogar)
+  O jogo ja vem com vozes locais gratis (Kokoro, e o Piper mais leve). Se quiser vozes mais naturais e variadas, da pra usar o Azure
+  Speech (tem plano gratis de 500 mil caracteres por mes). Crie o recurso "Speech" no portal.azure.com, de dois cliques em
+  componentes-CONFIGURAR-VOZ-NUVEM.bat e cole a chave. No jogo: /mobvoz motorvoz nuvem   (voltar: /mobvoz motorvoz auto).
+  Tem limite de 15.000 caracteres por dia; passou disso, ou sem internet, a voz local assume sozinha.
+
 COMO JOGAR
   1. Abra o Minecraft Launcher, escolha a instalacao "MobVoz IA" e clique Jogar.
   2. Crie um mundo (Criativo, para testar).

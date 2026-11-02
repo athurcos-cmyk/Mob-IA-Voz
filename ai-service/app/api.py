@@ -83,7 +83,7 @@ class Handler(BaseHTTPRequestHandler):
             voice = str(req.get("voice", "pt_BR-faber-medium"))
             if not voice.replace("-", "").replace("_", "").isalnum():  # sem path traversal
                 return self._send(400, {"error": "bad_voice"})
-            engine = req.get("engine") if req.get("engine") in ("kokoro", "piper") else None
+            engine = req.get("engine") if req.get("engine") in ("kokoro", "piper", "nuvem") else None
             species = str(req.get("species", ""))[:60]
             if species and not species.replace(":", "").replace("_", "").replace("#", "").replace("-", "").replace(".", "").isalnum():
                 species = ""  # so letras, numeros e : _ # - .
@@ -123,6 +123,15 @@ def explain_llm_failure(log) -> None:
     log.error("==== ATENCAO: a IA que conversa NAO respondeu: %s", dica)
 
 
+def _warm_voices() -> list:
+    """Aquece SO as vozes locais (a nuvem nao gasta caractere pago a toa)."""
+    eng = speech.active_engine()
+    if eng == "nuvem":
+        eng = speech.active_engine("kokoro")
+    names = ("pt_BR-faber-medium",) if eng == "kokoro" else ("pt_BR-faber-medium", "pt_BR-cadu-medium", "pt_BR-jeff-medium")
+    return [speech.synthesize("Oi.", v, 1.0, 1.0, eng) for v in names]
+
+
 def warm_up() -> None:
     """Aquece modelo, vozes e STT em segundo plano: a 1a fala do jogo nao paga o carregamento (antes ~17 s, depois ~3 s)."""
     log = logging.getLogger("mobvoz.warm")
@@ -130,8 +139,7 @@ def warm_up() -> None:
     for name, job in (
         ("LLM", lambda: (service.analyze({"text": "oi", "capabilities": ["REGISTER_CLAIM", "OPEN_TRADE", "SOCIAL"]}),
                          service.reply({"entity_type": "minecraft:cow", "text": "oi", "capabilities": []}))[1]),
-        ("vozes", lambda: [speech.synthesize("Oi.", v, 1.0, 1.0) for v in (("pt_BR-faber-medium",) if speech.active_engine() == "kokoro"
-                                                                          else ("pt_BR-faber-medium", "pt_BR-cadu-medium", "pt_BR-jeff-medium"))]),
+        ("vozes", lambda: _warm_voices()),
         ("STT", lambda: speech.transcribe(bytes(48000 * 2))),  # 1 s de silencio
     ):
         try:

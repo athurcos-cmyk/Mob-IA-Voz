@@ -33,6 +33,9 @@ public final class MobVozCommands {
                 .then(Commands.literal("conversas")
                         .executes(ctx -> chatter(ctx.getSource(), null))
                         .then(Commands.argument("nivel", StringArgumentType.word()).executes(ctx -> chatter(ctx.getSource(), StringArgumentType.getString(ctx, "nivel")))))
+                .then(Commands.literal("motorvoz")
+                        .executes(ctx -> engine(ctx.getSource(), null))
+                        .then(Commands.argument("motor", StringArgumentType.word()).executes(ctx -> engine(ctx.getSource(), StringArgumentType.getString(ctx, "motor")))))
                 .then(Commands.literal("dificuldade")
                         .executes(ctx -> difficulty(ctx.getSource(), null))
                         .then(Commands.argument("nivel", StringArgumentType.word()).executes(ctx -> difficulty(ctx.getSource(), StringArgumentType.getString(ctx, "nivel")))))));
@@ -95,6 +98,28 @@ public final class MobVozCommands {
             case "normal" -> " (uma a cada ~45 s por perto)";
             default -> " (bem animado: várias por minuto)";
         }), true);
+        return 1;
+    }
+
+    /** Motor das vozes: auto (o padrao local), kokoro, piper ou nuvem (Azure, so com a chave do dono do PC). */
+    private static int engine(CommandSourceStack src, String name) {
+        var cfg = ServerConfig.current();
+        if (name == null) {
+            src.sendSuccess(() -> Component.literal("MobVoz: motor das vozes = " + cfg.voiceEngine + ". Troque com /mobvoz motorvoz auto|kokoro|piper|nuvem."), false);
+            return 1;
+        }
+        if (!java.util.Set.of("auto", "kokoro", "piper", "nuvem").contains(name.toLowerCase())) {
+            src.sendFailure(Component.literal("MobVoz: use auto, kokoro, piper ou nuvem."));
+            return 0;
+        }
+        if (!src.getServer().isSingleplayer() && !src.hasPermission(2)) {
+            src.sendFailure(Component.literal("MobVoz: só o administrador do servidor muda o motor das vozes."));
+            return 0;
+        }
+        cfg.voiceEngine = name.toLowerCase();
+        ServerConfig.save();
+        src.sendSuccess(() -> Component.literal("MobVoz: motor das vozes agora é " + cfg.voiceEngine
+                + ("nuvem".equals(cfg.voiceEngine) ? " (precisa da chave do Azure; sem ela, ou passando do limite do dia, volta sozinho para a voz local)" : "")), true);
         return 1;
     }
 

@@ -2,7 +2,7 @@
 #   MobVozIA.exe          o programa (instalar, guardar a chave da API, ligar o servico, abrir o Minecraft)
 #   LEIA-ME.txt, LICENSE, THIRD_PARTY.md
 #   componentes\          tudo que o programa usa: mod\mobvoz-<versao>.jar, ai-service\ (so codigo e scripts; sem testes, .venv, models, README),
-#                         instalar-tudo.ps1, instalar_jogo.py e os .bat (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO) para quem preferir
+#                         instalar-tudo.ps1, instalar_jogo.py e os .bat (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO, 4-CONFIGURAR-VOZ-NUVEM) para quem preferir
 # NAO leva: docs, CHANGELOG, STATUS, README, config de exemplo, testes, Simple Voice Chat (All Rights Reserved), modelos de voz/IA, JDK.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path

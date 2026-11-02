@@ -113,9 +113,14 @@ def kokoro_available() -> bool:
 
 
 def active_engine(requested: str | None = None) -> str:
-    """'kokoro' ou 'piper'. Kokoro e o padrao; sem os modelos/pacote instalados, cai para o Piper (modo leve) e avisa uma vez."""
+    """'nuvem' (so se pedida e configurada), 'kokoro' ou 'piper'. Kokoro e o padrao; sem os modelos/pacote instalados, cai para o Piper (modo leve) e avisa uma vez."""
     global _warned
     want = (requested or config.TTS_ENGINE or "kokoro").lower()
+    if want == "nuvem":
+        from . import nuvem
+        if nuvem.enabled():
+            return "nuvem"
+        want = "kokoro"  # sem chave / limite / MOBVOZ_NO_CLOUD: voz local
     if want == "piper":
         return "piper"
     if kokoro_available():
@@ -207,7 +212,14 @@ def synthesize(text: str, voice: str = "pt_BR-faber-medium", pitch: float = 1.0,
     """Texto pt-BR -> PCM int16 mono 48 kHz. `voice`/`pitch`/`speed` vem do perfil (vozes Piper); o Kokoro as traduz.
     Com `species` (e `seed` do individuo, `emotion` da fala) o Kokoro usa a mistura de vozes da especie (ver vozes.py)."""
     text = clean_for_speech(text)
-    if active_engine(engine) == "kokoro":
+    eng = active_engine(engine)
+    if eng == "nuvem":
+        from . import nuvem, vozes
+        raw = nuvem.synthesize(text, vozes.plan(species or "minecraft:villager", seed, emotion, pitch, voice), species, seed)
+        if raw:
+            return _to_pcm48(np.frombuffer(raw[: len(raw) // 2 * 2], dtype="<i2").astype(np.float32), nuvem.RATE)
+        eng = active_engine("kokoro")  # a nuvem nao respondeu (ou estourou o limite do dia): esta fala sai na voz local
+    if eng == "kokoro":
         try:
             if species:
                 from . import vozes
