@@ -1,5 +1,7 @@
 """HTTP local: GET /health, POST /v1/reply. Liga so em 127.0.0.1."""
 import json
+import os
+import sys
 import time
 import threading
 import logging
@@ -137,8 +139,20 @@ def warm_up() -> None:
     log.info("aquecimento concluido em %.1f s", time.perf_counter() - t0)
 
 
+def lower_priority() -> None:
+    """O servico de IA roda com prioridade ABAIXO do normal no Windows: o Minecraft sempre tem preferencia na CPU (nada de travar o jogo). MOBVOZ_PRIORITY=normal desliga."""
+    if sys.platform != "win32" or os.environ.get("MOBVOZ_PRIORITY", "low").lower() == "normal":
+        return
+    try:
+        import ctypes
+        ctypes.windll.kernel32.SetPriorityClass(ctypes.windll.kernel32.GetCurrentProcess(), 0x00004000)  # BELOW_NORMAL_PRIORITY_CLASS
+    except Exception as e:  # nao e essencial
+        logging.getLogger("mobvoz").warning("nao consegui baixar a prioridade do servico: %s", e)
+
+
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
+    lower_priority()
     srv = ThreadingHTTPServer((config.HOST, config.PORT), Handler)
     logging.info("MobVoz sidecar em http://%s:%d (IA: %s)", config.HOST, config.PORT, "API " + config.API_MODEL if config.PROVIDER == "api" else "local " + config.MODEL)
     threading.Thread(target=warm_up, daemon=True, name="warm-up").start()

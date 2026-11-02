@@ -32,6 +32,8 @@ public final class MobVozMod implements ModInitializer {
         KnowledgeStore.register();
         br.com.mobvoz.social.Reactions.register();
         br.com.mobvoz.social.Parley.register();
+        br.com.mobvoz.social.Attention.register();
+        br.com.mobvoz.social.Gifts.register();
         br.com.mobvoz.social.Events.register();
         br.com.mobvoz.social.WorldReactions.register();
         br.com.mobvoz.social.Initiative.register(); // a criatura puxa assunto de vez em quando

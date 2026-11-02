@@ -10,8 +10,11 @@ TOKEN = os.environ.get("MOBVOZ_TOKEN", "")  # se definido, exige o header X-MobV
 MAX_BODY = 64 * 1024
 MAX_PLAYER_TEXT = 500
 STT_HINT = os.environ.get("MOBVOZ_STT_HINT", "Conversa em português do Brasil com criaturas do Minecraft: vaca, porco, aldeão, golem de ferro, creeper, zumbi, esqueleto Wither, Warden, esmeralda, diamante, troca, me segue, quem criou você.")  # dica de vocabulario: o Whisper erra nomes de mobs sem ela
-STT_MODEL = os.environ.get("MOBVOZ_STT_MODEL", "small")  # faster-whisper: tiny|base|small|medium
-STT_DEVICE = os.environ.get("MOBVOZ_STT_DEVICE", "cpu")  # GPU fica livre para o LLM
+STT_MODEL = os.environ.get("MOBVOZ_STT_MODEL", "base")  # faster-whisper: tiny|base|small|medium. O rapido (base) responde em ~0,8 s; o jogo nao sente
+STT_FALLBACK = os.environ.get("MOBVOZ_STT_FALLBACK", "small")  # so entra quando o rapido fica em duvida; "" desliga. Precisa estar instalado (o instalador baixa)
+STT_MIN_CONF = float(os.environ.get("MOBVOZ_STT_MIN_CONF", "-0.75"))  # confianca media (log-prob) abaixo da qual o modelo rapido pede reforco
+STT_THREADS = int(os.environ.get("MOBVOZ_STT_THREADS", "4"))  # nucleos da CPU usados na fala: poucos, para nao disputar com o Minecraft
+STT_DEVICE = os.environ.get("MOBVOZ_STT_DEVICE", "cpu")  # a GPU fica para o jogo (e para o LLM local); nao usamos CUDA aqui de proposito
 STT_COMPUTE = os.environ.get("MOBVOZ_STT_COMPUTE", "int8")
 def _models_dir() -> str:
     """Vozes: MOBVOZ_MODELS; senao a pasta fixa do usuario (~/.mobvoz/sidecar/models, feita pelo instalador), se existir; senao ai-service/models."""

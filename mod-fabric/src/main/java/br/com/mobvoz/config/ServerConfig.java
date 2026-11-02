@@ -42,6 +42,10 @@ public final class ServerConfig {
     public boolean mobsInitiate = true;
     /** A criatura que recusa um pedido (seguir, ficar, lutar...) so por falta de confianca aceita ser PAGA com itens que ela gosta; o pagamento pode ser aos poucos. */
     public boolean favorPayments = true;
+    /** A criatura com quem o jogador fala (ou vai falar, na mira) fica parada, virada para ele e chega perto, em vez de ir embora no meio da fala. */
+    public boolean conversationAttention = true;
+    /** Jogar um item no chao olhando para uma criatura e dar de presente (ela vem pegar 1 e reage), alem do SHIFT + botao direito. */
+    public boolean groundGifts = true;
     /** Intervalo medio entre uma abertura de conversa e a proxima, por jogador (30 a 3600 s). */
     public int initiativeSeconds = 240;
 

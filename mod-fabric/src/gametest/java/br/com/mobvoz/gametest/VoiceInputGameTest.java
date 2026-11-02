@@ -69,7 +69,7 @@ public class VoiceInputGameTest implements FabricClientGameTest {
 
             // Sem ninguem na mira, a fala e ignorada.
             server.runCommand("tp @p 0.5 -60 0.5 90 17");
-            context.waitTicks(10);
+            context.waitTicks(130); // a mira tem folga de 5 s depois de sair da vaca (StickyTarget); so depois disso "nao ha ninguem na mira"
             speak(1500);
             Thread.sleep(900);
             context.waitTicks(5);

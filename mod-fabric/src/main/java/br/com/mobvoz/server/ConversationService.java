@@ -272,7 +272,7 @@ public final class ConversationService {
             return;
         }
         Entity e = player.level().getEntity(p.target());
-        if (!(e instanceof Mob mob) || !mob.isAlive() || !(lookingAt(player, mob) || calledByName(player, mob, p.byName(), text))) {
+        if (!(e instanceof Mob mob) || !mob.isAlive() || !(lookingAt(player, mob) || br.com.mobvoz.social.Attention.wasAimed(player, mob) || calledByName(player, mob, p.byName(), text))) {
             send(player, p.target(), StatusPayload.IDLE); // alvo sumiu/saiu da mira: descarta, mas o HUD nao fica preso
             return;
         }
@@ -306,6 +306,7 @@ public final class ConversationService {
 
         send(player, mid, StatusPayload.THINKING);
         br.com.mobvoz.social.Parley.touch(mob, player); // enquanto conversam, nada de ataque (nem de hostis nem de quem nao e aliado)
+        br.com.mobvoz.social.Attention.hold(mob, player, br.com.mobvoz.social.Attention.TALK_TICKS); // e ela fica parada ouvindo e respondendo
         String type = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()).toString();
         String pkey = Profiles.keyOf(mob);
         Voices voice = Voices.forProfile(pkey, MemoryStore.get(mob).identityId());

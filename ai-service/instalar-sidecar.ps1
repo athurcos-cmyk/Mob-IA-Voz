@@ -77,11 +77,13 @@ if (-not $Leve) {
     Rodar $vpy @('baixar_kokoro.py')
 }
 
-Passo "Modelo de reconhecimento de fala (~460 MB)"
-if (Funciona $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8', local_files_only=True)")) {
-    Write-Host "ja baixado: pulando"
-} else {
-    Rodar $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('ok')")
+Passo "Modelos de reconhecimento de fala (base ~150 MB, rapido; small ~460 MB, de reserva quando o rapido fica em duvida)"
+foreach ($m in 'base', 'small') {
+    if (Funciona $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('$m', device='cpu', compute_type='int8', local_files_only=True)")) {
+        Write-Host "$m ja baixado: pulando"
+    } else {
+        Rodar $vpy @('-c', "from faster_whisper import WhisperModel; WhisperModel('$m', device='cpu', compute_type='int8'); print('$m ok')")
+    }
 }
 
 Write-Host "`nPronto! Proximo passo: instale o Ollama e rode 'ollama pull qwen3:4b' (IA local), OU configure a sua chave de API (dois cliques em 2-CONFIGURAR-API.bat)." -ForegroundColor Cyan

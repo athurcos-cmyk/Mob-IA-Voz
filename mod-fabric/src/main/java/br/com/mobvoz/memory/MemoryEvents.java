@@ -28,19 +28,10 @@ public final class MemoryEvents {
             }
             if (player instanceof ServerPlayer sp) {
                 var stack = sp.getItemInHand(hand);
-                String id = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
-                long tick = sp.level().getGameTime();
-                var prof = Profiles.of(Profiles.keyOf(mob));
-                MemoryStore.update(mob, m -> MemoryRules.gift(m, sp.getUUID(), id, 1, tick, prof.likeFactor(id), prof.reaction(id)));
+                br.com.mobvoz.social.Gifts.give(mob, sp, stack); // memoria, mensagem e fala; o item sai da mao logo abaixo (ver tambem o presente jogado no chao)
                 if (!sp.isCreative()) {
                     stack.shrink(1);
                 }
-                String reaction = prof.reaction(id);
-                sp.displayClientMessage(Component.literal("Você deu 1x " + stack.getHoverName().getString() + ": " + reaction + ". ")
-                        .append(br.com.mobvoz.server.TrustBar.text(mob, sp.getUUID())), true);
-                String thing = br.com.mobvoz.trade.Values.known(id) ? br.com.mobvoz.trade.Values.name(id, false) : "isso";
-                br.com.mobvoz.social.WorldReactions.speakAs(sp, mob, reaction.equals("gostou") ? "ev:gift_like" : reaction.equals("indiferente") ? "ev:gift_meh"
-                        : "ev:gift_dislike", thing, 0); // a criatura fala do presente (fixa, sem IA)
             }
             return InteractionResult.SUCCESS;
         });

@@ -14,7 +14,7 @@ python -m venv .venv
 
 **Voz.** O padrão é o **Kokoro** (mais natural e nítido; ~360 MB de memória; ~1,5 s para gerar uma fala de 5 s no processador). O **Piper** é o modo leve (muito mais rápido: ~0,25 s por fala; ~630 MB com as 3 vozes carregadas). Sem os modelos do Kokoro o sidecar usa o Piper sozinho e avisa no log. Para escolher: variável `MOBVOZ_TTS=piper|kokoro` no sidecar ou `"voiceEngine"` em `server.json` do mundo (`auto|kokoro|piper`; o do mundo vence). `GET /health` mostra o motor em uso (`tts`).
 
-O modelo Whisper `small` é baixado na primeira transcrição (~480 MB). O LLM vem do Ollama (`ollama pull qwen3:4b`).
+Os modelos Whisper `base` (rápido, ~150 MB) e `small` (reserva quando o rápido fica em dúvida, ~460 MB) são baixados pelo instalador; a transcrição usa só 4 núcleos da CPU e o serviço roda com prioridade baixa, para o jogo ter preferência. O LLM vem do Ollama (`ollama pull qwen3:4b`).
 
 ## Rodar
 

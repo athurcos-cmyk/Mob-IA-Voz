@@ -36,6 +36,9 @@ public final class MobVozClient implements ClientModInitializer {
 
     /** Alvo atual; escrito no tick do cliente, lido no render (mesma thread). */
     private static Mob target;
+    private static final br.com.mobvoz.target.StickyTarget sticky = new br.com.mobvoz.target.StickyTarget();
+    private static java.util.UUID lastSentTarget;
+    private static int lastSentTick;
 
     /** Alvo atual da mira, ou null. */
     public static Mob target() {
@@ -101,10 +104,25 @@ public final class MobVozClient implements ClientModInitializer {
                 m -> m.isAlive() && !m.isSpectator() && !m.isInvisible());
         List<AABB> boxes = mobs.stream().map(m -> m.getBoundingBox().inflate(m.getPickRadius())).toList();
         int idx = TargetPicker.nearest(from, to, boxes);
-        if (idx >= 0) {
-            target = mobs.get(idx);
+        if (idx < 0) { // nenhum no raio exato: um cone pequeno ao redor da mira ajuda com bicho pequeno (galinha, morcego, peixe)
+            idx = TargetPicker.nearestInCone(from, look, mobs.stream().map(m -> m.getBoundingBox().getCenter()).toList(), TargetPicker.CONE_DEGREES);
         }
+        Mob aimed = idx >= 0 ? mobs.get(idx) : null;
+        // folga: se a mira escapar (o bicho anda, o mouse mexe), o alvo anterior fica uns segundos, desde que perto e visivel
+        Mob previous = sticky.current() == null ? null : mc.level.getEntitiesOfClass(Mob.class, mc.player.getBoundingBox().inflate(TargetPicker.STICKY_RANGE),
+                m -> m.getUUID().equals(sticky.current()) && m.isAlive()).stream().findFirst().orElse(null);
+        boolean valid = previous != null && mc.player.hasLineOfSight(previous);
+        java.util.UUID chosen = sticky.choose(aimed == null ? null : aimed.getUUID(), mc.level.getGameTime(), valid);
+        target = aimed != null ? aimed : (chosen != null ? previous : null);
         VoiceInput.setTarget(target == null ? null : target.getUUID());
+        // avisa o servidor (1x por segundo) para ele segurar a criatura parada e perto: so para quem usa voz ou chat
+        // (na hora em que a mira muda, sem esperar o proximo segundo: a fala pode vir logo em seguida e o servidor so aceita quem ele sabe que foi mirado)
+        if (target != null && (ClientPrefs.voiceConsent() || ClientPrefs.chatMode()) && ClientPlayNetworking.canSend(br.com.mobvoz.net.AttentionPayload.TYPE)
+                && (!target.getUUID().equals(lastSentTarget) || mc.player.tickCount - lastSentTick >= 20)) {
+            lastSentTarget = target.getUUID();
+            lastSentTick = mc.player.tickCount;
+            ClientPlayNetworking.send(new br.com.mobvoz.net.AttentionPayload(target.getUUID()));
+        }
     }
 
     private static void renderStar(WorldRenderContext ctx) {

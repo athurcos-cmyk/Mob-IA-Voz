@@ -14,6 +14,8 @@ public final class MobVozNet {
     public static void register() {
         PayloadTypeRegistry.playC2S().register(UtterancePayload.TYPE, UtterancePayload.CODEC);
         PayloadTypeRegistry.playC2S().register(ConsentPayload.TYPE, ConsentPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(AttentionPayload.TYPE, AttentionPayload.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(AttentionPayload.TYPE, (p, ctx) -> br.com.mobvoz.social.Attention.hold(ctx.player(), p.mob()));
         ServerPlayNetworking.registerGlobalReceiver(ConsentPayload.TYPE, (p, ctx) -> ConsentRegistry.set(ctx.player().getUUID(), p.on()));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> ConsentRegistry.set(handler.getPlayer().getUUID(), false));
         PayloadTypeRegistry.playS2C().register(StatusPayload.TYPE, StatusPayload.CODEC);

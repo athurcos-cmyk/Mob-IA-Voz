@@ -33,17 +33,41 @@ def pcm48_to_16k(pcm: bytes) -> np.ndarray:
     return resample_poly(a, 1, 3).astype(np.float32)
 
 
+_whispers: dict = {}
+
+
+def _whisper_model(name: str, local_only: bool = False):
+    """Carrega (uma vez) um modelo do Whisper. Poucos nucleos (STT_THREADS) para nao disputar CPU com o jogo."""
+    if name not in _whispers:
+        from faster_whisper import WhisperModel
+        _whispers[name] = WhisperModel(name, device=config.STT_DEVICE, compute_type=config.STT_COMPUTE, cpu_threads=config.STT_THREADS,
+                                       local_files_only=local_only)
+    return _whispers[name]
+
+
+def _run_whisper(model, audio) -> tuple[str, float, str]:
+    """(texto, confianca media em log-prob, idioma). Confianca alta = proxima de 0; abaixo de STT_MIN_CONF o modelo rapido ficou em duvida."""
+    segments, info = model.transcribe(audio, language="pt", beam_size=1, vad_filter=True, condition_on_previous_text=False, initial_prompt=config.STT_HINT or None)
+    segs = list(segments)
+    text = " ".join(s.text.strip() for s in segs).strip()
+    conf = sum(s.avg_logprob for s in segs) / len(segs) if segs else -9.0
+    return text, conf, info.language
+
+
 def transcribe(pcm48: bytes) -> dict:
-    global _whisper
+    """Modelo RAPIDO primeiro (base: ~0,8 s); so se ele ficar em duvida (vazio ou pouco confiante) tenta o MAIOR (small), se estiver instalado."""
     with _lock:  # um modelo, uma transcricao por vez (CPU)
-        if _whisper is None:
-            from faster_whisper import WhisperModel
-            _whisper = WhisperModel(config.STT_MODEL, device=config.STT_DEVICE, compute_type=config.STT_COMPUTE)
         audio = pcm48_to_16k(pcm48)
-        segments, info = _whisper.transcribe(audio, language="pt", beam_size=3, vad_filter=True, condition_on_previous_text=False,
-                                             initial_prompt=config.STT_HINT or None)
-        text = " ".join(s.text.strip() for s in segments).strip()
-    return {"text": text, "duration_s": round(len(audio) / WHISPER_RATE, 2), "language": info.language}
+        text, conf, lang = _run_whisper(_whisper_model(config.STT_MODEL), audio)
+        seconds = len(audio) / WHISPER_RATE
+        if config.STT_FALLBACK and config.STT_FALLBACK != config.STT_MODEL and seconds >= 0.6 and (not text or conf < config.STT_MIN_CONF):
+            try:
+                t2, c2, lang2 = _run_whisper(_whisper_model(config.STT_FALLBACK, local_only=True), audio)
+                if t2 and (not text or c2 > conf):
+                    text, lang = t2, lang2
+            except Exception as e:  # modelo grande nao instalado: segue com o rapido
+                log.info("reserva de fala (%s) indisponivel: %s", config.STT_FALLBACK, e)
+    return {"text": text, "duration_s": round(seconds, 2), "language": lang}
 
 
 def _voice(name: str):

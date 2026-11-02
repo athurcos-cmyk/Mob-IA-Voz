@@ -10,7 +10,7 @@ O pacote do MobVoz **não inclui** nenhum dos itens abaixo; o usuário os obtém
 | Ollama | executa o LLM local | MIT | instalado pelo usuário |
 | `qwen3:4b` (padrão) | LLM | Apache-2.0 (Qwen3) | baixado via `ollama pull`; confira a licença do modelo antes de redistribuir |
 | `llama3.2` (alternativa) | LLM | Llama 3.2 Community License | idem |
-| faster-whisper 1.2.1 / modelo Whisper `small` | STT | MIT | baixado na primeira transcrição |
+| faster-whisper 1.2.1 / modelos Whisper `base` e `small` | STT | MIT | baixado na primeira transcrição |
 | **piper-tts 1.8.0** | TTS | **GPL-3.0-or-later** | roda como **processo separado** (sidecar). **Não empacote** o Piper com o mod; instale via `pip` |
 | Vozes Piper `pt_BR-faber/cadu/jeff-medium` | TTS (modo leve) | CC0 | `edresson` seria CC BY 4.0 (exige atribuição); não usado |
 | **Kokoro-82M** (pesos `kokoro-v1.0.int8.onnx` e `voices-v1.0.bin`, vozes `pf_dora`, `pm_alex`, `pm_santa`) | TTS principal | Apache-2.0 | baixados por `ai-service/baixar_kokoro.py` do release `model-files-v1.0` de thewh1teagle/kokoro-onnx (hash conferido); não ficam no pacote |
