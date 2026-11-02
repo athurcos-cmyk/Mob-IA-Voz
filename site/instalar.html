@@ -48,7 +48,7 @@
     <div class="grid g4 mt">
       <div class="card flat"><h3>Sistema</h3><p>Windows 10 ou 11. Só foi testado no Windows.</p></div>
       <div class="card flat"><h3>Memória e disco</h3><p>16 GB de RAM recomendados. Uns 6 GB livres (e mais 2,6 GB se usar IA local).</p></div>
-      <div class="card flat"><h3>Conta e internet</h3><p>Conta do Minecraft Java Edition e internet. O resto o <code>1-INSTALAR.bat</code> instala sozinho.</p></div>
+      <div class="card flat"><h3>Conta e internet</h3><p>Conta do Minecraft Java Edition e internet. O resto o programa <code>MobVozIA.exe</code> instala sozinho.</p></div>
       <div class="card flat"><h3>Microfone</h3><p>Ou use o modo chat, que não precisa de microfone.</p></div>
     </div>
     <p class="rule"><b>Escolha a IA:</b> a sua própria API (como a DeepSeek: bem melhor e não pesa no PC) ou o modelo local grátis (Ollama: pesa mais e é menos esperto). Você decide no passo 4.</p>
@@ -92,7 +92,7 @@
         <p>Clique no botão e salve o arquivo (cerca de 0,4 MB). Ele costuma ir para a pasta <b>Downloads</b>. Clique com o botão direito nele &gt; <b>Extrair tudo</b> &gt; <b>Extrair</b>. <b>Pode deixar onde o Windows sugerir</b>; não precisa mudar de lugar.</p>
         <p><a class="btn" href="downloads/MobVozIA-0.1.0.zip" download>&#11015; Baixar MobVozIA 0.1.0 (Alpha)</a></p>
         <p class="note">Se o Windows ou o navegador avisar que o arquivo “não é comumente baixado”, é só porque é um projeto novo: escolha <b>Manter</b>.</p>
-        <span class="expect">Na pasta extraída aparecem o programa <code>MobVozIA.exe</code>, o <code>LEIA-ME.txt</code> e a pasta <code>componentes</code> (não precisa mexer nela).</span>
+        <span class="expect">Na pasta extraída aparecem só o programa <code>MobVozIA.exe</code> e o <code>LEIA-ME.txt</code> (mais as licenças): ele já leva dentro tudo o que usa, não há outra pasta para abrir.</span>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
 
       <li class="step"><div class="card flat">
@@ -105,8 +105,8 @@
           <ol>
             <li><b>Python 3.12</b> (não use o 3.15) em <a href="https://www.python.org/downloads/release/python-3120/" target="_blank" rel="noopener">python.org</a>; pode ficar junto com outro Python. Marque “Add python.exe to PATH”.</li>
             <li><b>Fabric:</b> instalador em <a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener">fabricmc.net/use/installer</a> (aba Client, versão 1.21.8, Install).</li>
-            <li><b>Mods</b> numa pasta <code>mods</code> da sua pasta de jogo: o <code>mobvoz-0.1.0.jar</code> (pasta <code>componentes\mod</code> do pacote), o <a href="https://modrinth.com/mod/fabric-api/version/0.136.1+1.21.8" target="_blank" rel="noopener">Fabric API 0.136.1+1.21.8</a> e o <a href="https://modrinth.com/plugin/simple-voice-chat/version/fabric-1.21.8-2.6.27" target="_blank" rel="noopener">Simple Voice Chat 2.6.27 (Fabric 1.21.8)</a>. No launcher, edite a instalação do Fabric e ponha essa pasta em <b>Diretório do jogo</b>.</li>
-            <li><b>Serviço de IA:</b> no PowerShell, dentro da pasta <code>componentesi-service</code> do pacote: <code>powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</code> (use aspas no caminho se ele tiver espaço).</li>
+            <li><b>Mods</b> numa pasta <code>mods</code> da sua pasta de jogo: o <code>mobvoz-0.1.0.jar</code> (depois de abrir o <code>MobVozIA.exe</code> uma vez, fica em <code>%USERPROFILE%\.mobvoz\app\mod</code>), o <a href="https://modrinth.com/mod/fabric-api/version/0.136.1+1.21.8" target="_blank" rel="noopener">Fabric API 0.136.1+1.21.8</a> e o <a href="https://modrinth.com/plugin/simple-voice-chat/version/fabric-1.21.8-2.6.27" target="_blank" rel="noopener">Simple Voice Chat 2.6.27 (Fabric 1.21.8)</a>. No launcher, edite a instalação do Fabric e ponha essa pasta em <b>Diretório do jogo</b>.</li>
+            <li><b>Serviço de IA:</b> no PowerShell, dentro da pasta <code>%USERPROFILE%\.mobvoz\app\ai-service</code> (criada na primeira abertura do <code>MobVozIA.exe</code>): <code>powershell -ExecutionPolicy Bypass -File .\instalar-sidecar.ps1</code> (use aspas no caminho se ele tiver espaço).</li>
           </ol>
         </div></details>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
@@ -132,7 +132,7 @@
 
       <li class="step"><div class="card flat">
         <h3>Ligar o serviço de IA</h3>
-        <p>No programa, em <b>3. Jogar</b>, clique em <b>Ligar o servico de IA</b>. Ele usa a opção que você escolheu no passo anterior (sua API ou o modelo local), sem janela preta: <b>deixe o programa aberto</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
+        <p>No programa, em <b>4. Jogar</b>, clique em <b>Ligar o servico de IA</b>. Ele usa a opção que você escolheu no passo anterior (sua API ou o modelo local), sem janela preta: <b>deixe o programa aberto</b> enquanto joga. A primeira fala demora uns 10 a 15 segundos (carrega os modelos); depois fica rápido.</p>
         <p class="note">Se o Firewall perguntar, pode permitir só em “redes privadas” (o serviço só escuta no seu próprio PC).</p>
         <span class="expect">A luzinha “Serviço de IA: ligado e respondendo” fica verde (leva alguns segundos). Para conferir, abra <a href="http://127.0.0.1:8765/health" target="_blank" rel="noopener">127.0.0.1:8765/health</a>: aparece <code>"status": "ok"</code>.</span>
         <label class="did"><input type="checkbox"> Já fiz este passo</label></div></li>
@@ -163,7 +163,7 @@
         <p>Invoque uma vaca na sua frente e mire nela:</p>
         <div class="code"><pre>/summon cow ~ ~ ~3</pre><button class="btn sm copy" type="button">Copiar</button></div>
         <p>Uma <b>estrela amarela</b> aparece sobre ela. Fale: <i>“Oi, vaca! Tudo bem por aqui?”</i> e espere a resposta (voz + legenda). Sem microfone? Digite <code>/mobvoz chat sim</code> e escreva no chat. Dica: <code>/mobvoz ajuda</code> mostra tudo o que dá para fazer.</p>
-        <p class="note">Prefere os arquivos de sempre? Os <code>.bat</code> (<code>1-INSTALAR</code>, <code>2-CONFIGURAR-API</code>, <code>3-LIGAR-SERVICO</code>) continuam dentro da pasta <code>componentes</code>.</p>
+        <p class="note">Voz na nuvem (opcional): no próprio programa há o passo <b>Voz na nuvem do Azure</b>. Crie um recurso gratuito “Serviços de fala” no portal.azure.com e cole a chave e a região; sem isso, as vozes locais gratuitas funcionam normalmente.</p>
         <span class="expect">A vaca responde em voz alta e a legenda aparece no chat, em amarelo.</span>
         <label class="did"><input type="checkbox"> Funcionou! 🎉</label></div></li>
     </ol>

@@ -6,7 +6,7 @@ ANTES DE COMECAR (so uma vez)
   1. Instale o Minecraft Launcher (minecraft.net/download), abra, entre na sua conta e feche.
   2. Tenha internet e uns 6 GB livres no disco.
 
-COMO INSTALAR  (um programa, tres passos na janela)
+COMO INSTALAR  (um programa so, tudo na janela)
   Abra  MobVozIA.exe  (duplo clique). Se o Windows mostrar "O Windows protegeu o seu PC", clique em
   "Mais informacoes" e depois em "Executar assim mesmo" (e um projeto novo, sem assinatura paga).
   1. Instalar / atualizar tudo   Instala Python, Fabric, os 3 mods e o servico de IA. Leva alguns minutos na
@@ -14,16 +14,12 @@ COMO INSTALAR  (um programa, tres passos na janela)
   2. IA que conversa             Cole a chave da sua API (ex.: DeepSeek) e clique em "Salvar e testar".
                                  A chave fica guardada neste PC: nao precisa colar de novo, nem ao atualizar.
                                  (Sem chave? Escolha o modelo local gratis com o Ollama.)
-  3. Jogar                       "Ligar o servico de IA" (sem janela preta; deixe o programa aberto enquanto joga)
+  3. Voz na nuvem (opcional)     Vozes mais naturais pelo Azure (plano gratis de 500 mil caracteres por mes). Cole a chave
+                                 e a regiao do seu recurso "Servicos de fala" e marque "Usar a voz na nuvem". Sem isso, as
+                                 vozes locais gratis funcionam normalmente.
+  4. Jogar                       "Ligar o servico de IA" (sem janela preta; deixe o programa aberto enquanto joga)
                                  e "Abrir o Minecraft".
-  A pasta "componentes" tem tudo o que o programa usa (nao precisa mexer). Quem preferir os arquivos .bat
-  de sempre, eles continuam la dentro, em componentes\ (1-INSTALAR, 2-CONFIGURAR-API, 3-LIGAR-SERVICO).
-
-VOZES NA NUVEM (opcional, nao precisa para jogar)
-  O jogo ja vem com vozes locais gratis (Kokoro, e o Piper mais leve). Se quiser vozes mais naturais e variadas, da pra usar o Azure
-  Speech (tem plano gratis de 500 mil caracteres por mes). Crie o recurso "Speech" no portal.azure.com, de dois cliques em
-  componentes-CONFIGURAR-VOZ-NUVEM.bat e cole a chave. No jogo: /mobvoz motorvoz nuvem   (voltar: /mobvoz motorvoz auto).
-  Tem limite de 15.000 caracteres por dia; passou disso, ou sem internet, a voz local assume sozinha.
+  O programa ja leva dentro tudo o que usa: nao tem pasta nem arquivo para mexer. (Ele guarda os arquivos em Meu usuario\.mobvoz.)
 
 COMO JOGAR
   1. Abra o Minecraft Launcher, escolha a instalacao "MobVoz IA" e clique Jogar.
@@ -40,8 +36,8 @@ COMO JOGAR
 
 SE ALGO DER ERRADO
   - Se o Windows mostrar "O Windows protegeu o seu PC": clique em "Mais informacoes" e "Executar assim mesmo".
-  - Se o 1-INSTALAR.bat falhar, feche e rode de novo: ele continua de onde parou.
-  - ATUALIZANDO para uma versao nova: extraia o zip novo onde quiser e de dois cliques no 1-INSTALAR.bat de novo. As bibliotecas e as vozes
+  - Se a instalacao falhar, feche o programa, abra de novo e clique em Instalar: ele continua de onde parou.
+  - ATUALIZANDO para uma versao nova: abra o MobVozIA.exe novo e clique em "Instalar / atualizar tudo" de novo. As bibliotecas e as vozes
     ficam guardadas em  Meu usuario\.mobvoz\sidecar  e sao reaproveitadas: so baixa o que faltar (leva segundos, nao minutos).
     (Quem instalou antes desta mudanca baixa tudo mais uma ultima vez.)
   - O mod, o Fabric API e o Simple Voice Chat devem estar na pasta  Meu usuario\MobVozJogo\mods.

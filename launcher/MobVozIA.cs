@@ -18,10 +18,16 @@ namespace MobVozIA
     static class Caminhos
     {
         public static readonly string Exe = AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\');
-        // o pacote guarda tudo em "componentes"; durante o desenvolvimento os arquivos ficam ao lado do exe
+        // Os componentes (mod, scripts, servico de IA) vao DENTRO do exe e sao extraidos para Home\app; assim o pacote e so o programa.
+        // Sem o recurso embutido (desenvolvimento), usa a pasta "componentes" ao lado do exe, ou o proprio lado do exe.
         public static string Comp
         {
-            get { string c = Path.Combine(Exe, "componentes"); return Directory.Exists(c) ? c : Exe; }
+            get
+            {
+                if (Payload.Embutido) return Path.Combine(Home, "app");
+                string c = Path.Combine(Exe, "componentes");
+                return Directory.Exists(c) ? c : Exe;
+            }
         }
         public static string Home
         {
@@ -36,6 +42,8 @@ namespace MobVozIA
         public static string Modelos { get { return Path.Combine(Fixa, "models"); } }
         public static string ArqChave { get { return Path.Combine(Home, "api.json"); } }
         public static string ArqProvedor { get { return Path.Combine(Home, "provedor.txt"); } }
+        public static string ArqAzure { get { return Path.Combine(Home, "azure.json"); } }
+        public static string ArqVoz { get { return Path.Combine(Home, "voz.txt"); } }
         public static string PastaJogo
         {
             get { return Path.Combine(Environment.GetEnvironmentVariable("USERPROFILE") ?? "", "MobVozJogo"); }
@@ -52,6 +60,42 @@ namespace MobVozIA
             }
             catch (Exception) { }
             return "?";
+        }
+    }
+
+    /// <summary>Componentes embutidos no exe (componentes.zip): extraidos para Home\app na 1a abertura e sempre que o exe for outro (versao nova).</summary>
+    static class Payload
+    {
+        const string Nome = "componentes.zip";
+        public static bool Embutido
+        {
+            get { return System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceInfo(Nome) != null; }
+        }
+
+        public static void Extrair()
+        {
+            if (!Embutido) return;
+            string app = Path.Combine(Caminhos.Home, "app");
+            byte[] zip;
+            using (Stream s = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(Nome))
+            using (MemoryStream ms = new MemoryStream()) { s.CopyTo(ms); zip = ms.ToArray(); }
+            string selo = Convert.ToBase64String(System.Security.Cryptography.MD5.Create().ComputeHash(zip));
+            string arqSelo = Path.Combine(app, ".selo");
+            try { if (File.Exists(arqSelo) && File.ReadAllText(arqSelo) == selo && File.Exists(Path.Combine(app, "instalar-tudo.ps1"))) return; } catch (Exception) { }
+            Directory.CreateDirectory(app);
+            using (System.IO.Compression.ZipArchive z = new System.IO.Compression.ZipArchive(new MemoryStream(zip), System.IO.Compression.ZipArchiveMode.Read))
+            {
+                string raiz = Path.GetFullPath(app) + Path.DirectorySeparatorChar;
+                foreach (System.IO.Compression.ZipArchiveEntry e in z.Entries)
+                {
+                    string destino = Path.GetFullPath(Path.Combine(app, e.FullName.Replace('/', Path.DirectorySeparatorChar)));
+                    if (!destino.StartsWith(raiz, StringComparison.OrdinalIgnoreCase)) continue; // nunca escreve fora da pasta
+                    if (e.Name.Length == 0) { Directory.CreateDirectory(destino); continue; }
+                    Directory.CreateDirectory(Path.GetDirectoryName(destino));
+                    using (Stream o = File.Create(destino)) using (Stream i = e.Open()) i.CopyTo(o);
+                }
+            }
+            File.WriteAllText(arqSelo, selo);
         }
     }
 
@@ -91,6 +135,73 @@ namespace MobVozIA
             File.WriteAllText(Caminhos.ArqChave, json, new UTF8Encoding(false)); // sem BOM: o servico le sem problema
         }
         public static void RemoverChave() { try { File.Delete(Caminhos.ArqChave); } catch (Exception) { } }
+        static string Campo(string arq, string campo)
+        {
+            try
+            {
+                string t = File.ReadAllText(arq, Encoding.UTF8).TrimStart('﻿');
+                int i = t.IndexOf("\"" + campo + "\"", StringComparison.Ordinal);
+                if (i < 0) return "";
+                int a = t.IndexOf('"', t.IndexOf(':', i) + 1);
+                int b = a < 0 ? -1 : t.IndexOf('"', a + 1);
+                return (a >= 0 && b > a) ? t.Substring(a + 1, b - a - 1).Trim() : "";
+            }
+            catch (Exception) { return ""; }
+        }
+        public static string ChaveAzure() { return Campo(Caminhos.ArqAzure, "key"); }
+        public static string RegiaoAzure() { return Campo(Caminhos.ArqAzure, "region"); }
+        public static string AzureMascarada()
+        {
+            string k = ChaveAzure();
+            return k.Length < 8 ? "" : "••••••••" + k.Substring(k.Length - 4) + " (" + RegiaoAzure() + ")";
+        }
+        public static void SalvarAzure(string regiao, string chave)
+        {
+            Directory.CreateDirectory(Caminhos.Home);
+            regiao = regiao.Trim().ToLowerInvariant().Replace(" ", "");
+            string json = "{\"key\": \"" + chave.Replace("\\", "").Replace("\"", "") + "\", \"region\": \"" + regiao.Replace("\\", "").Replace("\"", "") + "\"}";
+            File.WriteAllText(Caminhos.ArqAzure, json, new UTF8Encoding(false)); // sem BOM
+        }
+        public static void RemoverAzure() { try { File.Delete(Caminhos.ArqAzure); } catch (Exception) { } }
+        /// <summary>"nuvem" ou "local": qual voz o servico usa ao ligar. So vale "nuvem" se houver chave.</summary>
+        public static string Voz()
+        {
+            try { if (File.ReadAllText(Caminhos.ArqVoz).Trim() == "nuvem" && ChaveAzure().Length > 0) return "nuvem"; } catch (Exception) { }
+            return "local";
+        }
+        public static void SalvarVoz(string v)
+        {
+            Directory.CreateDirectory(Caminhos.Home);
+            File.WriteAllText(Caminhos.ArqVoz, v, new UTF8Encoding(false));
+        }
+        /// <summary>Confere a chave no Azure (a lista de vozes e gratis). "ok: N vozes", "recusada" ou "sem-teste: motivo".</summary>
+        public static string TestarAzure(string regiao, string chave)
+        {
+            try
+            {
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                HttpWebRequest rq = (HttpWebRequest)WebRequest.Create("https://" + regiao.Trim().ToLowerInvariant().Replace(" ", "") + ".tts.speech.microsoft.com/cognitiveservices/voices/list");
+                rq.Headers["Ocp-Apim-Subscription-Key"] = chave;
+                rq.Timeout = 15000;
+                rq.UserAgent = "MobVozIA-programa/0.1";
+                using (HttpWebResponse rs = (HttpWebResponse)rq.GetResponse())
+                using (StreamReader r = new StreamReader(rs.GetResponseStream(), Encoding.UTF8))
+                {
+                    string txt = r.ReadToEnd();
+                    int n = 0, i = 0;
+                    while ((i = txt.IndexOf("\"Locale\":\"pt-BR\"", i, StringComparison.Ordinal)) >= 0) { n++; i++; }
+                    return "ok: " + n + " vozes pt-BR";
+                }
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse r = e.Response as HttpWebResponse;
+                if (r != null && (r.StatusCode == HttpStatusCode.Unauthorized || r.StatusCode == HttpStatusCode.Forbidden)) return "recusada";
+                return "sem-teste: " + (r != null ? "HTTP " + (int)r.StatusCode : e.Status.ToString());
+            }
+            catch (Exception e) { return "sem-teste: " + e.GetType().Name; }
+        }
+
         public static string Provedor()
         {
             try { string p = File.ReadAllText(Caminhos.ArqProvedor).Trim(); if (p == "api" || p == "local") return p; } catch (Exception) { }
@@ -145,8 +256,11 @@ namespace MobVozIA
         {
             if (args.Length > 0 && args[0].StartsWith("--"))
             {
+                try { Payload.Extrair(); } catch (Exception e) { Console.WriteLine("erro ao extrair: " + e.Message); return 3; }
                 return Cli(args);
             }
+            try { Payload.Extrair(); }
+            catch (Exception e) { MessageBox.Show("Nao consegui preparar os arquivos do programa em " + Path.Combine(Caminhos.Home, "app") + ": " + e.Message, "MobVoz IA"); return 1; }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Janela());
@@ -165,15 +279,21 @@ namespace MobVozIA
                     Console.WriteLine("servico_instalado=" + Estado.ServicoInstalado());
                     Console.WriteLine("chave=" + (Estado.Chave().Length > 0 ? Estado.ChaveMascarada() : "nenhuma"));
                     Console.WriteLine("provedor=" + Estado.Provedor());
+                    Console.WriteLine("azure=" + (Estado.ChaveAzure().Length > 0 ? Estado.AzureMascarada() : "nenhuma") + " voz=" + Estado.Voz());
                     Console.WriteLine("servico_online=" + Estado.ServicoOnline());
                     return 0;
                 case "--salvar-chave":
                     if (a.Length < 2 || a[1].Trim().Length < 16) { Console.WriteLine("chave curta demais"); return 2; }
                     Estado.SalvarChave(a[1].Trim()); Console.WriteLine("salva: " + Estado.ChaveMascarada()); return 0;
+                case "--salvar-azure":
+                    if (a.Length < 3 || a[2].Trim().Length < 20) { Console.WriteLine("uso: --salvar-azure <regiao> <chave>"); return 2; }
+                    Estado.SalvarAzure(a[1], a[2].Trim()); Console.WriteLine("salva: " + Estado.AzureMascarada()); return 0;
+                case "--testar-azure": Console.WriteLine(Estado.TestarAzure(Estado.RegiaoAzure(), Estado.ChaveAzure())); return 0;
+                case "--remover-azure": Estado.RemoverAzure(); Console.WriteLine("removida"); return 0;
                 case "--remover-chave": Estado.RemoverChave(); Console.WriteLine("removida"); return 0;
                 case "--testar-chave": Console.WriteLine(Estado.TestarChave(Estado.Chave())); return 0;
             }
-            Console.WriteLine("opcoes: --status --salvar-chave <chave> --remover-chave --testar-chave --versao");
+            Console.WriteLine("opcoes: --status --salvar-chave <chave> --remover-chave --testar-chave --salvar-azure <regiao> <chave> --testar-azure --remover-azure --versao");
             return 1;
         }
     }
@@ -185,13 +305,16 @@ namespace MobVozIA
             Texto = Color.FromArgb(234, 241, 234), Suave = Color.FromArgb(157, 176, 161), Verde = Color.FromArgb(58, 138, 48),
             VerdeVivo = Color.FromArgb(52, 224, 122), Ouro = Color.FromArgb(247, 201, 72), Vermelho = Color.FromArgb(238, 90, 69);
 
-        Label lbMods, lbServ, lbIa, lbOn;
-        Panel dotMods, dotServ, dotIa, dotOn;
+        Label lbMods, lbServ, lbIa, lbOn, lbVoz;
+        Panel dotMods, dotServ, dotIa, dotOn, dotVoz;
         Button btInstalar, btSalvar, btRemover, btLigar, btParar, btOllama;
         CheckBox cbLeve;
         RadioButton rbApi, rbLocal;
         TextBox tbChave, tbLog;
-        Label lbChave, lbNotaLocal;
+        Label lbChave, lbNotaLocal, lbAz;
+        CheckBox cbNuvem;
+        TextBox tbRegiao, tbChaveAz;
+        Button btSalvarAz, btRemoverAz;
         ProgressBar barra;
         System.Windows.Forms.Timer tempo = new System.Windows.Forms.Timer();
         Process instalacao, servico;
@@ -203,7 +326,7 @@ namespace MobVozIA
             Font = new Font("Segoe UI", 9.5f);
             BackColor = Fundo;
             ForeColor = Texto;
-            ClientSize = new Size(760, 760);
+            ClientSize = new Size(760, 840);
             MinimumSize = new Size(700, 600);
             StartPosition = FormStartPosition.CenterScreen;
             try { Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath); } catch (Exception) { }
@@ -230,8 +353,9 @@ namespace MobVozIA
             AddLinha(pe, 0, out dotMods, out lbMods);
             AddLinha(pe, 1, out dotServ, out lbServ);
             AddLinha(pe, 2, out dotIa, out lbIa);
-            AddLinha(pe, 3, out dotOn, out lbOn);
-            pe.Height = 150;
+            AddLinha(pe, 3, out dotVoz, out lbVoz);
+            AddLinha(pe, 4, out dotOn, out lbOn);
+            pe.Height = 176;
             raiz.Controls.Add(pe);
 
             // ---- instalar
@@ -305,8 +429,57 @@ namespace MobVozIA
             pa.Height = 196;
             raiz.Controls.Add(pa);
 
+            // ---- voz na nuvem (opcional)
+            Panel pn = Cartao_("3. Voz na nuvem do Azure (opcional)");
+            Label dicaN = Rotulo("As vozes locais ja vem prontas e sao gratis. Se quiser vozes mais naturais, crie um recurso gratis \"Servicos de fala\" (Speech, plano F0, 500 mil caracteres por mes) em portal.azure.com (clique aqui para abrir) e cole a CHAVE 1 e a regiao. Limite de 15.000 caracteres por dia; passou disso ou sem internet, a voz local assume sozinha.", Suave);
+            dicaN.Location = new Point(14, 32);
+            dicaN.MaximumSize = new Size(690, 0);
+            dicaN.Cursor = Cursors.Hand;
+            dicaN.Click += delegate { Abrir("https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices"); };
+            pn.Controls.Add(dicaN);
+            Label rotR = Rotulo("Regiao:", Texto);
+            rotR.Location = new Point(14, 100);
+            pn.Controls.Add(rotR);
+            tbRegiao = new TextBox();
+            tbRegiao.Text = "brazilsouth";
+            tbRegiao.Location = new Point(70, 96);
+            tbRegiao.Size = new Size(110, 26);
+            tbRegiao.BackColor = Color.FromArgb(10, 14, 11);
+            tbRegiao.ForeColor = Texto;
+            tbRegiao.BorderStyle = BorderStyle.FixedSingle;
+            pn.Controls.Add(tbRegiao);
+            tbChaveAz = new TextBox();
+            tbChaveAz.UseSystemPasswordChar = true;
+            tbChaveAz.Location = new Point(190, 96);
+            tbChaveAz.Size = new Size(224, 26);
+            tbChaveAz.BackColor = Color.FromArgb(10, 14, 11);
+            tbChaveAz.ForeColor = Texto;
+            tbChaveAz.BorderStyle = BorderStyle.FixedSingle;
+            pn.Controls.Add(tbChaveAz);
+            btSalvarAz = Botao("Salvar e testar", Verde, 130);
+            btSalvarAz.Location = new Point(424, 93);
+            btSalvarAz.Click += delegate { SalvarAzure(); };
+            pn.Controls.Add(btSalvarAz);
+            btRemoverAz = Botao("Remover", Color.FromArgb(70, 40, 38), 90);
+            btRemoverAz.Location = new Point(562, 93);
+            btRemoverAz.Click += delegate { RemoverAzure(); };
+            pn.Controls.Add(btRemoverAz);
+            lbAz = Rotulo("", Suave);
+            lbAz.Location = new Point(14, 134);
+            lbAz.MaximumSize = new Size(690, 0);
+            pn.Controls.Add(lbAz);
+            cbNuvem = new CheckBox();
+            cbNuvem.Text = "Usar a voz na nuvem quando eu ligar o servico";
+            cbNuvem.AutoSize = true;
+            cbNuvem.ForeColor = Texto;
+            cbNuvem.Location = new Point(14, 160);
+            cbNuvem.CheckedChanged += delegate { Estado.SalvarVoz(cbNuvem.Checked ? "nuvem" : "local"); Atualizar(); };
+            pn.Controls.Add(cbNuvem);
+            pn.Height = 192;
+            raiz.Controls.Add(pn);
+
             // ---- servico
-            Panel ps = Cartao_("3. Jogar");
+            Panel ps = Cartao_("4. Jogar");
             btLigar = Botao("Ligar o servico de IA", Verde, 200);
             btLigar.Location = new Point(14, 36);
             btLigar.Click += delegate { Ligar(); };
@@ -349,6 +522,7 @@ namespace MobVozIA
                 string p = Estado.Provedor();
                 rbApi.Checked = p == "api";
                 rbLocal.Checked = p == "local";
+                cbNuvem.Checked = Estado.Voz() == "nuvem";
                 TrocouProvedor();
                 Atualizar();
                 tempo.Interval = 2500;
@@ -444,6 +618,12 @@ namespace MobVozIA
             string chave = Estado.ChaveMascarada();
             if (p == "api") Pintar(dotIa, lbIa, chave.Length > 0, chave.Length > 0 ? "IA que conversa: sua API (chave " + chave + ")" : "IA que conversa: falta guardar a chave da API", chave.Length == 0);
             else Pintar(dotIa, lbIa, true, "IA que conversa: modelo local (Ollama)", false);
+            string az = Estado.AzureMascarada();
+            lbAz.Text = az.Length > 0 ? "Chave do Azure guardada neste computador: " + az + ". Para trocar, cole outra e salve." : "Nenhuma chave do Azure guardada (tudo bem: as vozes locais funcionam sem ela).";
+            cbNuvem.Enabled = az.Length > 0;
+            if (az.Length == 0 && cbNuvem.Checked) cbNuvem.Checked = false;
+            bool nuvem = az.Length > 0 && cbNuvem.Checked;
+            Pintar(dotVoz, lbVoz, true, nuvem ? "Vozes: nuvem do Azure (com queda automatica para a voz local)" : "Vozes: locais (Kokoro, gratis)", false);
             lbChave.Text = chave.Length > 0 ? "Chave guardada neste computador: " + chave + ". Fica salva: nao precisa colar de novo, nem ao atualizar o MobVoz." : "Nenhuma chave guardada. Cole a chave da sua API (ex.: DeepSeek) e clique em Salvar e testar.";
             bool rodando = servico != null && !servico.HasExited;
             btLigar.Enabled = !rodando;
@@ -488,7 +668,7 @@ namespace MobVozIA
                     Ocupado(false);
                     Log(codigo == 0 ? "== Instalacao concluida." : "== A instalacao terminou com erro (codigo " + codigo + "). Leia as ultimas linhas acima; pode clicar de novo, ele continua de onde parou.");
                     Atualizar();
-                    if (codigo == 0) MessageBox.Show("Tudo pronto! Agora escolha a IA que conversa (passo 2) e ligue o servico (passo 3).", "MobVoz IA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (codigo == 0) MessageBox.Show("Tudo pronto! Agora escolha a IA que conversa (passo 2) e ligue o servico (passo 4).", "MobVoz IA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 });
             });
         }
@@ -563,6 +743,38 @@ namespace MobVozIA
             Atualizar();
         }
 
+        void SalvarAzure()
+        {
+            string k = tbChaveAz.Text.Trim(), r = tbRegiao.Text.Trim();
+            if (k.Length < 20 || r.Length < 3) { MessageBox.Show("Preencha a regiao (ex.: brazilsouth) e cole a CHAVE 1 do recurso Speech.", "MobVoz IA", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            btSalvarAz.Enabled = false;
+            Log("Testando a chave no Azure (a consulta e gratis)...");
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                string res = Estado.TestarAzure(r, k);
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    btSalvarAz.Enabled = true;
+                    if (res == "recusada") { Log("O Azure recusou essa chave/regiao. Nada foi guardado."); MessageBox.Show("O Azure recusou essa chave ou regiao. Confira os dois em \"Chaves e Ponto de Extremidade\" do recurso e tente de novo.", "MobVoz IA", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+                    Estado.SalvarAzure(r, k);
+                    tbChaveAz.Clear();
+                    if (res.StartsWith("ok")) { Log("Chave do Azure valida (" + res + ")."); cbNuvem.Checked = true; MessageBox.Show("Chave guardada e funcionando! A voz na nuvem ficou marcada; ligue (ou religue) o servico no passo 4.", "MobVoz IA", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    else { Log("Nao consegui testar (" + res + "). A chave ficou guardada."); MessageBox.Show("Chave guardada, mas nao consegui testar agora (" + res + "). Sem internet?", "MobVoz IA"); }
+                    Atualizar();
+                });
+            });
+        }
+
+        void RemoverAzure()
+        {
+            if (Estado.ChaveAzure().Length == 0) return;
+            if (MessageBox.Show("Apagar a chave do Azure guardada neste computador?", "MobVoz IA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            Estado.RemoverAzure();
+            cbNuvem.Checked = false;
+            Log("Chave do Azure removida.");
+            Atualizar();
+        }
+
         void BaixarModelo()
         {
             Ocupado(true);
@@ -586,7 +798,9 @@ namespace MobVozIA
             Dictionary<string, string> env = new Dictionary<string, string>();
             env["MOBVOZ_MODELS"] = Caminhos.Modelos;
             env["MOBVOZ_PROVIDER"] = api ? "api" : "ollama";
-            Log("Ligando o servico de IA (" + (api ? "sua API" : "modelo local") + "). A primeira fala demora uns 10 a 15 s (carrega os modelos).");
+            bool nuvem = Estado.Voz() == "nuvem";
+            if (nuvem) env["MOBVOZ_TTS"] = "nuvem";
+            Log("Ligando o servico de IA (" + (api ? "sua API" : "modelo local") + (nuvem ? ", voz na nuvem do Azure" : ", voz local") + "). A primeira fala demora uns 10 a 15 s (carrega os modelos).");
             servico = Rodar(Caminhos.VenvPython, "-m app.api", Path.Combine(Caminhos.Comp, "ai-service"), env, delegate(int c)
             {
                 BeginInvoke((MethodInvoker)delegate { Log("== Servico parou (codigo " + c + ")."); Atualizar(); });
